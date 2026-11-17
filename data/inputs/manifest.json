@@ -1,0 +1,325 @@
+{
+  "about": "What scripts/pull.mjs read, when, and the first 40 hex digits of each answer's sha256. Source: PrompTugal__News__Website data/by-place (public; each file signed beside it as <file>.sig), served at promptugal.news.",
+  "by": "scripts/pull.mjs (travel@PrompTugal.dinis)",
+  "read_at": "2026-11-17T19:15:05Z",
+  "source": "https://promptugal.news/data/by-place/",
+  "repository": "https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/data/by-place",
+  "places": [
+    "algarve",
+    "faro",
+    "loule",
+    "quarteira",
+    "silves",
+    "tavira",
+    "vila-real-de-santo-antonio",
+    "portimao",
+    "lagos",
+    "olhao",
+    "albufeira",
+    "lagoa",
+    "monchique",
+    "aljezur",
+    "vila-do-bispo",
+    "castro-marim",
+    "alcoutim",
+    "sao-bras-de-alportel"
+  ],
+  "reads": [
+    {
+      "path": "places.json",
+      "url": "https://promptugal.news/data/by-place/places.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:05Z",
+      "status": 200,
+      "sha256_40": "ee5ccd1509bb018273c755ebcda5648cb2481c5b"
+    },
+    {
+      "path": "algarve.json",
+      "url": "https://promptugal.news/data/by-place/algarve.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:08Z",
+      "status": 200,
+      "sha256_40": "4077ea20f1eaa49de63ac72ae693f7a530948e1b"
+    },
+    {
+      "path": "now/algarve.json",
+      "url": "https://promptugal.news/data/by-place/now/algarve.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:10Z",
+      "status": 200,
+      "sha256_40": "a266928b8b0b6fef6f07dfe1edce2e24f9952b2f"
+    },
+    {
+      "path": "faro.json",
+      "url": "https://promptugal.news/data/by-place/faro.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:12Z",
+      "status": 200,
+      "sha256_40": "b008cad8a6df37cc4ada59d1469eb29953464c52"
+    },
+    {
+      "path": "now/faro.json",
+      "url": "https://promptugal.news/data/by-place/now/faro.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:14Z",
+      "status": 200,
+      "sha256_40": "0b1be58bf45551a8ce76618d07bf15c50feeed12"
+    },
+    {
+      "path": "loule.json",
+      "url": "https://promptugal.news/data/by-place/loule.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:16Z",
+      "status": 200,
+      "sha256_40": "7d4cd596ed38675b1fe621aaed87ecdb4d43a6ed"
+    },
+    {
+      "path": "now/loule.json",
+      "url": "https://promptugal.news/data/by-place/now/loule.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:18Z",
+      "status": 200,
+      "sha256_40": "19519c4538dc21f02708b8e1f2c8518667969b2a"
+    },
+    {
+      "path": "quarteira.json",
+      "url": "https://promptugal.news/data/by-place/quarteira.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:20Z",
+      "status": 200,
+      "sha256_40": "f09d5a296ecaf97cd363b3e947aa3a142b221ae4"
+    },
+    {
+      "path": "now/quarteira.json",
+      "url": "https://promptugal.news/data/by-place/now/quarteira.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:22Z",
+      "status": 200,
+      "sha256_40": "e206a777841f63ada3a715747b0690252a298af9"
+    },
+    {
+      "path": "silves.json",
+      "url": "https://promptugal.news/data/by-place/silves.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:24Z",
+      "status": 200,
+      "sha256_40": "ec3ed3c26177b2072c93309b7e8c65f9ca12a9ca"
+    },
+    {
+      "path": "now/silves.json",
+      "url": "https://promptugal.news/data/by-place/now/silves.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:26Z",
+      "status": 200,
+      "sha256_40": "30a7466ee32121cdbf5b1371bd35c5a9984fddc0"
+    },
+    {
+      "path": "tavira.json",
+      "url": "https://promptugal.news/data/by-place/tavira.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:29Z",
+      "status": 200,
+      "sha256_40": "0160f32b69ae4e97f9b6e8f11b9b53f5a8090bf8"
+    },
+    {
+      "path": "now/tavira.json",
+      "url": "https://promptugal.news/data/by-place/now/tavira.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:31Z",
+      "status": 200,
+      "sha256_40": "677d254a69a6c156b1fddc1eee683883b52dee35"
+    },
+    {
+      "path": "vila-real-de-santo-antonio.json",
+      "url": "https://promptugal.news/data/by-place/vila-real-de-santo-antonio.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:33Z",
+      "status": 200,
+      "sha256_40": "674d58b82b54c555c410b0783ca9cb66c620ff13"
+    },
+    {
+      "path": "now/vila-real-de-santo-antonio.json",
+      "url": "https://promptugal.news/data/by-place/now/vila-real-de-santo-antonio.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:35Z",
+      "status": 200,
+      "sha256_40": "e19db8101f0e22b4170c9ea9a82ca1c4b0f6d374"
+    },
+    {
+      "path": "portimao.json",
+      "url": "https://promptugal.news/data/by-place/portimao.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:37Z",
+      "status": 200,
+      "sha256_40": "7b221e54f4377e6402d6006af69d61e02e4f5348"
+    },
+    {
+      "path": "now/portimao.json",
+      "url": "https://promptugal.news/data/by-place/now/portimao.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:39Z",
+      "status": 200,
+      "sha256_40": "10066650803460154796009c2b1b6d81a17c5f30"
+    },
+    {
+      "path": "lagos.json",
+      "url": "https://promptugal.news/data/by-place/lagos.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:41Z",
+      "status": 200,
+      "sha256_40": "30bcf7994ab39bdc5b70e5793be675d0e7d479e3"
+    },
+    {
+      "path": "now/lagos.json",
+      "url": "https://promptugal.news/data/by-place/now/lagos.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:43Z",
+      "status": 200,
+      "sha256_40": "a3de75843f97fbba6b12229e823834a6ba3c0ecb"
+    },
+    {
+      "path": "olhao.json",
+      "url": "https://promptugal.news/data/by-place/olhao.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:45Z",
+      "status": 200,
+      "sha256_40": "aebce1f218cf2c8a837754410e16467990e4ccea"
+    },
+    {
+      "path": "now/olhao.json",
+      "url": "https://promptugal.news/data/by-place/now/olhao.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:47Z",
+      "status": 200,
+      "sha256_40": "d7d2f278b7b47c839f0cbbf2259960fc1ac7af0f"
+    },
+    {
+      "path": "albufeira.json",
+      "url": "https://promptugal.news/data/by-place/albufeira.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:49Z",
+      "status": 200,
+      "sha256_40": "f366ec2f871df26cf6ab5a41629c5fb5e9fc13dd"
+    },
+    {
+      "path": "now/albufeira.json",
+      "url": "https://promptugal.news/data/by-place/now/albufeira.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:51Z",
+      "status": 200,
+      "sha256_40": "bd2dbe6f84d59af0edb36a5680fe6463e02497b8"
+    },
+    {
+      "path": "lagoa.json",
+      "url": "https://promptugal.news/data/by-place/lagoa.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:53Z",
+      "status": 200,
+      "sha256_40": "c9cf2f1c0c0d6d7ca21af38ce8ed21f6c15c2f78"
+    },
+    {
+      "path": "now/lagoa.json",
+      "url": "https://promptugal.news/data/by-place/now/lagoa.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:56Z",
+      "status": 200,
+      "sha256_40": "0b0327b4a0fbd04a222b9ab44446b6f42215d505"
+    },
+    {
+      "path": "monchique.json",
+      "url": "https://promptugal.news/data/by-place/monchique.json",
+      "via": "https",
+      "at": "2026-11-17T19:15:58Z",
+      "status": 200,
+      "sha256_40": "2b2e44b11f975cbd31cef87b86bb4c627225b230"
+    },
+    {
+      "path": "now/monchique.json",
+      "url": "https://promptugal.news/data/by-place/now/monchique.json",
+      "via": "https",
+      "at": "2026-11-17T19:16:00Z",
+      "status": 200,
+      "sha256_40": "a2cf810cef4650948e584197dc95a9e90335c24c"
+    },
+    {
+      "path": "aljezur.json",
+      "url": "https://promptugal.news/data/by-place/aljezur.json",
+      "via": "https",
+      "at": "2026-11-17T19:16:02Z",
+      "status": 200,
+      "sha256_40": "78903f3b1fa819636951e7a9f52f3480a41e3abf"
+    },
+    {
+      "path": "now/aljezur.json",
+      "url": "https://promptugal.news/data/by-place/now/aljezur.json",
+      "via": "https",
+      "at": "2026-11-17T19:16:04Z",
+      "status": 200,
+      "sha256_40": "bd5d48cd19dd4de736bb1cc68c13736f2a6aa279"
+    },
+    {
+      "path": "vila-do-bispo.json",
+      "url": "https://promptugal.news/data/by-place/vila-do-bispo.json",
+      "via": "https",
+      "at": "2026-11-17T19:16:06Z",
+      "status": 200,
+      "sha256_40": "60a2bd5184a586e9b40fc7a3be319fe649649b28"
+    },
+    {
+      "path": "now/vila-do-bispo.json",
+      "url": "https://promptugal.news/data/by-place/now/vila-do-bispo.json",
+      "via": "https",
+      "at": "2026-11-17T19:16:08Z",
+      "status": 200,
+      "sha256_40": "0520ae1d40824e6b53d73bd496e31e91c36fe83f"
+    },
+    {
+      "path": "castro-marim.json",
+      "url": "https://promptugal.news/data/by-place/castro-marim.json",
+      "via": "https",
+      "at": "2026-11-17T19:16:10Z",
+      "status": 200,
+      "sha256_40": "048ecd31d6f9f7fecd3edcab55dd729cfb3bb0eb"
+    },
+    {
+      "path": "now/castro-marim.json",
+      "url": "https://promptugal.news/data/by-place/now/castro-marim.json",
+      "via": "https",
+      "at": "2026-11-17T19:16:12Z",
+      "status": 200,
+      "sha256_40": "29b0c68378d4c9dded69552db02e2479222886a4"
+    },
+    {
+      "path": "alcoutim.json",
+      "url": "https://promptugal.news/data/by-place/alcoutim.json",
+      "via": "https",
+      "at": "2026-11-17T19:16:14Z",
+      "status": 200,
+      "sha256_40": "3fc3a7c10e5a2c7341ccb15cbd31a5de5f4f37d5"
+    },
+    {
+      "path": "now/alcoutim.json",
+      "url": "https://promptugal.news/data/by-place/now/alcoutim.json",
+      "via": "https",
+      "at": "2026-11-17T19:16:16Z",
+      "status": 200,
+      "sha256_40": "1d0f0c19805f5edd13129f6db3f7e6d927286d9f"
+    },
+    {
+      "path": "sao-bras-de-alportel.json",
+      "url": "https://promptugal.news/data/by-place/sao-bras-de-alportel.json",
+      "via": "https",
+      "at": "2026-11-17T19:16:18Z",
+      "status": 200,
+      "sha256_40": "773e38e21ccbd52e0587425d0024f6eddf7530ce"
+    },
+    {
+      "path": "now/sao-bras-de-alportel.json",
+      "url": "https://promptugal.news/data/by-place/now/sao-bras-de-alportel.json",
+      "via": "https",
+      "at": "2026-11-17T19:16:20Z",
+      "status": 200,
+      "sha256_40": "6c03670b5f358ac4d4c6b10952ef738bf03824ec"
+    }
+  ]
+}

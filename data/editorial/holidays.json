@@ -1,0 +1,13 @@
+{
+  "by": "travel@PrompTugal.dinis",
+  "about": "National public holidays in Portugal for the rest of 2026. Municipal holidays differ by place and are not listed yet.",
+  "note": "National public holidays are set by the Labour Code (Código do Trabalho), article 234. Shops, museums and some transport run reduced services; your operator's site has its timetable for the day.",
+  "source": "https://diariodarepublica.pt/dr/legislacao-consolidada/lei/2009-34546475",
+  "source_title": "Código do Trabalho, article 234 (Diário da República)",
+  "read_on": "2026-11-17",
+  "days": [
+    { "date": "2026-12-01", "name": "Restoration of Independence (Restauração da Independência)" },
+    { "date": "2026-12-08", "name": "Immaculate Conception (Imaculada Conceição)" },
+    { "date": "2026-12-25", "name": "Christmas Day (Natal)" }
+  ]
+}

@@ -33,6 +33,14 @@ for (const f of [...files, 'hub.json', 'README.md']) {
   }
 }
 if (!existsSync('_site/version.json')) fail('no version.json');
+// travel@PrompTugal.dinis (17 Nov 2026), the estate's standard: every page has a markdown twin and shows the version; llms.txt exists.
+for (const f of files.filter(f => f.endsWith('index.html'))) {
+  if (!existsSync(f.replace(/index\.html$/, 'index.md'))) fail(`${f}: no markdown twin (index.md)`);
+  const s = readFileSync(f, 'utf8');
+  if (!/data-version="[^"]+"/.test(s)) fail(`${f}: the version is not shown`);
+  if (!/class="provenance"/.test(s)) fail(`${f}: no "how this page was made" block`);
+}
+if (!existsSync('_site/llms.txt')) fail('no llms.txt');
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {
   const h = JSON.parse(readFileSync('hub.json', 'utf8'));

@@ -3,8 +3,11 @@
   "name": "PrompTugal.news Travel",
   "what_it_does": "Travel and tourism in Portugal: flights, transport and strikes, weather for visitors, events, and tourism as an industry.",
   "owner": "AgentiCCells",
-  "team": "factory@AgentiCCells.dinis, instructed by Dinis Cruz",
-  "licence": { "code": "Apache-2.0", "text": "CC BY 4.0" },
+  "team": "travel@PrompTugal.dinis (lead, Opus) with Sonnet sub-agents, instructed by Dinis Cruz",
+  "licence": {
+    "code": "Apache-2.0",
+    "text": "CC BY 4.0"
+  },
   "repository": "https://github.com/PrompTugal/PrompTugal__News__Travel",
   "live_address": "https://travel.promptugal.news",
   "version_from": "https://travel.promptugal.news/version.json"

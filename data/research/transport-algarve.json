@@ -1,0 +1,780 @@
+{
+ "by": "travel.research@PrompTugal.dinis",
+ "model": "sonnet",
+ "read_at": "2026-11-17T00:00:00Z",
+ "about": "Sourced map of how a visitor reaches and moves around the Algarve, from official and operator pages only. Facts are in our own words; fares are snapshots.",
+ "modes": [
+  {
+   "id": "air",
+   "title": "Air: Faro airport (LPFR)",
+   "summary": "Faro is run by ANA, part of VINCI Airports. The airport's own site sits behind a bot check, so flight and passenger data could not be read; only ANA's newsroom was readable. It shows Faro was hit by weather cancellations on 11 November 2026.",
+   "operators": [
+    {
+     "name": "ANA Aeroportos de Portugal (VINCI Airports)",
+     "role": "Operator of Faro airport",
+     "url": "https://www.ana.pt/en",
+     "facts": [
+      {
+       "text": "ANA's corporate site lists Faro among the ten airports it runs in Portugal, with a Faro airport section linking to aeroportofaro.pt.",
+       "url": "https://www.ana.pt/en",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": {
+      "url": "https://www.ana.pt/en/terms-and-conditions",
+      "clause": "does not, under any circumstances, grant the user the right to reproduce or distribute this information"
+     },
+     "status": "read"
+    },
+    {
+     "name": "ANA newsroom",
+     "role": "Press statements",
+     "url": "https://en.newsroom.ana.pt/faro-airport.html",
+     "facts": [
+      {
+       "text": "On 11 November 2026 ANA reported 14 of 62 scheduled Faro movements cancelled in advance by airlines because of adverse weather, as at 11:00.",
+       "url": "https://en.newsroom.ana.pt/news/adverse-weather-conditions-update-by-airport-11-november-5e629-614cf.html",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      },
+      {
+       "text": "ANA's Faro newsroom tag shows only three items: the weather update plus two from June 2023 (a solar installation and a Faro to Leipzig route).",
+       "url": "https://en.newsroom.ana.pt/faro-airport.html",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      },
+      {
+       "text": "A 27 October 2026 ANA item covers Porto's 24 new winter routes, not Faro; no Faro winter-schedule statement was found in the newsroom.",
+       "url": "https://en.newsroom.ana.pt/",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": {
+      "url": "https://www.ana.pt/en/terms-and-conditions",
+      "clause": "does not, under any circumstances, grant the user the right to reproduce or distribute this information"
+     },
+     "status": "read"
+    },
+    {
+     "name": "Aeroporto de Faro (ANA)",
+     "role": "Official flight information site",
+     "url": "https://www.aeroportofaro.pt/en",
+     "facts": [],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": null,
+     "status": "bot check"
+    }
+   ]
+  },
+  {
+   "id": "rail",
+   "title": "Rail: Linha do Algarve and Lisbon to Faro",
+   "summary": "CP runs the Algarve line and the Lisbon to Faro long-distance trains, but its website is a JavaScript app whose pages carry no readable timetable text, so no CP schedule facts are recorded. Infraestruturas de Portugal manages the track; its pages are linked only, as its terms bar reproduction.",
+   "operators": [
+    {
+     "name": "CP - Comboios de Portugal",
+     "role": "Train operator (Linha do Algarve, Alfa Pendular, Intercidades)",
+     "url": "https://www.cp.pt/passageiros/en",
+     "facts": [
+      {
+       "text": "The cp.pt page returned a small JavaScript shell with no timetable text; its robots.txt disallows only account and online-purchase paths.",
+       "url": "https://www.cp.pt/robots.txt",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      },
+      {
+       "text": "Vamus Algarve lists CP among the operators of the Algarve public transport network.",
+       "url": "https://vamus.pt/operadores/",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "no CP dataset found on dados.gov.pt in searches for CP, Comboios de Portugal and GTFS"
+     },
+     "terms": null,
+     "status": "read"
+    },
+    {
+     "name": "Infraestruturas de Portugal (IP)",
+     "role": "Rail infrastructure manager, planned works",
+     "url": "https://www.infraestruturasdeportugal.pt/pt-pt/estado-da-infraestrutura",
+     "facts": [
+      {
+       "text": "Link only: IP's infrastructure status page, where works and disruptions on the Linha do Algarve would be published. Not read for content.",
+       "url": "https://www.infraestruturasdeportugal.pt/pt-pt/estado-da-infraestrutura",
+       "read_on": "2026-11-17",
+       "kind": "official"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": {
+      "url": "https://www.infraestruturasdeportugal.pt/pt-pt/termos-de-utilizacao-ip",
+      "clause": "nenhum conteúdo deste website pode ser modificado, transmitido, reproduzido, publicado, licenciado, transferido ou vendido sem o prévio consentimento escrito da IP"
+     },
+     "status": "terms"
+    }
+   ]
+  },
+  {
+   "id": "bus",
+   "title": "Buses: regional, coach and urban",
+   "summary": "Vamus Algarve is the AMAL-led regional network, with a tourist pass that includes the airport bus. FlixBus lists Faro with 27 directly linked cities. Rede Expressos refused automated access (403), and Próximo's site is a JavaScript app.",
+   "operators": [
+    {
+     "name": "Vamus Algarve (AMAL)",
+     "role": "Regional public bus network",
+     "url": "https://vamus.pt/",
+     "facts": [
+      {
+       "text": "The Vamus home page advertises a Tourist Pass for unlimited trips on the Algarve interurban buses, including the airport Aerobus.",
+       "url": "https://vamus.pt/",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      },
+      {
+       "text": "The Vamus operators page names Frota Azul, Rede Expressos and FlixBus on the network, plus urban buses in Olhão, Faro (Próximo), Loulé, Albufeira, Portimão, Lagos and Tavira.",
+       "url": "https://vamus.pt/operadores/",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      },
+      {
+       "text": "The fares page says AMAL sets fares yearly and a 50 per cent PART discount applies; the page text is dated to 2023, so it may be stale.",
+       "url": "https://vamus.pt/tarifario/",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      },
+      {
+       "text": "Live timetables sit in a separate app at vamusalgarve.pt, which loads only through JavaScript, so no times were read.",
+       "url": "https://www.vamusalgarve.pt/",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "no Vamus or Algarve GTFS found on dados.gov.pt; a search for vamus returned no datasets"
+     },
+     "terms": {
+      "url": "http://vamus.pt/termos-de-utilizacao-e-politica-de-privacidade/",
+      "clause": "page is mainly an AMAL privacy policy under the GDPR; no reuse clause for timetable content found"
+     },
+     "status": "read"
+    },
+    {
+     "name": "FlixBus",
+     "role": "Coaches, including Lisbon to Faro",
+     "url": "https://www.flixbus.pt/autocarro/faro",
+     "facts": [
+      {
+       "text": "FlixBus Portugal's Faro page states 27 cities with a direct link to Faro and a lowest fare shown from 1.98 EUR (a snapshot; fares change).",
+       "url": "https://www.flixbus.pt/autocarro/faro",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      },
+      {
+       "text": "The page lists Lisbon, Lisbon airport, Porto, Albufeira, Lagos, Portimão, Tavira and Seville among popular routes to or from Faro.",
+       "url": "https://www.flixbus.pt/autocarro/faro",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "no open feed found"
+     },
+     "terms": null,
+     "status": "read"
+    },
+    {
+     "name": "Rede Expressos",
+     "role": "Lisbon to Algarve coaches",
+     "url": "https://rede-expressos.pt/pt",
+     "facts": [],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": null,
+     "status": "403"
+    },
+    {
+     "name": "Próximo (Faro urban buses)",
+     "role": "Urban buses in Faro",
+     "url": "https://www.proximo.pt/pt/",
+     "facts": [
+      {
+       "text": "The Próximo site is a JavaScript app that shows no text without scripts; its robots.txt allows all paths.",
+       "url": "https://www.proximo.pt/robots.txt",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": null,
+     "status": "read"
+    }
+   ]
+  },
+  {
+   "id": "ferry",
+   "title": "Ferries and boats: Ria Formosa islands and the Guadiana",
+   "summary": "Island services run from Faro, Olhão, Fuseta and Tavira, mostly by private operators under municipal arrangements. The Faro and Olhão municipal pages could not be read (connection reset and 503), so the island timetables are a gap. The Guadiana ferry between Vila Real de Santo António and Ayamonte publishes its fares.",
+   "operators": [
+    {
+     "name": "Transporte Fluvial del Guadiana (TFG)",
+     "role": "Ferry Vila Real de Santo António to Ayamonte",
+     "url": "https://www.rioguadiana.net/",
+     "facts": [
+      {
+       "text": "TFG says it has run the Ayamonte to Vila Real de Santo António ferry since 1991, every day of the year.",
+       "url": "https://www.rioguadiana.net/",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      },
+      {
+       "text": "Its site lists fares of 2.50 EUR per adult, 1.50 EUR for children aged 4 to 10, 1.60 EUR per bicycle, 4.70 EUR per motorbike and 7.00 EUR per car.",
+       "url": "https://www.rioguadiana.net/",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": null,
+     "status": "read"
+    },
+    {
+     "name": "Passeios Ria Formosa (Ricardo Badálo Unipessoal Lda)",
+     "role": "Island shuttle lines Fuseta, Santa Luzia, Faro and boat tours",
+     "url": "https://www.passeios-ria-formosa.com/",
+     "facts": [
+      {
+       "text": "The Fuseta to Ilha da Fuseta line is priced at 1.75 EUR adult single and 2.30 EUR return; children 5 to 11 pay 1.15 EUR single and 1.75 EUR return.",
+       "url": "https://www.passeios-ria-formosa.com/destinations/carreira-fuseta-ilha-da-fuseta/",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      },
+      {
+       "text": "It also runs lines Faro to Ilha de Faro (2026 timetable) and Santa Luzia to Terra Estreita (page shows a 2024 timetable); timetables are shown as images and were not transcribed.",
+       "url": "https://www.passeios-ria-formosa.com/destinations/carreira-faro-ilha-de-faro/",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": {
+      "url": "https://www.passeios-ria-formosa.com/termos-e-condicoes/",
+      "clause": "link recorded; clause not extracted"
+     },
+     "status": "read"
+    },
+    {
+     "name": "Silnido",
+     "role": "Tavira to Ilha de Tavira river service",
+     "url": "https://www.silnido.com/",
+     "facts": [
+      {
+       "text": "Silnido says it has worked in river transport and maritime tourism for over 30 years, with a Tavira island service and rules for carrying pets.",
+       "url": "https://www.silnido.com/",
+       "read_on": "2026-11-17",
+       "kind": "operator"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": null,
+     "status": "read"
+    },
+    {
+     "name": "Câmara Municipal de Faro",
+     "role": "Boats to Farol and Culatra islands (municipal page)",
+     "url": "https://www.cm-faro.pt/421/barcos-para-as-ilhas.aspx",
+     "facts": [],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": null,
+     "status": "not found"
+    },
+    {
+     "name": "Município de Olhão",
+     "role": "Armona, Culatra and Farol services from Olhão",
+     "url": "https://www2.cm-olhao.pt/en/listar-artigos/2835-transporte-de-passageiros-armona-horarios-e-medidas-de-contingencia",
+     "facts": [],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": null,
+     "status": "not found"
+    }
+   ]
+  },
+  {
+   "id": "road",
+   "title": "Roads: A22 and EN125",
+   "summary": "Law 37/2024 abolished tolls on the A22 Algarve from 1 January 2025. Portal das Portagens could not be reached from our proxy, so the current toll position beyond the law is unconfirmed. No official EN125 page was read.",
+   "operators": [
+    {
+     "name": "Assembleia da República (Lei n.º 37/2024)",
+     "role": "Legal basis for A22 tolls",
+     "url": "https://files.diariodarepublica.pt/1s/2024/08/15200/0001300014.pdf",
+     "facts": [
+      {
+       "text": "Law 37/2024, published in Diário da República on 7 August 2024, lists the A22 Algarve among the motorways whose toll charges are eliminated.",
+       "url": "https://files.diariodarepublica.pt/1s/2024/08/15200/0001300014.pdf",
+       "read_on": "2026-11-17",
+       "kind": "official"
+      },
+      {
+       "text": "The same law comes into force on 1 January 2025 and revokes Decree-Law 97/2023.",
+       "url": "https://files.diariodarepublica.pt/1s/2024/08/15200/0001300014.pdf",
+       "read_on": "2026-11-17",
+       "kind": "official"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "not checked"
+     },
+     "terms": null,
+     "status": "read"
+    },
+    {
+     "name": "Portal das Portagens",
+     "role": "Official tolls portal",
+     "url": "https://www.portaldasportagens.pt/",
+     "facts": [],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": null,
+     "status": "not found"
+    },
+    {
+     "name": "Infraestruturas de Portugal",
+     "role": "National road network manager (EN125 and A22 oversight)",
+     "url": "https://www.infraestruturasdeportugal.pt/pt-pt",
+     "facts": [
+      {
+       "text": "Link only: IP's road network pages; no EN125 page was read.",
+       "url": "https://www.infraestruturasdeportugal.pt/pt-pt",
+       "read_on": "2026-11-17",
+       "kind": "official"
+      }
+     ],
+     "open_data": {
+      "exists": false,
+      "url": "https://dados.gov.pt/",
+      "licence": "none found"
+     },
+     "terms": {
+      "url": "https://www.infraestruturasdeportugal.pt/pt-pt/termos-de-utilizacao-ip",
+      "clause": "nenhum conteúdo deste website pode ser modificado, transmitido, reproduzido, publicado, licenciado, transferido ou vendido sem o prévio consentimento escrito da IP"
+     },
+     "status": "terms"
+    }
+   ]
+  }
+ ],
+ "gaps": [
+  {
+   "what": "Faro airport official flight and passenger pages",
+   "why": "Incapsula bot check on aeroportofaro.pt and faroairport.pt; respected",
+   "url": "https://www.aeroportofaro.pt/en"
+  },
+  {
+   "what": "CP timetables for Linha do Algarve and Lisbon to Faro",
+   "why": "cp.pt is a JavaScript app with no readable timetable text",
+   "url": "https://www.cp.pt/passageiros/en"
+  },
+  {
+   "what": "IP planned works on the Linha do Algarve",
+   "why": "Link only under IP's terms; no content read",
+   "url": "https://www.infraestruturasdeportugal.pt/pt-pt/estado-da-infraestrutura"
+  },
+  {
+   "what": "Rede Expressos Lisbon to Algarve",
+   "why": "HTTP 403 on both language pages",
+   "url": "https://rede-expressos.pt/pt"
+  },
+  {
+   "what": "Vamus Algarve timetables",
+   "why": "vamusalgarve.pt is a JavaScript app; vamus.pt fares page appears to date from 2023",
+   "url": "https://www.vamusalgarve.pt/"
+  },
+  {
+   "what": "Próximo Faro timetables",
+   "why": "JavaScript app with no readable text",
+   "url": "https://www.proximo.pt/pt/"
+  },
+  {
+   "what": "Faro municipal page on boats to Farol and Culatra",
+   "why": "Connection reset on two attempts",
+   "url": "https://www.cm-faro.pt/421/barcos-para-as-ilhas.aspx"
+  },
+  {
+   "what": "Olhão municipal page on Armona, Culatra, Farol ferries",
+   "why": "HTTP 503; a search snippet suggested the cached page is a 2020 contingency timetable; news reports (Postal) mention suspensions and seasonal changes, unverified",
+   "url": "https://www2.cm-olhao.pt/en/listar-artigos/2835-transporte-de-passageiros-armona-horarios-e-medidas-de-contingencia"
+  },
+  {
+   "what": "Portal das Portagens A22 status",
+   "why": "Proxy returned 502; current status rests on Lei 37/2024 only",
+   "url": "https://www.portaldasportagens.pt/"
+  },
+  {
+   "what": "EN125 official information",
+   "why": "No official page located",
+   "url": ""
+  },
+  {
+   "what": "Open data",
+   "why": "dados.gov.pt API searches (vamus, gtfs, algarve, CP, IP, portagens, A22) found no Algarve, CP or ANA transport datasets; GTFS exists for Lisbon, Braga and Coimbra only. Portugal's national access point (nap-portugal.imt-ip.pt) redirected but was not explored",
+   "url": "https://dados.gov.pt/"
+  },
+  {
+   "what": "Terms of FlixBus, Próximo, TFG, Silnido",
+   "why": "Not found or not read",
+   "url": ""
+  }
+ ],
+ "reads": [
+  {
+   "url": "https://www.aeroportofaro.pt/en",
+   "at": "2026-11-17T19:14:04Z",
+   "status": 200
+  },
+  {
+   "url": "https://en.newsroom.ana.pt/",
+   "at": "2026-11-17T19:14:08Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.cp.pt/passageiros/en",
+   "at": "2026-11-17T19:14:13Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.aeroportofaro.pt/robots.txt",
+   "at": "2026-11-17T19:14:17Z",
+   "status": 200
+  },
+  {
+   "url": "https://en.newsroom.ana.pt/robots.txt",
+   "at": "2026-11-17T19:14:26Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.cp.pt/robots.txt",
+   "at": "2026-11-17T19:14:30Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.infraestruturasdeportugal.pt/en",
+   "at": "2026-11-17T19:14:33Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.vamus.pt/",
+   "at": "2026-11-17T19:14:40Z",
+   "status": 200
+  },
+  {
+   "url": "https://rede-expressos.pt/en",
+   "at": "2026-11-17T19:14:43Z",
+   "status": 403
+  },
+  {
+   "url": "https://en.newsroom.ana.pt/faro-airport.html",
+   "at": "2026-11-17T19:14:50Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ana.pt/en/corporate/home",
+   "at": "2026-11-17T19:14:56Z",
+   "status": 200
+  },
+  {
+   "url": "https://vamus.pt/tarifario/",
+   "at": "2026-11-17T19:15:04Z",
+   "status": 200
+  },
+  {
+   "url": "http://vamus.pt/termos-de-utilizacao-e-politica-de-privacidade/",
+   "at": "2026-11-17T19:15:09Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ana.pt/en/terms-and-conditions",
+   "at": "2026-11-17T19:15:16Z",
+   "status": 200
+  },
+  {
+   "url": "https://vamus.pt/operadores/",
+   "at": "2026-11-17T19:15:21Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.vamusalgarve.pt/",
+   "at": "2026-11-17T19:15:25Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=vamus&page_size=20",
+   "at": "2026-11-17T19:15:33Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=gtfs&page_size=20",
+   "at": "2026-11-17T19:15:37Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=algarve&page_size=20",
+   "at": "2026-11-17T19:15:41Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=CP%20comboios&page_size=8",
+   "at": "2026-11-17T19:15:48Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=Infraestruturas%20de%20Portugal&page_size=8",
+   "at": "2026-11-17T19:15:52Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=portagens&page_size=8",
+   "at": "2026-11-17T19:15:56Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=Pr%C3%B3ximo%20Faro&page_size=8",
+   "at": "2026-11-17T19:16:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=AMAL%20transportes&page_size=8",
+   "at": "2026-11-17T19:16:03Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=hor%C3%A1rios%20autocarros&page_size=8",
+   "at": "2026-11-17T19:16:07Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=ANA%20aeroportos&page_size=8",
+   "at": "2026-11-17T19:16:11Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=A22&page_size=8",
+   "at": "2026-11-17T19:16:15Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=Comboios%20de%20Portugal&page_size=8",
+   "at": "2026-11-17T19:16:24Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=transporte%20rodovi%C3%A1rio%20passageiros&page_size=8",
+   "at": "2026-11-17T19:16:27Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?q=Faro&page_size=8",
+   "at": "2026-11-17T19:16:31Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.infraestruturasdeportugal.pt/en/traffic-and-works",
+   "at": "2026-11-17T19:16:35Z",
+   "status": 404
+  },
+  {
+   "url": "https://nap-portugal.imt-ip.pt/",
+   "at": "2026-11-17T19:16:39Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.infraestruturasdeportugal.pt/robots.txt",
+   "at": "2026-11-17T19:16:45Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.infraestruturasdeportugal.pt/pt-pt/termos-de-utilizacao-ip",
+   "at": "2026-11-17T19:16:51Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.infraestruturasdeportugal.pt/pt-pt/search?search_api_fulltext=linha%20do%20algarve",
+   "at": "2026-11-17T19:16:55Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.proximo.pt/pt/",
+   "at": "2026-11-17T19:17:03Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.proximo.pt/robots.txt",
+   "at": "2026-11-17T19:17:07Z",
+   "status": 200
+  },
+  {
+   "url": "https://global.flixbus.com/",
+   "at": "2026-11-17T19:17:10Z",
+   "status": 200
+  },
+  {
+   "url": "https://global.flixbus.com/robots.txt",
+   "at": "2026-11-17T19:17:14Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.flixbus.pt/autocarro/faro",
+   "at": "2026-11-17T19:17:20Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.rioguadiana.net/",
+   "at": "2026-11-17T19:17:26Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.passeios-ria-formosa.com/",
+   "at": "2026-11-17T19:17:37Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.silnido.com/",
+   "at": "2026-11-17T19:17:40Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.silnido.com/robots.txt",
+   "at": "2026-11-17T19:17:43Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.passeios-ria-formosa.com/destinations/carreira-faro-ilha-de-faro/",
+   "at": "2026-11-17T19:17:54Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.passeios-ria-formosa.com/destinations/carreira-sta-luzia/",
+   "at": "2026-11-17T19:17:59Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.passeios-ria-formosa.com/destinations/carreira-fuseta-ilha-da-fuseta/",
+   "at": "2026-11-17T19:18:03Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.portaldasportagens.pt/",
+   "at": "2026-11-17T19:18:20Z",
+   "status": 0
+  },
+  {
+   "url": "https://files.diariodarepublica.pt/1s/2024/12/25000/0000200003.pdf",
+   "at": "2026-11-17T19:18:24Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.parlamento.pt/ActividadeParlamentar/Paginas/DetalheDiplomaAprovado.aspx?BID=1",
+   "at": "2026-11-17T19:18:38Z",
+   "status": 200
+  },
+  {
+   "url": "https://files.diariodarepublica.pt/1s/2024/08/15200/0001300014.pdf",
+   "at": "2026-11-17T19:18:54Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.cm-faro.pt/421/barcos-para-as-ilhas.aspx",
+   "at": "2026-11-17T19:19:07Z",
+   "status": 0
+  },
+  {
+   "url": "https://www.cm-faro.pt/pt/421/barcos-para-as-ilhas.aspx",
+   "at": "2026-11-17T19:19:23Z",
+   "status": 0
+  },
+  {
+   "url": "https://www2.cm-olhao.pt/en/listar-artigos/2835-transporte-de-passageiros-armona-horarios-e-medidas-de-contingencia",
+   "at": "2026-11-17T19:19:31Z",
+   "status": 503
+  },
+  {
+   "url": "https://rede-expressos.pt/pt",
+   "at": "2026-11-17T19:19:39Z",
+   "status": 403
+  },
+  {
+   "url": "https://www.faroairport.pt/en/fao/home",
+   "at": "2026-11-17T19:19:42Z",
+   "status": 200
+  },
+  {
+   "url": "https://en.newsroom.ana.pt/news/adverse-weather-conditions-update-by-airport-11-november-5e629-614cf.html",
+   "at": "2026-11-17T19:19:46Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.flixbus.pt/termos-e-condicoes",
+   "at": "2026-11-17T19:19:51Z",
+   "status": 404
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{
+  "about": "Public halves of the session keys that sign this repository's work. Private halves never in a repository.",
+  "keys": [
+    {
+      "agent": "travel@PrompTugal.dinis",
+      "session": "the first-version session, 17 November 2026",
+      "status": "not made",
+      "why": "17 November 2026: running pki-agent.mjs (downloaded from pki.sgit.ai) in this session was refused by the session's permission check. Commits carry the Agent: trailer only. Dinis: allow the tool, or a later session makes the key."
+    }
+  ]
+}

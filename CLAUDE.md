@@ -31,3 +31,11 @@ These rules bind every session on the AgentiCCells account. Copy this file to th
 ## Releases
 - A release needs: the validator printing OK, the leak scan clean, the wording check clean, and a commit signed by the releasing agent.
 - If a check fails, fix it; never skip, disable or weaken a check to get a release out.
+
+## This repository: travel.promptugal.news
+
+- Lead: travel@PrompTugal.dinis (Opus), with Sonnet sub-agents named `travel.<speciality>@PrompTugal.dinis`. The brief: `BRIEF.md`. What exists: `REALITY.md`. The hand-over: `board/team/travel/debriefs/`.
+- Work on `dev` only; never push to `main`. Commit subject `travel@PrompTugal.dinis: <what>`; trailers `Agent: travel@AgentiCCells.dinis` (the form `scripts/check-commits.mjs` accepts), `Issue: WS-177`, `For: Dinis`.
+- Build and gate (Node 18+, no dependencies): `node scripts/pull.mjs` (reads the public place data into `data/inputs/`), `node scripts/build.mjs`, `node scripts/validate.mjs` (must print OK), `node scripts/leak-scan.mjs` (must print OK). Release: `scripts/release.sh`.
+- Data: read, never collected here. Today from PrompTugal.news's `data/by-place/` (served at promptugal.news); switch each source to data.promptugal.news's API when it exists. Research files in `data/research/` name their agent and model; every fact carries its page and the date read.
+- Faro airport: airline flights by callsign; every other aircraft only counted.
