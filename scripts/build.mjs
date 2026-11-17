@@ -215,7 +215,7 @@ function front(variant, path, label) {
   const intro = {
     a: `<h1>Travel in the Algarve, now</h1><p class="dek">What a visitor needs to know today: the weather and the sea, what is flying at Faro, strikes ahead, and how to get around. Data pulled ${esc(lisbon(manifest.read_at))}; each value says when its source read it.</p>`,
     b: `<h1>${next ? esc(next.title) : 'Travel in the Algarve, now'}</h1><p class="dek">${next ? esc(`${dateRange(next)}. ${next.where}. ${next.status}.`) : ''} The rest of today's travel picture for the Algarve follows: warnings, Faro airport, the weather and the sea.</p>`,
-    c: `<h1>Faro departures and arrivals, as seen from the ground</h1><p class="dek">A board for the Algarve: aircraft near Faro, strikes ahead, warnings and the weather. Data pulled ${esc(lisbon(manifest.read_at))}.</p>`,
+    c: `<h1>The Algarve board: what is flying near Faro now</h1><p class="dek">A board for the Algarve: aircraft near Faro, strikes ahead, warnings and the weather. Data pulled ${esc(lisbon(manifest.read_at))}.</p>`,
   }[variant];
   const body = `${label ? `<p class="variant-label">${esc(label)}</p>` : ''}<div class="intro">${intro}</div><div class="grid g-${variant}">${order.map(k => blocks[k]).join('\n')}</div>`;
   const md = `${{ a: 'What a visitor needs to know today about travel in the Algarve.', b: next ? `${next.title}: ${dateRange(next)}, ${next.where} (${next.status}).` : '', c: 'A board for the Algarve.' }[variant]} Data read ${lisbon(manifest.read_at)}.
