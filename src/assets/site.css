@@ -70,8 +70,11 @@ thead th { border-bottom: 2px solid var(--ink); font-size: .8rem; text-transform
 .bars ol { list-style: none; padding: 0; margin: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 3px; height: 11rem; align-items: end; }
 .bars li { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; min-width: 0; }
 .bars .bar { display: block; height: var(--h); background: var(--sea); min-height: 2px; }
-.bars .v { font-size: .6rem; writing-mode: vertical-rl; transform: rotate(180deg); align-self: center; margin-bottom: 2px; color: var(--muted); order: -1; }
-.bars .p { font: .6rem/1.2 var(--mono); color: var(--muted); text-align: center; overflow: hidden; }
+.bars .v { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.bars li > .bar { flex: none; }
+.bars li { position: relative; }
+.bars .p { font: .6rem/1.2 var(--mono); color: var(--muted); text-align: center; overflow: hidden; height: 1rem; flex: none; }
+.bars .bar { max-height: calc(100% - 1rem); }
 .provenance { margin-top: 2.5rem; border-top: 3px double var(--rule); padding-top: .4rem; font-size: .88rem; }
 .provenance h2 { font-size: 1rem; margin-top: .6rem; }
 .provenance dl { display: grid; grid-template-columns: max-content 1fr; gap: .2rem 1rem; margin: 0; }

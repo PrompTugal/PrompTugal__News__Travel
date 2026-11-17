@@ -1,0 +1,968 @@
+{
+ "by": "travel.data@PrompTugal.dinis",
+ "model": "sonnet",
+ "read_at": "2026-11-17T19:30:00Z",
+ "about": "Tourism-as-an-industry figures for the Algarve and Portugal from official statistics (INE monthly tourist accommodation, INE airport survey for Faro, Turismo de Portugal RNAL open data). Latest accommodation and airport period: September 2026. Every number is as published by the source; none is rounded by us. Provisional (Po) and preliminary (Pe) flags follow the INE metadata note. Algarve = NUTS II Algarve (code 150 in NUTS 2024 for nights and guests, code 15 in the revenue indicator).",
+ "series": [
+  {
+   "id": "algarve-overnight-stays",
+   "title": "Nights (No.) in tourist accommodation establishments by Geographic localization (NUTS - 2024) and Segment (all segments, Total); Monthly",
+   "place": "Algarve",
+   "unit": "Number of overnight stays (dormidas)",
+   "source": {
+    "publisher": "INE",
+    "indicator": "0012088",
+    "api": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012088&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=PT,150&Dim3=T&lang=EN",
+    "page": "https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&contecto=pi&indOcorrCod=0012088&selTab=tab2",
+    "licence": "INE open data; reuse with attribution to Statistics Portugal (INE) as source (licence text not re-read in this session; confirm before publication)"
+   },
+   "points": [
+    {
+     "period": "2025-09",
+     "value": 2374271,
+     "flag": null
+    },
+    {
+     "period": "2025-10",
+     "value": 2055587,
+     "flag": null
+    },
+    {
+     "period": "2025-11",
+     "value": 874663,
+     "flag": null
+    },
+    {
+     "period": "2025-12",
+     "value": 654819,
+     "flag": null
+    },
+    {
+     "period": "2026-01",
+     "value": 557897,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-02",
+     "value": 774326,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-03",
+     "value": 1184846,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-04",
+     "value": 1854944,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-05",
+     "value": 2112460,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-06",
+     "value": 2364240,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-07",
+     "value": 2943281,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-08",
+     "value": 3287211,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-09",
+     "value": 2387961,
+     "flag": "Pe"
+    }
+   ],
+   "note": "Flags derived from the INE metadata note for the indicator: January to August 2026 provisional (Po), September 2026 preliminary (Pe). The API data rows carry no per-value flag; earlier months are unflagged. Scope: hotels, local accommodation with ten or more beds, and rural/lodging tourism; local accommodation with fewer than ten beds is not covered."
+  },
+  {
+   "id": "portugal-overnight-stays",
+   "title": "Nights (No.) in tourist accommodation establishments by Geographic localization (NUTS - 2024) and Segment (all segments, Total); Monthly",
+   "place": "Portugal",
+   "unit": "Number of overnight stays (dormidas)",
+   "source": {
+    "publisher": "INE",
+    "indicator": "0012088",
+    "api": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012088&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=PT,150&Dim3=T&lang=EN",
+    "page": "https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&contecto=pi&indOcorrCod=0012088&selTab=tab2",
+    "licence": "INE open data; reuse with attribution to Statistics Portugal (INE) as source (licence text not re-read in this session; confirm before publication)"
+   },
+   "points": [
+    {
+     "period": "2025-09",
+     "value": 8509433,
+     "flag": null
+    },
+    {
+     "period": "2025-10",
+     "value": 7712397,
+     "flag": null
+    },
+    {
+     "period": "2025-11",
+     "value": 5036891,
+     "flag": null
+    },
+    {
+     "period": "2025-12",
+     "value": 4260786,
+     "flag": null
+    },
+    {
+     "period": "2026-01",
+     "value": 3741952,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-02",
+     "value": 4203862,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-03",
+     "value": 5625115,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-04",
+     "value": 7150714,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-05",
+     "value": 7996616,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-06",
+     "value": 8131586,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-07",
+     "value": 9583880,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-08",
+     "value": 10887648,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-09",
+     "value": 8683670,
+     "flag": "Pe"
+    }
+   ],
+   "note": "Flags derived from the INE metadata note for the indicator: January to August 2026 provisional (Po), September 2026 preliminary (Pe). The API data rows carry no per-value flag; earlier months are unflagged. Scope: hotels, local accommodation with ten or more beds, and rural/lodging tourism; local accommodation with fewer than ten beds is not covered."
+  },
+  {
+   "id": "algarve-guests",
+   "title": "Guests (No.) in tourist accommodation establishments by Geographic localization (NUTS - 2024) and Segment (Total); Monthly",
+   "place": "Algarve",
+   "unit": "Number of guests (hospedes)",
+   "source": {
+    "publisher": "INE",
+    "indicator": "0012089",
+    "api": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012089&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=PT,150&Dim3=T&lang=EN",
+    "page": "https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&contecto=pi&indOcorrCod=0012089&selTab=tab2",
+    "licence": "INE open data; reuse with attribution to Statistics Portugal (INE) as source (licence text not re-read in this session; confirm before publication)"
+   },
+   "points": [
+    {
+     "period": "2025-09",
+     "value": 597155,
+     "flag": null
+    },
+    {
+     "period": "2025-10",
+     "value": 522477,
+     "flag": null
+    },
+    {
+     "period": "2025-11",
+     "value": 250290,
+     "flag": null
+    },
+    {
+     "period": "2025-12",
+     "value": 195896,
+     "flag": null
+    },
+    {
+     "period": "2026-01",
+     "value": 160605,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-02",
+     "value": 202667,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-03",
+     "value": 330896,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-04",
+     "value": 513412,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-05",
+     "value": 585650,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-06",
+     "value": 606670,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-07",
+     "value": 684600,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-08",
+     "value": 772998,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-09",
+     "value": 609491,
+     "flag": "Pe"
+    }
+   ],
+   "note": "Flags derived from the INE metadata note for the indicator: January to August 2026 provisional (Po), September 2026 preliminary (Pe). The API data rows carry no per-value flag; earlier months are unflagged. Scope: hotels, local accommodation with ten or more beds, and rural/lodging tourism; local accommodation with fewer than ten beds is not covered."
+  },
+  {
+   "id": "portugal-guests",
+   "title": "Guests (No.) in tourist accommodation establishments by Geographic localization (NUTS - 2024) and Segment (Total); Monthly",
+   "place": "Portugal",
+   "unit": "Number of guests (hospedes)",
+   "source": {
+    "publisher": "INE",
+    "indicator": "0012089",
+    "api": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012089&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=PT,150&Dim3=T&lang=EN",
+    "page": "https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&contecto=pi&indOcorrCod=0012089&selTab=tab2",
+    "licence": "INE open data; reuse with attribution to Statistics Portugal (INE) as source (licence text not re-read in this session; confirm before publication)"
+   },
+   "points": [
+    {
+     "period": "2025-09",
+     "value": 3294084,
+     "flag": null
+    },
+    {
+     "period": "2025-10",
+     "value": 3076729,
+     "flag": null
+    },
+    {
+     "period": "2025-11",
+     "value": 2171584,
+     "flag": null
+    },
+    {
+     "period": "2025-12",
+     "value": 1933858,
+     "flag": null
+    },
+    {
+     "period": "2026-01",
+     "value": 1663436,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-02",
+     "value": 1775035,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-03",
+     "value": 2331204,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-04",
+     "value": 2908800,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-05",
+     "value": 3309568,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-06",
+     "value": 3144049,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-07",
+     "value": 3387939,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-08",
+     "value": 3876059,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-09",
+     "value": 3375383,
+     "flag": "Pe"
+    }
+   ],
+   "note": "Flags derived from the INE metadata note for the indicator: January to August 2026 provisional (Po), September 2026 preliminary (Pe). The API data rows carry no per-value flag; earlier months are unflagged. Scope: hotels, local accommodation with ten or more beds, and rural/lodging tourism; local accommodation with fewer than ten beds is not covered."
+  },
+  {
+   "id": "algarve-total-revenue",
+   "title": "Total incomes (thousand euro) in tourist accommodation establishments by Geographic localization (NUTS - 2024) and Type (Total); Monthly",
+   "place": "Algarve",
+   "unit": "Thousand euro (INE Potencia10 = 3); proveitos totais",
+   "source": {
+    "publisher": "INE",
+    "indicator": "0012090",
+    "api": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012090&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=PT,15&Dim3=T&lang=EN",
+    "page": "https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&contecto=pi&indOcorrCod=0012090&selTab=tab2",
+    "licence": "INE open data; reuse with attribution to Statistics Portugal (INE) as source (licence text not re-read in this session; confirm before publication)"
+   },
+   "points": [
+    {
+     "period": "2025-09",
+     "value": 230011,
+     "flag": null
+    },
+    {
+     "period": "2025-10",
+     "value": 161170,
+     "flag": null
+    },
+    {
+     "period": "2025-11",
+     "value": 55534,
+     "flag": null
+    },
+    {
+     "period": "2025-12",
+     "value": 41545,
+     "flag": null
+    },
+    {
+     "period": "2026-01",
+     "value": 31981,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-02",
+     "value": 43829,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-03",
+     "value": 75530,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-04",
+     "value": 136972,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-05",
+     "value": 178767,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-06",
+     "value": 230617,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-07",
+     "value": 322681,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-08",
+     "value": 385835,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-09",
+     "value": 240332,
+     "flag": "Pe"
+    }
+   ],
+   "note": "Flags derived from the INE metadata note for the indicator: January to August 2026 provisional (Po), September 2026 preliminary (Pe). The API data rows carry no per-value flag; earlier months are unflagged. Scope: hotels, local accommodation with ten or more beds, and rural/lodging tourism; local accommodation with fewer than ten beds is not covered. In this indicator INE codes the Algarve NUTS II as 15 (not 150). Cross-check: INE September 2026 release gives national total revenue EUR 890.2 million, matching 890,250 thousand."
+  },
+  {
+   "id": "portugal-total-revenue",
+   "title": "Total incomes (thousand euro) in tourist accommodation establishments by Geographic localization (NUTS - 2024) and Type (Total); Monthly",
+   "place": "Portugal",
+   "unit": "Thousand euro (INE Potencia10 = 3); proveitos totais",
+   "source": {
+    "publisher": "INE",
+    "indicator": "0012090",
+    "api": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012090&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=PT,15&Dim3=T&lang=EN",
+    "page": "https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&contecto=pi&indOcorrCod=0012090&selTab=tab2",
+    "licence": "INE open data; reuse with attribution to Statistics Portugal (INE) as source (licence text not re-read in this session; confirm before publication)"
+   },
+   "points": [
+    {
+     "period": "2025-09",
+     "value": 839087,
+     "flag": null
+    },
+    {
+     "period": "2025-10",
+     "value": 688400,
+     "flag": null
+    },
+    {
+     "period": "2025-11",
+     "value": 391272,
+     "flag": null
+    },
+    {
+     "period": "2025-12",
+     "value": 334953,
+     "flag": null
+    },
+    {
+     "period": "2026-01",
+     "value": 276469,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-02",
+     "value": 298907,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-03",
+     "value": 430875,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-04",
+     "value": 600450,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-05",
+     "value": 754983,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-06",
+     "value": 787832,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-07",
+     "value": 920551,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-08",
+     "value": 1059783,
+     "flag": "Po"
+    },
+    {
+     "period": "2026-09",
+     "value": 890250,
+     "flag": "Pe"
+    }
+   ],
+   "note": "Flags derived from the INE metadata note for the indicator: January to August 2026 provisional (Po), September 2026 preliminary (Pe). The API data rows carry no per-value flag; earlier months are unflagged. Scope: hotels, local accommodation with ten or more beds, and rural/lodging tourism; local accommodation with fewer than ten beds is not covered. In this indicator INE codes the Algarve NUTS II as 15 (not 150). Cross-check: INE September 2026 release gives national total revenue EUR 890.2 million, matching 890,250 thousand."
+  },
+  {
+   "id": "faro-airport-embarked-passengers",
+   "title": "Passengers (No.) Embarked in airports by Geographic localization, Type of traffic and Nature of traffic; Monthly",
+   "place": "Faro airport (LPFR)",
+   "unit": "Number of passengers, all traffic types (Type of traffic T, Nature of traffic T)",
+   "source": {
+    "publisher": "INE",
+    "indicator": "0000861",
+    "api": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0000861&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=LPFR,T&Dim3=T&Dim4=T&lang=EN",
+    "page": "https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&contecto=pi&indOcorrCod=0000861&selTab=tab2",
+    "licence": "INE open data; reuse with attribution to Statistics Portugal (INE) as source (licence text not re-read in this session; confirm before publication)"
+   },
+   "points": [
+    {
+     "period": "2025-09",
+     "value": 614548
+    },
+    {
+     "period": "2025-10",
+     "value": 575335
+    },
+    {
+     "period": "2025-11",
+     "value": 250993
+    },
+    {
+     "period": "2025-12",
+     "value": 164481
+    },
+    {
+     "period": "2026-01",
+     "value": 162438
+    },
+    {
+     "period": "2026-02",
+     "value": 168665
+    },
+    {
+     "period": "2026-03",
+     "value": 281066
+    },
+    {
+     "period": "2026-04",
+     "value": 518158
+    },
+    {
+     "period": "2026-05",
+     "value": 593906
+    },
+    {
+     "period": "2026-06",
+     "value": 632652
+    },
+    {
+     "period": "2026-07",
+     "value": 669120
+    },
+    {
+     "period": "2026-08",
+     "value": 717857
+    },
+    {
+     "period": "2026-09",
+     "value": 628357
+    }
+   ],
+   "note": "INE Airports and airfields survey (ANA/ANAC/INE). INE gives no provisional flag in the data rows or metadata for this indicator, so none is recorded. Indicator last updated 2026-11-13."
+  },
+  {
+   "id": "faro-airport-disembarked-passengers",
+   "title": "Passengers (No.) Disembarked in airports by Geographic localization, Type of traffic and Nature of traffic; Monthly",
+   "place": "Faro airport (LPFR)",
+   "unit": "Number of passengers, all traffic types (Type of traffic T, Nature of traffic T)",
+   "source": {
+    "publisher": "INE",
+    "indicator": "0000862",
+    "api": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0000862&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=LPFR,T&Dim3=T&Dim4=T&lang=EN",
+    "page": "https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&contecto=pi&indOcorrCod=0000862&selTab=tab2",
+    "licence": "INE open data; reuse with attribution to Statistics Portugal (INE) as source (licence text not re-read in this session; confirm before publication)"
+   },
+   "points": [
+    {
+     "period": "2025-09",
+     "value": 595363
+    },
+    {
+     "period": "2025-10",
+     "value": 531874
+    },
+    {
+     "period": "2025-11",
+     "value": 193379
+    },
+    {
+     "period": "2025-12",
+     "value": 196844
+    },
+    {
+     "period": "2026-01",
+     "value": 135457
+    },
+    {
+     "period": "2026-02",
+     "value": 187292
+    },
+    {
+     "period": "2026-03",
+     "value": 320854
+    },
+    {
+     "period": "2026-04",
+     "value": 523112
+    },
+    {
+     "period": "2026-05",
+     "value": 617798
+    },
+    {
+     "period": "2026-06",
+     "value": 631178
+    },
+    {
+     "period": "2026-07",
+     "value": 714159
+    },
+    {
+     "period": "2026-08",
+     "value": 654876
+    },
+    {
+     "period": "2026-09",
+     "value": 605595
+    }
+   ],
+   "note": "INE Airports and airfields survey (ANA/ANAC/INE). INE gives no provisional flag in the data rows or metadata for this indicator, so none is recorded. Indicator last updated 2026-11-13."
+  },
+  {
+   "id": "faro-airport-total-passengers",
+   "title": "Embarked plus disembarked passengers (our sum of INE 0000861 and 0000862)",
+   "place": "Faro airport (LPFR)",
+   "unit": "Number of passengers (derived: embarked + disembarked)",
+   "source": {
+    "publisher": "INE",
+    "indicator": "0000861 + 0000862",
+    "api": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0000861&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=LPFR,T&Dim3=T&Dim4=T&lang=EN  AND  https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0000862&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=LPFR,T&Dim3=T&Dim4=T&lang=EN",
+    "page": "https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&contecto=pi&indOcorrCod=0000862&selTab=tab2",
+    "licence": "INE open data; reuse with attribution to Statistics Portugal (INE) as source (licence text not re-read in this session; confirm before publication)"
+   },
+   "points": [
+    {
+     "period": "2025-09",
+     "value": 1209911
+    },
+    {
+     "period": "2025-10",
+     "value": 1107209
+    },
+    {
+     "period": "2025-11",
+     "value": 444372
+    },
+    {
+     "period": "2025-12",
+     "value": 361325
+    },
+    {
+     "period": "2026-01",
+     "value": 297895
+    },
+    {
+     "period": "2026-02",
+     "value": 355957
+    },
+    {
+     "period": "2026-03",
+     "value": 601920
+    },
+    {
+     "period": "2026-04",
+     "value": 1041270
+    },
+    {
+     "period": "2026-05",
+     "value": 1211704
+    },
+    {
+     "period": "2026-06",
+     "value": 1263830
+    },
+    {
+     "period": "2026-07",
+     "value": 1383279
+    },
+    {
+     "period": "2026-08",
+     "value": 1372733
+    },
+    {
+     "period": "2026-09",
+     "value": 1233952
+    }
+   ],
+   "note": "Derived by travel.data by adding two INE series; not an INE-published total. Transit passengers not included."
+  }
+ ],
+ "registered_local_accommodation": {
+  "title": "Registered Alojamento Local establishments (RNAL), Faro district (= Algarve), by municipality",
+  "place": "Algarve (Distrito Faro)",
+  "as_of": "2026-11-17 (dataset page says last updated 2026-11-15)",
+  "unit": "Number of registered establishments; beds = sum of NrUtentes (maximum guests registered)",
+  "source": {
+   "publisher": "Turismo de Portugal I.P., Registo Nacional de Alojamento Local, layer \"Estabelecimentos de Alojamento Local\"",
+   "api": "https://geo.turismodeportugal.pt/server/rest/services/TDP/OpenData_AL/MapServer/6/query?where=Distrito%3D%27Faro%27&groupByFieldsForStatistics=Concelho&outStatistics=count+of+OBJECTID+and+sum+of+NrUtentes&f=json",
+   "page": "https://dados.gov.pt/datasets/estabelecimentos-de-alojamento-local-1",
+   "licence": "CC BY 4.0 (as listed on dados.gov.pt: cc-by)"
+  },
+  "municipalities": [
+   {
+    "municipality": "Albufeira",
+    "establishments": 10461,
+    "beds": 53652
+   },
+   {
+    "municipality": "Loulé",
+    "establishments": 7353,
+    "beds": 42492
+   },
+   {
+    "municipality": "Portimão",
+    "establishments": 5652,
+    "beds": 27373
+   },
+   {
+    "municipality": "Lagos",
+    "establishments": 4806,
+    "beds": 25840
+   },
+   {
+    "municipality": "Lagoa",
+    "establishments": 3255,
+    "beds": 17278
+   },
+   {
+    "municipality": "Tavira",
+    "establishments": 2998,
+    "beds": 14387
+   },
+   {
+    "municipality": "Silves",
+    "establishments": 2739,
+    "beds": 12898
+   },
+   {
+    "municipality": "Olhão",
+    "establishments": 1660,
+    "beds": 9553
+   },
+   {
+    "municipality": "Aljezur",
+    "establishments": 1398,
+    "beds": 8409
+   },
+   {
+    "municipality": "Faro",
+    "establishments": 1298,
+    "beds": 9317
+   },
+   {
+    "municipality": "Vila Real de Santo António",
+    "establishments": 1265,
+    "beds": 6265
+   },
+   {
+    "municipality": "Vila do Bispo",
+    "establishments": 1169,
+    "beds": 6386
+   },
+   {
+    "municipality": "Castro Marim",
+    "establishments": 504,
+    "beds": 3027
+   },
+   {
+    "municipality": "São Brás de Alportel",
+    "establishments": 174,
+    "beds": 1118
+   },
+   {
+    "municipality": "Monchique",
+    "establishments": 104,
+    "beds": 594
+   },
+   {
+    "municipality": "Alcoutim",
+    "establishments": 54,
+    "beds": 358
+   }
+  ],
+  "algarve_total_establishments": 44890,
+  "algarve_total_beds": 238947,
+  "mainland_total_establishments": 112122,
+  "note": "Counts are registrations in the register at the query date, not guaranteed active listings or occupied units. Totals added by us from the 16 municipality counts; Faro district total 44,890 matches the sum. The layer shown covers mainland districts only (sum of the 18 mainland districts is 112,122); islands not checked."
+ },
+ "headlines": [
+  {
+   "text": "In September 2026 Portuguese tourist accommodation recorded 3.4 million guests and 8.7 million overnight stays, up 2.5% and 2.0% on September 2025; total revenue was EUR 890.2 million, up 6.1%.",
+   "value": "3.4m guests, 8.7m nights, EUR 890.2m revenue",
+   "url": "https://www.ine.pt/ngt_server/attachfileu.jsp?look_parentBoui=825209253&att_display=n&att_download=y",
+   "publisher": "INE",
+   "date": "2026-10-30",
+   "read_on": "2026-11-17"
+  },
+  {
+   "text": "The Algarve took 27.5% of all overnight stays in the country in September 2026, the biggest regional share, ahead of Greater Lisbon (22.2%) and the North (18.8%). INE puts Algarve nights at 2,388.0 thousand, up 0.6%, with resident nights down 2.0% and non-resident nights up 1.4%.",
+   "value": "27.5% share; 2,388.0 thousand nights (+0.6%)",
+   "url": "https://www.ine.pt/ngt_server/attachfileu.jsp?look_parentBoui=825209253&att_display=n&att_download=y",
+   "publisher": "INE",
+   "date": "2026-10-30",
+   "read_on": "2026-11-17"
+  },
+  {
+   "text": "Guests in the Algarve stayed longest on mainland Portugal in September 2026, 3.92 nights on average (only Madeira, at 4.55, was longer); the Algarve also had the second-highest average room rate, EUR 155.6, behind Greater Lisbon at EUR 182.2.",
+   "value": "3.92 nights; ADR EUR 155.6",
+   "url": "https://www.ine.pt/ngt_server/attachfileu.jsp?look_parentBoui=825209253&att_display=n&att_download=y",
+   "publisher": "INE",
+   "date": "2026-10-30",
+   "read_on": "2026-11-17"
+  },
+  {
+   "text": "The Algarve earned 27.0% of national accommodation revenue in September 2026 (26.3% of room revenue), second to Greater Lisbon at 28.0%.",
+   "value": "27.0% of total revenue",
+   "url": "https://www.ine.pt/ngt_server/attachfileu.jsp?look_parentBoui=825209253&att_display=n&att_download=y",
+   "publisher": "INE",
+   "date": "2026-10-30",
+   "read_on": "2026-11-17"
+  },
+  {
+   "text": "Albufeira was the second-busiest municipality in the country in September 2026 with 893.2 thousand overnight stays (10.3% of the national total, +2.2%); the British were the largest source market nationally with 19.1% of non-resident nights.",
+   "value": "Albufeira 893.2 thousand nights; UK 19.1%",
+   "url": "https://www.ine.pt/ngt_server/attachfileu.jsp?look_parentBoui=825209253&att_display=n&att_download=y",
+   "publisher": "INE",
+   "date": "2026-10-30",
+   "read_on": "2026-11-17"
+  }
+ ],
+ "press_release": {
+  "title": "Atividade Turistica, Setembro de 2026 - Estatisticas rapidas",
+  "date": "2026-10-30",
+  "url": "https://www.ine.pt/ngt_server/attachfileu.jsp?look_parentBoui=825209253&att_display=n&att_download=y",
+  "note": "14-page PDF read in full for the figures above. The human destaque page URL was not confirmed."
+ },
+ "gaps": [
+  {
+   "what": "Faro airport traffic from ANA directly",
+   "why": "Not requested: INE airports survey (ANA/ANAC/INE) gave the monthly Faro series, so ANA pages were not read. No bot check was met.",
+   "url": "https://www.ana.pt/"
+  },
+  {
+   "what": "Algarve RevPAR and ADR by month as a series",
+   "why": "INE publishes regional RevPAR/ADR only inside the press-release charts (images) for the latest month; no monthly regional indicator code was found. Only the text figure ADR EUR 155.6 (Sept 2026) is recorded, as a headline.",
+   "url": "https://www.ine.pt/ngt_server/attachfileu.jsp?look_parentBoui=825209253&att_display=n&att_download=y"
+  },
+  {
+   "what": "Algarve guest and revenue series flag per value",
+   "why": "INE API returns no per-value flag; flags taken from the indicator metadata note (Jan-Aug 2026 provisional, Sep 2026 preliminary).",
+   "url": "https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0012088&lang=EN"
+  },
+  {
+   "what": "Whole-economy tourism figures (GDP share, employment, Tourism Satellite Account)",
+   "why": "Not retrieved in this task; news search suggested INE published a 2025 figure but it was not read from the source.",
+   "url": ""
+  },
+  {
+   "what": "TravelBI terms of use and open-data terms",
+   "why": "Home page read (HTTP 200) but its terms are not in the static HTML (page appears script-rendered). The home page lists themes (Alojamento, Movimentos Aereos, Tendencias, Turismo Internacional and others), market pages, SIGTUR and Dados Abertos, with an optional sign-in. No TravelBI data was used; its figures largely repeat INE. Terms unread, so reuse not cleared.",
+   "url": "https://travelbi.turismodeportugal.pt/"
+  },
+  {
+   "what": "INE licence wording",
+   "why": "The licence text for INE data was not re-read; the licence field says attribution to INE and asks for confirmation before publication. dados.gov.pt lists INE tourism datasets as cc-by.",
+   "url": "https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_cookies"
+  },
+  {
+   "what": "Islands in the RNAL count",
+   "why": "The ArcGIS layer returned mainland districts only; Azores and Madeira not checked (not needed for the Algarve).",
+   "url": "https://geo.turismodeportugal.pt/server/rest/services/TDP/OpenData_AL/MapServer/6/query?where=Distrito%3D%27Faro%27&groupByFieldsForStatistics=Concelho&outStatistics=count+of+OBJECTID+and+sum+of+NrUtentes&f=json"
+  },
+  {
+   "what": "Transient proxy errors",
+   "why": "INE connections were reset several times by the egress proxy; each call was retried after a pause and finally succeeded. No refusal (403 or bot check) was met anywhere.",
+   "url": ""
+  }
+ ],
+ "reads": [
+  {
+   "url": "https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0012088&lang=EN",
+   "at": "2026-11-17T19:15:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012088&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=PT,150&Dim3=T&lang=EN",
+   "at": "2026-11-17T19:17:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012089&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=PT,150&Dim3=T&lang=EN",
+   "at": "2026-11-17T19:17:30Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0012090&lang=EN",
+   "at": "2026-11-17T19:19:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012090&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=PT,15&Dim3=T&lang=EN",
+   "at": "2026-11-17T19:22:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ine.pt/ngt_server/attachfileu.jsp?look_parentBoui=825209253&att_display=n&att_download=y",
+   "at": "2026-11-17T19:23:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_base_dados&bdpagenumber=1&bdnivelgeo=00&contexto=bd&bdtemas=1712&bdind_por_pagina=100&xlang=en",
+   "at": "2026-11-17T19:25:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0000861&lang=EN",
+   "at": "2026-11-17T19:26:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ine.pt/ine/json_indicador/pindicaMeta.jsp?varcd=0000862&lang=EN",
+   "at": "2026-11-17T19:26:30Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0000861&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=LPFR,T&Dim3=T&Dim4=T&lang=EN",
+   "at": "2026-11-17T19:27:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0000862&Dim1=S3A202509,S3A202510,S3A202511,S3A202512,S3A202601,S3A202602,S3A202603,S3A202604,S3A202605,S3A202606,S3A202607,S3A202608,S3A202609&Dim2=LPFR,T&Dim3=T&Dim4=T&lang=EN",
+   "at": "2026-11-17T19:27:30Z",
+   "status": 200
+  },
+  {
+   "url": "https://www.ine.pt/ngt_server/attachfileu.jsp?look_parentBoui=803538874&att_display=n&att_download=y",
+   "at": "2026-11-17T19:24:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://travelbi.turismodeportugal.pt/",
+   "at": "2026-11-17T19:28:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://dados.gov.pt/api/1/datasets/?organization=5ae9c5f6c8d8c959def021a8&q=alojamento&page_size=30",
+   "at": "2026-11-17T19:29:00Z",
+   "status": 200
+  },
+  {
+   "url": "https://geo.turismodeportugal.pt/server/rest/services/TDP/OpenData_AL/MapServer/6?f=json",
+   "at": "2026-11-17T19:29:30Z",
+   "status": 200
+  },
+  {
+   "url": "https://geo.turismodeportugal.pt/server/rest/services/TDP/OpenData_AL/MapServer/6/query?where=Distrito%3D%27Faro%27&groupByFieldsForStatistics=Concelho&outStatistics=count+of+OBJECTID+and+sum+of+NrUtentes&f=json",
+   "at": "2026-11-17T19:30:00Z",
+   "status": 200
+  }
+ ]
+}
