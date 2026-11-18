@@ -45,3 +45,9 @@ In `status.json` `asks`: the key, the commit check, data.promptugal.news's fresh
 - The easyJet 19 to 23 December strike was called off by SNPVAC on 18 Nov after an easyJet proposal at DGERT (Público, ECO; I re-read Público). Talks on 20, 23 and 25 Nov; new action possible. /disruptions/ now has a "Called off" section.
 - Since the last debrief entry: the key (travel.b-promptugal), the travel observability lane (live), the scheduled rebuild (none fired yet), the AppSec fixes, /security/, the threat models, the licence register.
 - Next: the easyJet talks; the pipeline standard per source; /storm-charles/flights/; What's on gaps.
+
+## The 19:53 UTC wake
+- `/storm-charles/flights/`: crosswind per runway end at Lisbon and Madeira, hour by hour, 10 to 12 November, from data.promptugal.news's METAR feed (frozen copy in `data/inputs/storm/`). Peaks: Lisbon 12.9 kt (11 Nov 18:00 UTC), Madeira 19.3 kt (11 Nov 11:00 UTC). OpenSky departures left out (non-commercial terms). Build-time SVG, no script.
+- Lesson: `stroke="var(--x)"` does not resolve in SVG attributes; use `style`.
+- The scheduled rebuild has still not fired (15:23 and 18:23 slots passed).
+- Next: Faro when LPFR exists; transport archive; stranded guide; easyJet talks 20 Nov.

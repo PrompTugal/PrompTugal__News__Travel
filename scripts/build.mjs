@@ -326,6 +326,7 @@ page({
     script: '/assets/now.js',
     body: `<h1>Flights: Faro airport</h1><p class="dek">Faro (LPFR) is the Algarve's airport, run by ANA (VINCI Airports). What we show is what community receivers saw in the sky near it at one moment, not the airport's departures board.</p>
 <section aria-labelledby="h-seen"><h2 id="h-seen">Seen near Faro</h2>${ap.html}${byRows.length ? `<p>By airline: ${esc(byRows.map(([k, v]) => `${airlineName(k)} ${v}`).join(', '))}.</p>` : ''}</section>
+<p class="meta">Archive: ${a('/storm-charles/flights/', 'Storm Charles, 10 to 12 November 2026: the crosswind at Lisbon and Madeira, hour by hour')}.</p>
 <section aria-labelledby="h-ahead"><h2 id="h-ahead">Strikes and border checks that touch flying</h2>${strikeAir.length ? `<ul class="items">${strikeAir.map(d => `<li><strong>${esc(dateRange(d))}: ${esc(d.title)}</strong> <span class="status s-${esc(d.status)}">${esc(d.status)}</span><p>${esc(d.what)}</p><p class="meta">${srcList(d.sources)}</p></li>`).join('')}</ul>` : '<p>None found.</p>'}</section>
 <section aria-labelledby="h-series"><h2 id="h-series">Our series</h2><p>Each time the site's data is pulled, we keep one line of counts per airline (never an aircraft's identity) in <a href="/api/v1/faro-airport.jsonl">faro-airport.jsonl</a>. It starts on 17 November 2026; with a reading every hour it becomes a picture of the airport's day.</p>${sHtml}</section>
 <section aria-labelledby="h-official"><h2 id="h-official">The official sources</h2><ul><li>${a('https://www.aeroportofaro.pt/en', 'Faro airport (ANA)')}: departures, arrivals and notices. Its boards answered automated readers with a bot check in earlier PrompTugal.news work, so we link and do not read them.</li><li>${a('https://en.newsroom.ana.pt/', "ANA's newsroom")}: statements per airport in a disruption; ANA asks consent to reproduce its content, so only figures, with the link.</li><li>${a('https://globe.adsb.lol/?lat=37.014&lon=-7.966&zoom=9', 'adsb.lol live map')}: the community data we show (ODbL 1.0).</li></ul></section>
@@ -524,6 +525,38 @@ Page views and reading time, publicly, in PrompTugal.news's observability lane f
   });
 }
 
+
+// ---------- Storm Charles archive: flights and the wind (travel.b@, 18 Nov 2026; the Storm site's travel items,
+// board/team/travel/storm-plan.md). From one frozen copy of data.promptugal.news's crosswind.json; METAR wind only.
+if (existsSync('data/inputs/storm/crosswind.json')) {
+  const cw = J('data/inputs/storm/crosswind.json'), meta = J('data/inputs/storm/README.json');
+  const num = x => (Number.isFinite(x) ? x : null);
+  const hhmm = iso => { const d = new Date(iso); return isNaN(d) ? '' : `${d.getUTCDate()} ${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getUTCMonth()]} ${String(d.getUTCHours()).padStart(2, '0')}:00`; };
+  const COL = ['var(--red)', 'var(--sea)', 'var(--amber)', 'var(--green)'];
+  const chart = ap => {
+    const hours = (cw.hours_by_airport || {})[ap.icao] || [];
+    const ends = (ap.runways || []).flatMap(r => (r.ends || []).map(e => String(e.end)));
+    const W = 720, H = 240, L = 40, R = 40, T = 12, B = 30, n = Math.max(1, hours.length - 1);
+    const vals = hours.flatMap(h => ends.flatMap(e => { const x = (h.by_runway_end || {})[e] || {}; return [num(x.cross_kt), num(x.gust_cross_kt)]; })).filter(v => v != null);
+    const max = Math.max(10, Math.ceil((Math.max(0, ...vals) + 2) / 5) * 5);
+    const X = i => (L + (W - L - R) * i / n).toFixed(1), Y = v => (T + (H - T - B) * (1 - v / max)).toFixed(1);
+    const line = (e, key, dash) => { const pts = hours.map((h, i) => { const v = num(((h.by_runway_end || {})[e] || {})[key]); return v == null ? null : `${X(i)},${Y(Math.abs(v))}`; }).filter(Boolean); return pts.length > 1 ? `<polyline fill="none" style="stroke:${COL[ends.indexOf(e) % 4]}" stroke-width="${dash ? 1 : 2}"${dash ? ' stroke-dasharray="3 3"' : ''} points="${pts.join(' ')}"/>` : ''; };
+    const grid = [0, max / 2, max].map(v => `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" style="stroke:var(--rule)"/><text x="${L - 6}" y="${Y(v)}" text-anchor="end" dominant-baseline="middle" font-size="11" fill="currentColor">${esc(v)}</text>`).join('');
+    const ticks = hours.map((h, i) => (i % 6 === 0 ? `<text x="${X(i)}" y="${H - 10}" text-anchor="middle" font-size="11" fill="currentColor">${esc(hhmm(h.t))}</text>` : '')).join('');
+    const peak = ends.map(e => { let best = null; for (const h of hours) { const v = num(((h.by_runway_end || {})[e] || {}).cross_kt); if (v != null && (!best || Math.abs(v) > best.v)) best = { v: Math.abs(v), t: h.t }; } return best ? `runway end ${esc(e)}: ${esc(best.v.toFixed(1))} kt at ${esc(hhmm(best.t))} UTC` : ''; }).filter(Boolean).join('; ');
+    return { svg: `<figure class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`Crosswind at ${ap.name}, by runway end, hour by hour`)}">${grid}${ends.map(e => line(e, 'gust_cross_kt', true) + line(e, 'cross_kt', false)).join('')}${ticks}</svg><figcaption>${ends.map((e, i) => `<span style="color:${COL[i % 4]}">&#9644;</span> runway end ${esc(e)}`).join(' &nbsp; ')} &nbsp; (dashed: in gusts). Knots across the runway; day and hour UTC. The two ends of one runway feel the same crosswind, so their lines lie on top of each other.</figcaption></figure>`, peak, hours: hours.length };
+  };
+  const aps = (cw.airports || []).map(ap => ({ ap, ...chart(ap) }));
+  page({
+    path: '/storm-charles/flights/', title: 'Storm Charles: flights and the wind',
+    description: 'The crosswind on each runway at Lisbon and Madeira airports during Storm Charles (10 to 12 November 2026), hour by hour, from the airports\' own weather reports (METAR). An archive.',
+    body: `<h1>Storm Charles: flights and the wind</h1><p class="dek">An archive of Storm Charles (10 to 12 November 2026). How hard the wind blew across each runway at Lisbon and Madeira, hour by hour, from the weather reports the airports publish (METAR). Strong crosswinds are what close runways and send flights elsewhere. This is a record, not today's weather: for that, see ${a('/weather/', 'weather and sea')}.</p>
+${aps.map(({ ap, svg, peak, hours }) => `<section aria-labelledby="h-${esc(ap.icao)}"><h2 id="h-${esc(ap.icao)}">${esc(ap.name)} (${esc(ap.iata)})</h2>${svg}<p>Highest crosswind: ${peak || 'not known'}. ${esc(hours)} hourly reports.</p></section>`).join('\n')}
+<section aria-labelledby="h-how-cw"><h2 id="h-how-cw">How it was made</h2><p>${esc(cw.about || '')}</p><p class="meta">The data: ${a(meta.source, 'data.promptugal.news, the Storm Charles archive')} (read ${esc(meta.read_at)}), made by the Storm Charles site's team. Wind: METAR from IPMA, through the US NOAA Aviation Weather Center (${a('https://aviationweather.gov/', 'aviationweather.gov')}, public domain). Runways: ${a('https://ourairports.com/data/', 'OurAirports')} (public domain). The file also counts departures from the OpenSky Network; they are not shown here, as OpenSky asks for non-commercial use.</p></section>`,
+    md: `An archive of Storm Charles (10 to 12 November 2026): the crosswind on each runway at Lisbon and Madeira, hour by hour, from METAR.\n\n${aps.map(({ ap, peak, hours }) => `## ${ap.name} (${ap.iata})\n\nHighest crosswind: ${peak.replace(/<[^>]+>/g, '') || 'not known'}. ${hours} hourly reports.`).join('\n\n')}\n\nData: ${ml(meta.source, 'data.promptugal.news Storm Charles archive')}, read ${meta.read_at}. Wind: METAR (IPMA via NOAA aviationweather.gov, public domain). Runways: OurAirports (public domain). OpenSky departures not shown (non-commercial use).`,
+    provenance: prov({ code: ['the chart is drawn at build time from the archive\'s numbers'], agents: ['the Storm Charles site\'s flights team (incident.flights@web-summit.dinis) compiled the data in November 2026'] }),
+  });
+}
 
 // ---------- security (Dinis, 18 Nov 2026, ~15:15 UTC: every vulnerability, bug and breach is published) ----------
 {

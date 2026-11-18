@@ -1,0 +1,11 @@
+{
+  "about": "A copy of the Storm Charles crosswind data, read once from data.promptugal.news (the Storm site is frozen as the record, so this copy does not change). Used by /storm-charles/flights/. Only the METAR wind and runway data are shown (public domain, via NOAA and OurAirports); the OpenSky departure counts in the file are not shown, as OpenSky asks for non-commercial use.",
+  "source": "https://data.promptugal.news/api/v1/storm/charles/flights/crosswind.json",
+  "read_at": "2026-11-18T20:00Z",
+  "by": "travel.b@PrompTugal.dinis",
+  "sha256_40": "904bdd1afcc0b4a3b09b4f4cb67290f0185a0c04",
+  "license": {
+    "name": "Apache-2.0 (the Storm site's compilation); METAR and runways public domain",
+    "url": "https://www.apache.org/licenses/LICENSE-2.0"
+  }
+}
