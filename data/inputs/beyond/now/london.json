@@ -3,25 +3,23 @@
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
   "holder": "PrompTugal.news",
-  "note": "Our record; each value keeps its source, under that source's licence: IPMA values under IPMA's terms (https://api.ipma.pt/), adsb.lol counts under ODbL 1.0.",
+  "note": "Our record; each value keeps its source, under that source's licence: the Environment Agency's flood data under the Open Government Licence v3.0, Open-Meteo's forecast under CC BY 4.0 (each block carries its own).",
   "sources": {
-   "ipma": {
-    "name": "the source's terms",
-    "url": "https://api.ipma.pt/",
-    "holder": "IPMA, Instituto Português do Mar e da Atmosfera",
-    "note": "No named licence: free copying and use for personal or public use without profit-making purpose, IPMA named as the source."
+   "environment-agency": {
+    "name": "Open Government Licence v3.0",
+    "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    "holder": "Environment Agency"
    },
-   "adsb.lol": {
-    "name": "ODbL 1.0",
-    "url": "https://opendatacommons.org/licenses/odbl/1-0/",
-    "holder": "adsb.lol contributors",
-    "note": "Share-alike: what we derive from it stays under ODbL."
+   "open-meteo": {
+    "name": "CC BY 4.0",
+    "url": "https://open-meteo.com/en/licence",
+    "holder": "Open-Meteo"
    }
   }
  },
  "place": "london",
  "country": "GB",
- "read_at": "2026-11-18T22:40:45Z",
+ "read_at": "2026-11-18T22:47:14Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "coords": {
   "lat": 51.50722,
@@ -63,7 +61,7 @@
     "weather_code": 3
    }
   ],
-  "at": "2026-11-18T22:40:16Z",
+  "at": "2026-11-18T22:46:44Z",
   "source": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
   "attribution": "Weather data by Open-Meteo.com",
   "license": {
@@ -87,7 +85,7 @@
    }
   ],
   "stations": 10,
-  "at": "2026-11-18T22:37:05Z",
+  "at": "2026-11-18T22:42:37Z",
   "source": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
   "attribution": "this uses Environment Agency flood and river level data from the real-time data API (Beta)",
   "license": {
@@ -98,11 +96,11 @@
  "reads": {
   "ea-flood": {
    "url": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
-   "at": "2026-11-18T22:37:05Z"
+   "at": "2026-11-18T22:42:37Z"
   },
   "open-meteo-london": {
    "url": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
-   "at": "2026-11-18T22:40:16Z"
+   "at": "2026-11-18T22:46:44Z"
   }
  }
 }

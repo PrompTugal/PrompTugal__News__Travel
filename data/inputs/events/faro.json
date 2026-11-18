@@ -6,11 +6,11 @@
   "note": "What PrompTugal.news makes: this file's structure, records and derived values."
  },
  "place": "faro",
- "read_at": "2026-11-18T22:40:45Z",
- "source_read_at": "2026-11-18T22:37:35Z",
+ "read_at": "2026-11-18T22:47:14Z",
+ "source_read_at": "2026-11-18T22:43:15Z",
  "by": "collect/events-by-place.mjs (code, no model; data.b@PrompTugal.dinis), from data/events-pt/latest.json",
  "about": "Public events on now or starting within 60 days in this place, as schema.org Event records, each with its source URL and the time read. A dated record, not a ticketing service. An empty list means no source covers this place yet, not that nothing is happening.",
- "source_note": "Read 2026-11-18T22:37:35Z from www.agendalx.pt and www.cm-lagos.pt and teatrodasfiguras.pt and cm-tavira.pt; sources with no feed or refused are in gaps (https://data.promptugal.news/api/v1/events-pt/latest.json). Terms: Strictest of the sources: no reuse licence or terms page was found for any of the four hosts (teatrodasfiguras.pt and cm-tavira.pt show only \"Todos os direitos reservados\" in their footers, and cm-tavira.pt has no robots.txt). The robots.txt files that exist allow the paths read; agendalx.pt sets Content-Signal search=yes, ai-train=no, use=reference. So: reference use only, name the source, link to the event, no AI training. Not reviewed by a person: whether this is enough to republish is for Dinis.",
+ "source_note": "Read 2026-11-18T22:43:15Z from www.agendalx.pt and www.cm-lagos.pt and teatrodasfiguras.pt and cm-tavira.pt; sources with no feed or refused are in gaps (https://data.promptugal.news/api/v1/events-pt/latest.json). Terms: Strictest of the sources: no reuse licence or terms page was found for any of the four hosts (teatrodasfiguras.pt and cm-tavira.pt show only \"Todos os direitos reservados\" in their footers, and cm-tavira.pt has no robots.txt). The robots.txt files that exist allow the paths read; agendalx.pt sets Content-Signal search=yes, ai-train=no, use=reference. So: reference use only, name the source, link to the event, no AI training. Not reviewed by a person: whether this is enough to republish is for Dinis.",
  "count": 10,
  "events": [
   {
@@ -27,7 +27,7 @@
    "organizer": null,
    "url": "https://teatrodasfiguras.pt/agenda/o-mund-inteiro-a-espera",
    "source": "https://teatrodasfiguras.pt/agenda (Teatro das Figuras, Faro, agenda page)",
-   "read_at": "2026-11-18T22:37:50Z",
+   "read_at": "2026-11-18T22:43:30Z",
    "place": "faro",
    "license": {
     "name": "the source's terms",
@@ -49,7 +49,7 @@
    "organizer": null,
    "url": "https://teatrodasfiguras.pt/agenda/o-principezinho",
    "source": "https://teatrodasfiguras.pt/agenda (Teatro das Figuras, Faro, agenda page)",
-   "read_at": "2026-11-18T22:37:50Z",
+   "read_at": "2026-11-18T22:43:30Z",
    "place": "faro",
    "license": {
     "name": "the source's terms",
@@ -71,7 +71,7 @@
    "organizer": null,
    "url": "https://teatrodasfiguras.pt/agenda/picota-este-lugar-tambem-me-pertence",
    "source": "https://teatrodasfiguras.pt/agenda (Teatro das Figuras, Faro, agenda page)",
-   "read_at": "2026-11-18T22:37:50Z",
+   "read_at": "2026-11-18T22:43:30Z",
    "place": "faro",
    "license": {
     "name": "the source's terms",
@@ -93,7 +93,7 @@
    "organizer": null,
    "url": "https://teatrodasfiguras.pt/agenda/moby-dick",
    "source": "https://teatrodasfiguras.pt/agenda (Teatro das Figuras, Faro, agenda page)",
-   "read_at": "2026-11-18T22:37:50Z",
+   "read_at": "2026-11-18T22:43:30Z",
    "place": "faro",
    "license": {
     "name": "the source's terms",
@@ -115,7 +115,7 @@
    "organizer": null,
    "url": "https://teatrodasfiguras.pt/agenda/dario-guerreiro--primogenito",
    "source": "https://teatrodasfiguras.pt/agenda (Teatro das Figuras, Faro, agenda page)",
-   "read_at": "2026-11-18T22:37:50Z",
+   "read_at": "2026-11-18T22:43:30Z",
    "place": "faro",
    "license": {
     "name": "the source's terms",
@@ -137,7 +137,7 @@
    "organizer": null,
    "url": "https://teatrodasfiguras.pt/agenda/antonio-zambujo",
    "source": "https://teatrodasfiguras.pt/agenda (Teatro das Figuras, Faro, agenda page)",
-   "read_at": "2026-11-18T22:37:50Z",
+   "read_at": "2026-11-18T22:43:30Z",
    "place": "faro",
    "license": {
     "name": "the source's terms",
@@ -159,7 +159,7 @@
    "organizer": null,
    "url": "https://teatrodasfiguras.pt/agenda/rastro",
    "source": "https://teatrodasfiguras.pt/agenda (Teatro das Figuras, Faro, agenda page)",
-   "read_at": "2026-11-18T22:37:50Z",
+   "read_at": "2026-11-18T22:43:30Z",
    "place": "faro",
    "license": {
     "name": "the source's terms",
@@ -181,7 +181,7 @@
    "organizer": null,
    "url": "https://teatrodasfiguras.pt/agenda/vitorino",
    "source": "https://teatrodasfiguras.pt/agenda (Teatro das Figuras, Faro, agenda page)",
-   "read_at": "2026-11-18T22:37:50Z",
+   "read_at": "2026-11-18T22:43:30Z",
    "place": "faro",
    "license": {
     "name": "the source's terms",
@@ -203,7 +203,7 @@
    "organizer": null,
    "url": "https://teatrodasfiguras.pt/agenda/branca-de-neve",
    "source": "https://teatrodasfiguras.pt/agenda (Teatro das Figuras, Faro, agenda page)",
-   "read_at": "2026-11-18T22:37:50Z",
+   "read_at": "2026-11-18T22:43:30Z",
    "place": "faro",
    "license": {
     "name": "the source's terms",
@@ -225,7 +225,7 @@
    "organizer": null,
    "url": "https://teatrodasfiguras.pt/agenda/quando-menos-se-espera",
    "source": "https://teatrodasfiguras.pt/agenda (Teatro das Figuras, Faro, agenda page)",
-   "read_at": "2026-11-18T22:37:50Z",
+   "read_at": "2026-11-18T22:43:30Z",
    "place": "faro",
    "license": {
     "name": "the source's terms",

@@ -612,18 +612,52 @@ if (existsSync('data/research/uk-portugal.json')) {
   const adv = l => (l || []).filter(x => x.detail && !/^Not stated|did not mention/.test(x.detail));
   const advHtml = l => `<ul>${adv(l).map(x => `<li><strong>${esc(x.point)}.</strong> ${esc(nodash(x.detail))} <span class="meta">(${a(x.url, x.publisher)}, read ${esc(String(x.read_at).slice(0, 10))})</span></li>`).join('')}</ul>`;
   const advMd = l => adv(l).map(x => `- **${mdesc(x.point)}.** ${mdesc(nodash(x.detail))} (${ml(x.url, x.publisher)}, read ${String(x.read_at).slice(0, 10)})`).join('\n');
+  // Eurostat: nights in Portugal by country of origin (tour_occ_ninraw), via data.promptugal.news (data.b@).
+  const es = existsSync('data/inputs/beyond/eurostat-tourism.json') ? J('data/inputs/beyond/eurostat-tourism.json') : null;
+  const esChart = (() => {
+    if (!es) return { html: '', md: '' };
+    const P = ['UK', 'DE', 'FR', 'ES', 'US', 'NL'];
+    const rows = (es.rows || []).filter(r => r && r.dataset === 'tour_occ_ninraw' && r.geo === 'PT' && P.includes(r.partner) && /^\d{4}$/.test(String(r.time)) && Number.isFinite(r.nights));
+    // one pass into maps (security post-review: no per-lookup scans, no spread of a large array), last 30 years at most
+    const byKey = new Map(), labels = new Map();
+    for (const r of rows) { byKey.set(`${r.partner}|${+r.time}`, r.nights); if (!labels.has(r.partner) && typeof r.partner_label === 'string') labels.set(r.partner, r.partner_label); }
+    const years = [...new Set(rows.map(r => +r.time))].sort((x, y) => x - y).slice(-30);
+    if (years.length < 2) return { html: '', md: '' };
+    const label = c => labels.get(c) || c;
+    const val = (c, y) => byKey.get(`${c}|${y}`);
+    const max = rows.reduce((m, r) => (r.nights > m ? r.nights : m), 0), top = Math.ceil(max / 2e6) * 2e6;
+    if (!(top > 0)) return { html: '', md: '' };
+    const W = 720, H = 300, L = 56, R = 130, T = 14, B = 30;
+    const x = y => L + (W - L - R) * (y - years[0]) / (years.at(-1) - years[0]);
+    const yv = v => T + (H - T - B) * (1 - v / top);
+    const grid = [0, top / 2, top].map(v => `<line x1="${L}" x2="${W - R}" y1="${yv(v)}" y2="${yv(v)}" style="stroke:var(--rule)"/><text x="${L - 6}" y="${yv(v) + 4}" text-anchor="end" font-size="11" fill="currentColor">${v / 1e6}m</text>`).join('');
+    const ticks = years.filter((y, i) => i % 3 === 0 || y === years.at(-1)).map(y => `<text x="${x(y)}" y="${H - 10}" text-anchor="middle" font-size="11" fill="currentColor">${y}</text>`).join('');
+    // end labels, pushed apart so none overlap (at least 14px between them)
+    const ly = {}; P.map(c => [c, val(c, years.at(-1))]).filter(([, v]) => Number.isFinite(v)).sort((p1, p2) => p2[1] - p1[1]).reduce((prev, [c, v]) => { const y0 = Math.max(yv(v) + 4, prev + 14); ly[c] = y0; return y0; }, -Infinity);
+    const lines = P.slice().reverse().map(c => { const pts = years.map(y => [y, val(c, y)]).filter(([, v]) => Number.isFinite(v)); if (!pts.length) return ''; const uk = c === 'UK'; const last = pts.at(-1);
+      return `<polyline fill="none" style="stroke:${uk ? 'var(--sea)' : 'var(--muted)'};stroke-width:${uk ? 3 : 1.5};opacity:${uk ? 1 : 0.6}" points="${pts.map(([y, v]) => `${x(y).toFixed(1)},${yv(v).toFixed(1)}`).join(' ')}"/><text x="${x(last[0]) + 6}" y="${(ly[c] ?? yv(last[1]) + 4).toFixed(1)}" font-size="${uk ? 13 : 11}" ${uk ? 'font-weight="600" style="fill:var(--sea)"' : 'fill="currentColor"'}>${esc(label(c))}</text>`; }).join('');
+    const ukLast = val('UK', years.at(-1));
+    const ds = (es.datasets || []).find(d => d && d.dataset === 'tour_occ_ninraw') || {};
+    const cap = `Nights in Portugal's tourist accommodation by the visitor's country of residence, ${years[0]} to ${years.at(-1)}. Source: Eurostat, ${a(ds.page, 'tour_occ_ninraw')}, via ${a('https://data.promptugal.news/api/v1/eurostat-tourism/latest.json', 'data.promptugal.news')} (read ${esc(lisbon(es.read_at))}).`;
+    const table = `<table><thead><tr><th>Country</th>${years.slice(-3).map(y => `<th>${y}</th>`).join('')}</tr></thead><tbody>${P.map(c => `<tr><td>${esc(label(c))}</td>${years.slice(-3).map(y => `<td>${Number.isFinite(val(c, y)) ? val(c, y).toLocaleString('en-GB') : 'n/a'}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+    return {
+      html: `<section aria-labelledby="h-es"><h2 id="h-es">Nights in Portugal by country, ${years[0]} to ${years.at(-1)}</h2><p>Visitors from the United Kingdom spent ${Number.isFinite(ukLast) ? ukLast.toLocaleString('en-GB') : 'n/a'} nights in Portugal's hotels and other tourist accommodation in ${years.at(-1)}: more than from any other country shown here.</p><figure class="chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(`Nights in Portugal by country of residence, ${years[0]} to ${years.at(-1)}; the United Kingdom highest in ${years.at(-1)}`)}">${grid}${lines}${ticks}</svg><figcaption>${cap}</figcaption></figure>${table}<p class="meta">Eurostat names countries for Portugal as a whole only; the Algarve has domestic and foreign totals but no country split. travel.b@ re-read the UK's 2024 and 2025 figures in Eurostat's own API on 18 Nov 2026.</p></section>`,
+      md: `\n\n## Nights in Portugal by country, ${years[0]} to ${years.at(-1)}\n\n| Country | ${years.slice(-3).join(' | ')} |\n|---|${years.slice(-3).map(() => '---').join('|')}|\n${P.map(c => `| ${mdesc(label(c))} | ${years.slice(-3).map(y => Number.isFinite(val(c, y)) ? val(c, y).toLocaleString('en-GB') : 'n/a').join(' | ')} |`).join('\n')}\n\nSource: Eurostat, ${ml(ds.page, 'tour_occ_ninraw')}, via data.promptugal.news.`,
+    };
+  })();
   page({
     path: '/uk-portugal/', title: 'The UK and Portugal',
     description: 'British visitors to Portugal in numbers (ONS), what a British visitor needs to enter Portugal and what a Portuguese visitor needs for the UK (gov.uk), and UK airlines seen near Faro. Each value with its source and the date read.',
     body: `<h1>The UK and Portugal</h1><p class="dek">Beyond Portugal: the link with the UK. Residents of Great Britain made ${src1 ? n(src1.value) : 'many'} visits to Portugal in 2025. Below: the numbers, the rules both ways, and the UK airlines our receivers see near Faro. London itself comes when its data does.</p>
 <section aria-labelledby="h-ons"><h2 id="h-ons">British visitors to Portugal, 2025</h2><table><thead><tr><th>What</th><th>2025</th></tr></thead><tbody>${ons.map(x => `<tr><td>${esc(x.title)}</td><td>${fig(x)}</td></tr>`).join('')}</tbody></table>
 <p class="meta">Source: ${src1 ? a(src1.url, 'ONS, Travel trends 2025, UK residents\' visits abroad') : 'ONS'}, ${esc(src1 ? src1.flag || '' : '')}. Great Britain residents only (Northern Ireland is not in the country table). travel.b@ re-read the total, holiday and visiting-friends figures in the table on 18 Nov 2026.</p></section>
+${esChart.html}
 <section aria-labelledby="h-to-pt"><h2 id="h-to-pt">A British visitor going to Portugal</h2>${advHtml(uk.advice_uk_to_pt)}</section>
 <section aria-labelledby="h-to-uk"><h2 id="h-to-uk">A Portuguese or EU visitor going to the UK</h2>${advHtml(uk.advice_pt_to_uk)}</section>
 <section aria-labelledby="h-faro-uk"><h2 id="h-faro-uk">UK airlines seen near Faro</h2>${seenList.length ? `<p>Across our ${series.length} reads of the sky within 40 nautical miles of Faro airport (adsb.lol), we saw: ${seenList.map(([c, k]) => `${esc(UKA[c])} ${k}`).join(', ')}. A flight seen near Faro is not always to or from the UK.</p>` : `<p>No UK airline in our ${series.length} reads near Faro so far.</p>`}<p class="meta">${a('/flights/', 'Flights at Faro')} · ${a('/api/v1/faro-airport.jsonl', 'the series')}</p></section>
 ${london ? `<section aria-labelledby="h-uk-wx"><h2 id="h-uk-wx">Weather side by side, London and Faro</h2>${sideBySide().html}<p class="meta">${a('/london/', 'More on London')}</p></section>` : ''}
 <section aria-labelledby="h-gaps-uk"><h2 id="h-gaps-uk">Not here yet</h2><ul>${(uk.gaps || []).map(g => `<li>${esc(nodash(g.what))}: ${esc(nodash(g.why))}</li>`).join('')}<li>London's weather, transport and airports: waiting on data.promptugal.news's UK feeds.</li></ul></section>`,
-    md: `Beyond Portugal: the link with the UK.\n\n## British visitors to Portugal, 2025\n\n| What | 2025 |\n|---|---|\n${ons.map(x => `| ${mdesc(x.title)} | ${mdesc(fig(x).replace(/&amp;/g, '&'))} |`).join('\n')}\n\nSource: ${src1 ? ml(src1.url, 'ONS Travel trends 2025') : 'ONS'}. Great Britain residents only.\n\n## A British visitor going to Portugal\n\n${advMd(uk.advice_uk_to_pt)}\n\n## A Portuguese or EU visitor going to the UK\n\n${advMd(uk.advice_pt_to_uk)}\n\n## UK airlines seen near Faro\n\nAcross ${series.length} reads within 40 nautical miles of Faro (adsb.lol):\n\n${seenList.length ? seenList.map(([c, k]) => `- ${UKA[c]}: ${k}`).join('\n') : '- none so far'}${london ? `\n\n## Weather side by side, London and Faro\n\n${sideBySide().md}` : ''}\n\n## Not here yet\n\n${(uk.gaps || []).map(g => `- ${mdesc(nodash(g.what))}: ${mdesc(nodash(g.why))}`).join('\n')}\n`,
+    md: `Beyond Portugal: the link with the UK.\n\n## British visitors to Portugal, 2025\n\n| What | 2025 |\n|---|---|\n${ons.map(x => `| ${mdesc(x.title)} | ${mdesc(fig(x).replace(/&amp;/g, '&'))} |`).join('\n')}\n\nSource: ${src1 ? ml(src1.url, 'ONS Travel trends 2025') : 'ONS'}. Great Britain residents only.${esChart.md}\n\n## A British visitor going to Portugal\n\n${advMd(uk.advice_uk_to_pt)}\n\n## A Portuguese or EU visitor going to the UK\n\n${advMd(uk.advice_pt_to_uk)}\n\n## UK airlines seen near Faro\n\nAcross ${series.length} reads within 40 nautical miles of Faro (adsb.lol):\n\n${seenList.length ? seenList.map(([c, k]) => `- ${UKA[c]}: ${k}`).join('\n') : '- none so far'}${london ? `\n\n## Weather side by side, London and Faro\n\n${sideBySide().md}` : ''}\n\n## Not here yet\n\n${(uk.gaps || []).map(g => `- ${mdesc(nodash(g.what))}: ${mdesc(nodash(g.why))}`).join('\n')}\n`,
     ipma: !!london,
     provenance: prov({ agents: ['travel.b.research@PrompTugal.dinis (Sonnet) read ONS and gov.uk on 18 Nov 2026', 'travel.b@PrompTugal.dinis re-read the ONS table and the FCDO page'] }),
   });

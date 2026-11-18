@@ -20,7 +20,7 @@
   }
  },
  "place": "alcoutim",
- "read_at": "2026-11-18T22:40:45Z",
+ "read_at": "2026-11-18T22:47:14Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "coords": {
   "lat": 37.46997,
@@ -145,37 +145,37 @@
  "reads": {
   "observations": {
    "url": "https://data.promptugal.news/api/v1/ipma-observations/latest.json",
-   "at": "2026-11-18T22:39:38Z",
+   "at": "2026-11-18T22:46:07Z",
    "status": 200
   },
   "warnings": {
    "url": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
-   "at": "2026-11-18T22:39:56Z",
+   "at": "2026-11-18T22:46:25Z",
    "status": 200
   },
   "forecasts": {
    "url": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
-   "at": "2026-11-18T22:38:01Z",
+   "at": "2026-11-18T22:44:30Z",
    "status": 200
   },
   "fire-risk": {
    "url": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
-   "at": "2026-11-18T22:39:31Z",
+   "at": "2026-11-18T22:46:00Z",
    "status": 200
   },
   "uv": {
    "url": "https://data.promptugal.news/api/v1/ipma-uv/latest.json",
-   "at": "2026-11-18T22:39:53Z",
+   "at": "2026-11-18T22:46:22Z",
    "status": 200
   },
   "sea": {
    "url": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
-   "at": "2026-11-18T22:39:44Z",
+   "at": "2026-11-18T22:46:12Z",
    "status": 200
   },
   "adsb": {
    "url": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
-   "at": "2026-11-18T22:36:55Z",
+   "at": "2026-11-18T22:42:27Z",
    "status": 200
   }
  }

@@ -20,7 +20,7 @@
   }
  },
  "place": "algarve",
- "read_at": "2026-11-18T22:40:45Z",
+ "read_at": "2026-11-18T22:47:14Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "about": "Now in the Algarve: IPMA's warnings for the Faro district, Faro airport, and each place's nearest station. Not a warning service.",
  "warnings": {
@@ -42,8 +42,17 @@
   "icao": "LPFR",
   "name": "Faro airport",
   "within_nm": 40,
-  "at": "2026-11-18T22:36:55Z",
-  "airline": [],
+  "at": "2026-11-18T22:42:27Z",
+  "airline": [
+   {
+    "callsign": "IBS1513",
+    "airline": "IBS",
+    "type": "A320",
+    "alt_ft": 34975,
+    "on_ground": false,
+    "ground_speed_kt": 408
+   }
+  ],
   "other_aircraft": 0,
   "page": "https://globe.adsb.lol/?lat=37.014&lon=-7.966&zoom=9",
   "source": "https://api.adsb.lol/",
@@ -139,37 +148,37 @@
  "reads": {
   "observations": {
    "url": "https://data.promptugal.news/api/v1/ipma-observations/latest.json",
-   "at": "2026-11-18T22:39:38Z",
+   "at": "2026-11-18T22:46:07Z",
    "status": 200
   },
   "warnings": {
    "url": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
-   "at": "2026-11-18T22:39:56Z",
+   "at": "2026-11-18T22:46:25Z",
    "status": 200
   },
   "forecasts": {
    "url": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
-   "at": "2026-11-18T22:38:01Z",
+   "at": "2026-11-18T22:44:30Z",
    "status": 200
   },
   "fire-risk": {
    "url": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
-   "at": "2026-11-18T22:39:31Z",
+   "at": "2026-11-18T22:46:00Z",
    "status": 200
   },
   "uv": {
    "url": "https://data.promptugal.news/api/v1/ipma-uv/latest.json",
-   "at": "2026-11-18T22:39:53Z",
+   "at": "2026-11-18T22:46:22Z",
    "status": 200
   },
   "sea": {
    "url": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
-   "at": "2026-11-18T22:39:44Z",
+   "at": "2026-11-18T22:46:12Z",
    "status": 200
   },
   "adsb": {
    "url": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
-   "at": "2026-11-18T22:36:55Z",
+   "at": "2026-11-18T22:42:27Z",
    "status": 200
   }
  }

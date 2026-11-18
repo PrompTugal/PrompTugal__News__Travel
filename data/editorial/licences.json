@@ -457,6 +457,13 @@
    "kind": "licence",
    "read": "2026-11-18",
    "note": "Open-Meteo data is CC BY 4.0; credit \"Weather data by Open-Meteo.com\". From data.b@'s register, via data.promptugal.news."
+  },
+  "ec.europa.eu": {
+   "name": "CC BY 4.0",
+   "url": "https://ec.europa.eu/eurostat/about-us/policies/copyright",
+   "kind": "licence",
+   "read": "2026-11-18",
+   "note": "Eurostat data: reuse under CC BY 4.0 with \"Source: Eurostat\" (Eurostat copyright notice and Commission Decision 2011/833/EU). Via data.b@'s register."
   }
  }
 }
