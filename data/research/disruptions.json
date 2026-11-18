@@ -1,178 +1,191 @@
 {
- "by": "travel.research.disruptions@PrompTugal.dinis",
- "model": "sonnet",
- "read_at": "2026-11-17T19:30:00Z",
- "about": "Strikes and planned disruptions affecting travellers in Portugal, 17 November to 31 December 2026, Algarve first, with 1 to 16 November 2026 as context. Standard line for every item: Your airline or operator decides whether your service runs: its site or app has the latest. Only items confirmed by at least one named publisher are listed; the rest are in gaps.",
- "items": [
-  {
-   "id": "easyjet-cabin-crew-strike-dec-2026",
-   "title": "easyJet cabin crew strike called for 19 to 23 December",
-   "mode": "air",
-   "start": "2026-12-19",
-   "end": "2026-12-23",
-   "who": "SNPVAC (cabin crew union) and easyJet",
-   "where": "easyJet bases at Lisbon, Porto and Faro",
-   "what": "The union has called a five-day strike by easyJet cabin crew in Portugal. Minimum services have been set by the state, including some Faro to Geneva and Faro to France flights when scheduled. In the October strike the airline cancelled many flights ahead of time. No report of a deal or a cancellation of the December dates was found on 17 November. Your airline or operator decides whether your service runs: its site or app has the latest.",
-   "status": "announced",
-   "algarve": true,
-   "sources": [
+  "by": "travel.research.disruptions@PrompTugal.dinis",
+  "model": "sonnet",
+  "read_at": "2026-11-17T19:30:00Z",
+  "about": "Strikes and planned disruptions affecting travellers in Portugal, 17 November to 31 December 2026, Algarve first, with 1 to 16 November 2026 as context. Standard line for every item: Your airline or operator decides whether your service runs: its site or app has the latest. Only items confirmed by at least one named publisher are listed; the rest are in gaps.",
+  "items": [
     {
-     "url": "https://www.sabado.pt/dinheiro/amp/tripulantes-da-easyjet-em-greve-de-2-a-6-de-outubro-e-de-19-a-23-de-dezembro",
-     "publisher": "Sábado (Lusa), 17 September 2026",
-     "kind": "report",
-     "read_on": "2026-11-17"
+      "id": "easyjet-cabin-crew-strike-dec-2026",
+      "title": "easyJet cabin crew strike called for 19 to 23 December",
+      "mode": "air",
+      "start": "2026-12-19",
+      "end": "2026-12-23",
+      "who": "SNPVAC (cabin crew union) and easyJet",
+      "where": "easyJet bases at Lisbon, Porto and Faro",
+      "what": "The union has called a five-day strike by easyJet cabin crew in Portugal. Minimum services have been set by the state, including some Faro to Geneva and Faro to France flights when scheduled. In the October strike the airline cancelled many flights ahead of time. No report of a deal or a cancellation of the December dates was found on 17 or 18 November. Your airline or operator decides whether your service runs: its site or app has the latest.",
+      "status": "announced",
+      "algarve": true,
+      "sources": [
+        {
+          "url": "https://www.sabado.pt/dinheiro/amp/tripulantes-da-easyjet-em-greve-de-2-a-6-de-outubro-e-de-19-a-23-de-dezembro",
+          "publisher": "Sábado (Lusa), 17 September 2026",
+          "kind": "report",
+          "read_on": "2026-11-17"
+        },
+        {
+          "url": "https://www.dnoticias.pt/2026/9/29/507191-greves-na-easyjet-em-outubro-e-dezembro-ja-tem-servicos-minimos-decretados/",
+          "publisher": "DNoticias (minimum services)",
+          "kind": "report",
+          "read_on": "2026-11-17"
+        },
+        {
+          "url": "https://www.dgert.gov.pt/wp-content/uploads/2026/09/Despacho_conjunto-51_2026_-EasyJet_SNPVAC.pdf",
+          "publisher": "DGERT (joint order on minimum services; found in search, file itself not read)",
+          "kind": "official",
+          "read_on": "2026-11-17"
+        }
+      ],
+      "rechecked": [
+        "2026-11-18"
+      ]
     },
     {
-     "url": "https://www.dnoticias.pt/2026/9/29/507191-greves-na-easyjet-em-outubro-e-dezembro-ja-tem-servicos-minimos-decretados/",
-     "publisher": "DNoticias (minimum services)",
-     "kind": "report",
-     "read_on": "2026-11-17"
+      "id": "easyjet-cabin-crew-strike-oct-2026",
+      "title": "easyJet cabin crew strike of 2 to 6 October (context)",
+      "mode": "air",
+      "start": "2026-10-02",
+      "end": "2026-10-06",
+      "who": "SNPVAC and easyJet",
+      "where": "easyJet bases at Lisbon, Porto and Faro",
+      "what": "The union said 370 flights were cancelled over the five days, most of them before the strike began. The airline said it had planned 786 flights and cut to 442. Figures are the union's and the airline's own. Background for the December dates.",
+      "status": "happened",
+      "algarve": true,
+      "sources": [
+        {
+          "url": "https://www.rtp.pt/noticias/economia/greve-dos-tripulantes-da-easyjet-originou-o-cancelamento-de-370-voos-diz-sindicato_n1769960",
+          "publisher": "RTP",
+          "kind": "report",
+          "read_on": "2026-11-17"
+        }
+      ]
     },
     {
-     "url": "https://www.dgert.gov.pt/wp-content/uploads/2026/09/Despacho_conjunto-51_2026_-EasyJet_SNPVAC.pdf",
-     "publisher": "DGERT (joint order on minimum services; found in search, file itself not read)",
-     "kind": "official",
-     "read_on": "2026-11-17"
-    }
-   ]
-  },
-  {
-   "id": "easyjet-cabin-crew-strike-oct-2026",
-   "title": "easyJet cabin crew strike of 2 to 6 October (context)",
-   "mode": "air",
-   "start": "2026-10-02",
-   "end": "2026-10-06",
-   "who": "SNPVAC and easyJet",
-   "where": "easyJet bases at Lisbon, Porto and Faro",
-   "what": "The union said 370 flights were cancelled over the five days, most of them before the strike began. The airline said it had planned 786 flights and cut to 442. Figures are the union's and the airline's own. Background for the December dates.",
-   "status": "happened",
-   "algarve": true,
-   "sources": [
-    {
-     "url": "https://www.rtp.pt/noticias/economia/greve-dos-tripulantes-da-easyjet-originou-o-cancelamento-de-370-voos-diz-sindicato_n1769960",
-     "publisher": "RTP",
-     "kind": "report",
-     "read_on": "2026-11-17"
-    }
-   ]
-  },
-  {
-   "id": "storm-charles-2026-11-11",
-   "title": "Storm Charles: flight cancellations and road closures on 11 November",
-   "mode": "all",
-   "start": "2026-11-11",
-   "end": "2026-11-11",
-   "who": "Government alert; ANA (airports); Civil Protection",
-   "where": "Mainland Portugal including the Algarve; Lisbon, Porto, Faro and Madeira airports",
-   "what": "The government declared a state of alert for 11 November. ANA reported close to 400 cancelled flights across Lisbon, Porto, Faro and Madeira, counting earlier cancellations. Civil Protection logged 76 incidents in the Algarve by 14:00 with roads closed or restricted in four municipalities. The Algarve red weather warning was lifted in the afternoon. The prime minister said the impact was smaller than forecast. No lingering travel effect was found for the days since. Your airline or operator decides whether your service runs: its site or app has the latest.",
-   "status": "happened",
-   "algarve": true,
-   "sources": [
-    {
-     "url": "https://www.rtp.pt/noticias/especiais/perto-de-400-voos-cancelados-em-lisboa-porto-faro-e-madeira_e1778525",
-     "publisher": "RTP",
-     "kind": "report",
-     "read_on": "2026-11-17"
+      "id": "storm-charles-2026-11-11",
+      "title": "Storm Charles: flight cancellations and road closures on 11 November",
+      "mode": "all",
+      "start": "2026-11-11",
+      "end": "2026-11-11",
+      "who": "Government alert; ANA (airports); Civil Protection",
+      "where": "Mainland Portugal including the Algarve; Lisbon, Porto, Faro and Madeira airports",
+      "what": "The government declared a state of alert for 11 November. ANA reported close to 400 cancelled flights across Lisbon, Porto, Faro and Madeira, counting earlier cancellations. Civil Protection logged 76 incidents in the Algarve by 14:00 with roads closed or restricted in four municipalities. The Algarve red weather warning was lifted in the afternoon. The prime minister said the impact was smaller than forecast. No lingering travel effect was found for the days since. Your airline or operator decides whether your service runs: its site or app has the latest.",
+      "status": "happened",
+      "algarve": true,
+      "sources": [
+        {
+          "url": "https://www.rtp.pt/noticias/especiais/perto-de-400-voos-cancelados-em-lisboa-porto-faro-e-madeira_e1778525",
+          "publisher": "RTP",
+          "kind": "report",
+          "read_on": "2026-11-17"
+        },
+        {
+          "url": "https://postal.pt/algarve/mau-tempo-provoca-76-ocorrencias-no-algarve-e-condiciona-circulacao-em-varias-estradas/",
+          "publisher": "Postal do Algarve (seen in search results, not opened)",
+          "kind": "report",
+          "read_on": "2026-11-17"
+        }
+      ]
     },
     {
-     "url": "https://postal.pt/algarve/mau-tempo-provoca-76-ocorrencias-no-algarve-e-condiciona-circulacao-em-varias-estradas/",
-     "publisher": "Postal do Algarve (seen in search results, not opened)",
-     "kind": "report",
-     "read_on": "2026-11-17"
+      "id": "ees-biometrics-faro-queues",
+      "title": "EU Entry/Exit System: biometric checks and arrival queues at Portuguese airports, Faro under most pressure",
+      "mode": "border",
+      "start": "2026-09-06",
+      "end": null,
+      "who": "PSP (border control); European Commission",
+      "where": "Faro, Lisbon and Porto airports; Faro named as under greater pressure",
+      "what": "Biometric collection for non-EU arrivals became mandatory on 6 September. As of 13 September the PSP said Faro was under the most pressure, with many flights, often carrying British passengers, landing close together. The PSP said it can skip biometrics during technical problems, which the Commission allows until December. Lisbon waits were given as 15 to 30 minutes. No November waiting-time figures were found. This is an ongoing situation, not a dated event.",
+      "status": "confirmed",
+      "algarve": true,
+      "sources": [
+        {
+          "url": "https://eco.sapo.pt/2026/09/13/aeroporto-de-faro-regista-maior-pressao-na-recolha-de-dados-biometricos/",
+          "publisher": "ECO (Lusa), 13 September 2026",
+          "kind": "report",
+          "read_on": "2026-11-17"
+        }
+      ],
+      "ongoing": true
     }
-   ]
-  },
-  {
-   "id": "ees-biometrics-faro-queues",
-   "title": "EU Entry/Exit System: biometric checks and arrival queues at Portuguese airports, Faro under most pressure",
-   "mode": "border",
-   "start": "2026-09-06",
-   "end": null,
-   "who": "PSP (border control); European Commission",
-   "where": "Faro, Lisbon and Porto airports; Faro named as under greater pressure",
-   "what": "Biometric collection for non-EU arrivals became mandatory on 6 September. As of 13 September the PSP said Faro was under the most pressure, with many flights, often carrying British passengers, landing close together. The PSP said it can skip biometrics during technical problems, which the Commission allows until December. Lisbon waits were given as 15 to 30 minutes. No November waiting-time figures were found. This is an ongoing situation, not a dated event.",
-   "status": "confirmed",
-   "algarve": true,
-   "sources": [
+  ],
+  "holidays": [
     {
-     "url": "https://eco.sapo.pt/2026/09/13/aeroporto-de-faro-regista-maior-pressao-na-recolha-de-dados-biometricos/",
-     "publisher": "ECO (Lusa), 13 September 2026",
-     "kind": "report",
-     "read_on": "2026-11-17"
+      "date": "2026-12-01",
+      "name": "Restoration of Independence Day (Tuesday)",
+      "source": "https://www.portugal.com/lifestyle/portuguese-public-holidays-in-2026/"
+    },
+    {
+      "date": "2026-12-08",
+      "name": "Immaculate Conception Day (Tuesday)",
+      "source": "https://www.portugal.com/lifestyle/portuguese-public-holidays-in-2026/"
+    },
+    {
+      "date": "2026-12-25",
+      "name": "Christmas Day (Friday)",
+      "source": "https://www.portugal.com/lifestyle/portuguese-public-holidays-in-2026/"
     }
-   ],
-   "ongoing": true
-  }
- ],
- "holidays": [
-  {
-   "date": "2026-12-01",
-   "name": "Restoration of Independence Day (Tuesday)",
-   "source": "https://www.portugal.com/lifestyle/portuguese-public-holidays-in-2026/"
-  },
-  {
-   "date": "2026-12-08",
-   "name": "Immaculate Conception Day (Tuesday)",
-   "source": "https://www.portugal.com/lifestyle/portuguese-public-holidays-in-2026/"
-  },
-  {
-   "date": "2026-12-25",
-   "name": "Christmas Day (Friday)",
-   "source": "https://www.portugal.com/lifestyle/portuguese-public-holidays-in-2026/"
-  }
- ],
- "gaps": [
-  {
-   "what": "CP, Infraestruturas de Portugal or other rail strike notices for 17 Nov to 31 Dec 2026",
-   "why": "Searches found none; results were 2024 and 2025 strikes and the 3 June 2026 general strike. Absence of results is not proof none exists. CP and union pages not checked directly.",
-   "url": "https://www.cp.pt"
-  },
-  {
-   "what": "Ground handling (Menzies/SPdH, Portway) and ANA airport strike notices for the window",
-   "why": "None found for 2026. A Portway notice appeared in search but its year could not be confirmed.",
-   "url": "https://www.dgert.gov.pt"
-  },
-  {
-   "what": "Bus strikes (Vamus/Vizur, EVA, Rede Expressos) in the window",
-   "why": "Only a July 2026 EVA/Vizur strike was found, outside the window; nothing for November or December.",
-   "url": "https://postal.pt/economia/trabalhadores-da-eva-transportes-e-vizur-em-greve-no-algarve/"
-  },
-  {
-   "what": "General or public-sector strike in the window",
-   "why": "Last found were 11 December 2025 and 3 June 2026; no new notice found.",
-   "url": "https://www.dn.pt/política/cgtp-confirma-nova-greve-geral-convocada-para-3-de-junho"
-  },
-  {
-   "what": "NAV Portugal air traffic control, TAP, Ryanair crew, ferry and port strikes",
-   "why": "No results found; not searched individually in depth.",
-   "url": ""
-  },
-  {
-   "what": "Planned works on Linha do Algarve, A22 and EN125",
-   "why": "No scheduled closure found. Search showed only that electric services on the Algarve line began on 19 July 2026 (ECO); A22 and EN125 not covered by any result.",
-   "url": "https://eco.sapo.pt/2026/07/07/comboios-do-servico-regional-do-algarve-passam-a-ser-eletricos-em-19-de-julho/"
-  },
-  {
-   "what": "Metro de Lisboa partial strikes of 28 and 30 October and rail impact of Storm Charles",
-   "why": "Outside the Algarve and the window; rail effect of the storm not reported in pages read.",
-   "url": ""
-  },
-  {
-   "what": "DGERT minimum-services order and Postal do Algarve storm article",
-   "why": "DGERT PDF could not be fetched (TLS certificate chain failed; not bypassed). Postal article seen only as a search result.",
-   "url": "https://www.dgert.gov.pt"
-  },
-  {
-   "what": "Holiday rail and bus timetables for 1, 8 and 25 December",
-   "why": "No operator notice found yet.",
-   "url": "https://www.cp.pt"
-  }
- ],
- "edits": [
-  {
-   "by": "travel@PrompTugal.dinis",
-   "at": "2026-11-17",
-   "what": "EES item: end date (the end of the research window) replaced by ongoing: true"
-  }
- ]
+  ],
+  "gaps": [
+    {
+      "what": "CP, Infraestruturas de Portugal or other rail strike notices for 17 Nov to 31 Dec 2026",
+      "why": "Searches found none; results were 2024 and 2025 strikes and the 3 June 2026 general strike. Absence of results is not proof none exists. CP and union pages not checked directly.",
+      "url": "https://www.cp.pt"
+    },
+    {
+      "what": "Ground handling (Menzies/SPdH, Portway) and ANA airport strike notices for the window",
+      "why": "None found for 2026. A Portway notice appeared in search but its year could not be confirmed.",
+      "url": "https://www.dgert.gov.pt"
+    },
+    {
+      "what": "Bus strikes (Vamus/Vizur, EVA, Rede Expressos) in the window",
+      "why": "Only a July 2026 EVA/Vizur strike was found, outside the window; nothing for November or December.",
+      "url": "https://postal.pt/economia/trabalhadores-da-eva-transportes-e-vizur-em-greve-no-algarve/"
+    },
+    {
+      "what": "General or public-sector strike in the window",
+      "why": "Last found were 11 December 2025 and 3 June 2026; no new notice found.",
+      "url": "https://www.dn.pt/política/cgtp-confirma-nova-greve-geral-convocada-para-3-de-junho"
+    },
+    {
+      "what": "NAV Portugal air traffic control, TAP, Ryanair crew, ferry and port strikes",
+      "why": "No results found; not searched individually in depth.",
+      "url": ""
+    },
+    {
+      "what": "Planned works on Linha do Algarve, A22 and EN125",
+      "why": "No scheduled closure found. Search showed only that electric services on the Algarve line began on 19 July 2026 (ECO); A22 and EN125 not covered by any result.",
+      "url": "https://eco.sapo.pt/2026/07/07/comboios-do-servico-regional-do-algarve-passam-a-ser-eletricos-em-19-de-julho/"
+    },
+    {
+      "what": "Metro de Lisboa partial strikes of 28 and 30 October and rail impact of Storm Charles",
+      "why": "Outside the Algarve and the window; rail effect of the storm not reported in pages read.",
+      "url": ""
+    },
+    {
+      "what": "DGERT minimum-services order and Postal do Algarve storm article",
+      "why": "DGERT PDF could not be fetched (TLS certificate chain failed; not bypassed). Postal article seen only as a search result.",
+      "url": "https://www.dgert.gov.pt"
+    },
+    {
+      "what": "Holiday rail and bus timetables for 1, 8 and 25 December",
+      "why": "No operator notice found yet.",
+      "url": "https://www.cp.pt"
+    },
+    {
+      "what": "DGERT strike notices for November and December 2026",
+      "why": "dgert.gov.pt answered HTTP 503 on 18 Nov 2026; not worked around.",
+      "read": "2026-11-18"
+    }
+  ],
+  "edits": [
+    {
+      "by": "travel@PrompTugal.dinis",
+      "at": "2026-11-17",
+      "what": "EES item: end date (the end of the research window) replaced by ongoing: true"
+    },
+    {
+      "by": "travel.b@PrompTugal.dinis (Opus)",
+      "at": "2026-11-18",
+      "what": "Re-checked the easyJet December strike with travel.b.research@PrompTugal.dinis (Sonnet): no deal, call-off or cancellations reported; SNPVAC home page silent; DGERT answered 503 (a gap). Added the DNoticias minimum-services source after travel.b@ read it. Other strikes for the next 8 weeks (CP, ground handling, NAV, TAP, Ryanair, Algarve buses, general strike): none found in searches, which is not proof there are none."
+    }
+  ]
 }

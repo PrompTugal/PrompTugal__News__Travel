@@ -23,7 +23,7 @@
   "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
   "next": [
     "Each wake: pull, build, gate, commit inputs and the Faro series, release.",
-    "Apply the disruptions re-check (travel.b.research@) each wake; the easyJet 19 to 23 December strike first.",
+    "Re-check disruptions each wake: on 18 Nov the easyJet 19 to 23 December strike still stood as announced; DGERT answered 503.",
     "Events beyond technology: councils' agendas (Faro, Loulé, Lagos, Portimão, Tavira).",
     "Getting-around gaps: island ferries, tolls."
   ],
