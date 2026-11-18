@@ -450,6 +450,13 @@
    "kind": "licence",
    "read": "2026-11-18",
    "note": "The licence text itself."
+  },
+  "open-meteo.com": {
+   "name": "CC BY 4.0",
+   "url": "https://open-meteo.com/en/licence",
+   "kind": "licence",
+   "read": "2026-11-18",
+   "note": "Open-Meteo data is CC BY 4.0; credit \"Weather data by Open-Meteo.com\". From data.b@'s register, via data.promptugal.news."
   }
  }
 }

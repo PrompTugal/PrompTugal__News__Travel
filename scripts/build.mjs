@@ -35,7 +35,7 @@ const municipalities = algarveIds.filter(id => id !== 'algarve' && now[id]);
 
 // ---------- helpers ----------
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const mdesc = s => String(s ?? '').replace(/[\r\n\u0000-\u001f]+/g, ' ').replace(/([|\[\]<>])/g, '\\$1');
+const mdesc = s => String(s ?? '').replace(/[\r\n\u0000-\u001f]+/g, ' ').replace(/([|\[\]<>*_`])/g, '\\$1');
 const nodash = s => String(s ?? '').replace(/—/g, ',').replace(/–/g, '-');
 const lisbon = (iso, withDate = true) => {
   if (!iso) return 'not known';
@@ -95,7 +95,7 @@ const prov = (extra = {}) => ({
 // ---------- layout ----------
 const NAV = [
   ['/', 'Now'], ['/flights/', 'Flights'], ['/getting-around/', 'Getting around'], ['/disruptions/', 'Strikes and disruptions'],
-  ['/weather/', 'Weather and sea'], ['/events/', "What's on"], ['/tourism/', 'Tourism'], ['/uk-portugal/', 'UK and Portugal'], ['/about/', 'How it is made'],
+  ['/weather/', 'Weather and sea'], ['/events/', "What's on"], ['/tourism/', 'Tourism'], ['/uk-portugal/', 'UK and Portugal'], ['/london/', 'London'], ['/about/', 'How it is made'],
 ];
 const pages = [];
 // The PrompTugal.news sites, as promptugal.news's rail (PrompTugal__News__Website assets/top/top.tmpl, em-net).
@@ -562,6 +562,40 @@ ${aps.map(({ ap, svg, peak, hours }) => `<section aria-labelledby="h-${esc(ap.ic
   });
 }
 
+// ---------- Beyond Portugal: London (Dinis, 18 Nov 2026 ~22:20 UTC; board/guidance/2026-11-18-london.md). From
+// data.promptugal.news's /api/v1/by-place/now/london.json (data.b@: Open-Meteo forecast, Environment Agency floods).
+const london = existsSync('data/inputs/beyond/now/london.json') ? J('data/inputs/beyond/now/london.json') : null;
+const ukTime = iso => { const d = new Date(iso); return isNaN(d) ? 'not known' : new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' }).format(d) + ' London'; };
+// WMO weather codes as Open-Meteo uses them (https://open-meteo.com/en/docs), in plain English.
+const WMO = { 0: 'clear sky', 1: 'mainly clear', 2: 'partly cloudy', 3: 'overcast', 45: 'fog', 48: 'freezing fog', 51: 'light drizzle', 53: 'drizzle', 55: 'heavy drizzle', 56: 'freezing drizzle', 57: 'freezing drizzle', 61: 'light rain', 63: 'rain', 65: 'heavy rain', 66: 'freezing rain', 67: 'freezing rain', 71: 'light snow', 73: 'snow', 75: 'heavy snow', 77: 'snow grains', 80: 'light showers', 81: 'showers', 82: 'heavy showers', 85: 'snow showers', 86: 'heavy snow showers', 95: 'thunderstorm', 96: 'thunderstorm with hail', 99: 'thunderstorm with hail' };
+const numC = v => (Number.isFinite(v) ? `${Math.round(v)}°C` : 'n/a');
+const londonDays = () => ((london && london.forecast && london.forecast.days) || []).filter(x => typeof x.date === 'string');
+const faroDays = () => ((faro.forecast && faro.forecast.days) || []).filter(x => typeof x.date === 'string');
+const sideBySide = () => {
+  const ld = londonDays(), fd = Object.fromEntries(faroDays().map(x => [x.date, x]));
+  if (!ld.length) return { html: '<p>London\'s forecast is not available at this build.</p>', md: 'London\'s forecast is not available at this build.' };
+  const rows = ld.map(l => { const f = fd[l.date] || {}; return { day: day(l.date), lon: `${numC(l.t_min_c)} to ${numC(l.t_max_c)}, ${(Object.hasOwn(WMO, l.weather_code) && WMO[l.weather_code]) || 'weather not known'}${Number.isFinite(l.rain_mm) ? `, ${l.rain_mm} mm rain` : ''}`, faro: f.date ? `${numC(f.t_min_c)} to ${numC(f.t_max_c)}, ${(Object.hasOwn(WT, f.weather_type) && WT[f.weather_type]) || 'weather not known'}${Number.isFinite(f.rain_prob_pct) ? `, ${f.rain_prob_pct}% chance of rain` : ''}` : 'not in the forecast' }; });
+  const note = `London: ${a('https://open-meteo.com/', 'Weather data by Open-Meteo.com')}, read ${esc(ukTime(london.forecast.at))} via ${a(london.forecast.source, 'data.promptugal.news')}. Faro: IPMA's forecast, read ${esc(lisbon(faro.read_at))}. The two forecasts come from different services and are not measured the same way (rain in millimetres for London, a chance of rain for Faro).`;
+  return {
+    html: `<table><thead><tr><th>Day</th><th>London</th><th>Faro</th></tr></thead><tbody>${rows.map(r => `<tr><td>${esc(r.day)}</td><td>${esc(r.lon)}</td><td>${esc(r.faro)}</td></tr>`).join('')}</tbody></table><p class="meta">${note}</p>`,
+    md: `| Day | London | Faro |\n|---|---|---|\n${rows.map(r => `| ${mdesc(r.day)} | ${mdesc(r.lon)} | ${mdesc(r.faro)} |`).join('\n')}\n\nLondon: ${ml('https://open-meteo.com/', 'Weather data by Open-Meteo.com')}, via data.promptugal.news. Faro: IPMA.`,
+  };
+};
+if (london) {
+  const fl = (london.floods || {}), warns = (fl.warnings || []).filter(w => w && typeof w.area === 'string');
+  const sb = sideBySide();
+  page({
+    path: '/london/', title: 'Beyond Portugal: London',
+    description: 'London for a visitor: the three-day forecast (Open-Meteo) beside Faro\'s, and the Environment Agency\'s flood alerts and warnings. The first place beyond Portugal. Each value with its source and the time read.',
+    body: `<h1>Beyond Portugal: London</h1><p class="dek">The first place on this site outside Portugal. For a visitor: the weather for the next three days, side by side with Faro, and any flood alerts. London's transport (TfL) and its airports come next, as data.promptugal.news collects them. See also ${a('/uk-portugal/', 'the UK and Portugal')}.</p>
+<section aria-labelledby="h-lon-wx"><h2 id="h-lon-wx">The next three days, London and Faro</h2>${sb.html}</section>
+<section aria-labelledby="h-lon-fl"><h2 id="h-lon-fl">Flood alerts and warnings</h2>${warns.length ? `<ul>${warns.map(w => `<li><strong>${esc(w.severity || 'Notice')}</strong>: ${a(w.url, w.area)}</li>`).join('')}</ul>` : '<p>None in force at the time read.</p>'}<p class="meta">From the Environment Agency (${a('https://check-for-flooding.service.gov.uk/', 'Check for flooding')}), read ${esc(ukTime(fl.at))} via ${a(fl.source, 'data.promptugal.news')}. ${esc(fl.attribution || '')}. Not a warning service: for flooding follow the Environment Agency, and the Met Office for the weather.</p></section>`,
+    md: `The first place on this site outside Portugal.\n\n## The next three days, London and Faro\n\n${sb.md}\n\n## Flood alerts and warnings\n\n${warns.length ? warns.map(w => `- ${mdesc(w.severity || 'Notice')}: ${ml(w.url, w.area)}`).join('\n') : 'None in force at the time read.'}\n\nFrom the Environment Agency, via data.promptugal.news. Not a warning service.\n`,
+    ipma: true,
+    provenance: prov({ code: ['built from data.promptugal.news\'s now file for London'], agents: ['data.b@PrompTugal.dinis collects the London sources; travel.b@PrompTugal.dinis wrote this page'] }),
+  });
+}
+
 // ---------- the UK and Portugal (Dinis, 18 Nov 2026 ~22:25 UTC: "there's a lot of tourism that comes from the UK to
 // Portugal"; PrompTugal__News__Website board/guidance/2026-11-18-london.md). From data/research/uk-portugal.json
 // (travel.b.research@, Sonnet; travel.b@ re-read the ONS table and the FCDO page on 18 Nov).
@@ -587,8 +621,10 @@ if (existsSync('data/research/uk-portugal.json')) {
 <section aria-labelledby="h-to-pt"><h2 id="h-to-pt">A British visitor going to Portugal</h2>${advHtml(uk.advice_uk_to_pt)}</section>
 <section aria-labelledby="h-to-uk"><h2 id="h-to-uk">A Portuguese or EU visitor going to the UK</h2>${advHtml(uk.advice_pt_to_uk)}</section>
 <section aria-labelledby="h-faro-uk"><h2 id="h-faro-uk">UK airlines seen near Faro</h2>${seenList.length ? `<p>Across our ${series.length} reads of the sky within 40 nautical miles of Faro airport (adsb.lol), we saw: ${seenList.map(([c, k]) => `${esc(UKA[c])} ${k}`).join(', ')}. A flight seen near Faro is not always to or from the UK.</p>` : `<p>No UK airline in our ${series.length} reads near Faro so far.</p>`}<p class="meta">${a('/flights/', 'Flights at Faro')} · ${a('/api/v1/faro-airport.jsonl', 'the series')}</p></section>
+${london ? `<section aria-labelledby="h-uk-wx"><h2 id="h-uk-wx">Weather side by side, London and Faro</h2>${sideBySide().html}<p class="meta">${a('/london/', 'More on London')}</p></section>` : ''}
 <section aria-labelledby="h-gaps-uk"><h2 id="h-gaps-uk">Not here yet</h2><ul>${(uk.gaps || []).map(g => `<li>${esc(nodash(g.what))}: ${esc(nodash(g.why))}</li>`).join('')}<li>London's weather, transport and airports: waiting on data.promptugal.news's UK feeds.</li></ul></section>`,
-    md: `Beyond Portugal: the link with the UK.\n\n## British visitors to Portugal, 2025\n\n| What | 2025 |\n|---|---|\n${ons.map(x => `| ${mdesc(x.title)} | ${mdesc(fig(x).replace(/&amp;/g, '&'))} |`).join('\n')}\n\nSource: ${src1 ? ml(src1.url, 'ONS Travel trends 2025') : 'ONS'}. Great Britain residents only.\n\n## A British visitor going to Portugal\n\n${advMd(uk.advice_uk_to_pt)}\n\n## A Portuguese or EU visitor going to the UK\n\n${advMd(uk.advice_pt_to_uk)}\n\n## UK airlines seen near Faro\n\nAcross ${series.length} reads within 40 nautical miles of Faro (adsb.lol):\n\n${seenList.length ? seenList.map(([c, k]) => `- ${UKA[c]}: ${k}`).join('\n') : '- none so far'}\n\n## Not here yet\n\n${(uk.gaps || []).map(g => `- ${mdesc(nodash(g.what))}: ${mdesc(nodash(g.why))}`).join('\n')}\n`,
+    md: `Beyond Portugal: the link with the UK.\n\n## British visitors to Portugal, 2025\n\n| What | 2025 |\n|---|---|\n${ons.map(x => `| ${mdesc(x.title)} | ${mdesc(fig(x).replace(/&amp;/g, '&'))} |`).join('\n')}\n\nSource: ${src1 ? ml(src1.url, 'ONS Travel trends 2025') : 'ONS'}. Great Britain residents only.\n\n## A British visitor going to Portugal\n\n${advMd(uk.advice_uk_to_pt)}\n\n## A Portuguese or EU visitor going to the UK\n\n${advMd(uk.advice_pt_to_uk)}\n\n## UK airlines seen near Faro\n\nAcross ${series.length} reads within 40 nautical miles of Faro (adsb.lol):\n\n${seenList.length ? seenList.map(([c, k]) => `- ${UKA[c]}: ${k}`).join('\n') : '- none so far'}${london ? `\n\n## Weather side by side, London and Faro\n\n${sideBySide().md}` : ''}\n\n## Not here yet\n\n${(uk.gaps || []).map(g => `- ${mdesc(nodash(g.what))}: ${mdesc(nodash(g.why))}`).join('\n')}\n`,
+    ipma: !!london,
     provenance: prov({ agents: ['travel.b.research@PrompTugal.dinis (Sonnet) read ONS and gov.uk on 18 Nov 2026', 'travel.b@PrompTugal.dinis re-read the ONS table and the FCDO page'] }),
   });
 }

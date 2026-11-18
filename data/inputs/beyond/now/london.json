@@ -1,0 +1,108 @@
+{
+ "license": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/",
+  "holder": "PrompTugal.news",
+  "note": "Our record; each value keeps its source, under that source's licence: IPMA values under IPMA's terms (https://api.ipma.pt/), adsb.lol counts under ODbL 1.0.",
+  "sources": {
+   "ipma": {
+    "name": "the source's terms",
+    "url": "https://api.ipma.pt/",
+    "holder": "IPMA, Instituto Português do Mar e da Atmosfera",
+    "note": "No named licence: free copying and use for personal or public use without profit-making purpose, IPMA named as the source."
+   },
+   "adsb.lol": {
+    "name": "ODbL 1.0",
+    "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "holder": "adsb.lol contributors",
+    "note": "Share-alike: what we derive from it stays under ODbL."
+   }
+  }
+ },
+ "place": "london",
+ "country": "GB",
+ "read_at": "2026-11-18T22:40:45Z",
+ "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
+ "coords": {
+  "lat": 51.50722,
+  "lon": -0.1275,
+  "name": "London",
+  "wikidata": "https://www.wikidata.org/wiki/Q84",
+  "source": "https://www.wikidata.org/wiki/Special:EntityData/Q84.json",
+  "property": "P625 (coordinate location)",
+  "license": {
+   "name": "CC0 1.0",
+   "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "holder": "Wikidata contributors"
+  },
+  "read_at": "2026-11-18T22:33:15Z",
+  "note": "The municipality's point on Wikidata (the parish's for Quarteira): for maps, not a boundary."
+ },
+ "about": "Now in London, from the Environment Agency (flood warnings and Thames levels, Open Government Licence) and Open-Meteo (forecast, CC BY 4.0), as collected by data.promptugal.news: each value with its source and the time read. Not a warning service: follow the Environment Agency (https://check-for-flooding.service.gov.uk/) and the Met Office.",
+ "forecast": {
+  "days": [
+   {
+    "date": "2026-11-18",
+    "t_min_c": 9.2,
+    "t_max_c": 13,
+    "rain_mm": 3.2,
+    "weather_code": 55
+   },
+   {
+    "date": "2026-11-19",
+    "t_min_c": 7.7,
+    "t_max_c": 11,
+    "rain_mm": 5.7,
+    "weather_code": 63
+   },
+   {
+    "date": "2026-11-20",
+    "t_min_c": 3.9,
+    "t_max_c": 9.6,
+    "rain_mm": 0,
+    "weather_code": 3
+   }
+  ],
+  "at": "2026-11-18T22:40:16Z",
+  "source": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
+  "attribution": "Weather data by Open-Meteo.com",
+  "license": {
+   "name": "CC BY 4.0",
+   "url": "https://open-meteo.com/en/licence"
+  }
+ },
+ "floods": {
+  "warnings": [
+   {
+    "id": "062WAF28UpColne",
+    "severity": "Flood alert",
+    "area": "Upper River Colne and Radlett Brook",
+    "url": "https://check-for-flooding.service.gov.uk/target-area/062WAF28UpColne"
+   },
+   {
+    "id": "062WAF53LLTribs",
+    "severity": "Flood alert",
+    "area": "Lower Lee tributaries",
+    "url": "https://check-for-flooding.service.gov.uk/target-area/062WAF53LLTribs"
+   }
+  ],
+  "stations": 10,
+  "at": "2026-11-18T22:37:05Z",
+  "source": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
+  "attribution": "this uses Environment Agency flood and river level data from the real-time data API (Beta)",
+  "license": {
+   "name": "Open Government Licence v3.0",
+   "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+  }
+ },
+ "reads": {
+  "ea-flood": {
+   "url": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
+   "at": "2026-11-18T22:37:05Z"
+  },
+  "open-meteo-london": {
+   "url": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
+   "at": "2026-11-18T22:40:16Z"
+  }
+ }
+}

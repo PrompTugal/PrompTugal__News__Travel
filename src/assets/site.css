@@ -132,7 +132,8 @@ thead th { border-bottom: 2px solid var(--ink); font-size: .8rem; text-transform
 .nr-graph { width: 100%; height: auto; background: var(--card); border: 1px solid var(--rule); }
 @media (prefers-color-scheme: dark) { .nr-graph text { fill: var(--ink); } }
 /* licence marks (Dinis, 18 Nov 2026: every piece of data links to its licence) */
-a.lic { margin-left: .3em; font: 500 .72em/1 var(--mono); color: var(--muted); text-decoration: none; border: 1px solid var(--rule); border-radius: 3px; padding: 0 .25em; vertical-align: .1em; white-space: nowrap; }
+a.lic { margin-left: .3em; font: 500 .72em/1 var(--mono); color: var(--muted); text-decoration: none; border: 1px solid var(--rule); border-radius: 3px; padding: 0 .25em; vertical-align: .1em; white-space: nowrap; max-width: 100%; }
+@media (max-width: 600px) { a.lic { white-space: normal; overflow-wrap: anywhere; } }
 a.lic:hover { color: var(--green); border-color: var(--green); }
 /* charts drawn at build time (Storm Charles archive) */
 figure.chart { margin: 1rem 0; } figure.chart svg { width: 100%; height: auto; background: var(--card); border: 1px solid var(--rule); color: var(--muted); }

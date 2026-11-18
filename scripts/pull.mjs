@@ -96,6 +96,17 @@ for (const id of ids) {
   reads.push({ ...r, path: `events/${id}.json`, role: 'events' });
   if (r.body) { try { JSON.parse(r.body); writeFileSync(join('data/inputs/events', `${id}.json`), r.body); } catch { r.status = 'not json'; } }
 }
+// Beyond Portugal (Dinis, 18 Nov 2026 ~22:20 UTC: London is the first place outside Portugal;
+// PrompTugal__News__Website board/guidance/2026-11-18-london.md): each place's now file from
+// data.promptugal.news only, kept as read in data/inputs/beyond/now/. A fixed list, not taken from the data.
+const BEYOND = ['london'];
+mkdirSync('data/inputs/beyond/now', { recursive: true });
+for (const id of BEYOND) {
+  if (!from) await sleep(2000);
+  const r = await read(`now/${id}.json`, DATA);
+  reads.push({ ...r, path: `beyond/now/${id}.json`, role: 'beyond' });
+  if (r.body) { try { const j = JSON.parse(r.body); if (j.place !== id) throw new Error('wrong place'); writeFileSync(join('data/inputs/beyond/now', `${id}.json`), r.body); r.used = true; } catch { r.status = 'not json or wrong place'; } }
+}
 const manifest = {
   about: `What scripts/pull.mjs read, when, and the first 40 hex digits of each answer's sha256. Each place's now file: data.promptugal.news/api/v1/by-place/now/ first, promptugal.news/data/by-place/now/ when that is stale or fails ("now" says which was used and why). places.json and the place desks (events): PrompTugal__News__Website data/by-place (public; each file signed beside it as <file>.sig), served at promptugal.news.`,
   by: 'scripts/pull.mjs (travel@PrompTugal.dinis; data.promptugal.news first since 18 Nov 2026, travel.b@PrompTugal.dinis)',
