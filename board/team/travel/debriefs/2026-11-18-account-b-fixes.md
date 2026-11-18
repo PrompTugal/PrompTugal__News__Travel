@@ -58,3 +58,4 @@ In `status.json` `asks`: the key, the commit check, data.promptugal.news's fresh
 - /uk-portugal/: ONS 2025 visits (re-read in the spreadsheet), FCDO advice (re-checked via the gov.uk content API), UK ETA, UK airlines near Faro. INE by country of residence and London routes are gaps.
 - Scheduled rebuild: still zero schedule runs; pages.yml on dev (default branch) is right, so asked Dinis to check the repository's Actions settings.
 - ~23:10 UTC: /london/ live from data.b@'s London file (forecast beside Faro, flood alerts). Licence marks now wrap on phones. mdesc hardened.
+- ~23:20 UTC: Eurostat nights by country on /uk-portugal/ (UK 10,373,206 in 2025, re-read in Eurostat's API); measured London rain on /london/. Routes held by data.b@; INE waits for Dinis to accept its conditions.

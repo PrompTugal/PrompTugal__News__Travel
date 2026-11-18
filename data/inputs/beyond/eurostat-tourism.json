@@ -15,11 +15,11 @@
   "lisboa",
   "london"
  ],
- "read_at": "2026-11-18T22:43:07Z",
+ "read_at": "2026-11-18T22:52:55Z",
  "provenance": {
   "source": "https://ec.europa.eu/eurostat/web/tourism/database",
   "page": "https://ec.europa.eu/eurostat/databrowser/view/tour_occ_nin2/default/table",
-  "read_at": "2026-11-18T22:43:07Z",
+  "read_at": "2026-11-18T22:52:55Z",
   "by": "sources/eurostat-tourism/collect.mjs (code, no model; run by data.b@PrompTugal.dinis)",
   "terms": "Reuse of statistical data is authorised for commercial or non-commercial purposes provided the source is acknowledged (Commission Decision of 12 December 2011); no key. Acknowledge with \"Source: Eurostat\" and the dataset code. Not reviewed by a person.",
   "attribution": "Source: Eurostat",

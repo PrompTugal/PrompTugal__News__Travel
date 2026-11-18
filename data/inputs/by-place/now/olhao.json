@@ -20,7 +20,7 @@
   }
  },
  "place": "olhao",
- "read_at": "2026-11-18T22:47:14Z",
+ "read_at": "2026-11-18T22:57:53Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "coords": {
   "lat": 37.02778,
@@ -153,15 +153,15 @@
   "icao": "LPFR",
   "name": "Faro airport",
   "within_nm": 40,
-  "at": "2026-11-18T22:42:27Z",
+  "at": "2026-11-18T22:51:48Z",
   "airline": [
    {
-    "callsign": "IBS1513",
-    "airline": "IBS",
-    "type": "A320",
-    "alt_ft": 34975,
+    "callsign": "TAM8065",
+    "airline": "TAM",
+    "type": "B789",
+    "alt_ft": 35000,
     "on_ground": false,
-    "ground_speed_kt": 408
+    "ground_speed_kt": 441.2
    }
   ],
   "other_aircraft": 0,
@@ -172,37 +172,37 @@
  "reads": {
   "observations": {
    "url": "https://data.promptugal.news/api/v1/ipma-observations/latest.json",
-   "at": "2026-11-18T22:46:07Z",
+   "at": "2026-11-18T22:56:47Z",
    "status": 200
   },
   "warnings": {
    "url": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
-   "at": "2026-11-18T22:46:25Z",
+   "at": "2026-11-18T22:57:04Z",
    "status": 200
   },
   "forecasts": {
    "url": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
-   "at": "2026-11-18T22:44:30Z",
+   "at": "2026-11-18T22:55:09Z",
    "status": 200
   },
   "fire-risk": {
    "url": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
-   "at": "2026-11-18T22:46:00Z",
+   "at": "2026-11-18T22:56:39Z",
    "status": 200
   },
   "uv": {
    "url": "https://data.promptugal.news/api/v1/ipma-uv/latest.json",
-   "at": "2026-11-18T22:46:22Z",
+   "at": "2026-11-18T22:57:02Z",
    "status": 200
   },
   "sea": {
    "url": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
-   "at": "2026-11-18T22:46:12Z",
+   "at": "2026-11-18T22:56:52Z",
    "status": 200
   },
   "adsb": {
    "url": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
-   "at": "2026-11-18T22:42:27Z",
+   "at": "2026-11-18T22:51:48Z",
    "status": 200
   }
  }

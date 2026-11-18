@@ -581,6 +581,24 @@ const sideBySide = () => {
     md: `| Day | London | Faro |\n|---|---|---|\n${rows.map(r => `| ${mdesc(r.day)} | ${mdesc(r.lon)} | ${mdesc(r.faro)} |`).join('\n')}\n\nLondon: ${ml('https://open-meteo.com/', 'Weather data by Open-Meteo.com')}, via data.promptugal.news. Faro: IPMA.`,
   };
 };
+// Measured rain in London (EA rain gauges, daily totals in UTC days), beside the forecast for the same day.
+const eaRain = (() => {
+  const ea = existsSync('data/inputs/beyond/ea-flood.json') ? J('data/inputs/beyond/ea-flood.json') : null;
+  if (!ea || !ea.daily_rain || typeof ea.daily_rain !== 'object') return { html: '', md: '' };
+  const fc = Object.fromEntries(londonDays().map(x => [x.date, x]));
+  const days = Object.keys(ea.daily_rain).filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k)).sort().slice(-7).reverse();
+  const rows = days.map(k => { const g = Object.values(ea.daily_rain[k] || {}).filter(v => v && Number.isFinite(v.rain_mm) && Number.isFinite(v.readings));
+    if (!g.length) return null; const mm = g.map(v => v.rain_mm).sort((x, y) => x - y); const med = mm.length % 2 ? mm[(mm.length - 1) / 2] : (mm[mm.length / 2 - 1] + mm[mm.length / 2]) / 2;
+    const full = g.filter(v => v.readings >= 90).length; const f = fc[k];
+    return { day: day(k), gauges: g.length, full, lo: mm[0], hi: mm.at(-1), med: Math.round(med * 10) / 10, fc: f && Number.isFinite(f.rain_mm) ? `${f.rain_mm} mm` : 'not kept', today: k === today }; }).filter(Boolean);
+  if (!rows.length) return { html: '', md: '' };
+  const fmt = r => `${r.med} mm (gauges from ${r.lo} to ${r.hi} mm)`;
+  const note = `Measured by ${rows[0].gauges} Environment Agency rain gauges around London (${a('https://environment.data.gov.uk/flood-monitoring/doc/reference', 'real-time flood-monitoring API')}), read ${esc(ukTime(ea.read_at))} via ${a('https://data.promptugal.news/api/v1/ea-flood/latest.json', 'data.promptugal.news')}. This uses Environment Agency rainfall data from the real-time data API (Beta). Days are UTC; a full day is 96 readings, and today is not yet complete. The forecast is Open-Meteo's for the same day; earlier days' forecasts are not kept yet, so most rows have none.`;
+  return {
+    html: `<section aria-labelledby="h-lon-rain"><h2 id="h-lon-rain">Rain measured in London</h2><table><thead><tr><th>Day</th><th>Measured (median of gauges)</th><th>Forecast</th></tr></thead><tbody>${rows.map(r => `<tr><td>${esc(r.day)}${r.today ? ' (so far)' : ''}</td><td>${esc(fmt(r))}</td><td>${esc(r.fc)}</td></tr>`).join('')}</tbody></table><p class="meta">${note}</p></section>`,
+    md: `\n\n## Rain measured in London\n\n| Day | Measured (median of gauges) | Forecast |\n|---|---|---|\n${rows.map(r => `| ${mdesc(r.day)}${r.today ? ' (so far)' : ''} | ${mdesc(fmt(r))} | ${mdesc(r.fc)} |`).join('\n')}\n\nEnvironment Agency rain gauges, via data.promptugal.news. Days are UTC.`,
+  };
+})();
 if (london) {
   const fl = (london.floods || {}), warns = (fl.warnings || []).filter(w => w && typeof w.area === 'string');
   const sb = sideBySide();
@@ -589,8 +607,9 @@ if (london) {
     description: 'London for a visitor: the three-day forecast (Open-Meteo) beside Faro\'s, and the Environment Agency\'s flood alerts and warnings. The first place beyond Portugal. Each value with its source and the time read.',
     body: `<h1>Beyond Portugal: London</h1><p class="dek">The first place on this site outside Portugal. For a visitor: the weather for the next three days, side by side with Faro, and any flood alerts. London's transport (TfL) and its airports come next, as data.promptugal.news collects them. See also ${a('/uk-portugal/', 'the UK and Portugal')}.</p>
 <section aria-labelledby="h-lon-wx"><h2 id="h-lon-wx">The next three days, London and Faro</h2>${sb.html}</section>
+${eaRain.html}
 <section aria-labelledby="h-lon-fl"><h2 id="h-lon-fl">Flood alerts and warnings</h2>${warns.length ? `<ul>${warns.map(w => `<li><strong>${esc(w.severity || 'Notice')}</strong>: ${a(w.url, w.area)}</li>`).join('')}</ul>` : '<p>None in force at the time read.</p>'}<p class="meta">From the Environment Agency (${a('https://check-for-flooding.service.gov.uk/', 'Check for flooding')}), read ${esc(ukTime(fl.at))} via ${a(fl.source, 'data.promptugal.news')}. ${esc(fl.attribution || '')}. Not a warning service: for flooding follow the Environment Agency, and the Met Office for the weather.</p></section>`,
-    md: `The first place on this site outside Portugal.\n\n## The next three days, London and Faro\n\n${sb.md}\n\n## Flood alerts and warnings\n\n${warns.length ? warns.map(w => `- ${mdesc(w.severity || 'Notice')}: ${ml(w.url, w.area)}`).join('\n') : 'None in force at the time read.'}\n\nFrom the Environment Agency, via data.promptugal.news. Not a warning service.\n`,
+    md: `The first place on this site outside Portugal.\n\n## The next three days, London and Faro\n\n${sb.md}${eaRain.md}\n\n## Flood alerts and warnings\n\n${warns.length ? warns.map(w => `- ${mdesc(w.severity || 'Notice')}: ${ml(w.url, w.area)}`).join('\n') : 'None in force at the time read.'}\n\nFrom the Environment Agency, via data.promptugal.news. Not a warning service.\n`,
     ipma: true,
     provenance: prov({ code: ['built from data.promptugal.news\'s now file for London'], agents: ['data.b@PrompTugal.dinis collects the London sources; travel.b@PrompTugal.dinis wrote this page'] }),
   });

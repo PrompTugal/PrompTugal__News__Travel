@@ -19,7 +19,7 @@
  },
  "place": "london",
  "country": "GB",
- "read_at": "2026-11-18T22:47:14Z",
+ "read_at": "2026-11-18T22:57:53Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "coords": {
   "lat": 51.50722,
@@ -41,27 +41,27 @@
   "days": [
    {
     "date": "2026-11-18",
-    "t_min_c": 9.2,
+    "t_min_c": 9,
     "t_max_c": 13,
-    "rain_mm": 3.2,
-    "weather_code": 55
+    "rain_mm": 4,
+    "weather_code": 61
    },
    {
     "date": "2026-11-19",
-    "t_min_c": 7.7,
-    "t_max_c": 11,
-    "rain_mm": 5.7,
+    "t_min_c": 7.2,
+    "t_max_c": 10.7,
+    "rain_mm": 5.4,
     "weather_code": 63
    },
    {
     "date": "2026-11-20",
-    "t_min_c": 3.9,
-    "t_max_c": 9.6,
+    "t_min_c": 6.6,
+    "t_max_c": 10.4,
     "rain_mm": 0,
     "weather_code": 3
    }
   ],
-  "at": "2026-11-18T22:46:44Z",
+  "at": "2026-11-18T22:57:24Z",
   "source": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
   "attribution": "Weather data by Open-Meteo.com",
   "license": {
@@ -85,7 +85,7 @@
    }
   ],
   "stations": 10,
-  "at": "2026-11-18T22:42:37Z",
+  "at": "2026-11-18T22:51:58Z",
   "source": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
   "attribution": "this uses Environment Agency flood and river level data from the real-time data API (Beta)",
   "license": {
@@ -96,11 +96,11 @@
  "reads": {
   "ea-flood": {
    "url": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
-   "at": "2026-11-18T22:42:37Z"
+   "at": "2026-11-18T22:51:58Z"
   },
   "open-meteo-london": {
    "url": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
-   "at": "2026-11-18T22:46:44Z"
+   "at": "2026-11-18T22:57:24Z"
   }
  }
 }

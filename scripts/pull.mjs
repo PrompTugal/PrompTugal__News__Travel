@@ -114,6 +114,13 @@ for (const id of BEYOND) {
   reads.push({ ...r, path: 'beyond/eurostat-tourism.json', role: 'beyond' });
   if (r.body) { try { const j = JSON.parse(r.body); if (!Array.isArray(j.rows)) throw new Error('no rows'); writeFileSync('data/inputs/beyond/eurostat-tourism.json', r.body); r.used = true; } catch { r.status = 'not json or no rows'; } }
 }
+// The Environment Agency's measured rain around London (daily totals per gauge), via data.promptugal.news (data.b@, 18 Nov 2026).
+{
+  if (!from) await sleep(2000);
+  const r = await read('ea-flood/latest.json', 'https://data.promptugal.news/api/v1/');
+  reads.push({ ...r, path: 'beyond/ea-flood.json', role: 'beyond' });
+  if (r.body) { try { const j = JSON.parse(r.body); if (!j.daily_rain || typeof j.daily_rain !== 'object') throw new Error('no daily_rain'); writeFileSync('data/inputs/beyond/ea-flood.json', r.body); r.used = true; } catch { r.status = 'not json or no daily_rain'; } }
+}
 const manifest = {
   about: `What scripts/pull.mjs read, when, and the first 40 hex digits of each answer's sha256. Each place's now file: data.promptugal.news/api/v1/by-place/now/ first, promptugal.news/data/by-place/now/ when that is stale or fails ("now" says which was used and why). places.json and the place desks (events): PrompTugal__News__Website data/by-place (public; each file signed beside it as <file>.sig), served at promptugal.news.`,
   by: 'scripts/pull.mjs (travel@PrompTugal.dinis; data.promptugal.news first since 18 Nov 2026, travel.b@PrompTugal.dinis)',

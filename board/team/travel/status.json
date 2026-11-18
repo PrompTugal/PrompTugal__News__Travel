@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T23:15Z",
+  "updated": "2026-11-18T23:20Z",
   "run": "18 Nov ~22:05 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
@@ -62,13 +62,14 @@
   ],
   "asks": [
     "Dinis: the 3-hourly scheduled rebuild has never run (15:23, 18:23 and 21:23 UTC on 18 Nov passed with no run; GitHub lists 0 schedule runs). pages.yml on dev (the default branch) has cron '23 */3 * * *' and push runs all succeed, so please check the repository's Settings, Actions (actions allowed, the Pages workflow not disabled). I cannot see those settings.",
+    "Dinis: INE's API asks its users to accept its conditions before use; data.b@ will not accept terms for anyone. Will you accept them (or ask INE), so UK guests by month for Portugal and the Algarve can be read?",
     "Dinis: allow the one-line change to scripts/check-commits.mjs (accept @PrompTugal.dinis agents), or make it yourself; until then commits say Agent: travel.b@AgentiCCells.dinis.",
     "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
     "Dinis: IPMA-based pages stay free until you decide (ask IPMA, or keep them free).",
     "Dinis: the reading credit here is separate from promptugal.news's (browser storage is per site). One account across the sites needs the vault work in board/spec-one-reader-across-devices.md of the Website repo.",
     "Dinis: What's on lists events from the councils' own pages as titles, dates and links (reference use, source named), from the council research and from data.promptugal.news's feed. data.b@'s note says no reuse licence was found for those sites and agendalx.pt asks reference use only. Is listing them this way all right, or should the page only link to each council's agenda?"
   ],
-  "live_changes": "Late 18 Nov: /uk-portugal/ adds Eurostat nights in Portugal by country, 2016 to 2025 (UK highest: 10,373,206 in 2025). Earlier tonight: /london/, /uk-portugal/, preview.svg/png, /storm-charles/flights/.",
+  "live_changes": "Late 18 Nov: /london/ adds rain measured by the Environment Agency's London gauges beside the forecast. Earlier tonight: Eurostat nights by country on /uk-portugal/, /london/, /uk-portugal/, preview.svg/png, /storm-charles/flights/.",
   "storm": "The Storm site's 7 travel items (data.b@'s handoff): plan in board/team/travel/storm-plan.md. Pages and charts come here, reading data.promptugal.news; the collectors stay with data.b@.",
   "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading.",
   "dinis_1455": {
@@ -80,7 +81,7 @@
   },
   "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
   "library_requests": "Checked 18 Nov ~20:00 UTC: none for travel.b@.",
-  "passes": "Last run (Eurostat chart): AppSec post-review by travel.b.appsec@ (Sonnet): escaping clean; one medium (lookups that could hang the build on a large file) fixed in the same commit with one-pass maps, a 30-year cap and a guard; re-check by travel.b.appsec@: fixed.",
+  "passes": "Last run (London rain): AppSec post-review by travel.b.appsec@ (Sonnet): clean (date keys checked by pattern, numbers checked, fixed URLs; two cosmetic lows, no fix needed).",
   "sites_bar": "Preview done (Dinis, 18 Nov ~22:00 UTC, sites-bar guidance). Installing the bar waits for dev@ and designer@ to publish it; then vendor it pinned by version and sha256, render promptugal.news/api/v1/sites.json escaped with https *.promptugal.news links only, and replace the current rail.",
-  "london": "Live 18 Nov ~23:10 UTC: /london/ from data.promptugal.news's now/london.json. data.b@ is building next: TfL status, flights London to Faro/Lisbon/Porto (adsb.lol), INE UK guests, EA measured rain. Add each as it lands."
+  "london": "Live: /london/ (forecast beside Faro, flood alerts, measured rain). From data.b@: London to Faro/Lisbon/Porto routes held (adsb.lol's route lookup returned none); INE UK guests wait for Dinis (INE's API asks users to accept its conditions); TfL status next."
 }
