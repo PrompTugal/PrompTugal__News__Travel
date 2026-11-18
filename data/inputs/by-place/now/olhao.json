@@ -1,6 +1,6 @@
 {
  "place": "olhao",
- "read_at": "2026-11-18T13:10:26Z",
+ "read_at": "2026-11-18T14:10:01Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "about": "Now in this place, from IPMA's open data and (for Faro) adsb.lol, as collected by data.promptugal.news: each value with its source and the time read. Not a warning service: follow IPMA (https://www.ipma.pt/) and ANEPC.",
  "station": {
@@ -8,13 +8,13 @@
   "id": 1210881,
   "km": 2,
   "reading": {
-   "at": "2026-11-18T12:00:00Z",
-   "temp_c": 20.8,
-   "humidity_pct": 98,
+   "at": "2026-11-18T13:00:00Z",
+   "temp_c": 21.3,
+   "humidity_pct": 93,
    "wind_kmh": 18.7,
    "wind_dir_id": 6,
    "rain_mm": 0,
-   "pressure_hpa": 1017.5,
+   "pressure_hpa": 1016.7,
    "radiation_kj_m2": null
   },
   "page": "https://www.ipma.pt/en/otempo/obs.superficie/",
@@ -118,23 +118,31 @@
   "icao": "LPFR",
   "name": "Faro airport",
   "within_nm": 40,
-  "at": "2026-11-18T13:08:24Z",
+  "at": "2026-11-18T14:07:49Z",
   "airline": [
    {
-    "callsign": "IBS16SM",
-    "airline": "IBS",
+    "callsign": "EDW268G",
+    "airline": "EDW",
     "type": "A320",
-    "alt_ft": 36000,
+    "alt_ft": 10250,
     "on_ground": false,
-    "ground_speed_kt": 477.3
+    "ground_speed_kt": 220
    },
    {
-    "callsign": "RAM832B",
-    "airline": "RAM",
-    "type": "B38M",
+    "callsign": "RYR698R",
+    "airline": "RYR",
+    "type": "B738",
+    "alt_ft": 6400,
+    "on_ground": false,
+    "ground_speed_kt": 253.3
+   },
+   {
+    "callsign": "WZZ270V",
+    "airline": "WZZ",
+    "type": "A21N",
     "alt_ft": 36000,
     "on_ground": false,
-    "ground_speed_kt": 469.5
+    "ground_speed_kt": 491.6
    }
   ],
   "other_aircraft": 0,
@@ -145,37 +153,37 @@
  "reads": {
   "observations": {
    "url": "https://data.promptugal.news/api/v1/ipma-observations/latest.json",
-   "at": "2026-11-18T13:10:02Z",
+   "at": "2026-11-18T14:09:36Z",
    "status": 200
   },
   "warnings": {
    "url": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
-   "at": "2026-11-18T13:10:19Z",
+   "at": "2026-11-18T14:09:54Z",
    "status": 200
   },
   "forecasts": {
    "url": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
-   "at": "2026-11-18T13:08:24Z",
+   "at": "2026-11-18T14:08:00Z",
    "status": 200
   },
   "fire-risk": {
    "url": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
-   "at": "2026-11-18T13:09:54Z",
+   "at": "2026-11-18T14:09:29Z",
    "status": 200
   },
   "uv": {
    "url": "https://data.promptugal.news/api/v1/ipma-uv/latest.json",
-   "at": "2026-11-18T13:10:17Z",
+   "at": "2026-11-18T14:09:51Z",
    "status": 200
   },
   "sea": {
    "url": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
-   "at": "2026-11-18T13:10:07Z",
+   "at": "2026-11-18T14:09:42Z",
    "status": 200
   },
   "adsb": {
    "url": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
-   "at": "2026-11-18T13:08:24Z",
+   "at": "2026-11-18T14:07:49Z",
    "status": 200
   }
  }

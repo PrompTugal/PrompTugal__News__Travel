@@ -1,0 +1,1541 @@
+{
+ "place": "algarve",
+ "read_at": "2026-11-18T14:10:01Z",
+ "source_read_at": "2026-11-18T14:07:49Z",
+ "by": "collect/events-by-place.mjs (code, no model; data.b@PrompTugal.dinis), from data/events-pt/latest.json",
+ "about": "Public events on now or starting within 60 days in this place, as schema.org Event records, each with its source URL and the time read. A dated record, not a ticketing service. An empty list means no source covers this place yet, not that nothing is happening.",
+ "source_note": "Read 2026-11-18T14:07:49Z from www.agendalx.pt and www.cm-lagos.pt; sources with no feed or refused are in gaps (https://data.promptugal.news/api/v1/events-pt/latest.json). Terms: Strictest of the sources: no reuse licence or terms page was found for either host. Both robots.txt files allow the paths read; agendalx.pt sets Content-Signal search=yes, ai-train=no, use=reference. So: reference use only, name the source, link to the event, no AI training. Not reviewed by a person: whether this is enough to republish is for Dinis.",
+ "count": 90,
+ "events": [
+  {
+   "@type": "Event",
+   "name": "EXPOSIÇÃO “O CRUZEIRO”, de Timo Dillner",
+   "startDate": "2026-10-03",
+   "endDate": "2026-12-30",
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos – Sala de Exposições 1",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16100-exposição-“o-cruzeiro”,-de-timo-dillner",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CLUBE DA CIÊNCIA",
+   "startDate": "2026-10-07",
+   "endDate": "2026-12-05",
+   "location": {
+    "@type": "Place",
+    "name": "Centro Ciência Viva de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16162-clube-da-ciência_16162",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "WORKSHOPS NO ESPAÇO JOVEM – ESCULTURA EM PLÁSTICO",
+   "startDate": "2026-10-31",
+   "endDate": "2026-11-22",
+   "location": {
+    "@type": "Place",
+    "name": "Espaço Jovem do Município de Lagos – Ateliê de Expressão Plástica (salas 403 e 405)",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16149-workshops-no-espaço-jovem-–-escultura-em-plástico",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "PEDRA DURA | EXPOSIÇÃO CENDDA - CENTRO DE DOCUMENTAÇÃO DE DANÇA DO ALGARVE",
+   "startDate": "2026-11-05",
+   "endDate": "2026-12-30",
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos – Salas de Exposições 2 e 3",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16251-pedra-dura-exposição-cendda-centro-de-documentação-de-dança-do-algarve",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "PEDRA DURA | EXPOSIÇÃO ROOMMATES, de Ruben Bellinkx",
+   "startDate": "2026-11-05",
+   "endDate": "2026-12-30",
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos – Salas de Exposições 2 e 3",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16252-pedra-dura-exposição-roommates,-de-ruben-bellinkx",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "EXPOSIÇÃO ACERVO ROOTS 2011-2025",
+   "startDate": "2026-11-06",
+   "endDate": "2026-12-30",
+   "location": {
+    "@type": "Place",
+    "name": "LAC - Laboratório de Actividades Criativas",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16253-exposição-acervo-roots-2011-2025",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "ROOTS 2026 | RESIDÊNCIA ARTÍSTICA “Territórios Íntimos – Paisagens Pós-coloniais”",
+   "startDate": "2026-11-08",
+   "endDate": "2026-11-20",
+   "location": {
+    "@type": "Place",
+    "name": "LAC - Laboratório de Actividades Criativas",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16178-roots-2026-residência-artística-“territórios-íntimos-–-paisagens-pós-coloniais”",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "ANIMAÇÃO MUSICAL NO VIV’O MERCADO – NOVEMBRO",
+   "startDate": "2026-11-11",
+   "endDate": "2026-11-25",
+   "location": {
+    "@type": "Place",
+    "name": "Viv’o Mercado – Mercado de Levante",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16184-animação-musical-no-viv’o-mercado-–-novembro",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "EXPOSIÇÃO DE ARTESANATO, pelo coletivo PR.MAS",
+   "startDate": "2026-11-16",
+   "endDate": "2026-11-25",
+   "location": {
+    "@type": "Place",
+    "name": "Armazém Regimental de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16254-exposição-de-artesanato,-pelo-coletivo-pr-mas",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "AUDIÇÃO “SONS NO CONVENTO”",
+   "startDate": "2026-11-17",
+   "endDate": "2026-11-18",
+   "location": {
+    "@type": "Place",
+    "name": "Igreja Nossa Senhora do Carmo (Igreja das Freiras)",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16212-audição-“sons-no-convento”",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "MAGUSTO EM LAGOS",
+   "startDate": "2026-11-18",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Mercados de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16264-magusto-em-lagos",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FORMAÇÃO “FERRAMENTAS DE INTERVENÇÃO SOCIAL INTEGRADA PARA TÉCNICOS DE ATENDIMENTO E ACOMPANHAMENTO SOCIAL”",
+   "startDate": "2026-11-19",
+   "endDate": "2026-11-20",
+   "location": {
+    "@type": "Place",
+    "name": "Sala de Formação da CM Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16213-formação-“ferramentas-de-intervenção-social-integrada-para-técnicos-de-atendimento-e-acompanhamento-social”",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "SEREMOS TANGO, com Romina Balestrino e Gladys y Oscar",
+   "startDate": "2026-11-19T21:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos - Sala de animação 1",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16214-seremos-tango,-com-romina-balestrino-e-gladys-y-oscar",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "5.º ENCONTRO SECRETO DE TANGO",
+   "startDate": "2026-11-20",
+   "endDate": "2026-11-21",
+   "location": {
+    "@type": "Place",
+    "name": "Clube Artístico Lacobrigense",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16216-5-º-encontro-secreto-de-tango",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CLUBE D’ESPECTADOR EMANCIPADO, por Karol da Matta e Xana Piteira",
+   "startDate": "2026-11-20",
+   "endDate": "2026-12-04",
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16218-clube-d’espectador-emancipado,-por-karol-da-matta-e-xana-piteira_16218",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FEIRA FRANCA",
+   "startDate": "2026-11-20",
+   "endDate": "2026-11-22",
+   "location": {
+    "@type": "Place",
+    "name": "Terreno anexo ao Estádio Municipal",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16215-feira-franca_16215",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "WORKSHOPS NO ESPAÇO JOVEM – MODELAÇÃO CERÂMICA",
+   "startDate": "2026-11-20",
+   "endDate": "2026-11-28",
+   "location": {
+    "@type": "Place",
+    "name": "Espaço Jovem do Município de Lagos – Ateliê de Expressão Plástica (salas 403 e 405)",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16238-workshops-no-espaço-jovem-–-modelação-cerâmica",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "MAGUSTO EM BENSAFRIM",
+   "startDate": "2026-11-20T15:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Bensafrim",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16183-magusto-em-bensafrim_16183",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "DIAGNÓSTICO SOCIAL: LIVROS QUE NOS CURAM (OU NOS INQUIETAM!), por Raquel Vareda e Tânia Cavaco",
+   "startDate": "2026-11-20T19:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16217-diagnóstico-social-livros-que-nos-curam-ou-nos-inquietam-,-por-raquel-vareda-e-tânia-cavaco",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "TECHNO-ZOMBIES, de Ana Borralho & João Galante",
+   "startDate": "2026-11-20T21:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos – Auditório Duval Pestana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16219-techno-zombies,-de-ana-borralho-joão-galante",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "EXPOSIÇÃO ROOTS 2026 “TERRITÓRIOS ÍNTIMOS – PAISAGENS PÓS-COLONIAIS”",
+   "startDate": "2026-11-21",
+   "endDate": "2026-12-19",
+   "location": {
+    "@type": "Place",
+    "name": "LAC - Laboratório de Actividades Criativas",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16255-exposição-roots-2026-“territórios-íntimos-–-paisagens-pós-coloniais”",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "WORKSHOP DE VELA DE CERA BIODEGRADÁVEL, por Márcia Rodrigues",
+   "startDate": "2026-11-21",
+   "endDate": "2026-11-22",
+   "location": {
+    "@type": "Place",
+    "name": "Edifício A Paragem – Barão de São João",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16220-workshop-de-vela-de-cera-biodegradável,-por-márcia-rodrigues",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "VISITA ORIENTADA À EXPOSIÇÃO “AS NOSSAS CASAS: 50 ANOS DE HABITAÇÃO DIGNA”",
+   "startDate": "2026-11-21T10:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Bairro da Zona Verde - Bensafrim",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16221-visita-orientada-à-exposição-“as-nossas-casas-50-anos-de-habitação-digna”",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FESTIVAL E CONCURSO DE MÚSICA INFANTE D. HENRIQUE | MARATONA MUSICAL GIL EANES",
+   "startDate": "2026-11-21T11:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Igreja de Odiáxere",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16222-festival-e-concurso-de-música-infante-d-henrique-maratona-musical-gil-eanes_16222",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "ENCONTROS DIÁLOGOS DO SUL: ACONTECE A SUL, SOBRE O SUL, COM PAISAGENS A SUL",
+   "startDate": "2026-11-21T15:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16223-encontros-diálogos-do-sul-acontece-a-sul,-sobre-o-sul,-com-paisagens-a-sul",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "Exposição “O Cruzeiro” – visitas guiadas",
+   "startDate": "2026-11-21T16:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16167-exposição-“o-cruzeiro”-–-visitas-guiadas_16167",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FESTIVAL E CONCURSO DE MÚSICA INFANTE D. HENRIQUE | CONCERTO DE PIANO, por Igancio Torner - Proyecto Piano Joven",
+   "startDate": "2026-11-21T16:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Igreja da Luz",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16224-festival-e-concurso-de-música-infante-d-henrique-concerto-de-piano,-por-igancio-torner-proyecto-piano-joven",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "BORA CULTURA!",
+   "startDate": "2026-11-21T19:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "TEL – Teatro Experimental de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16226-bora-cultura",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FESTIVAL E CONCURSO DE MÚSICA INFANTE D. HENRIQUE | CONCERTO DE PIANO SOLO – OBRAS DE FRÉDÉRIC CHOPIN, por Rem Urasin",
+   "startDate": "2026-11-21T19:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos – Auditório Duval Pestana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16225-festival-e-concurso-de-música-infante-d-henrique-concerto-de-piano-solo-–-obras-de-frédéric-chopin,-por-rem-urasin",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "DIALETOS POÉTICOS | Recital de poesia pelo Poeta da Cidade",
+   "startDate": "2026-11-21T21:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16227-dialetos-poéticos-recital-de-poesia-pelo-poeta-da-cidade",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FESTIVAL E CONCURSO DE MÚSICA INFANTE D. HENRIQUE | CONCERTO DE GUITARRA SOLO, por Jesus Piñeda",
+   "startDate": "2026-11-22T19:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Igreja de São Sebastião",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16228-festival-e-concurso-de-música-infante-d-henrique-concerto-de-guitarra-solo,-por-jesus-piñeda",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "ROUBEI UM LIVRO NA CABINE DE LEITURA E HOJE VOU LER: MEDIAÇÃO, por Sandra Pereira e João de Brito (Lama Teatro)",
+   "startDate": "2026-11-24",
+   "endDate": "2026-11-27",
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16230-roubei-um-livro-na-cabine-de-leitura-e-hoje-vou-ler-mediação,-por-sandra-pereira-e-joão-de-brito-lama-teatro",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "DIA NACIONAL DA CULTURA CIENTÍFICA",
+   "startDate": "2026-11-24T10:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Ciência Viva de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16229-dia-nacional-da-cultura-científica",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "ALUT – ALGARVIANA ULTRA TRAIL 2026",
+   "startDate": "2026-11-26",
+   "endDate": "2026-11-29",
+   "location": {
+    "@type": "Place",
+    "name": "Via Algarviana – Barão de São João",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16231-alut-–-algarviana-ultra-trail-2026",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "III FÓRUM “ESCOLHAS DE VIDA INCLUSIVAS – MAIS ACESSO, MAIS SAÚDE”",
+   "startDate": "2026-11-26T09:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Auditório Paços do Concelho Séc. XXI",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16232-iii-fórum-“escolhas-de-vida-inclusivas-–-mais-acesso,-mais-saúde”",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "WORTHLESS SAVAGE – Espetáculo de Dança",
+   "startDate": "2026-11-27",
+   "endDate": "2026-11-28",
+   "location": {
+    "@type": "Place",
+    "name": "TEL – Teatro Experimental de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16233-worthless-savage-–-espetáculo-de-dança",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FESTIVAL INTERNACIONAL DE ÓRGÃO DO ALGARVE 2026, por Cristina García Banegas",
+   "startDate": "2026-11-27T21:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Igreja de Santa Maria",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16234-festival-internacional-de-órgão-do-algarve-2026,-por-cristina-garcía-banegas",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "BAJA DE LAGOS 2026",
+   "startDate": "2026-11-28",
+   "endDate": "2026-11-29",
+   "location": {
+    "@type": "Place",
+    "name": "Concelho de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16235-baja-de-lagos-2026",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FESTIVAL E CONCURSO DE MÚSICA INFANTE D. HENRIQUE | CONCURSO DE INSTRUMENTISTAS",
+   "startDate": "2026-11-28",
+   "endDate": "2026-11-29",
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos - Auditório Duval Pestana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16237-festival-e-concurso-de-música-infante-d-henrique-concurso-de-instrumentistas_16237",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "NATAL EM LAGOS 2026",
+   "startDate": "2026-11-28",
+   "endDate": "2027-01-05",
+   "location": {
+    "@type": "Place",
+    "name": "Concelho de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16236-natal-em-lagos-2026",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "PRESÉPIO ANIMADO DE NATAL, de José Cortes",
+   "startDate": "2026-11-28",
+   "endDate": "2027-01-09",
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos – Sala de Exposições 0",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16256-presépio-animado-de-natal,-de-josé-cortes",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "QUEM ESPERA, de Inês Fonseca Santos e Maria João Cruz – Boca Aberta",
+   "startDate": "2026-11-28",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos – Sala de Animação 2",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16239-quem-espera,-de-inês-fonseca-santos-e-maria-joão-cruz-–-boca-aberta",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "OFICINA DE ESCRITA CRIATIVA: A JORNADA DO HERÓI, com David Roque",
+   "startDate": "2026-11-28T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16240-oficina-de-escrita-criativa-a-jornada-do-herói,-com-david-roque",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "APRESENTAÇÃO DO LIVRO “OS MANIFESTOS ROSACRUZES”, de Rui Lomelino de Freitas",
+   "startDate": "2026-11-28T21:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16241-apresentação-do-livro-“os-manifestos-rosacruzes”,-de-rui-lomelino-de-freitas",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CONCERTOS EM CADEIA #18 | Spiralist e Sunny Slam",
+   "startDate": "2026-11-28T21:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "LAC - Laboratório de Actividades Criativas",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16248-concertos-em-cadeia-18-spiralist-e-sunny-slam",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CIÊNCIA EM FAMÍLIA",
+   "startDate": "2026-11-29T10:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Ciência Viva de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16249-ciência-em-família_16249",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FESTIVAL E CONCURSO DE MÚSICA INFANTE D. HENRIQUE | CONCERTO DE ESTREIA DE PEÇAS DE COMPOSITORES PORTUGUESES",
+   "startDate": "2026-11-29T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos - Auditório Duval Pestana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16250-festival-e-concurso-de-música-infante-d-henrique-concerto-de-estreia-de-peças-de-compositores-portugueses",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CHALUMEAUX, EXCENTRICIDADES DO BARROCO – Telemann, Graupner e Fasch",
+   "startDate": "2026-11-29T18:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Igreja de São Sebastião",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16263-chalumeaux,-excentricidades-do-barroco-–-telemann,-graupner-e-fasch",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "JAZZING AROUND THE CHRISTMAS TREE - Orquestra Ligeira de Lagos & Gabriel Fialho",
+   "startDate": "2026-12-01T19:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos - Auditório Duval Pestana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16314-jazzing-around-the-christmas-tree-orquestra-ligeira-de-lagos-gabriel-fialho",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "ANIMAÇÃO MUSICAL NO VIV’O MERCADO – DEZEMBRO",
+   "startDate": "2026-12-02",
+   "endDate": "2026-12-30",
+   "location": {
+    "@type": "Place",
+    "name": "Viv’o Mercado – Mercado de Levante",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16329-animação-musical-no-viv’o-mercado-–-dezembro",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "EXPOSIÇÃO DE PRESÉPIOS DE NATAL",
+   "startDate": "2026-12-02",
+   "endDate": "2027-01-07",
+   "location": {
+    "@type": "Place",
+    "name": "Mercado de Santo Amaro",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16315-exposição-de-presépios-de-natal_16315",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CICLO “À CONVERSA NO MUSEU”: HABITAÇÃO, QUE FUTURO?",
+   "startDate": "2026-12-03T18:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Auditório Paços do Concelho Séc. XXI",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16316-ciclo-“à-conversa-no-museu”-habitação,-que-futuro",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "AUDIÇÕES DE FINAL DE 1.º PERÍODO",
+   "startDate": "2026-12-04",
+   "endDate": "2026-12-09",
+   "location": {
+    "@type": "Place",
+    "name": "Igreja Nossa Senhora do Carmo (Igreja das Freiras)",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16317-audições-de-final-de-1-º-período",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CICLO DE CONVERSAS SOBRE MIGRAÇÕES “DESINFORMAÇÃO E FAKE NEWS”, por Pedro Lemos",
+   "startDate": "2026-12-04T09:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Auditório Paços do Concelho Séc. XXI",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16299-ciclo-de-conversas-sobre-migrações-“desinformação-e-fake-news”,-por-pedro-lemos",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "ESTA NOITE GRITA-SE “CRY BABY FROM HELL”, de Lara Duarte",
+   "startDate": "2026-12-04T19:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos – Sala de Animação 1",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16318-esta-noite-grita-se-“cry-baby-from-hell”,-de-lara-duarte",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "EXIBIÇÃO DO DOCUMENTÁRIO “THE LIBRARIANS”, de Kim A. Snyder",
+   "startDate": "2026-12-04T20:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16319-exibição-do-documentário-“the-librarians”,-de-kim-a-snyder",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "RUA FLÓRIDA, pelo Coletivo JAT",
+   "startDate": "2026-12-04T21:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos - Auditório Duval Pestana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16320-rua-flórida,-pelo-coletivo-jat",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "VISITA GUIADA “À DESCOBERTA DO NATAL EM LAGOS”, por Artur de Jesus",
+   "startDate": "2026-12-05T10:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Praça do Infante (partida)",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16321-visita-guiada-“à-descoberta-do-natal-em-lagos”,-por-artur-de-jesus",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "EMPREITARTE - DO CORAÇÃO À MÃO: MOLDURA, por Ana Carla",
+   "startDate": "2026-12-05T10:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16322-empreitarte-do-coração-à-mão-moldura,-por-ana-carla",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "LAGOS ATRAVÉS DAS SUAS RUAS: HENRIQUE CORREIA DA SILVA, por Artur Jesus",
+   "startDate": "2026-12-05T16:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16323-lagos-através-das-suas-ruas-henrique-correia-da-silva,-por-artur-jesus",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CICLO DE CINEMA NA CADEIA",
+   "startDate": "2026-12-05T17:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "LAC - Laboratório de Actividades Criativas",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16324-ciclo-de-cinema-na-cadeia",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CONCERTO DE NATAL, pela Orquestra do Algarve e Coro Comunitário do Algarve",
+   "startDate": "2026-12-05T19:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos - Auditório Duval Pestana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16325-concerto-de-natal,-pela-orquestra-do-algarve-e-coro-comunitário-do-algarve",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "BAILE DE NATAL SÉNIOR",
+   "startDate": "2026-12-06T15:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Pavilhão Polidesportivo do CASLAS",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16327-baile-de-natal-sénior_16327",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "WORKSHOP DE ENFEITES DE NATAL EM EMPREITA DE PALMA, por Judite Baião",
+   "startDate": "2026-12-06T15:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Edifício A Paragem – Barão de São João",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16326-workshop-de-enfeites-de-natal-em-empreita-de-palma,-por-judite-baião",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "DESFILE DE NATAL, pelo Moto Clube de Lagos",
+   "startDate": "2026-12-06T17:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Praça do Infante (chegada)",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16328-desfile-de-natal,-pelo-moto-clube-de-lagos",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "WORKSHOP DE COROA DO ADVENTO, por Isabel João",
+   "startDate": "2026-12-10",
+   "endDate": "2026-12-13",
+   "location": {
+    "@type": "Place",
+    "name": "Edifício A Paragem – Barão de São João",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16330-workshop-de-coroa-do-advento,-por-isabel-joão",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "MOSTRA DE ARTESANATO DE NATAL",
+   "startDate": "2026-12-11",
+   "endDate": "2026-12-12",
+   "location": {
+    "@type": "Place",
+    "name": "Mercado de Levante",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16331-mostra-de-artesanato-de-natal_16331",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "OS MEMORÁVEIS – A partir da obra de Lídia Jorge",
+   "startDate": "2026-12-11T19:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos - Auditório Duval Pestana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16332-os-memoráveis-–-a-partir-da-obra-de-lídia-jorge",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CICLO DE BIBLIOTERAPIA CONSCIENTE: BIBLIOTECAS INTERIORES, por Alfredo Rollo",
+   "startDate": "2026-12-11T20:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16333-ciclo-de-biblioterapia-consciente-bibliotecas-interiores,-por-alfredo-rollo",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "NATAL EM ODIÁXERE | PAI NATAL & PRESÉPIO AO VIVO",
+   "startDate": "2026-12-12",
+   "endDate": "2026-12-13",
+   "location": {
+    "@type": "Place",
+    "name": "Largo da Liberdade – Odiáxere",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16335-natal-em-odiáxere-pai-natal-presépio-ao-vivo_16335",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "DANÇA-TE FAMÍLIAS: MUNDO COLORIDO DAS EMOÇÕES, por Vanessa Alexandra e JeanJacques",
+   "startDate": "2026-12-12T10:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16334-dança-te-famílias-mundo-colorido-das-emoções,-por-vanessa-alexandra-e-jeanjacques",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CICLO “À CONVERSA NO MUSEU” | MEMÓRIA DO PODER LOCAL DEMOCRÁTICO - 50 anos de Eleições Autárquicas",
+   "startDate": "2026-12-12T16:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Auditório Paços do Concelho Séc. XXI",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16336-ciclo-“à-conversa-no-museu”-memória-do-poder-local-democrático-50-anos-de-eleições-autárquicas",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CONCERTO DE NATAL, pela Sociedade Filarmónica Lacobrigense 1.º de Maio",
+   "startDate": "2026-12-12T17:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos - Auditório Duval Pestana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16337-concerto-de-natal,-pela-sociedade-filarmónica-lacobrigense-1-º-de-maio",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CLUBE DE LEITURA DE LAGOS, por José Garrido",
+   "startDate": "2026-12-12T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16338-clube-de-leitura-de-lagos,-por-josé-garrido_16338",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FESTA DE NATAL DE BENSAFRIM",
+   "startDate": "2026-12-13",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Estrela Desportiva de Bensafrim",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16340-festa-de-natal-de-bensafrim",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "HISTÓRIAS VIVAS | AQUI ESTAMOS NÓS, de Oliver Jeffers",
+   "startDate": "2026-12-13T10:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Ciência Viva de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16339-histórias-vivas-aqui-estamos-nós,-de-oliver-jeffers",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "NATAL EM MOVIMENTO, pela Associação de Dança de Lagos",
+   "startDate": "2026-12-15",
+   "endDate": "2026-12-17",
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos - Auditório Duval Pestana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16342-natal-em-movimento,-pela-associação-de-dança-de-lagos",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "O NATAL DAS BRUXAS – UMA AVENTURA MÁGICA NA NOITE DE NATAL, pelo Clube Artístico Lacobrigense",
+   "startDate": "2026-12-15",
+   "endDate": "2026-12-16",
+   "location": {
+    "@type": "Place",
+    "name": "Sede do Clube Artístico Lacobrigense",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16341-o-natal-das-bruxas-–-uma-aventura-mágica-na-noite-de-natal,-pelo-clube-artístico-lacobrigense",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "CONCERTO DE NATAL SOLIDÁRIO",
+   "startDate": "2026-12-16T21:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Igreja de Santa Maria",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16343-concerto-de-natal-solidário",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FÉRIAS COM CIÊNCIA | OFICINAS DE NATAL",
+   "startDate": "2026-12-18",
+   "endDate": "2026-12-30",
+   "location": {
+    "@type": "Place",
+    "name": "Centro Ciência Viva de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16344-férias-com-ciência-oficinas-de-natal",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "ASTRONOMIA NO CENTRO CIÊNCIA VIVA DE LAGOS",
+   "startDate": "2026-12-18T19:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Ciência Viva de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16345-astronomia-no-centro-ciência-viva-de-lagos_16345",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "DIAGNÓSTICO SOCIAL: LIVROS QUE NOS CURAM (OU NOS INQUIETAM!), por Raquel Vareda e Juan Rachadell-filho",
+   "startDate": "2026-12-18T19:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16346-diagnóstico-social-livros-que-nos-curam-ou-nos-inquietam-,-por-raquel-vareda-e-juan-rachadell-filho",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "ENTRE DOBRAS E PAPÉIS, OFICINA DE ORIGAMI | NATAL EM PAPEL: LUZ, ESTRELAS E ENCANTO, por Odete Azevedo",
+   "startDate": "2026-12-19T10:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16347-entre-dobras-e-papéis,-oficina-de-origami-natal-em-papel-luz,-estrelas-e-encanto,-por-odete-azevedo",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "WORKSHOP DE MOSAICO, por MadFildz",
+   "startDate": "2026-12-19T14:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "LAC - Laboratório de Actividades Criativas",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16349-workshop-de-mosaico,-por-madfildz",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "MINDFULNESS & CRESCIMENTO PESSOAL: AFIRMAÇÕES POSITIVAS PARA O ANO NOVO, por Sofia Loureiro",
+   "startDate": "2026-12-19T15:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16350-mindfulness-crescimento-pessoal-afirmações-positivas-para-o-ano-novo,-por-sofia-loureiro",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "O SUPER-HERÓI, pelo El Perro Azul",
+   "startDate": "2026-12-19T16:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Cultural de Lagos - Auditório Duval Pestana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16351-o-super-herói,-pelo-el-perro-azul",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "SONS AO CREPÚSCULO | CONCERTO DE NATAL, pelo VoxAradeXXV",
+   "startDate": "2026-12-19T17:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Igreja da Luz",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16352-sons-ao-crepúsculo-concerto-de-natal,-pelo-voxaradexxv",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "OFICINA DE ESCRITA CRIATIVA: PERSONAGEM E EMOÇÕES, por David Roque",
+   "startDate": "2026-12-19T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal de Lagos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16353-oficina-de-escrita-criativa-personagem-e-emoções,-por-david-roque",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "PASSEIO DE BICICLETA DE PAIS NATAIS",
+   "startDate": "2026-12-20T09:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Centro Social de Almádena (concentração)",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16354-passeio-de-bicicleta-de-pais-natais_16354",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  },
+  {
+   "@type": "Event",
+   "name": "FESTA DE PASSAGEM DE ANO | NININHO VAZ MAIA",
+   "startDate": "2026-12-31T22:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Praça do Infante",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://www.cm-lagos.pt/municipio/eventos/16355-festa-de-passagem-de-ano-nininho-vaz-maia",
+   "source": "https://www.cm-lagos.pt/municipio/eventos (Camara Municipal de Lagos, events list page)",
+   "read_at": "2026-11-18T14:07:59Z",
+   "place": "lagos"
+  }
+ ]
+}

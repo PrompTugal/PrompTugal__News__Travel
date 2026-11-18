@@ -1,6 +1,6 @@
 {
  "place": "castro-marim",
- "read_at": "2026-11-18T13:10:26Z",
+ "read_at": "2026-11-18T14:10:01Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "about": "Now in this place, from IPMA's open data and (for Faro) adsb.lol, as collected by data.promptugal.news: each value with its source and the time read. Not a warning service: follow IPMA (https://www.ipma.pt/) and ANEPC.",
  "station": {
@@ -8,14 +8,14 @@
   "id": 1210867,
   "km": 1,
   "reading": {
-   "at": "2026-11-18T12:00:00Z",
-   "temp_c": 21,
-   "humidity_pct": 95,
-   "wind_kmh": 22.3,
+   "at": "2026-11-18T13:00:00Z",
+   "temp_c": 22.4,
+   "humidity_pct": 88,
+   "wind_kmh": 24.8,
    "wind_dir_id": 6,
    "rain_mm": 0,
    "pressure_hpa": null,
-   "radiation_kj_m2": 1016.8
+   "radiation_kj_m2": 1223.3
   },
   "page": "https://www.ipma.pt/en/otempo/obs.superficie/",
   "source": "https://api.ipma.pt/open-data/observation/meteorology/stations/observations.json"
@@ -118,37 +118,37 @@
  "reads": {
   "observations": {
    "url": "https://data.promptugal.news/api/v1/ipma-observations/latest.json",
-   "at": "2026-11-18T13:10:02Z",
+   "at": "2026-11-18T14:09:36Z",
    "status": 200
   },
   "warnings": {
    "url": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
-   "at": "2026-11-18T13:10:19Z",
+   "at": "2026-11-18T14:09:54Z",
    "status": 200
   },
   "forecasts": {
    "url": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
-   "at": "2026-11-18T13:08:24Z",
+   "at": "2026-11-18T14:08:00Z",
    "status": 200
   },
   "fire-risk": {
    "url": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
-   "at": "2026-11-18T13:09:54Z",
+   "at": "2026-11-18T14:09:29Z",
    "status": 200
   },
   "uv": {
    "url": "https://data.promptugal.news/api/v1/ipma-uv/latest.json",
-   "at": "2026-11-18T13:10:17Z",
+   "at": "2026-11-18T14:09:51Z",
    "status": 200
   },
   "sea": {
    "url": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
-   "at": "2026-11-18T13:10:07Z",
+   "at": "2026-11-18T14:09:42Z",
    "status": 200
   },
   "adsb": {
    "url": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
-   "at": "2026-11-18T13:08:24Z",
+   "at": "2026-11-18T14:07:49Z",
    "status": 200
   }
  }

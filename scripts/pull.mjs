@@ -83,6 +83,16 @@ for (const id of ids) {
   if (use.body) { writeFileSync(join(OUT, path), use.body); use.used = true; }
   chosen[id] = { from: use.body ? use.url : null, why };
 }
+// Events by place from data.promptugal.news (18 Nov 2026): reference use only (name the source, link the event),
+// as the data site's own note says. One file per place, kept as read.
+const EVENTS = 'https://data.promptugal.news/api/v1/events/by-place/';
+mkdirSync('data/inputs/events', { recursive: true });
+for (const id of ids) {
+  if (!from) await sleep(2000);
+  const r = await read(`${id}.json`, EVENTS);
+  reads.push({ ...r, path: `events/${id}.json`, role: 'events' });
+  if (r.body) { try { JSON.parse(r.body); writeFileSync(join('data/inputs/events', `${id}.json`), r.body); } catch { r.status = 'not json'; } }
+}
 const manifest = {
   about: `What scripts/pull.mjs read, when, and the first 40 hex digits of each answer's sha256. Each place's now file: data.promptugal.news/api/v1/by-place/now/ first, promptugal.news/data/by-place/now/ when that is stale or fails ("now" says which was used and why). places.json and the place desks (events): PrompTugal__News__Website data/by-place (public; each file signed beside it as <file>.sig), served at promptugal.news.`,
   by: 'scripts/pull.mjs (travel@PrompTugal.dinis; data.promptugal.news first since 18 Nov 2026, travel.b@PrompTugal.dinis)',

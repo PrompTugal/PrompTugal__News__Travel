@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T14:50Z",
+  "updated": "2026-11-18T14:35Z",
   "run": "second run on account B (18 Nov 2026, 10:53 UTC wake)",
   "observability": {
     "lane": "travel",
@@ -55,17 +55,17 @@
     "Storm items: /storm-charles/flights/ (maps, crosswind, departures against cancellations) from data.promptugal.news, then transport, then a stranded-traveller guide.",
     "Re-check disruptions (easyJet 19 to 23 December) at the next wake.",
     "What's on: fill the gaps (December agendas of Faro, Loulé, Silves, São Brás, Tavira; New Year's Eves; Olhão, Vila do Bispo, Alcoutim, Monchique).",
-    "Getting around: winter boat times that are published only as pictures (Faro, Farol, Culatra), Tavira, the Guadiana ferry.",
-    "What's on: read data.promptugal.news /api/v1/events/by-place/<place>.json once it answers (404 at 14:35 UTC on 18 Nov)."
+    "Getting around: winter boat times that are published only as pictures (Faro, Farol, Culatra), Tavira, the Guadiana ferry."
   ],
   "asks": [
     "Dinis: allow `node pki-agent.mjs keygen --session` in account B's sessions (it was refused again), so travel.b@ can make and publish its key.",
     "Dinis: allow the one-line change to scripts/check-commits.mjs (accept @PrompTugal.dinis agents), or make it yourself; until then commits say Agent: travel.b@AgentiCCells.dinis.",
     "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
     "Dinis: IPMA-based pages stay free until you decide (ask IPMA, or keep them free).",
-    "Dinis: the reading credit here is separate from promptugal.news's (browser storage is per site). One account across the sites needs the vault work in board/spec-one-reader-across-devices.md of the Website repo."
+    "Dinis: the reading credit here is separate from promptugal.news's (browser storage is per site). One account across the sites needs the vault work in board/spec-one-reader-across-devices.md of the Website repo.",
+    "Dinis: What's on lists events from the councils' own pages as titles, dates and links (reference use, source named), from the council research and from data.promptugal.news's feed. data.b@'s note says no reuse licence was found for those sites and agendalx.pt asks reference use only. Is listing them this way all right, or should the page only link to each council's agenda?"
   ],
-  "live_changes": "18 Nov 13:53 wake: /getting-around/ has 'This winter: boats and tolls' (A22 toll-free, Armona winter times, Faro and Tavira boats); Iberia Express and Royal Air Maroc named; fresh pull, all 18 places from data.promptugal.news.",
+  "live_changes": "18 Nov 13:53 wake: /getting-around/ has 'This winter: boats and tolls' (A22 toll-free, Armona winter times, Faro and Tavira boats); Iberia Express and Royal Air Maroc named; fresh pull, all 18 places from data.promptugal.news. 14:30: What's on also lists data.promptugal.news's events by place (titles, dates, links; Lagos 89 so far).",
   "storm": "The Storm site's 7 travel items (data.b@'s handoff): plan in board/team/travel/storm-plan.md. Pages and charts come here, reading data.promptugal.news; the collectors stay with data.b@.",
   "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading."
 }

@@ -31,6 +31,8 @@ A thing not written here does not exist. Kept by travel@PrompTugal.dinis (accoun
 - **This winter: boats and tolls** (13:53 UTC wake): `/getting-around/` opens with the A22 (no tolls since 1 January 2025, Law 37/2024, re-read by travel.b@) and how to pay tolls elsewhere; Olhão to Armona's winter times (Postal, 10 Nov 2026, re-read by travel.b@); Faro's island boats (timetables are pictures, so linked, not listed); Tavira (2024 fares, marked old). In `data/research/transport-algarve.json` under `winter` (travel.b.transport@, Sonnet). Still missing: winter times for Faro, Farol, Culatra and Tavira, and the Guadiana ferry (401).
 - Iberia Express (IBS) and Royal Air Maroc (RAM) are named in the Faro airport list.
 
+- **What's on reads data.promptugal.news's events** (18 Nov, ~14:30 UTC): `scripts/pull.mjs` reads `/api/v1/events/by-place/<place>.json` for the 18 places into `data/inputs/events/`. `/events/` adds "More from the councils' own lists": titles, dates and a link per event, with no descriptions, as the feed's note asks (reference use only, name the source, link the event). On the first read only Lagos had events (89 after removing duplicates). Whether reference listing is enough to republish is a question for Dinis (data.b@'s note).
+
 ## Still does not exist (18 November 2026)
 - **No session key for travel.b@ either**: `pki-agent.mjs keygen --session` was refused by this session's permission check (`board/keys.json`).
 - **The commit check still accepts only `@AgentiCCells` agents**: changing `scripts/check-commits.mjs` was refused by the permission check. Commits carry `Agent: travel.b@AgentiCCells.dinis`.
