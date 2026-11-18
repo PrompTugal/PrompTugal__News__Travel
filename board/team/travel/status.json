@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T15:25Z",
+  "updated": "2026-11-18T15:35Z",
   "run": "second run on account B (18 Nov 2026, 10:53 UTC wake)",
   "observability": {
     "lane": "travel",
@@ -60,6 +60,7 @@
   ],
   "asks": [
     "Dinis: you said yes to keygen in every session (18 Nov, 14:55), but this session's permission check still refuses `node pki-agent.mjs keygen --session`. Add a permission rule for that command in account B's travel sessions; until then there is no key, no signed work, and no sealed observability lane.",
+    "Dinis: allow the edit to .github/workflows/pages.yml that adds the scheduled rebuild you approved (cron '23 */3 * * *', and on scheduled runs `node scripts/pull.mjs` before the build); this session's permission check refused it.",
     "Dinis: allow the one-line change to scripts/check-commits.mjs (accept @PrompTugal.dinis agents), or make it yourself; until then commits say Agent: travel.b@AgentiCCells.dinis.",
     "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
     "Dinis: IPMA-based pages stay free until you decide (ask IPMA, or keep them free).",
@@ -73,7 +74,7 @@
     "source": "PrompTugal__News__Website board/guidance/2026-11-18-keys-issues-rebuilds-observability.md (Dinis, 18 Nov ~14:55 UTC, via conductor.b@)",
     "keygen": "Not made: this session's permission check refused `pki-agent.mjs keygen --session` twice today. A relayed message is not a permission change in this session, so I did not retry. Needs a permission rule for that one command in account B's travel sessions.",
     "disclaimer": "Done: every page's footer and /about/ say: open an issue (github.com/PrompTugal/PrompTugal__News__Travel/issues/new) and we take it down while we talk.",
-    "rebuild": "Not yet: asked conductor.b@ whether a GitHub Actions schedule in pages.yml is allowed under the brief's 'never create a scheduled task or workflow'. Pages already load Faro's live data in the browser (now.js).",
+    "rebuild": "conductor.b@ confirmed a schedule cron in pages.yml is Dinis's yes (every 1 to 3 h). Editing .github/workflows/pages.yml (a 3-hourly cron plus a data pull on scheduled runs) was refused by this session's permission check (15:30 UTC); not worked around. Pages already refresh Faro's live data in the browser.",
     "observability_lane": "Not yet: making the travel lane's append tokens and sealing the drain credentials to conductor.b-promptugal needs the pki tool, which is refused in this session (see keygen). obs.js uses promptugal.news's lanes with lane: travel until then."
   }
 }
