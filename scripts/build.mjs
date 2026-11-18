@@ -148,7 +148,7 @@ ${ipma ? `<p class="free-note"><strong>Free to read.</strong> This page is built
 <footer class="foot"><p>${a('https://promptugal.news/', 'PrompTugal.news')}: Portugal, town by town. Raw data from ${a('https://data.promptugal.news/', 'data.promptugal.news')} and from ${a('https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/data/by-place', 'PrompTugal.news place data')}. Not a warning service: follow ${a('https://www.ipma.pt/', 'IPMA')} and ${a('https://prociv.gov.pt/', 'ANEPC')}.</p>
 <p class="takedown">Is something here yours, and do you think we should not show it? ${a('https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new', 'Open an issue')} and we take it down while we talk. Text and data we make: CC BY 4.0; what we show from others stays under its source\'s licence or terms, linked beside it.</p>
 <p class="sites">Also from PrompTugal.news: ${siteLinks()}</p>
-<p class="obs-row">Version ${esc(version)} · ${a('https://github.com/PrompTugal/PrompTugal__News__Travel', 'Source')} · Code Apache-2.0, text CC BY 4.0 · ${a('/llms.txt', 'llms.txt')} · ${a('/version.json', 'version.json')} · ${a('/account/', 'Your reading account')}</p></footer>
+<p class="obs-row">Version ${esc(version)} · ${a('https://github.com/PrompTugal/PrompTugal__News__Travel', 'Source')} · Code Apache-2.0, text CC BY 4.0 · ${a('/llms.txt', 'llms.txt')} · ${a('/version.json', 'version.json')} · ${a('/account/', 'Your reading account')} · ${a('/security/', 'Security')}</p></footer>
 ${script ? `<script src="${script}" defer></script>\n` : ''}<script src="/assets/meter/meter.js" defer></script>
 <script src="/assets/obs/obs.js" defer></script>
 </body>
@@ -522,6 +522,26 @@ Page views and reading time, publicly, in PrompTugal.news's observability lane f
   });
 }
 
+
+// ---------- security (Dinis, 18 Nov 2026, ~15:15 UTC: every vulnerability, bug and breach is published) ----------
+{
+  const sec = J('data/editorial/security.json');
+  const TM = [['pull.md', 'The data reader (scripts/pull.mjs)'], ['scheduled-rebuild.md', 'The scheduled rebuild (every 3 hours)'], ['observability.md', 'The page-view counter (obs.js)']];
+  const G = 'https://github.com/PrompTugal/PrompTugal__News__Travel/blob/dev/docs/threat-models/';
+  const row = f => f.state === 'open'
+    ? `<tr><td>${esc(f.title)}</td><td>${esc(f.severity)}</td><td colspan="4">Open: details published when fixed.</td><td>${esc(f.state)}</td></tr>`
+    : `<tr><td><strong>${esc(f.title)}</strong><br><span class="meta">${esc(f.detail)}</span></td><td>${esc(f.severity)}</td><td>${esc(f.file)}</td><td>${esc(f.found)}, ${esc(f.found_by)}</td><td>${esc(f.fix)}</td><td>${f.commit ? a(`https://github.com/PrompTugal/PrompTugal__News__Travel/commit/${f.commit}`, f.commit) : ''}</td><td>${esc(f.state)}</td></tr>`;
+  page({
+    path: '/security/', title: 'Security', type: 'site',
+    description: 'Every security finding on travel.promptugal.news, published: severity, where, how it was found, the fix and its commit; and the threat models of what runs on its own.',
+    body: `<h1>Security</h1><p class="dek">Every vulnerability, bug and breach we find on this site is published here. Open findings show only their title, severity and state until they are fixed. The log for all PrompTugal sites: ${a(sec.central_log, 'promptugal.news/security')}. Found something? ${a('https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new', 'Open an issue')}.</p>
+<section aria-labelledby="h-find"><h2 id="h-find">Findings</h2><div class="table"><table class="ledger"><thead><tr><th>Finding</th><th>Severity</th><th>Where</th><th>Found</th><th>Fix</th><th>Commit</th><th>State</th></tr></thead><tbody>${sec.findings.map(row).join('')}</tbody></table></div></section>
+<section aria-labelledby="h-tms"><h2 id="h-tms">Threat models</h2><ul>${TM.map(([f, t]) => `<li>${a(G + f, t)}</li>`).join('')}</ul><p>Each says what the automation reads, what it writes, what it trusts, what could go wrong and how that is limited. Reviewed by security@PrompTugal.dinis.</p></section>
+<section aria-labelledby="h-how"><h2 id="h-how">How we look</h2><p>At every wake the lead agent runs a security review before and after the work, and an application-security review of any code change before it is committed. security@PrompTugal.dinis reviews every commit across the PrompTugal sites.</p></section>`,
+    md: `Every vulnerability, bug and breach we find on this site is published here; open ones show only title, severity and state until fixed. All PrompTugal sites: ${sec.central_log}\n\n## Findings\n\n${sec.findings.map(f => f.state === 'open' ? `- **${mdesc(f.title)}** (${f.severity}): open.` : `- **${mdesc(f.title)}** (${f.severity}, ${f.state}): ${mdesc(f.detail)} Fix: ${mdesc(f.fix)} Commit ${f.commit}. Found ${f.found} by ${mdesc(f.found_by)}.`).join('\n')}\n\n## Threat models\n\n${TM.map(([f, t]) => `- ${ml(G + f, t)}`).join('\n')}`,
+    provenance: prov({ agents: ['travel.b.security@PrompTugal.dinis (Sonnet) ran the application-security review of 18 Nov 2026'] }),
+  });
+}
 
 // ---------- the reading account (account-B fix 3: promptugal.news's meter, assets/meter/, here) ----------
 {

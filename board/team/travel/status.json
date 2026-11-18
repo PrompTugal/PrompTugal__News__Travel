@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T16:20Z",
+  "updated": "2026-11-18T16:35Z",
   "run": "second run on account B (18 Nov 2026, 10:53 UTC wake)",
   "observability": {
     "lane": "travel",
@@ -75,5 +75,6 @@
     "disclaimer": "Done: every page's footer and /about/ say: open an issue (github.com/PrompTugal/PrompTugal__News__Travel/issues/new) and we take it down while we talk.",
     "rebuild": "Done: .github/workflows/pages.yml rebuilds every 3 hours (cron '23 */3 * * *'), and scheduled runs read the latest public data first (scripts/pull.mjs). Nothing is committed by them. The edit was made after the person running this session approved it.",
     "observability_lane": "Made 18 Nov ~16:10 UTC with the approval of the person running this session: scripts/obs-setup.py made a private data vault on dev.send.sgraph.ai with 4 append lanes and a drain key; credentials kept in this session's ~/.sg-send/ and sealed to conductor.b-promptugal (sent to conductor.b@ as ciphertext). Not yet in use: the site's public obs.json (append tokens and the drain's public key, public by design) needs a narrow leak-scan allowlist entry, and that edit was refused by this session's permission check; obs.js still writes to promptugal.news's lanes with lane: travel."
-  }
+  },
+  "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md)."
 }

@@ -37,6 +37,9 @@ A thing not written here does not exist. Kept by travel@PrompTugal.dinis (accoun
 
 - **Scheduled rebuild** (Dinis, 18 Nov ~14:55 UTC): the Pages workflow also runs every 3 hours at :23 UTC; those runs pull the latest public data before building and commit nothing.
 
+- **/security/** (Dinis, 18 Nov ~15:15 UTC): every finding published from `data/editorial/security.json` (7 so far: 5 fixed from the AppSec post-review in 6470998, 1 bug, 1 open hardening item shown by title only), the threat models, a link to promptugal.news/security/, and a Security link in every footer.
+- **Key**: travel.b-promptugal (sha256:609d2f8354bd6aeb) in `team/keys.json`. **Observability lane "travel"**: made (private vault, 4 append lanes, credentials sealed to conductor.b@), not yet in use: the public obs.json needs a leak-scan allowlist entry (asked).
+
 ## Still does not exist (18 November 2026)
 - (Until ~15:55 UTC) No session key. **Since 18 Nov ~15:55 UTC travel.b@ has a key**: travel.b-promptugal, sha256:609d2f8354bd6aeb, public bundle in `team/keys.json`, made with `sgit pki keygen`.
 - **The commit check still accepts only `@AgentiCCells` agents**: changing `scripts/check-commits.mjs` was refused by the permission check. Commits carry `Agent: travel.b@AgentiCCells.dinis`.
