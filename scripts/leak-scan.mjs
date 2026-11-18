@@ -87,7 +87,13 @@ function highEntropy(line) {
 
 // Narrow allowlist: [path, kind, reason]. Keep each entry to one file and one kind.
 const ALLOW = [
-  // (none yet)
+  // The travel observability lane's append tokens and the drain's public key: public by design (a token can only
+  // append to its lane, the key can only encrypt), as in the main site's assets/obs/obs.json. Approved by the person
+  // running travel.b@PrompTugal.dinis's session, 18 Nov 2026. One file (source and built copy), two kinds.
+  ['src/assets/obs/obs.json', 'long high-entropy string', 'observability lane append tokens and drain public key, public by design'],
+  ['src/assets/obs/obs.json', 'public key outside team/keys', 'observability drain public key (encrypt only)'],
+  ['_site/assets/obs/obs.json', 'long high-entropy string', 'built copy of src/assets/obs/obs.json'],
+  ['_site/assets/obs/obs.json', 'public key outside team/keys', 'built copy of src/assets/obs/obs.json'],
 ];
 const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
 

@@ -1,7 +1,8 @@
 // travel.promptugal.news's copy (travel.b@PrompTugal.dinis, 18 November 2026, at Dinis's word: each of the five
 // sites adds obs.js with a lane of its own; PrompTugal__News__Website board/guidance/2026-11-18-five-sites-on-account-b.md).
-// Copied from PrompTugal__News__Website assets/obs/obs.js (Apache-2.0). Changed here, and only here: the config is
-// read from promptugal.news (its public obs.json, served with CORS), so no append token is copied into this repository;
+// Copied from PrompTugal__News__Website assets/obs/obs.js (Apache-2.0). Changed here, and only here: since 18 Nov 2026
+// the config is this site's own /assets/obs/obs.json (its own lane "travel", made by scripts/obs-setup.py, drained by
+// conductor.b@PrompTugal.dinis);
 // every event carries lane: 'travel'; the version is read from this site's [data-version]; the disclosure goes in this
 // site's footer and links to promptugal.news's report. Everything else, the privacy rules included, is unchanged.
 // PrompTugal.news's page views and reads (observability@PrompTugal.dinis, 6 November 2026, at Dinis Cruz's word:
@@ -27,7 +28,7 @@
         const LS = { get: k => { try { return localStorage.getItem('pt.obs.' + k) } catch { return null } }, set: (k, v) => { try { v === null ? localStorage.removeItem('pt.obs.' + k) : localStorage.setItem('pt.obs.' + k, v) } catch { } } }
         const SS = { get: k => { try { return sessionStorage.getItem('pt.obs.' + k) } catch { return null } }, set: (k, v) => { try { sessionStorage.setItem('pt.obs.' + k, v) } catch { } }, del: k => { try { sessionStorage.removeItem('pt.obs.' + k) } catch { } } }
         const paused = () => LS.get('off') === '1'
-        const LANE = 'travel', CONFIG = 'https://promptugal.news/assets/obs/obs.json', REPORT = 'https://promptugal.news/newsroom/observability/index.html'
+        const LANE = 'travel', CONFIG = '/assets/obs/obs.json', REPORT = 'https://promptugal.news/newsroom/observability/index.html'
 
         // the disclosure and the pause switch, in the footer of every page
         const footer = () => {

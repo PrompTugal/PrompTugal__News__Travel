@@ -1,0 +1,23 @@
+{
+  "about": "travel.promptugal.news's observability lane \"travel\" (travel.b@PrompTugal.dinis, 18 November 2026, at Dinis Cruz's word). Public on purpose: each append token can only write to its lane, and the key can only encrypt. Used by assets/obs/obs.js on every page. The data vault is private; conductor.b@PrompTugal.dinis drains it.",
+  "enabled": true,
+  "lane": "travel",
+  "endpoint": "https://dev.send.sgraph.ai",
+  "vault_id": "9y7m26v0",
+  "lanes": {
+    "site": [
+      "a5ef0b2bf968d9eec407468105121aa9e3db55363c29555d2c4bef0f30ad0730",
+      "e95782e0e6ef44fd9ae7aeafb5e649ee4ce27a3613e3bd1fc6eba0cea5f9661d",
+      "c83153e85905bf1430457da19278b1909b1551161a23559e794a06728a1f2380",
+      "e2481374158f798f523ed50b034c6918e6c4f54ee0555bb5ea6163ea4884e1fc"
+    ]
+  },
+  "recipient": {
+    "fingerprint": "sha256:769aec505e1d6f47",
+    "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAutO9U/uz/8VmM5HYkBRH\nFbrJd53SweU5DlWzZBD8FdWlTRjcHVvB9g4r5BD474qu576b2/yaqcXoNEOJJgyz\ndvr4Emn9YT10g0hAclvAUGFMCUucg2cZt9M4Yabeh+zN69NtQRaP8KmieCUaLc0l\n1jm/Pa6XJhgwQM2UBTrY1mlxfliRLdvosEiqS2wYTFa42xNokfU8zW3eSVzhOomG\n18uJe9TxXXru/1aTuppcH9ROU18t8/xlb678klzpsa40tQXGjilwccCVWXZ8kzsk\nXXYp0s6Sk1VwRbuQw/sFfx0/T2/Mb5wInRv1o7Brlg2X7GG+C1Q1uRcR2E2CQLsQ\nDocBDnUgfxBPnzVllMTMKsQwIYbCWX2iNhjnpEv3MjgkczexSC7KBbl6pqtzl9xk\nUtcgSEEeoNowLnct0WyWcTqDQNjLArpZpRDqiO0RpAWVqGSHQP5nPYSo5+lXOkk9\nizi1u0qt318koQQ6yWoYdu69PQ57eHCcRoxPpWOXj/JyDE2KfTIRJ+HpDJuIKNmf\nwn3Ai9RGlGCuwHjxrNc1NPutQY8F4wLMs5LGNzYCe+4/40NVgUeTpXN1DYbEXwql\n3q36k7Sf7QYgaFeig1vvYB4dAD8PUIAgq3bBJePnax9jKwfEGL2wWLdE7NxKJ+iK\n2aMSHEnFs5CBfQDaP7NbAyECAwEAAQ==\n-----END PUBLIC KEY-----\n"
+  },
+  "geo": [
+    "https://ipapi.co/json/",
+    "https://ipwho.is/"
+  ]
+}

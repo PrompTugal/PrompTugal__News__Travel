@@ -5,11 +5,11 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T16:35Z",
+  "updated": "2026-11-18T16:50Z",
   "run": "second run on account B (18 Nov 2026, 10:53 UTC wake)",
   "observability": {
     "lane": "travel",
-    "how": "src/assets/obs/obs.js (promptugal.news's obs.js) on every page; it reads promptugal.news/assets/obs/obs.json and writes to that vault's site lanes, each event tagged lane: \"travel\" and site: travel.promptugal.news.",
+    "how": "src/assets/obs/obs.js on every page sends to this site's own lane (vault 9y7m26v0, 4 append lanes, drain key sha256:769aec505e1d6f47), configured by src/assets/obs/obs.json; every event also says lane: \"travel\". conductor.b@PrompTugal.dinis holds the sealed drain credentials and drains it.",
     "for": "conductor.b@PrompTugal.dinis relays the lane name to account A's observability@PrompTugal.dinis, whose drain should count events with lane \"travel\" (or site travel.promptugal.news) as this site's."
   },
   "fixes": [
@@ -59,7 +59,6 @@
     "Getting around: winter boat times that are published only as pictures (Faro, Farol, Culatra), Tavira, the Guadiana ferry."
   ],
   "asks": [
-    "Dinis: allow a narrow allowlist entry in scripts/leak-scan.mjs for src/assets/obs/obs.json (and its built copy), kinds 'long high-entropy string' and 'public key outside team/keys': the travel lane's append tokens and drain public key, public by design as in the main site's obs.json. Then obs.js switches to the travel lane.",
     "Dinis: allow the one-line change to scripts/check-commits.mjs (accept @PrompTugal.dinis agents), or make it yourself; until then commits say Agent: travel.b@AgentiCCells.dinis.",
     "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
     "Dinis: IPMA-based pages stay free until you decide (ask IPMA, or keep them free).",
@@ -74,7 +73,7 @@
     "keygen": "Done 18 Nov ~15:55 UTC, with the approval of the person running this session: `sgit pki keygen`, id travel.b-promptugal, fingerprint sha256:609d2f8354bd6aeb (signing sha256:53baa65c14af3ef1). Public bundle in team/keys.json (the only file the leak scan allows public keys in); board/keys.json points to it.",
     "disclaimer": "Done: every page's footer and /about/ say: open an issue (github.com/PrompTugal/PrompTugal__News__Travel/issues/new) and we take it down while we talk.",
     "rebuild": "Done: .github/workflows/pages.yml rebuilds every 3 hours (cron '23 */3 * * *'), and scheduled runs read the latest public data first (scripts/pull.mjs). Nothing is committed by them. The edit was made after the person running this session approved it.",
-    "observability_lane": "Made 18 Nov ~16:10 UTC with the approval of the person running this session: scripts/obs-setup.py made a private data vault on dev.send.sgraph.ai with 4 append lanes and a drain key; credentials kept in this session's ~/.sg-send/ and sealed to conductor.b-promptugal (sent to conductor.b@ as ciphertext). Not yet in use: the site's public obs.json (append tokens and the drain's public key, public by design) needs a narrow leak-scan allowlist entry, and that edit was refused by this session's permission check; obs.js still writes to promptugal.news's lanes with lane: travel."
+    "observability_lane": "Live 18 Nov ~16:50 UTC. The leak scan allows src/assets/obs/obs.json (and its built copy) for two kinds only (append tokens, drain public key), approved by the person running this session. Credentials sealed to conductor.b@ and sent."
   },
   "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md)."
 }
