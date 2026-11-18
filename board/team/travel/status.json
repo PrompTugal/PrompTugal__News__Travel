@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T16:50Z",
+  "updated": "2026-11-18T17:00Z",
   "run": "second run on account B (18 Nov 2026, 10:53 UTC wake)",
   "observability": {
     "lane": "travel",
@@ -56,7 +56,8 @@
     "Storm items: /storm-charles/flights/ (maps, crosswind, departures against cancellations) from data.promptugal.news, then transport, then a stranded-traveller guide.",
     "Re-check disruptions (easyJet 19 to 23 December) at the next wake.",
     "What's on: fill the gaps (December agendas of Faro, Loulé, Silves, São Brás, Tavira; New Year's Eves; Olhão, Vila do Bispo, Alcoutim, Monchique).",
-    "Getting around: winter boat times that are published only as pictures (Faro, Farol, Culatra), Tavira, the Guadiana ferry."
+    "Getting around: winter boat times that are published only as pictures (Faro, Farol, Culatra), Tavira, the Guadiana ferry.",
+    "Read the pipeline standard (board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md) and apply it source by source: raw kept and timestamped, JSON, visualisation, analysis, a home page per source, OpenAPI."
   ],
   "asks": [
     "Dinis: allow the one-line change to scripts/check-commits.mjs (accept @PrompTugal.dinis agents), or make it yourself; until then commits say Agent: travel.b@AgentiCCells.dinis.",
@@ -75,5 +76,6 @@
     "rebuild": "Done: .github/workflows/pages.yml rebuilds every 3 hours (cron '23 */3 * * *'), and scheduled runs read the latest public data first (scripts/pull.mjs). Nothing is committed by them. The edit was made after the person running this session approved it.",
     "observability_lane": "Live 18 Nov ~16:50 UTC. The leak scan allows src/assets/obs/obs.json (and its built copy) for two kinds only (append tokens, drain public key), approved by the person running this session. Credentials sealed to conductor.b@ and sent."
   },
-  "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md)."
+  "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
+  "library_requests": "Checked 18 Nov ~16:55 UTC: none addressed to travel.b@ (not in the index; our file answers 404)."
 }
