@@ -122,6 +122,10 @@ function page({ path, title, description, body, md, provenance, variant = '', sc
 <title>${esc(fullTitle)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
+<meta property="og:title" content="${esc(fullTitle)}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:image" content="${SITE}/preview.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" type="text/markdown" href="${SITE}${path}index.md">
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -639,6 +643,48 @@ const listed = pages.filter(p => !p.noindex);
 writeFileSync('_site/llms.txt', `# PrompTugal.news Travel\n\n> Travel and tourism in Portugal, the Algarve first: flights at Faro, getting around, strikes and disruptions, weather and sea for visitors, events by place, tourism statistics. Every value with its source and the time read. Independent, not official. Version ${version}.\n\n## Pages (markdown twins)\n\n${listed.map(p => `- [${p.title}](${SITE}${p.path}index.md): ${p.description}`).join('\n')}\n\n## Data\n\n- [Digest](${SITE}/api/v1/travel.json)\n- [Inputs manifest](${SITE}/api/v1/manifest.json)\n- [Faro airport series](${SITE}/api/v1/faro-airport.jsonl)\n- [Disruptions](${SITE}/api/v1/disruptions.json)\n- [Transport](${SITE}/api/v1/transport-algarve.json)\n- [Tourism](${SITE}/api/v1/tourism.json)\n`);
 writeFileSync('_site/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${listed.map(p => `<url><loc>${SITE}${p.path}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 writeFileSync('_site/robots.txt', `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
+
+// ---------- /preview.svg: this site's own live numbers, for the sites bar (Dinis, 18 Nov 2026 ~22:00 UTC;
+// PrompTugal__News__Website board/guidance/2026-11-18-the-sites-bar.md). Values from files read at this build only.
+{
+  const addDays = (iso, n) => new Date(Date.parse(iso + 'T00:00:00Z') + n * 864e5).toISOString().slice(0, 10);
+  const weekEnd = addDays(today, 6);
+  const overlaps = (s, e) => typeof s === 'string' && s.slice(0, 10) <= weekEnd && (typeof e === 'string' ? e : s).slice(0, 10) >= today;
+  const seen = new Set();
+  let eventsWeek = 0;
+  for (const e of ((research.events || {}).events || [])) if (overlaps(e.start, e.end) && !seen.has(e.url || e.id)) { seen.add(e.url || e.id); eventsWeek++; }
+  if (existsSync('data/inputs/events')) for (const f of readdirSync('data/inputs/events').filter(f => /^[a-z0-9-]{1,40}\.json$/.test(f))) {
+    for (const e of (J(join('data/inputs/events', f)).events || [])) { const k = e.url || e.name + e.startDate; if (overlaps(e.startDate, e.endDate) && !seen.has(k)) { seen.add(k); eventsWeek++; } }
+  }
+  const flights = airport && Array.isArray(airport.airline) ? airport.airline.length : null;
+  const rd = (faro.station || {}).reading || {};
+  const temp = Number.isFinite(rd.temp_c) ? `${Math.round(rd.temp_c)}°C` : 'n/a';
+  const figs = [
+    [flights == null ? 'n/a' : String(flights), flights === 1 ? 'airline flight near Faro' : 'airline flights near Faro', airport ? `adsb.lol, ${lisbon(airport.at)}` : 'adsb.lol'],
+    [String(upcoming.length), upcoming.length === 1 ? 'disruption ahead' : 'disruptions ahead', 'our research, see /disruptions/'],
+    [String(eventsWeek), eventsWeek === 1 ? 'event this week' : 'events this week', 'councils, data.promptugal.news'],
+    [temp, 'at Faro airport', rd.at ? `IPMA, ${lisbon(rd.at)}` : 'IPMA'],
+  ];
+  const W = 1200, H = 630, cw = 270;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(`travel.promptugal.news today: ${figs.map(f => `${f[0]} ${f[1]}`).join('; ')}`)}">
+<title>travel.promptugal.news today</title>
+<rect width="${W}" height="${H}" fill="#f6f3ec"/>
+<rect x="0" y="0" width="${W}" height="10" fill="#0b5c7a"/>
+<text x="60" y="100" font-family="Georgia, 'Times New Roman', serif" font-size="56" fill="#121317">PrompTugal.news Travel</text>
+<text x="60" y="150" font-family="Arial, sans-serif" font-size="26" fill="#666860">Flights, getting around, strikes, weather and events in the Algarve</text>
+${figs.map((f, i) => { const x = 60 + i * (cw + 10); return `<rect x="${x}" y="200" width="${cw}" height="250" fill="#fffdf8" stroke="#d8d4cb"/>
+<text x="${x + 24}" y="310" font-family="Georgia, serif" font-size="84" fill="${['#0b5c7a', '#c52830', '#006600', '#9a6a00'][i]}">${esc(f[0])}</text>
+<text x="${x + 24}" y="360" font-family="Arial, sans-serif" font-size="22" fill="#121317">${esc(f[1])}</text>
+<text x="${x + 24}" y="420" font-family="Arial, sans-serif" font-size="15" fill="#666860">${esc(f[2])}</text>`; }).join('\n')}
+<text x="60" y="520" font-family="Arial, sans-serif" font-size="20" fill="#121317">Built ${esc(lisbon(built))} · version ${esc(version)} · data read ${esc(lisbon(manifest.read_at))}</text>
+<text x="60" y="556" font-family="Arial, sans-serif" font-size="18" fill="#666860">Licence: CC BY 4.0 (this picture); adsb.lol data ODbL 1.0; IPMA data, IPMA's terms. Sources: travel.promptugal.news/api/v1/travel.json</text>
+<text x="60" y="590" font-family="Arial, sans-serif" font-size="18" fill="#666860">Independent, not official. travel.promptugal.news</text>
+</svg>
+`;
+  writeFileSync('_site/preview.svg', svg);
+  writeFileSync('_site/api/v1/preview.json', JSON.stringify({ license_ours: OURS, about: 'The numbers in /preview.svg, with where each came from.', built, version, data_read: manifest.read_at,
+    figures: figs.map(([value, label, source]) => ({ value, label, source })), png: '/preview.png', png_note: 'preview.png is rendered from preview.svg by scripts/preview-png.mjs when a browser is available; it may be from an earlier build than the SVG.' }, null, 2) + '\n');
+}
 
 // ---------- stamp the version (from the factory build) ----------
 const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });

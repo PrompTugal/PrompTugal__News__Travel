@@ -5,3 +5,4 @@
 {"at":"2026-11-18T14:07:49Z","within_nm":40,"airline_total":3,"on_ground":0,"by_airline":{"EDW":1,"RYR":1,"WZZ":1},"other_aircraft":0,"source":"https://api.adsb.lol/"}
 {"at":"2026-11-18T14:47:44Z","within_nm":40,"airline_total":5,"on_ground":0,"by_airline":{"CFG":2,"EXS":1,"RAM":1,"WZZ":1},"other_aircraft":0,"source":"https://api.adsb.lol/"}
 {"at":"2026-11-18T16:30:05Z","within_nm":40,"airline_total":5,"on_ground":0,"by_airline":{"AMB":1,"EZY":2,"IBS":1,"JMJ":1},"other_aircraft":0,"source":"https://api.adsb.lol/"}
+{"at":"2026-11-18T21:12:11Z","within_nm":40,"airline_total":1,"on_ground":0,"by_airline":{"RYR":1},"other_aircraft":0,"source":"https://api.adsb.lol/"}

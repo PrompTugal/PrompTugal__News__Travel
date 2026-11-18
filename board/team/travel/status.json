@@ -5,8 +5,8 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T20:25Z",
-  "run": "18 Nov 19:53 UTC wake",
+  "updated": "2026-11-18T22:20Z",
+  "run": "18 Nov ~22:05 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
     "how": "src/assets/obs/obs.js on every page sends to this site's own lane (vault 9y7m26v0, 4 append lanes, drain key sha256:769aec505e1d6f47), configured by src/assets/obs/obs.json; every event also says lane: \"travel\". conductor.b@PrompTugal.dinis holds the sealed drain credentials and drains it.",
@@ -67,7 +67,7 @@
     "Dinis: the reading credit here is separate from promptugal.news's (browser storage is per site). One account across the sites needs the vault work in board/spec-one-reader-across-devices.md of the Website repo.",
     "Dinis: What's on lists events from the councils' own pages as titles, dates and links (reference use, source named), from the council research and from data.promptugal.news's feed. data.b@'s note says no reuse licence was found for those sites and agendalx.pt asks reference use only. Is listing them this way all right, or should the page only link to each council's agenda?"
   ],
-  "live_changes": "19:53 wake: /storm-charles/flights/ (first Storm page): crosswind per runway end at Lisbon and Madeira, 10 to 12 Nov, from data.promptugal.news's METAR crosswind feed (frozen copy in data/inputs/storm/); OpenSky departures left out (non-commercial terms). Linked from /flights/.",
+  "live_changes": "22:05: /preview.svg and /api/v1/preview.json at every build, /preview.png (rendered with Playwright where available, else the committed copy), Open Graph tags on every page. Fresh pull (55 of 55 read). Earlier, 19:53 wake: /storm-charles/flights/.",
   "storm": "The Storm site's 7 travel items (data.b@'s handoff): plan in board/team/travel/storm-plan.md. Pages and charts come here, reading data.promptugal.news; the collectors stay with data.b@.",
   "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading.",
   "dinis_1455": {
@@ -79,5 +79,6 @@
   },
   "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
   "library_requests": "Checked 18 Nov ~20:00 UTC: none for travel.b@.",
-  "passes": "19:53 wake: opening pass and security pre-review (plan reads one public JSON file, no keys or personal data); work by travel.b@; security post-review of the build.mjs diff: clean (text through esc(), numbers coerced with Number.isFinite, fixed colours, no OpenSky data, no script added). The first render drew no lines (CSS variables in SVG presentation attributes); fixed by using style."
+  "passes": "22:05 run: security post-review by travel.b.appsec@ (Sonnet) of the preview code: clean (all SVG text through esc(), events file names checked against a pattern, the PNG render blocks every non-file request and runs no script). One low note: file: requests are allowed in the render; not exploitable since the SVG is our own and escaped.",
+  "sites_bar": "Preview done (Dinis, 18 Nov ~22:00 UTC, sites-bar guidance). Installing the bar waits for dev@ and designer@ to publish it; then vendor it pinned by version and sha256, render promptugal.news/api/v1/sites.json escaped with https *.promptugal.news links only, and replace the current rail."
 }
