@@ -5,8 +5,8 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T17:00Z",
-  "run": "second run on account B (18 Nov 2026, 10:53 UTC wake)",
+  "updated": "2026-11-18T17:15Z",
+  "run": "18 Nov 16:53 UTC wake",
   "observability": {
     "lane": "travel",
     "how": "src/assets/obs/obs.js on every page sends to this site's own lane (vault 9y7m26v0, 4 append lanes, drain key sha256:769aec505e1d6f47), configured by src/assets/obs/obs.json; every event also says lane: \"travel\". conductor.b@PrompTugal.dinis holds the sealed drain credentials and drains it.",
@@ -52,9 +52,10 @@
   "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
   "next": [
     "Each wake: pull, build, gate, commit inputs and the Faro series, release.",
+    "Disruptions: watch the easyJet talks (20, 23, 25 Nov); SNPVAC says new action is possible if they stall.",
+    "Check the scheduled rebuild has fired (none by 16:55 UTC on 18 Nov; the first slot was 15:23).",
     "Licences: find terms for the 28 sources with none found (councils, CP, Diário da República); license the Faro series rows.",
     "Storm items: /storm-charles/flights/ (maps, crosswind, departures against cancellations) from data.promptugal.news, then transport, then a stranded-traveller guide.",
-    "Re-check disruptions (easyJet 19 to 23 December) at the next wake.",
     "What's on: fill the gaps (December agendas of Faro, Loulé, Silves, São Brás, Tavira; New Year's Eves; Olhão, Vila do Bispo, Alcoutim, Monchique).",
     "Getting around: winter boat times that are published only as pictures (Faro, Farol, Culatra), Tavira, the Guadiana ferry.",
     "Read the pipeline standard (board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md) and apply it source by source: raw kept and timestamped, JSON, visualisation, analysis, a home page per source, OpenAPI."
@@ -66,7 +67,7 @@
     "Dinis: the reading credit here is separate from promptugal.news's (browser storage is per site). One account across the sites needs the vault work in board/spec-one-reader-across-devices.md of the Website repo.",
     "Dinis: What's on lists events from the councils' own pages as titles, dates and links (reference use, source named), from the council research and from data.promptugal.news's feed. data.b@'s note says no reuse licence was found for those sites and agendalx.pt asks reference use only. Is listing them this way all right, or should the page only link to each council's agenda?"
   ],
-  "live_changes": "18 Nov 13:53 wake: /getting-around/ has 'This winter: boats and tolls' (A22 toll-free, Armona winter times, Faro and Tavira boats); Iberia Express and Royal Air Maroc named; fresh pull, all 18 places from data.promptugal.news. 14:30: What's on also lists data.promptugal.news's events by place (titles, dates, links; Lagos 89 so far). 15:00: every item carries its licence link (pages, markdown, API), checked by the gate; register of 53 sources.",
+  "live_changes": "16:53 wake: the easyJet 19 to 23 December strike was called off by SNPVAC on 18 Nov (Público, ECO; re-read by travel.b@); /disruptions/ shows it under 'Called off'; the front page no longer leads with it. Fresh pull: all 18 places from data.promptugal.news; 282 events in the feed.",
   "storm": "The Storm site's 7 travel items (data.b@'s handoff): plan in board/team/travel/storm-plan.md. Pages and charts come here, reading data.promptugal.news; the collectors stay with data.b@.",
   "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading.",
   "dinis_1455": {
@@ -77,5 +78,6 @@
     "observability_lane": "Live 18 Nov ~16:50 UTC. The leak scan allows src/assets/obs/obs.json (and its built copy) for two kinds only (append tokens, drain public key), approved by the person running this session. Credentials sealed to conductor.b@ and sent."
   },
   "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
-  "library_requests": "Checked 18 Nov ~16:55 UTC: none addressed to travel.b@ (not in the index; our file answers 404)."
+  "library_requests": "Checked 18 Nov 16:55 UTC: none for travel.b@.",
+  "passes": "16:53 wake: opening pass and security pre-review (no keys, tokens or personal data in the plan); work by travel.b.research@ (Sonnet) and travel.b@; security post-review: clean (one small template change reusing the escaped item helper)."
 }

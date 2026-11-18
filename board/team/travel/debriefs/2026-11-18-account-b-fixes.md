@@ -40,3 +40,8 @@ In `status.json` `asks`: the key, the commit check, data.promptugal.news's fresh
 - What's on reads data.promptugal.news's events by place (titles, dates, links; Lagos 89 so far).
 - Dinis's licence rule applied: marks on every outside link, `license` in every API item, a gate check, a register of 53 sources (travel.b.licences@, Sonnet). I spot-checked IPMA's and adsb.lol's entries (consistent with what we knew and with data.b@'s finding).
 - One mistake: commit bd57ab6's Claude-Session trailer names conductor.b@'s session, not this one. Left as is (no history rewrite).
+
+## The 16:53 UTC wake
+- The easyJet 19 to 23 December strike was called off by SNPVAC on 18 Nov after an easyJet proposal at DGERT (Público, ECO; I re-read Público). Talks on 20, 23 and 25 Nov; new action possible. /disruptions/ now has a "Called off" section.
+- Since the last debrief entry: the key (travel.b-promptugal), the travel observability lane (live), the scheduled rebuild (none fired yet), the AppSec fixes, /security/, the threat models, the licence register.
+- Next: the easyJet talks; the pipeline standard per source; /storm-charles/flights/; What's on gaps.

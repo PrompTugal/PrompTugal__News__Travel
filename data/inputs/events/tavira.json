@@ -6,11 +6,870 @@
   "note": "What PrompTugal.news makes: this file's structure, records and derived values."
  },
  "place": "tavira",
- "read_at": "2026-11-18T15:07:38Z",
- "source_read_at": "2026-11-18T14:50:37Z",
+ "read_at": "2026-11-18T16:32:56Z",
+ "source_read_at": "2026-11-18T16:30:08Z",
  "by": "collect/events-by-place.mjs (code, no model; data.b@PrompTugal.dinis), from data/events-pt/latest.json",
  "about": "Public events on now or starting within 60 days in this place, as schema.org Event records, each with its source URL and the time read. A dated record, not a ticketing service. An empty list means no source covers this place yet, not that nothing is happening.",
- "source_note": "Read 2026-11-18T14:50:37Z from www.agendalx.pt and www.cm-lagos.pt; sources with no feed or refused are in gaps (https://data.promptugal.news/api/v1/events-pt/latest.json). Terms: Strictest of the sources: no reuse licence or terms page was found for either host. Both robots.txt files allow the paths read; agendalx.pt sets Content-Signal search=yes, ai-train=no, use=reference. So: reference use only, name the source, link to the event, no AI training. Not reviewed by a person: whether this is enough to republish is for Dinis.",
- "count": 0,
- "events": []
+ "source_note": "Read 2026-11-18T16:30:08Z from www.agendalx.pt and www.cm-lagos.pt and teatrodasfiguras.pt and cm-tavira.pt; sources with no feed or refused are in gaps (https://data.promptugal.news/api/v1/events-pt/latest.json). Terms: Strictest of the sources: no reuse licence or terms page was found for any of the four hosts (teatrodasfiguras.pt and cm-tavira.pt show only \"Todos os direitos reservados\" in their footers, and cm-tavira.pt has no robots.txt). The robots.txt files that exist allow the paths read; agendalx.pt sets Content-Signal search=yes, ai-train=no, use=reference. So: reference use only, name the source, link to the event, no AI training. Not reviewed by a person: whether this is enough to republish is for Dinis.",
+ "count": 39,
+ "events": [
+  {
+   "@type": "Event",
+   "name": "Dansanté no Teatro | Aula de dança para a saúde e bem estar dos séniores",
+   "startDate": "2026-11-18T10:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Teatro Municipal António Pinheiro Tavira",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/dansante-no-teatro-aula-de-danca-para-a-saude-e-bem-estar-dos-seniores/2026-11-18/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/dansante-no-teatro-aula-de-danca-para-a-saude-e-bem-estar-dos-seniores/2026-11-18/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Festival Internacional de Órgão do Algarve 2026 | Visita ao novo órgão, pelo organeiro Dinarte Machado",
+   "startDate": "2026-11-20T17:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Igreja do Carmo",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/festival-internacional-de-orgao-do-algarve-2026-visita-ao-novo-orgao-pelo-organeiro-dinarte-machado/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/festival-internacional-de-orgao-do-algarve-2026-visita-ao-novo-orgao-pelo-organeiro-dinarte-machado/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Encontro com Autores | Apresentação do livro “Comer a Natureza” de Paulo Moreira",
+   "startDate": "2026-11-20T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal Álvaro de Campos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/encontro-com-autores-apresentacao-do-livro-comer-a-natureza-de-paulo-moreira/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/encontro-com-autores-apresentacao-do-livro-comer-a-natureza-de-paulo-moreira/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Festival Internacional de Órgão do Algarve 2026 | Concerto por Daniel Ricardo de Pinho",
+   "startDate": "2026-11-20T21:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Igreja Santiago – Tavira",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/festival-internacional-de-orgao-do-algarve-2026-concerto-por-daniel-ricardo-de-pinho/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/festival-internacional-de-orgao-do-algarve-2026-concerto-por-daniel-ricardo-de-pinho/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Serões de Outono 2026: Ana Lua Caiano",
+   "startDate": "2026-11-20T22:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Casa do Povo de Santo Estêvão",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/seroes-de-outono-2026-ana-lua-caiano/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/seroes-de-outono-2026-ana-lua-caiano/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Em Família no Museu | Presépios Algarvios em Barro, pelo ceramista Mário Mendonça",
+   "startDate": "2026-11-21T10:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Museu Municipal de Tavira – Palácio da Galeria",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/em-familia-no-museu-presepios-algarvios-em-barro-pelo-ceramista-mario-mendonca/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/em-familia-no-museu-presepios-algarvios-em-barro-pelo-ceramista-mario-mendonca/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Visita orientada ao Lagar de Azeite da Cooperativa Agrícola de Santa Catarina",
+   "startDate": "2026-11-21T11:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Santa Catarina da Fonte do Bispo",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/visita-orientada-ao-lagar-de-azeite-da-cooperativa-agricola-de-santa-catarina/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/visita-orientada-ao-lagar-de-azeite-da-cooperativa-agricola-de-santa-catarina/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Tavira Convid’a Pedalar",
+   "startDate": "2026-11-21T15:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Partida: Praça da República",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/tavira-convida-pedalar-74/2026-11-21/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/tavira-convida-pedalar-74/2026-11-21/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Passeios na História de Tavira |“Pão, Vinho e Azeite: a Dieta Mediterrânica na arte sacra de Tavira”",
+   "startDate": "2026-11-21T15:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Vários sitios da cidade",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/passeios-na-historia-de-tavira-pao-vinho-e-azeite-a-dieta-mediterranica-na-arte-sacra-de-tavira/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/passeios-na-historia-de-tavira-pao-vinho-e-azeite-a-dieta-mediterranica-na-arte-sacra-de-tavira/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Encontro com Autores | Apresentação do livro “Romanceiro da urgência” de Afonso Dias",
+   "startDate": "2026-11-21T16:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal Álvaro de Campos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/encontro-com-autores-apresentacao-do-livro-romanceiro-da-urgencia-de-afonso-dias/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/encontro-com-autores-apresentacao-do-livro-romanceiro-da-urgencia-de-afonso-dias/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Música nas Igrejas | Duo Fortíssimo (guitarra)",
+   "startDate": "2026-11-21T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Ermida de Santa Ana",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/musica-nas-igrejas-duo-fortissimo-guitarra/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/musica-nas-igrejas-duo-fortissimo-guitarra/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Festa na Horta!",
+   "startDate": "2026-11-22T09:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Horta Comunitária da Amendoeira (Posto Agrário de Tavira)",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/festa-na-horta/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/festa-na-horta/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Todos a Caminhar",
+   "startDate": "2026-11-22T10:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Cachopo",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/todos-a-caminhar-103/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/todos-a-caminhar-103/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Todos a Caminhar",
+   "startDate": "2026-11-22T10:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Cachopo",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/todos-a-caminhar-106/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/todos-a-caminhar-106/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Festival Internacional de Órgão do Algarve 2026 | Concerto por Arturo Barba (Espanha) e Coro Jubilate Deo",
+   "startDate": "2026-11-22T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Igreja do Carmo",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/festival-internacional-de-orgao-do-algarve-2026-concerto-por-arturo-barba-espanha-e-coro-jubilate-deo/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/festival-internacional-de-orgao-do-algarve-2026-concerto-por-arturo-barba-espanha-e-coro-jubilate-deo/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "A apanha da Azeitona – workshop de expressão plástica",
+   "startDate": "2026-11-24T15:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Clube Recreativo Cabanense",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/a-apanha-da-azeitona-workshop-de-expressao-plastica/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/a-apanha-da-azeitona-workshop-de-expressao-plastica/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Documentário “The Librarians”",
+   "startDate": "2026-11-24T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal Álvaro de Campos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/documentario-the-librarians/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/documentario-the-librarians/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Workshop Solidário de Costura",
+   "startDate": "2026-11-25T21:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Sociedade Recreativa Musical Luzense, Luz de Tavira",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/workshop-solidario-de-costura/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/workshop-solidario-de-costura/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Conferência “O Impacto dos sistemas alimentares na ação climática – o papel do poder local”",
+   "startDate": "2026-11-26T09:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Teatro Municipal António Pinheiro",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/conferencia-o-impacto-dos-sistemas-alimentares-na-acao-climatica-o-papel-do-poder-local/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/conferencia-o-impacto-dos-sistemas-alimentares-na-acao-climatica-o-papel-do-poder-local/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "ALUT – Algarviana Ultra Trail",
+   "startDate": "2026-11-26T14:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Cachopo",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/alut-algarviana-ultra-trail-3/2026-11-26/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/alut-algarviana-ultra-trail-3/2026-11-26/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Artes & Letra | Conferência filosófica e psicanalítica “A Alma, Deus, Espiritualidade, O que é o Homem?” por Fernand Viégas",
+   "startDate": "2026-11-26T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal Álvaro de Campos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/artes-letra-conferencia-filosofica-e-psicanalitica-a-alma-deus-espiritualidade-o-que-e-o-homem-por-fernand-viegas/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/artes-letra-conferencia-filosofica-e-psicanalitica-a-alma-deus-espiritualidade-o-que-e-o-homem-por-fernand-viegas/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "ALUT – Algarviana Ultra Trail",
+   "startDate": "2026-11-27T14:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Cachopo",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/alut-algarviana-ultra-trail-3/2026-11-27/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/alut-algarviana-ultra-trail-3/2026-11-27/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "O arquiteto, a ativista e a comunidade “em prol do bairro”",
+   "startDate": "2026-11-27T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Biblioteca Municipal Álvaro de Campos",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/o-arquiteto-a-ativista-e-a-comunidade-em-prol-do-bairro-evocacao-de-joao-moitinho-luisa-anselmo-e-associacoes-saal/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/o-arquiteto-a-ativista-e-a-comunidade-em-prol-do-bairro-evocacao-de-joao-moitinho-luisa-anselmo-e-associacoes-saal/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Noite de Fados",
+   "startDate": "2026-11-27T21:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Salão da Casa do Povo de Santa Catarina da Fonte do Bispo",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/noite-de-fados-5/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/noite-de-fados-5/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "“As mulheres vão sempre à frente e ainda hoje continuam!”Visita à exposição “Tudo em prol do bairro",
+   "startDate": "2026-11-28T10:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Museu Municipal de Tavira – Palácio da Galeria",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/as-mulheres-vao-sempre-a-frente-e-ainda-hoje-continuamvisita-a-exposicao-tudo-em-prol-do-bairro/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/as-mulheres-vao-sempre-a-frente-e-ainda-hoje-continuamvisita-a-exposicao-tudo-em-prol-do-bairro/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "ALUT – Algarviana Ultra Trail",
+   "startDate": "2026-11-28T14:30",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Cachopo",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/alut-algarviana-ultra-trail-3/2026-11-28/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/alut-algarviana-ultra-trail-3/2026-11-28/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Tavira Convid’a Pedalar",
+   "startDate": "2026-11-28T15:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Conceição de Tavira",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/tavira-convida-pedalar-75/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/tavira-convida-pedalar-75/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Tavira Convid’a Pedalar",
+   "startDate": "2026-11-28T15:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Conceição Tavira",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/tavira-convida-pedalar-76/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/tavira-convida-pedalar-76/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Técnica e Interpretação da Voz Cantada com Lídia Brandão",
+   "startDate": "2026-11-28T15:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Hub Criativo da Ria Inquieta (Rua 4 de Outubro, n.º 24)",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/tecnica-e-interpretacao-da-voz-cantada-com-lidia-brandao/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/tecnica-e-interpretacao-da-voz-cantada-com-lidia-brandao/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Visita orientada à exposição “Judeus em Tavira: fragmentos de uma história”, sob a orientação de Marco Sousa Santos (Historiador de Arte – Museu Municipal de Tavira)",
+   "startDate": "2026-11-28T15:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Ponto de encontro: Núcleo Islâmico (Praça da República)",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/visita-orientada-a-exposicao-judeus-em-tavira-fragmentos-de-uma-historia-sob-a-orientacao-de-marco-sousa-santos-historiador-de-arte-museu-municipal-de-tavira/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/visita-orientada-a-exposicao-judeus-em-tavira-fragmentos-de-uma-historia-sob-a-orientacao-de-marco-sousa-santos-historiador-de-arte-museu-municipal-de-tavira/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Encontro de Coros | Grupo coral de Tavira",
+   "startDate": "2026-11-28T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Igreja da Misericódia",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/encontro-de-coros-grupo-coral-de-tavira/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/encontro-de-coros-grupo-coral-de-tavira/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Iniciativa Mostra Lá",
+   "startDate": "2026-11-28T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Sede do Ginásio Clube de Tavira",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/iniciativa-mostra-la/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/iniciativa-mostra-la/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Música nas Igrejas | Josué Nunes (guitarra)",
+   "startDate": "2026-11-28T18:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Ermida de São Sebastião",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/musica-nas-igrejas-josue-nunes-guitarra-8/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/musica-nas-igrejas-josue-nunes-guitarra-8/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "4.º Encontro Cidade de Tavira",
+   "startDate": "2026-11-29",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Pavilhão Municipal Dr. Eduardo Mansinho",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/4-o-encontro-cidade-de-tavira/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/4-o-encontro-cidade-de-tavira/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Todos a Caminhar",
+   "startDate": "2026-11-29T10:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Jardim Público de Santa Luzia",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/todos-a-caminhar-104/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/todos-a-caminhar-104/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Procissão em honra de Santa Catarina e São Luís",
+   "startDate": "2026-11-29T16:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Santa Catarina da Fonte do Bispo (centro da aldeia)",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/procissao-em-honra-de-santa-catarina-e-sao-luis-2/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/procissao-em-honra-de-santa-catarina-e-sao-luis-2/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Desfile de Natal Solidário | Moto Manos",
+   "startDate": "2026-12-08T14:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Sede Moto Manos, Luz de Tavira",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/desfile-de-natal-solidario-moto-manos/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/desfile-de-natal-solidario-moto-manos/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Diogo Zambujo | Vir a Ser",
+   "startDate": "2026-12-11T22:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Junta de Freguesia de Santo Estêvão",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/diogo-zambujo-vir-a-ser/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/diogo-zambujo-vir-a-ser/",
+    "holder": "the event's source"
+   }
+  },
+  {
+   "@type": "Event",
+   "name": "Mercadinho de Natal",
+   "startDate": "2026-12-13T10:00",
+   "endDate": null,
+   "location": {
+    "@type": "Place",
+    "name": "Casa do Povo de Santa Catarina da Fonte do Bispo",
+    "address": null,
+    "geo": null
+   },
+   "organizer": null,
+   "url": "https://cm-tavira.pt/site/evento/mercadinho-de-natal-2/",
+   "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
+   "read_at": "2026-11-18T16:30:27Z",
+   "place": "tavira",
+   "license": {
+    "name": "the source's terms",
+    "url": "https://cm-tavira.pt/site/evento/mercadinho-de-natal-2/",
+    "holder": "the event's source"
+   }
+  }
+ ]
 }

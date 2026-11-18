@@ -378,6 +378,7 @@ ${gaps.length ? `<section aria-labelledby="h-gaps"><h2 id="h-gaps">Gaps</h2><ul>
 // ---------- disruptions ----------
 {
   const d = research.disruptions || {};
+  const calledOff = disruptions.filter(d => d.status === 'called off' && (d.end || d.start) >= today);
   const item = x => `<li id="${esc(x.id)}"><h3>${esc(x.title)}</h3><p class="meta"><strong>${esc(dateRange(x))}</strong> · ${esc(x.where)} · ${esc(x.who)} · <span class="status s-${esc(x.status)}">${esc(x.status)}</span>${x.algarve ? ' · the Algarve' : ''}</p><p>${esc(x.what)}</p><p class="meta">Sources: ${srcList(x.sources)}</p></li>`;
   const itemMd = x => `### ${x.title}\n\n${dateRange(x)} · ${x.where} · ${x.who} · ${x.status}\n\n${x.what}\n\nSources: ${srcMd(x.sources)}`;
   const hol = (holidays || {}).days || [];
@@ -387,10 +388,11 @@ ${gaps.length ? `<section aria-labelledby="h-gaps"><h2 id="h-gaps">Gaps</h2><ul>
     provenance: prov({ agents: ['travel.research.disruptions@PrompTugal.dinis (Sonnet) searched official notices and news reports'] }),
     body: `<h1>Strikes and disruptions</h1><p class="dek">What may stop or slow a journey in Portugal, the Algarve first: strikes called, border checks, storms and holidays. Each item has its status and its sources. Your airline or operator decides whether your service runs: its site or app has the latest.</p>
 <section aria-labelledby="h-up"><h2 id="h-up">Ahead and in force</h2>${upcoming.length ? `<ul class="items long">${upcoming.map(item).join('')}</ul>` : '<p>None found.</p>'}</section>
+${calledOff.length ? `<section aria-labelledby="h-off"><h2 id="h-off">Called off</h2><ul class="items long">${calledOff.map(item).join('')}</ul></section>` : ''}
 <section aria-labelledby="h-hol"><h2 id="h-hol">Public holidays</h2>${hol.length ? `<ul>${hol.filter(h => h.date >= today).map(h => `<li><strong>${esc(longDay(h.date))}</strong>: ${esc(h.name)}</li>`).join('')}</ul><p class="meta">${esc(holidays.note || '')} ${a(holidays.source, holidays.source_title)}</p>` : '<p>Not listed yet.</p>'}</section>
 <section aria-labelledby="h-past"><h2 id="h-past">Recently</h2>${past.length ? `<ul class="items long">${past.map(item).join('')}</ul>` : '<p>None listed.</p>'}</section>
 <section aria-labelledby="h-gap"><h2 id="h-gap">What we looked for and did not find</h2><p>Not finding a strike is not proof there is none. These were searched for on ${esc((d.read_at || '').slice(0, 10))}:</p><ul>${(d.gaps || []).map(g => `<li><strong>${esc(g.what)}</strong>: ${esc(g.why)}</li>`).join('')}</ul></section>`,
-    md: `What may stop or slow a journey in Portugal, the Algarve first. Your airline or operator decides whether your service runs: its site or app has the latest.\n\n## Ahead and in force\n\n${upcoming.map(itemMd).join('\n\n') || 'None found.'}\n\n## Public holidays\n\n${hol.filter(h => h.date >= today).map(h => `- **${longDay(h.date)}**: ${h.name}`).join('\n')}\n\n${holidays ? `${holidays.note || ''} ${ml(holidays.source, holidays.source_title)}` : ''}\n\n## Recently\n\n${past.map(itemMd).join('\n\n')}\n\n## What we looked for and did not find\n\n${(d.gaps || []).map(g => `- **${g.what}**: ${g.why}`).join('\n')}`,
+    md: `What may stop or slow a journey in Portugal, the Algarve first. Your airline or operator decides whether your service runs: its site or app has the latest.\n\n## Ahead and in force\n\n${upcoming.map(itemMd).join('\n\n') || 'None found.'}${calledOff.length ? `\n\n## Called off\n\n${calledOff.map(x => `- **${dateRange(x)}**: ${mdesc(x.title)}. ${mdesc(x.what)} ${srcMd(x.sources)}`).join('\n')}` : ''}\n\n## Public holidays\n\n${hol.filter(h => h.date >= today).map(h => `- **${longDay(h.date)}**: ${h.name}`).join('\n')}\n\n${holidays ? `${holidays.note || ''} ${ml(holidays.source, holidays.source_title)}` : ''}\n\n## Recently\n\n${past.map(itemMd).join('\n\n')}\n\n## What we looked for and did not find\n\n${(d.gaps || []).map(g => `- **${g.what}**: ${g.why}`).join('\n')}`,
   });
 }
 

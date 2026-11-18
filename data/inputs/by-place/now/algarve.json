@@ -20,7 +20,7 @@
   }
  },
  "place": "algarve",
- "read_at": "2026-11-18T14:49:56Z",
+ "read_at": "2026-11-18T16:32:56Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "about": "Now in the Algarve: IPMA's warnings for the Faro district, Faro airport, and each place's nearest station. Not a warning service.",
  "warnings": {
@@ -42,47 +42,47 @@
   "icao": "LPFR",
   "name": "Faro airport",
   "within_nm": 40,
-  "at": "2026-11-18T14:47:44Z",
+  "at": "2026-11-18T16:30:05Z",
   "airline": [
    {
-    "callsign": "CFG139",
-    "airline": "CFG",
-    "type": "A21N",
+    "callsign": "AMB556",
+    "airline": "AMB",
+    "type": "C680",
+    "alt_ft": 47000,
+    "on_ground": false,
+    "ground_speed_kt": 428.2
+   },
+   {
+    "callsign": "EZY93VG",
+    "airline": "EZY",
+    "type": "A20N",
+    "alt_ft": 39000,
+    "on_ground": false,
+    "ground_speed_kt": 429.3
+   },
+   {
+    "callsign": "EZY95KM",
+    "airline": "EZY",
+    "type": "A20N",
+    "alt_ft": 39025,
+    "on_ground": false,
+    "ground_speed_kt": 412.9
+   },
+   {
+    "callsign": "IBS1546",
+    "airline": "IBS",
+    "type": "A320",
     "alt_ft": 36000,
     "on_ground": false,
-    "ground_speed_kt": 472.7
+    "ground_speed_kt": 496.3
    },
    {
-    "callsign": "CFG9MK",
-    "airline": "CFG",
-    "type": "A20N",
-    "alt_ft": 38025,
+    "callsign": "JMJ18SA",
+    "airline": "JMJ",
+    "type": "FA7X",
+    "alt_ft": 43000,
     "on_ground": false,
-    "ground_speed_kt": 490.7
-   },
-   {
-    "callsign": "EXS5U",
-    "airline": "EXS",
-    "type": "A21N",
-    "alt_ft": 37900,
-    "on_ground": false,
-    "ground_speed_kt": 431.4
-   },
-   {
-    "callsign": "RAM716X",
-    "airline": "RAM",
-    "type": "B38M",
-    "alt_ft": 38000,
-    "on_ground": false,
-    "ground_speed_kt": 457.3
-   },
-   {
-    "callsign": "WZZ6014",
-    "airline": "WZZ",
-    "type": "A21N",
-    "alt_ft": 37000,
-    "on_ground": false,
-    "ground_speed_kt": 386.6
+    "ground_speed_kt": 430.3
    }
   ],
   "other_aircraft": 0,
@@ -119,7 +119,7 @@
   {
    "place": "vila-real-de-santo-antonio",
    "station": "Vila Real de S. António",
-   "temp_c": 21.2
+   "temp_c": 20.8
   },
   {
    "place": "portimao",
@@ -134,7 +134,7 @@
   {
    "place": "olhao",
    "station": "Olhão, EPPO",
-   "temp_c": 21.4
+   "temp_c": 21.3
   },
   {
    "place": "albufeira",
@@ -149,68 +149,68 @@
   {
    "place": "monchique",
    "station": "Fóia",
-   "temp_c": 14.8
+   "temp_c": 14.7
   },
   {
    "place": "aljezur",
    "station": "Aljezur",
-   "temp_c": 21.1
+   "temp_c": 20.9
   },
   {
    "place": "vila-do-bispo",
    "station": "Sagres",
-   "temp_c": 20.4
+   "temp_c": 20.3
   },
   {
    "place": "castro-marim",
    "station": "Castro Marim (RN Sapal)",
-   "temp_c": 22.3
+   "temp_c": 22.2
   },
   {
    "place": "alcoutim",
    "station": "Alcoutim, Mart.Longo",
-   "temp_c": 21
+   "temp_c": 20.2
   },
   {
    "place": "sao-bras-de-alportel",
    "station": "Olhão, EPPO",
-   "temp_c": 21.4
+   "temp_c": 21.3
   }
  ],
  "reads": {
   "observations": {
    "url": "https://data.promptugal.news/api/v1/ipma-observations/latest.json",
-   "at": "2026-11-18T14:49:32Z",
+   "at": "2026-11-18T16:32:08Z",
    "status": 200
   },
   "warnings": {
    "url": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
-   "at": "2026-11-18T14:49:49Z",
+   "at": "2026-11-18T16:32:26Z",
    "status": 200
   },
   "forecasts": {
    "url": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
-   "at": "2026-11-18T14:47:56Z",
+   "at": "2026-11-18T16:30:33Z",
    "status": 200
   },
   "fire-risk": {
    "url": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
-   "at": "2026-11-18T14:49:24Z",
+   "at": "2026-11-18T16:32:01Z",
    "status": 200
   },
   "uv": {
    "url": "https://data.promptugal.news/api/v1/ipma-uv/latest.json",
-   "at": "2026-11-18T14:49:47Z",
+   "at": "2026-11-18T16:32:23Z",
    "status": 200
   },
   "sea": {
    "url": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
-   "at": "2026-11-18T14:49:37Z",
+   "at": "2026-11-18T16:32:14Z",
    "status": 200
   },
   "adsb": {
    "url": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
-   "at": "2026-11-18T14:47:44Z",
+   "at": "2026-11-18T16:30:05Z",
    "status": 200
   }
  }

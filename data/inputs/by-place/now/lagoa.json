@@ -20,7 +20,7 @@
   }
  },
  "place": "lagoa",
- "read_at": "2026-11-18T14:49:56Z",
+ "read_at": "2026-11-18T16:32:56Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "about": "Now in this place, from IPMA's open data and (for Faro) adsb.lol, as collected by data.promptugal.news: each value with its source and the time read. Not a warning service: follow IPMA (https://www.ipma.pt/) and ANEPC.",
  "station": {
@@ -129,37 +129,37 @@
  "reads": {
   "observations": {
    "url": "https://data.promptugal.news/api/v1/ipma-observations/latest.json",
-   "at": "2026-11-18T14:49:32Z",
+   "at": "2026-11-18T16:32:08Z",
    "status": 200
   },
   "warnings": {
    "url": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
-   "at": "2026-11-18T14:49:49Z",
+   "at": "2026-11-18T16:32:26Z",
    "status": 200
   },
   "forecasts": {
    "url": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
-   "at": "2026-11-18T14:47:56Z",
+   "at": "2026-11-18T16:30:33Z",
    "status": 200
   },
   "fire-risk": {
    "url": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
-   "at": "2026-11-18T14:49:24Z",
+   "at": "2026-11-18T16:32:01Z",
    "status": 200
   },
   "uv": {
    "url": "https://data.promptugal.news/api/v1/ipma-uv/latest.json",
-   "at": "2026-11-18T14:49:47Z",
+   "at": "2026-11-18T16:32:23Z",
    "status": 200
   },
   "sea": {
    "url": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
-   "at": "2026-11-18T14:49:37Z",
+   "at": "2026-11-18T16:32:14Z",
    "status": 200
   },
   "adsb": {
    "url": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
-   "at": "2026-11-18T14:47:44Z",
+   "at": "2026-11-18T16:30:05Z",
    "status": 200
   }
  }
