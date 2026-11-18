@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T11:35Z",
+  "updated": "2026-11-18T14:20Z",
   "run": "second run on account B (18 Nov 2026, 10:53 UTC wake)",
   "observability": {
     "lane": "travel",
@@ -52,9 +52,9 @@
   "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
   "next": [
     "Each wake: pull, build, gate, commit inputs and the Faro series, release.",
-    "What's on: fill the gaps (December agendas of Faro, Loulé, Silves, São Brás, Tavira; New Year's Eves; Olhão, Vila do Bispo, Alcoutim, Monchique) and drop past events each wake.",
-    "Re-check disruptions each wake: on 18 Nov the easyJet 19 to 23 December strike still stood as announced; DGERT answered 503.",
-    "Getting-around gaps: island ferries, tolls."
+    "Re-check disruptions (easyJet 19 to 23 December) at the next wake.",
+    "What's on: fill the gaps (December agendas of Faro, Loulé, Silves, São Brás, Tavira; New Year's Eves; Olhão, Vila do Bispo, Alcoutim, Monchique).",
+    "Getting around: winter boat times that are published only as pictures (Faro, Farol, Culatra), Tavira, the Guadiana ferry."
   ],
   "asks": [
     "Dinis: allow `node pki-agent.mjs keygen --session` in account B's sessions (it was refused again), so travel.b@ can make and publish its key.",
@@ -63,5 +63,5 @@
     "Dinis: IPMA-based pages stay free until you decide (ask IPMA, or keep them free).",
     "Dinis: the reading credit here is separate from promptugal.news's (browser storage is per site). One account across the sites needs the vault work in board/spec-one-reader-across-devices.md of the Website repo."
   ],
-  "live_changes": "18 Nov 10:53 wake: /events/ is What's on (24 events from councils' agendas); all 18 places from data.promptugal.news."
+  "live_changes": "18 Nov 13:53 wake: /getting-around/ has 'This winter: boats and tolls' (A22 toll-free, Armona winter times, Faro and Tavira boats); Iberia Express and Royal Air Maroc named; fresh pull, all 18 places from data.promptugal.news."
 }

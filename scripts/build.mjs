@@ -337,11 +337,12 @@ Airline flights by callsign; every other aircraft only counted.`,
   page({
     path: '/getting-around/', title: 'Getting around the Algarve',
     description: 'Trains, buses, ferries and roads in the Algarve: who runs what, their official pages, the facts they publish and the open data that exists, each with the date read.',
-    provenance: prov({ agents: ['travel.research@PrompTugal.dinis (Sonnet) read the operators\' official pages'] }),
+    provenance: prov({ agents: ['travel.research@PrompTugal.dinis (Sonnet) read the operators\' official pages (17 Nov 2026)', 'travel.b.transport@PrompTugal.dinis (Sonnet) read the winter boats and tolls (18 Nov 2026); travel.b@PrompTugal.dinis re-read the A22 law and the Armona notice'] }),
     body: `<h1>Getting around the Algarve</h1><p class="dek">Who runs the trains, buses, boats and roads a visitor uses, what each publishes, and where to look on the day. Operators' own information only; where a site refused an automated reader we say so and link it.</p>
+${(research.transport || {}).winter ? `<section aria-labelledby="h-winter" class="winter"><h2 id="h-winter">This winter: boats and tolls</h2>${research.transport.winter.items.map(w => `<h3>${esc(w.title)}</h3><p>${esc(w.text)}</p><p class="meta">${w.sources.map(x => `${a(x.url, x.title)}, read ${esc(x.read)}`).join(' · ')}</p>`).join('')}</section>` : ''}
 ${modes.length ? modes.map(m => `<section aria-labelledby="h-${esc(m.id)}"><h2 id="h-${esc(m.id)}">${esc(m.title)}</h2><p>${esc(m.summary)}</p><ul class="ops">${(m.operators || []).map(opHtml).join('')}</ul></section>`).join('\n') : '<p>Being researched: this page fills in as the research lands.</p>'}
 ${gaps.length ? `<section aria-labelledby="h-gaps"><h2 id="h-gaps">Gaps</h2><ul>${gaps.map(g => `<li><strong>${esc(g.what)}</strong>: ${esc(g.why)}${g.url ? ` ${a(g.url, host(g.url))}` : ''}</li>`).join('')}</ul></section>` : ''}`,
-    md: `Who runs the trains, buses, boats and roads a visitor uses, and what each publishes.\n\n${modes.map(m => `## ${m.title}\n\n${m.summary}\n\n${(m.operators || []).map(opMd).join('\n')}`).join('\n\n')}\n\n${gaps.length ? `## Gaps\n\n${gaps.map(g => `- **${g.what}**: ${g.why} ${g.url || ''}`).join('\n')}` : ''}`,
+    md: `Who runs the trains, buses, boats and roads a visitor uses, and what each publishes.\n\n${(research.transport || {}).winter ? `## This winter: boats and tolls\n\n${research.transport.winter.items.map(w => `### ${w.title}\n\n${w.text}\n\n${w.sources.map(x => `${ml(x.url, x.title)}, read ${x.read}`).join('; ')}`).join('\n\n')}\n\n` : ''}${modes.map(m => `## ${m.title}\n\n${m.summary}\n\n${(m.operators || []).map(opMd).join('\n')}`).join('\n\n')}\n\n${gaps.length ? `## Gaps\n\n${gaps.map(g => `- **${g.what}**: ${g.why} ${g.url || ''}`).join('\n')}` : ''}`,
   });
 }
 

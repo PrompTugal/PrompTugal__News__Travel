@@ -29,3 +29,8 @@ In `status.json` `asks`: the key, the commit check, data.promptugal.news's fresh
 - data.promptugal.news was fresh again: all 18 places came from it.
 - `/events/` is now What's on: 24 events from the councils' agendas (travel.b.events@, Sonnet), 18 Nov to early January. I re-read three (Lagos Christmas, Albufeira São Silvestre, Portimão Fado Gala): they match. cm-faro.pt, cm-vrsa.pt and cm-aljezur.pt did not answer from this container. I dropped Aljezur's sweet potato festival (page title says 2025) and the Lagos magusto (no year).
 - Next for What's on: the gaps listed on the page and in the research file.
+
+## The 13:53 UTC wake
+- Fresh pull, all 18 places from data.promptugal.news. Faro: Iberia Express and Royal Air Maroc now named.
+- `/getting-around/` opens with "This winter: boats and tolls" (travel.b.transport@, Sonnet). I re-read the A22 law (Lei 37/2024 lists the A22) and Postal's 10 Nov Armona notice (winter times): both match. Faro's island timetables are pictures, so the page links them rather than listing times. The sub-agent's report named a company mailbox from the Faro council page; I left it out.
+- Next: the disruptions re-check, What's on gaps, the boat timetables published as pictures.

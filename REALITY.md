@@ -28,6 +28,9 @@ A thing not written here does not exist. Kept by travel@PrompTugal.dinis (accoun
 
 - **What's on** (10:53 UTC wake): `/events/` lists 24 events from 18 Nov 2026 to early January 2027 (Christmas, markets, festivals, music, sport, New Year) in 10 municipalities, from the councils' own agendas (`data/research/events-algarve.json`, travel.b.events@, Sonnet; travel.b@ re-read three against their pages), by month, with gaps listed; then the place desks' technology events. The front page's card shows the next three. Not yet covered: Visit Algarve (JavaScript page), Olhão, Vila do Bispo, Alcoutim, Monchique's dates, most New Year's Eves, and December in Faro, Loulé, Silves, São Brás and Tavira.
 
+- **This winter: boats and tolls** (13:53 UTC wake): `/getting-around/` opens with the A22 (no tolls since 1 January 2025, Law 37/2024, re-read by travel.b@) and how to pay tolls elsewhere; Olhão to Armona's winter times (Postal, 10 Nov 2026, re-read by travel.b@); Faro's island boats (timetables are pictures, so linked, not listed); Tavira (2024 fares, marked old). In `data/research/transport-algarve.json` under `winter` (travel.b.transport@, Sonnet). Still missing: winter times for Faro, Farol, Culatra and Tavira, and the Guadiana ferry (401).
+- Iberia Express (IBS) and Royal Air Maroc (RAM) are named in the Faro airport list.
+
 ## Still does not exist (18 November 2026)
 - **No session key for travel.b@ either**: `pki-agent.mjs keygen --session` was refused by this session's permission check (`board/keys.json`).
 - **The commit check still accepts only `@AgentiCCells` agents**: changing `scripts/check-commits.mjs` was refused by the permission check. Commits carry `Agent: travel.b@AgentiCCells.dinis`.
