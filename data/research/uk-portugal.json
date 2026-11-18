@@ -1,0 +1,272 @@
+{
+ "by": "travel.b.research@PrompTugal.dinis",
+ "model": "sonnet",
+ "read_at": "2026-11-18T22:30:00Z",
+ "about": "Facts for a UK and Portugal page: ONS visits to Portugal, FCDO travel advice for Portugal, UK ETA. INE UK-resident figures and London to Portugal route lists could not be read; see gaps. Every figure is as published and was read on 18 Nov 2026.",
+ "tourism": [],
+ "ons": [
+  {
+   "id": "ons-2025-all-visits",
+   "title": "UK (GB) residents' visits to Portugal, all purposes",
+   "place": "Portugal (main country visited), residents of Great Britain",
+   "period": "calendar year 2025",
+   "value": 3769000,
+   "unit": "visits",
+   "flag": "Official statistics in development; provisional; published 16 October 2026",
+   "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/leisureandtourism/datasets/ukresidentsvisitsabroad/2025/ukresidents2025annual.xlsx",
+   "publisher": "Office for National Statistics",
+   "read_at": "2026-11-18T22:30:00Z",
+   "note": "ONS workbook ukresidents2025annual.xlsx, Table 7 (visits, spending in £millions and nights abroad by purpose of visit and main country visited, 2025), row Europe | Portugal. Great Britain residents, not the whole UK. Release page: https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/articles/traveltrends/2025 (release date 16 October 2026). Value as published in the table (rounded by ONS)."
+  },
+  {
+   "id": "ons-2025-all-spend",
+   "title": "GB residents' spending in Portugal, all purposes",
+   "place": "Portugal (main country visited), residents of Great Britain",
+   "period": "calendar year 2025",
+   "value": 2809,
+   "unit": "£ million",
+   "flag": "Official statistics in development; provisional; published 16 October 2026",
+   "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/leisureandtourism/datasets/ukresidentsvisitsabroad/2025/ukresidents2025annual.xlsx",
+   "publisher": "Office for National Statistics",
+   "read_at": "2026-11-18T22:30:00Z",
+   "note": "ONS workbook ukresidents2025annual.xlsx, Table 7 (visits, spending in £millions and nights abroad by purpose of visit and main country visited, 2025), row Europe | Portugal. Great Britain residents, not the whole UK. Release page: https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/articles/traveltrends/2025 (release date 16 October 2026). Value as published in the table (rounded by ONS)."
+  },
+  {
+   "id": "ons-2025-all-nights",
+   "title": "GB residents' nights in Portugal, all purposes",
+   "place": "Portugal (main country visited), residents of Great Britain",
+   "period": "calendar year 2025",
+   "value": 27935000,
+   "unit": "nights",
+   "flag": "Official statistics in development; provisional; published 16 October 2026",
+   "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/leisureandtourism/datasets/ukresidentsvisitsabroad/2025/ukresidents2025annual.xlsx",
+   "publisher": "Office for National Statistics",
+   "read_at": "2026-11-18T22:30:00Z",
+   "note": "ONS workbook ukresidents2025annual.xlsx, Table 7 (visits, spending in £millions and nights abroad by purpose of visit and main country visited, 2025), row Europe | Portugal. Great Britain residents, not the whole UK. Release page: https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/articles/traveltrends/2025 (release date 16 October 2026). Value as published in the table (rounded by ONS)."
+  },
+  {
+   "id": "ons-2025-holiday-visits",
+   "title": "GB residents' holiday visits to Portugal (Holiday - all)",
+   "place": "Portugal (main country visited), residents of Great Britain",
+   "period": "calendar year 2025",
+   "value": 2813000,
+   "unit": "visits",
+   "flag": "Official statistics in development; provisional; published 16 October 2026",
+   "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/leisureandtourism/datasets/ukresidentsvisitsabroad/2025/ukresidents2025annual.xlsx",
+   "publisher": "Office for National Statistics",
+   "read_at": "2026-11-18T22:30:00Z",
+   "note": "ONS workbook ukresidents2025annual.xlsx, Table 7 (visits, spending in £millions and nights abroad by purpose of visit and main country visited, 2025), row Europe | Portugal. Great Britain residents, not the whole UK. Release page: https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/articles/traveltrends/2025 (release date 16 October 2026). Value as published in the table (rounded by ONS). Holiday - inclusive tour alone: 1,145,000 visits, £1,165 million, 7,835,000 nights."
+  },
+  {
+   "id": "ons-2025-holiday-spend",
+   "title": "GB residents' holiday spending in Portugal (Holiday - all)",
+   "place": "Portugal (main country visited), residents of Great Britain",
+   "period": "calendar year 2025",
+   "value": 2339,
+   "unit": "£ million",
+   "flag": "Official statistics in development; provisional; published 16 October 2026",
+   "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/leisureandtourism/datasets/ukresidentsvisitsabroad/2025/ukresidents2025annual.xlsx",
+   "publisher": "Office for National Statistics",
+   "read_at": "2026-11-18T22:30:00Z",
+   "note": "ONS workbook ukresidents2025annual.xlsx, Table 7 (visits, spending in £millions and nights abroad by purpose of visit and main country visited, 2025), row Europe | Portugal. Great Britain residents, not the whole UK. Release page: https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/articles/traveltrends/2025 (release date 16 October 2026). Value as published in the table (rounded by ONS)."
+  },
+  {
+   "id": "ons-2025-holiday-nights",
+   "title": "GB residents' holiday nights in Portugal (Holiday - all)",
+   "place": "Portugal (main country visited), residents of Great Britain",
+   "period": "calendar year 2025",
+   "value": 20282000,
+   "unit": "nights",
+   "flag": "Official statistics in development; provisional; published 16 October 2026",
+   "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/leisureandtourism/datasets/ukresidentsvisitsabroad/2025/ukresidents2025annual.xlsx",
+   "publisher": "Office for National Statistics",
+   "read_at": "2026-11-18T22:30:00Z",
+   "note": "ONS workbook ukresidents2025annual.xlsx, Table 7 (visits, spending in £millions and nights abroad by purpose of visit and main country visited, 2025), row Europe | Portugal. Great Britain residents, not the whole UK. Release page: https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/articles/traveltrends/2025 (release date 16 October 2026). Value as published in the table (rounded by ONS)."
+  },
+  {
+   "id": "ons-2025-vfr-visits",
+   "title": "GB residents' visits to Portugal to visit friends or relatives",
+   "place": "Portugal (main country visited), residents of Great Britain",
+   "period": "calendar year 2025",
+   "value": 725000,
+   "unit": "visits",
+   "flag": "Official statistics in development; provisional; published 16 October 2026",
+   "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/leisureandtourism/datasets/ukresidentsvisitsabroad/2025/ukresidents2025annual.xlsx",
+   "publisher": "Office for National Statistics",
+   "read_at": "2026-11-18T22:30:00Z",
+   "note": "ONS workbook ukresidents2025annual.xlsx, Table 7 (visits, spending in £millions and nights abroad by purpose of visit and main country visited, 2025), row Europe | Portugal. Great Britain residents, not the whole UK. Release page: https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/articles/traveltrends/2025 (release date 16 October 2026). Value as published in the table (rounded by ONS). VFR spending £261 million, 6,578,000 nights."
+  },
+  {
+   "id": "ons-2025-business-visits",
+   "title": "GB residents' business visits to Portugal",
+   "place": "Portugal (main country visited), residents of Great Britain",
+   "period": "calendar year 2025",
+   "value": 171000,
+   "unit": "visits",
+   "flag": "Official statistics in development; provisional; published 16 October 2026",
+   "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/leisureandtourism/datasets/ukresidentsvisitsabroad/2025/ukresidents2025annual.xlsx",
+   "publisher": "Office for National Statistics",
+   "read_at": "2026-11-18T22:30:00Z",
+   "note": "ONS workbook ukresidents2025annual.xlsx, Table 7 (visits, spending in £millions and nights abroad by purpose of visit and main country visited, 2025), row Europe | Portugal. Great Britain residents, not the whole UK. Release page: https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/articles/traveltrends/2025 (release date 16 October 2026). Value as published in the table (rounded by ONS). Business spending £158 million, 756,000 nights."
+  },
+  {
+   "id": "ons-2025-spain-context",
+   "title": "Context: most visited country by GB residents",
+   "place": "Great Britain residents, main country visited",
+   "period": "calendar year 2025",
+   "value": "Spain 19.1 million visits; France 9.1 million; Italy 5.7 million",
+   "unit": "visits",
+   "flag": "Official statistics in development; provisional; published 16 October 2026",
+   "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/articles/traveltrends/2025",
+   "publisher": "Office for National Statistics",
+   "read_at": "2026-11-18T22:30:00Z",
+   "note": "ONS Travel trends 2025 article headline text; Portugal's own figure is in the table above."
+  }
+ ],
+ "advice_uk_to_pt": [
+  {
+   "id": "fcdo-updated",
+   "point": "FCDO advice last changed",
+   "detail": "Public update 12 November 2026: 'Removal of information on severe weather'. The record shows 'New information about severe weather' on 10 November 2026 and 'Updated information on European Entry-Exit System (EES)' on 11 August 2026. No alert status is listed on the page data (alert_status is empty).",
+   "url": "https://www.gov.uk/api/content/foreign-travel-advice/portugal",
+   "publisher": "Foreign, Commonwealth and Development Office (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0"
+  },
+  {
+   "id": "passport",
+   "point": "Passport rules",
+   "detail": "Portugal follows Schengen rules. The passport must have a date of issue less than 10 years before arrival and an expiry date at least 3 months after the day you plan to leave the Schengen area. Passports renewed before 1 October 2018 may have an issue date more than 10 years ago, making them invalid for entry.",
+   "url": "https://www.gov.uk/foreign-travel-advice/portugal/entry-requirements",
+   "publisher": "Foreign, Commonwealth and Development Office (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0"
+  },
+  {
+   "id": "visa-free",
+   "point": "Visa-free stay",
+   "detail": "British citizens travelling on a full British citizen passport can visit the Schengen area, including Portugal, for up to 90 days in any 180-day period for tourism, family visits, business meetings, cultural or sports events, or short-term study or training. Overstaying can lead to a ban of up to 3 years. Border control may ask for an onward or return ticket and proof of enough money.",
+   "url": "https://www.gov.uk/foreign-travel-advice/portugal/entry-requirements",
+   "publisher": "Foreign, Commonwealth and Development Office (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0"
+  },
+  {
+   "id": "ees",
+   "point": "EU Entry/Exit System (EES)",
+   "detail": "Advice says EES 'is now being implemented across the Schengen area'. On a short-stay entry you may need to register fingerprints and a photo at a booth; no cost; children aged 11 or under are not fingerprinted but can be photographed. Extra time is advised at entry and on departure by plane. The digital record is valid for 3 years. If you enter via Dover, Eurotunnel at Folkestone or Eurostar at St Pancras, details are taken before you leave the UK. The page does not give a start date in the text read.",
+   "url": "https://www.gov.uk/foreign-travel-advice/portugal/entry-requirements",
+   "publisher": "Foreign, Commonwealth and Development Office (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0"
+  },
+  {
+   "id": "etias",
+   "point": "ETIAS",
+   "detail": "The entry requirements text read did not mention ETIAS, so no ETIAS status or date is recorded from this source.",
+   "url": "https://www.gov.uk/foreign-travel-advice/portugal/entry-requirements",
+   "publisher": "Foreign, Commonwealth and Development Office (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0"
+  },
+  {
+   "id": "children",
+   "point": "Children travelling",
+   "detail": "Children aged 17 and under travelling to Portugal alone, or with someone who is not their parent or legal guardian, must carry a letter of authorisation, signed and dated by the parent or guardian, with the signature certified by a notary or solicitor and legalised, plus a copy of the parent's passport.",
+   "url": "https://www.gov.uk/foreign-travel-advice/portugal/entry-requirements",
+   "publisher": "Foreign, Commonwealth and Development Office (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0"
+  },
+  {
+   "id": "customs",
+   "point": "Food and customs",
+   "detail": "You cannot take meat, milk or products containing them into EU countries, with exceptions such as powdered baby milk, baby food and special foods or pet feed required for medical reasons. Declare anything prohibited or subject to tax or duty.",
+   "url": "https://www.gov.uk/foreign-travel-advice/portugal/entry-requirements",
+   "publisher": "Foreign, Commonwealth and Development Office (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0"
+  },
+  {
+   "id": "safety",
+   "point": "Safety and security (as stated)",
+   "detail": "Terrorist attacks in Portugal cannot be ruled out. Demonstrations are not uncommon, particularly in cities, and are mostly peaceful. Strike action that disrupts travel, including at airports, can take place and can be announced at short notice.",
+   "url": "https://www.gov.uk/foreign-travel-advice/portugal/safety-and-security",
+   "publisher": "Foreign, Commonwealth and Development Office (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0"
+  },
+  {
+   "id": "scope",
+   "point": "Coverage",
+   "detail": "The advice also covers Madeira, Porto Santo and the Azores.",
+   "url": "https://www.gov.uk/foreign-travel-advice/portugal/warnings-and-insurance",
+   "publisher": "Foreign, Commonwealth and Development Office (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0"
+  }
+ ],
+ "advice_pt_to_uk": [
+  {
+   "id": "eta-cost",
+   "point": "UK ETA cost and length",
+   "detail": "An ETA costs £20 to apply online or through the UK ETA app; no refund after applying. It lets you travel to the UK, Jersey, Guernsey or the Isle of Man for up to 6 months for tourism, visiting family or friends, business trips or short-term study. It does not guarantee entry. The page warns that other websites may charge more.",
+   "url": "https://www.gov.uk/eta",
+   "publisher": "Home Office / UK Visas and Immigration (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0 (page content as read via gov.uk content API; page last updated 28 May 2025 per its metadata)"
+  },
+  {
+   "id": "eta-who",
+   "point": "Who needs one",
+   "detail": "'You usually need an ETA rather than a visa if you're from Europe, the USA, Australia, Canada or certain other countries.' Each person needs one, including babies and children. Not needed by British or Irish citizens, people with UK visas or permission to live, work or study in the UK, or those transiting airside. Dual British or Irish citizens cannot get one.",
+   "url": "https://www.gov.uk/eta",
+   "publisher": "Home Office / UK Visas and Immigration (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0"
+  },
+  {
+   "id": "eta-eu-date",
+   "point": "Date the ETA applies to EU nationals",
+   "detail": "Not stated on the /eta pages read. Not recorded; see gaps.",
+   "url": "https://www.gov.uk/eta",
+   "publisher": "Home Office / UK Visas and Immigration (gov.uk)",
+   "read_at": "2026-11-18T22:30:00Z",
+   "license": "Open Government Licence v3.0"
+  }
+ ],
+ "routes": [],
+ "gaps": [
+  {
+   "what": "INE guests and overnight stays by country of residence (United Kingdom), Portugal and Algarve, last 12 months, and UK rank or share",
+   "why": "The INE JSON API was reachable but I could not find the indicator code for the country-of-residence breakdown. Codes 0012088, 0012089, 0012091, 0012092 and 0012093 are by segment or type only (no country). Scans of nearby codes found nothing, and several calls were reset by the proxy. Nothing was filled from memory.",
+   "url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012089&lang=EN"
+  },
+  {
+   "what": "Date the UK ETA applies to EU nationals",
+   "why": "The gov.uk /eta page text read gives the £20 cost but no EU start date; the separate 'check if you need an ETA' page was not readable as JSON (404).",
+   "url": "https://www.gov.uk/eta"
+  },
+  {
+   "what": "ETIAS status and dates",
+   "why": "The FCDO Portugal entry requirements text read does not mention ETIAS.",
+   "url": "https://www.gov.uk/foreign-travel-advice/portugal/entry-requirements"
+  },
+  {
+   "what": "EES start date as stated by FCDO",
+   "why": "FCDO text says EES is 'now being implemented' with no date; only the change history (11 August 2026 update) is dated.",
+   "url": "https://www.gov.uk/foreign-travel-advice/portugal/entry-requirements"
+  },
+  {
+   "what": "Airlines flying London (LHR, LGW, STN, LTN, LCY, SEN) to Faro, Lisbon, Porto",
+   "why": "Airport and airline route pages were not readable: Gatwick, Heathrow and Stansted destination URLs returned 404 (pages are JavaScript or moved), London City returned 403, Faro airport /en/flights returned 404, ANA Lisbon destinations returned a 212 byte stub. No route list guessed.",
+   "url": "https://www.gatwickairport.com/flights/destinations/faro.html"
+  },
+  {
+   "what": "ONS Portugal figures for the whole UK (including Northern Ireland)",
+   "why": "The 2025 table is Great Britain residents only; the UK-level split is published for world totals only.",
+   "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/articles/traveltrends/2025"
+  }
+ ],
+ "injection_notes": []
+}

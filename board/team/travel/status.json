@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T22:30Z",
+  "updated": "2026-11-18T23:00Z",
   "run": "18 Nov ~22:05 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
@@ -52,6 +52,7 @@
   "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
   "next": [
     "Each wake: pull, build, gate, commit inputs and the Faro series, release.",
+    "UK and Portugal: INE guests by country of residence (UK) for Portugal and the Algarve; London to Faro/Lisbon/Porto routes from a readable source; harden mdesc() (escape * _ ` !).",
     "London: when data.b@'s TfL and London weather feeds appear on data.promptugal.news, build /london/ (\"Beyond Portugal: London\") per board/team/travel/london-plan.md, and make times and places country-aware.",
     "Disruptions: watch the easyJet talks (20, 23, 25 Nov); SNPVAC says new action is possible if they stall.",
     "Licences: find terms for the 28 sources with none found (councils, CP, Diário da República); license the Faro series rows.",
@@ -68,7 +69,7 @@
     "Dinis: the reading credit here is separate from promptugal.news's (browser storage is per site). One account across the sites needs the vault work in board/spec-one-reader-across-devices.md of the Website repo.",
     "Dinis: What's on lists events from the councils' own pages as titles, dates and links (reference use, source named), from the council research and from data.promptugal.news's feed. data.b@'s note says no reuse licence was found for those sites and agendalx.pt asks reference use only. Is listing them this way all right, or should the page only link to each council's agenda?"
   ],
-  "live_changes": "22:05: /preview.svg and /api/v1/preview.json at every build, /preview.png (rendered with Playwright where available, else the committed copy), Open Graph tags on every page. Fresh pull (55 of 55 read). Earlier, 19:53 wake: /storm-charles/flights/.",
+  "live_changes": "Late 18 Nov: /uk-portugal/ (ONS 2025 visits, FCDO entry advice, UK ETA, UK airlines near Faro); preview.svg/png for the sites bar; London plan. Earlier: /storm-charles/flights/.",
   "storm": "The Storm site's 7 travel items (data.b@'s handoff): plan in board/team/travel/storm-plan.md. Pages and charts come here, reading data.promptugal.news; the collectors stay with data.b@.",
   "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading.",
   "dinis_1455": {
@@ -80,7 +81,7 @@
   },
   "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
   "library_requests": "Checked 18 Nov ~20:00 UTC: none for travel.b@.",
-  "passes": "22:05 run: security post-review by travel.b.appsec@ (Sonnet) of the preview code: clean (all SVG text through esc(), events file names checked against a pattern, the PNG render blocks every non-file request and runs no script). One low note: file: requests are allowed in the render; not exploitable since the SVG is our own and escaped.",
+  "passes": "Last run (UK page): research by travel.b.research@ (Sonnet), lead re-read of ONS and FCDO; AppSec post-review by travel.b.appsec@ (Sonnet): clean; low note that mdesc() does not escape * _ ` ! in markdown twins (cannot make links or HTML), to harden next.",
   "sites_bar": "Preview done (Dinis, 18 Nov ~22:00 UTC, sites-bar guidance). Installing the bar waits for dev@ and designer@ to publish it; then vendor it pinned by version and sha256, render promptugal.news/api/v1/sites.json escaped with https *.promptugal.news links only, and replace the current rail.",
   "london": "Dinis, 18 Nov ~22:20 UTC (london guidance, via conductor.b@): London section planned in board/team/travel/london-plan.md (TfL status, London airport flights, weather for visitors). Waits on data.b@'s UK feeds: none on data.promptugal.news at 22:20 UTC. The Portugal-only places in the code are listed there to change when the country layer lands."
 }

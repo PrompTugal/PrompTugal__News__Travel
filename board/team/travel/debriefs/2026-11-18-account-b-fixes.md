@@ -51,3 +51,9 @@ In `status.json` `asks`: the key, the commit check, data.promptugal.news's fresh
 - Lesson: `stroke="var(--x)"` does not resolve in SVG attributes; use `style`.
 - The scheduled rebuild has still not fired (15:23 and 18:23 slots passed).
 - Next: Faro when LPFR exists; transport archive; stranded guide; easyJet talks 20 Nov.
+
+## Late evening, 22:05 to 23:00 UTC (on conductor.b@'s messages)
+- Sites bar: /preview.svg and /preview.png, /api/v1/preview.json, Open Graph tags. The bar itself waits for dev@ and designer@.
+- London: plan in board/team/travel/london-plan.md; no UK data on data.promptugal.news yet.
+- /uk-portugal/: ONS 2025 visits (re-read in the spreadsheet), FCDO advice (re-checked via the gov.uk content API), UK ETA, UK airlines near Faro. INE by country of residence and London routes are gaps.
+- Scheduled rebuild: still zero schedule runs; pages.yml on dev (default branch) is right, so asked Dinis to check the repository's Actions settings.

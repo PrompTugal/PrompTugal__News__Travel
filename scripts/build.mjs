@@ -95,7 +95,7 @@ const prov = (extra = {}) => ({
 // ---------- layout ----------
 const NAV = [
   ['/', 'Now'], ['/flights/', 'Flights'], ['/getting-around/', 'Getting around'], ['/disruptions/', 'Strikes and disruptions'],
-  ['/weather/', 'Weather and sea'], ['/events/', "What's on"], ['/tourism/', 'Tourism'], ['/about/', 'How it is made'],
+  ['/weather/', 'Weather and sea'], ['/events/', "What's on"], ['/tourism/', 'Tourism'], ['/uk-portugal/', 'UK and Portugal'], ['/about/', 'How it is made'],
 ];
 const pages = [];
 // The PrompTugal.news sites, as promptugal.news's rail (PrompTugal__News__Website assets/top/top.tmpl, em-net).
@@ -559,6 +559,37 @@ ${aps.map(({ ap, svg, peak, hours }) => `<section aria-labelledby="h-${esc(ap.ic
 <section aria-labelledby="h-how-cw"><h2 id="h-how-cw">How it was made</h2><p>${esc(cw.about || '')}</p><p class="meta">The data: ${a(meta.source, 'data.promptugal.news, the Storm Charles archive')} (read ${esc(meta.read_at)}), made by the Storm Charles site's team. Wind: METAR from IPMA, through the US NOAA Aviation Weather Center (${a('https://aviationweather.gov/', 'aviationweather.gov')}, public domain). Runways: ${a('https://ourairports.com/data/', 'OurAirports')} (public domain). The file also counts departures from the OpenSky Network; they are not shown here, as OpenSky asks for non-commercial use.</p></section>`,
     md: `An archive of Storm Charles (10 to 12 November 2026): the crosswind on each runway at Lisbon and Madeira, hour by hour, from METAR.\n\n${aps.map(({ ap, peak, hours }) => `## ${ap.name} (${ap.iata})\n\nHighest crosswind: ${peak.replace(/<[^>]+>/g, '') || 'not known'}. ${hours} hourly reports.`).join('\n\n')}\n\nData: ${ml(meta.source, 'data.promptugal.news Storm Charles archive')}, read ${meta.read_at}. Wind: METAR (IPMA via NOAA aviationweather.gov, public domain). Runways: OurAirports (public domain). OpenSky departures not shown (non-commercial use).`,
     provenance: prov({ code: ['the chart is drawn at build time from the archive\'s numbers'], agents: ['the Storm Charles site\'s flights team (incident.flights@web-summit.dinis) compiled the data in November 2026'] }),
+  });
+}
+
+// ---------- the UK and Portugal (Dinis, 18 Nov 2026 ~22:25 UTC: "there's a lot of tourism that comes from the UK to
+// Portugal"; PrompTugal__News__Website board/guidance/2026-11-18-london.md). From data/research/uk-portugal.json
+// (travel.b.research@, Sonnet; travel.b@ re-read the ONS table and the FCDO page on 18 Nov).
+if (existsSync('data/research/uk-portugal.json')) {
+  const uk = J('data/research/uk-portugal.json');
+  const n = v => (Number.isFinite(v) ? v.toLocaleString('en-GB') : esc(v));
+  const fig = x => (x.unit === '£ million' ? `£${n(x.value)} million` : `${n(x.value)} ${esc(x.unit)}`);
+  const ons = uk.ons || [];
+  const src1 = ons[0];
+  const UKA = { EZY: 'easyJet', EXS: 'Jet2', BAW: 'British Airways', TOM: 'TUI Airways', RUK: 'Ryanair UK', WUK: 'Wizz Air UK', LOG: 'Loganair' };
+  const seen = {};
+  for (const r of series) for (const [c, k] of Object.entries(r.by_airline || {})) if (UKA[c] && Number.isFinite(k)) seen[c] = (seen[c] || 0) + k;
+  const seenList = Object.entries(seen).sort((x, y) => y[1] - x[1]);
+  const adv = l => (l || []).filter(x => x.detail && !/^Not stated|did not mention/.test(x.detail));
+  const advHtml = l => `<ul>${adv(l).map(x => `<li><strong>${esc(x.point)}.</strong> ${esc(nodash(x.detail))} <span class="meta">(${a(x.url, x.publisher)}, read ${esc(String(x.read_at).slice(0, 10))})</span></li>`).join('')}</ul>`;
+  const advMd = l => adv(l).map(x => `- **${mdesc(x.point)}.** ${mdesc(nodash(x.detail))} (${ml(x.url, x.publisher)}, read ${String(x.read_at).slice(0, 10)})`).join('\n');
+  page({
+    path: '/uk-portugal/', title: 'The UK and Portugal',
+    description: 'British visitors to Portugal in numbers (ONS), what a British visitor needs to enter Portugal and what a Portuguese visitor needs for the UK (gov.uk), and UK airlines seen near Faro. Each value with its source and the date read.',
+    body: `<h1>The UK and Portugal</h1><p class="dek">Beyond Portugal: the link with the UK. Residents of Great Britain made ${src1 ? n(src1.value) : 'many'} visits to Portugal in 2025. Below: the numbers, the rules both ways, and the UK airlines our receivers see near Faro. London itself comes when its data does.</p>
+<section aria-labelledby="h-ons"><h2 id="h-ons">British visitors to Portugal, 2025</h2><table><thead><tr><th>What</th><th>2025</th></tr></thead><tbody>${ons.map(x => `<tr><td>${esc(x.title)}</td><td>${fig(x)}</td></tr>`).join('')}</tbody></table>
+<p class="meta">Source: ${src1 ? a(src1.url, 'ONS, Travel trends 2025, UK residents\' visits abroad') : 'ONS'}, ${esc(src1 ? src1.flag || '' : '')}. Great Britain residents only (Northern Ireland is not in the country table). travel.b@ re-read the total, holiday and visiting-friends figures in the table on 18 Nov 2026.</p></section>
+<section aria-labelledby="h-to-pt"><h2 id="h-to-pt">A British visitor going to Portugal</h2>${advHtml(uk.advice_uk_to_pt)}</section>
+<section aria-labelledby="h-to-uk"><h2 id="h-to-uk">A Portuguese or EU visitor going to the UK</h2>${advHtml(uk.advice_pt_to_uk)}</section>
+<section aria-labelledby="h-faro-uk"><h2 id="h-faro-uk">UK airlines seen near Faro</h2>${seenList.length ? `<p>Across our ${series.length} reads of the sky within 40 nautical miles of Faro airport (adsb.lol), we saw: ${seenList.map(([c, k]) => `${esc(UKA[c])} ${k}`).join(', ')}. A flight seen near Faro is not always to or from the UK.</p>` : `<p>No UK airline in our ${series.length} reads near Faro so far.</p>`}<p class="meta">${a('/flights/', 'Flights at Faro')} · ${a('/api/v1/faro-airport.jsonl', 'the series')}</p></section>
+<section aria-labelledby="h-gaps-uk"><h2 id="h-gaps-uk">Not here yet</h2><ul>${(uk.gaps || []).map(g => `<li>${esc(nodash(g.what))}: ${esc(nodash(g.why))}</li>`).join('')}<li>London's weather, transport and airports: waiting on data.promptugal.news's UK feeds.</li></ul></section>`,
+    md: `Beyond Portugal: the link with the UK.\n\n## British visitors to Portugal, 2025\n\n| What | 2025 |\n|---|---|\n${ons.map(x => `| ${mdesc(x.title)} | ${mdesc(fig(x).replace(/&amp;/g, '&'))} |`).join('\n')}\n\nSource: ${src1 ? ml(src1.url, 'ONS Travel trends 2025') : 'ONS'}. Great Britain residents only.\n\n## A British visitor going to Portugal\n\n${advMd(uk.advice_uk_to_pt)}\n\n## A Portuguese or EU visitor going to the UK\n\n${advMd(uk.advice_pt_to_uk)}\n\n## UK airlines seen near Faro\n\nAcross ${series.length} reads within 40 nautical miles of Faro (adsb.lol):\n\n${seenList.length ? seenList.map(([c, k]) => `- ${UKA[c]}: ${k}`).join('\n') : '- none so far'}\n\n## Not here yet\n\n${(uk.gaps || []).map(g => `- ${mdesc(nodash(g.what))}: ${mdesc(nodash(g.why))}`).join('\n')}\n`,
+    provenance: prov({ agents: ['travel.b.research@PrompTugal.dinis (Sonnet) read ONS and gov.uk on 18 Nov 2026', 'travel.b@PrompTugal.dinis re-read the ONS table and the FCDO page'] }),
   });
 }
 
