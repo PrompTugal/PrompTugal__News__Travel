@@ -59,3 +59,8 @@ In `status.json` `asks`: the key, the commit check, data.promptugal.news's fresh
 - Scheduled rebuild: still zero schedule runs; pages.yml on dev (default branch) is right, so asked Dinis to check the repository's Actions settings.
 - ~23:10 UTC: /london/ live from data.b@'s London file (forecast beside Faro, flood alerts). Licence marks now wrap on phones. mdesc hardened.
 - ~23:20 UTC: Eurostat nights by country on /uk-portugal/ (UK 10,373,206 in 2025, re-read in Eurostat's API); measured London rain on /london/. Routes held by data.b@; INE waits for Dinis to accept its conditions.
+
+## The 22:53 UTC wake (last of 18 Nov)
+- No HOLD. New guidance rows (22:40 writer, 22:10 cells.b) are for other agents. Library requests: none for us.
+- Footers now link promptugal.news's /principles/ and /report/ (the 15:00 guidance asked for it; it had been missed).
+- For the morning wake: the easyJet talks (20 Nov); data.b@'s route counts and TfL status; the sites bar if published; whether the scheduled rebuild ran overnight.

@@ -152,7 +152,7 @@ ${ipma ? `<p class="free-note"><strong>Free to read.</strong> This page is built
 <footer class="foot"><p>${a('https://promptugal.news/', 'PrompTugal.news')}: Portugal, town by town. Raw data from ${a('https://data.promptugal.news/', 'data.promptugal.news')} and from ${a('https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/data/by-place', 'PrompTugal.news place data')}. Not a warning service: follow ${a('https://www.ipma.pt/', 'IPMA')} and ${a('https://prociv.gov.pt/', 'ANEPC')}.</p>
 <p class="takedown">Is something here yours, and do you think we should not show it? ${a('https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new', 'Open an issue')} and we take it down while we talk. Text and data we make: CC BY 4.0; what we show from others stays under its source\'s licence or terms, linked beside it.</p>
 <p class="sites">Also from PrompTugal.news: ${siteLinks()}</p>
-<p class="obs-row">Version ${esc(version)} · ${a('https://github.com/PrompTugal/PrompTugal__News__Travel', 'Source')} · Code Apache-2.0, text CC BY 4.0 · ${a('/llms.txt', 'llms.txt')} · ${a('/version.json', 'version.json')} · ${a('/account/', 'Your reading account')} · ${a('/security/', 'Security')}</p></footer>
+<p class="obs-row">Version ${esc(version)} · ${a('https://github.com/PrompTugal/PrompTugal__News__Travel', 'Source')} · Code Apache-2.0, text CC BY 4.0 · ${a('/llms.txt', 'llms.txt')} · ${a('/version.json', 'version.json')} · ${a('/account/', 'Your reading account')} · ${a('/security/', 'Security')} · ${a('https://promptugal.news/principles/', 'Principles')} · ${a('https://promptugal.news/report/', 'Report a problem')}</p></footer>
 ${script ? `<script src="${script}" defer></script>\n` : ''}<script src="/assets/meter/meter.js" defer></script>
 <script src="/assets/obs/obs.js" defer></script>
 </body>
@@ -176,7 +176,7 @@ ${md.trim()}
 - Agents: ${p.agents.join('; ')}.
 - A person: ${p.person}
 
-${ipma ? 'Free to read: built on IPMA data, whose terms rule out profit-making use, so outside the reading meter.\n\n' : ''}Independent: not an official site. Your airline or operator decides whether your service runs: its site or app has the latest. Version ${version}. Code Apache-2.0, text CC BY 4.0.
+${ipma ? 'Free to read: built on IPMA data, whose terms rule out profit-making use, so outside the reading meter.\n\n' : ''}Independent: not an official site. Your airline or operator decides whether your service runs: its site or app has the latest. Version ${version}. Code Apache-2.0, text CC BY 4.0. Principles: https://promptugal.news/principles/ · Report a problem: https://promptugal.news/report/
 
 Is something here yours, and do you think we should not show it? Open an issue at https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new and we take it down while we talk.
 `;
