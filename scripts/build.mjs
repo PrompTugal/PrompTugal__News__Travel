@@ -25,6 +25,7 @@ const research = {
   transport: maybe('data/research/transport-algarve.json'),
   disruptions: maybe('data/research/disruptions.json'),
   tourism: maybe('data/research/tourism.json'),
+  events: maybe('data/research/events-algarve.json'),
 };
 const holidays = maybe('data/editorial/holidays.json');
 const series = existsSync('data/series/faro-airport.jsonl') ? readFileSync('data/series/faro-airport.jsonl', 'utf8').split('\n').filter(Boolean).map(l => JSON.parse(l)) : [];
@@ -69,7 +70,7 @@ const prov = (extra = {}) => ({
 // ---------- layout ----------
 const NAV = [
   ['/', 'Now'], ['/flights/', 'Flights'], ['/getting-around/', 'Getting around'], ['/disruptions/', 'Strikes and disruptions'],
-  ['/weather/', 'Weather and sea'], ['/events/', 'Events'], ['/tourism/', 'Tourism'], ['/about/', 'How it is made'],
+  ['/weather/', 'Weather and sea'], ['/events/', "What's on"], ['/tourism/', 'Tourism'], ['/about/', 'How it is made'],
 ];
 const pages = [];
 // The PrompTugal.news sites, as promptugal.news's rail (PrompTugal__News__Website assets/top/top.tmpl, em-net).
@@ -219,7 +220,7 @@ function front(variant, path, label) {
     strikes: `<section class="card strikes" aria-labelledby="h-strikes"><h2 id="h-strikes">Strikes and disruptions ahead</h2>${upcoming.length ? `<ul class="items">${upcoming.slice(0, 3).map(d => `<li><strong>${esc(dateRange(d))}</strong>: ${esc(d.title)} <span class="status s-${esc(d.status)}">${esc(d.status)}</span><br><span class="meta">${srcList(d.sources)}</span></li>`).join('')}</ul>` : '<p>None found for the weeks ahead, which is not proof that there are none.</p>'}<p><a href="/disruptions/">All strikes, disruptions and holidays</a></p></section>`,
     sea: `<section class="card sea" aria-labelledby="h-sea"><h2 id="h-sea">The sea</h2><p>${esc(sea.coast || 'Faro coast')}: waves up to ${esc(sea.waves_max_m ?? 'n/a')} m, sea temperature up to ${esc(sea.sea_temp_max_c ?? 'n/a')}°C (${esc(sea.date || '')}).${seaW.coast ? ` ${esc(seaW.coast)}: waves up to ${esc(seaW.waves_max_m ?? 'n/a')} m, sea up to ${esc(seaW.sea_temp_max_c ?? 'n/a')}°C.` : ''}</p><p class="meta">IPMA coastal forecast. ${a(sea.page, 'IPMA')}</p><p><a href="/weather/">Weather and sea, place by place</a></p></section>`,
     move: `<section class="card move" aria-labelledby="h-move"><h2 id="h-move">Getting around the Algarve</h2>${modes.length ? `<ul class="items">${modes.map(m => `<li><strong>${esc(m.title)}</strong>: ${esc(firstSentence(m.summary))}</li>`).join('')}</ul>` : '<p>The map of operators and their official pages is being researched.</p>'}<p><a href="/getting-around/">Trains, buses, ferries and roads</a></p></section>`,
-    events: `<section class="card events" aria-labelledby="h-events"><h2 id="h-events">Events by place</h2><p>${allEvents.length} events listed by the PrompTugal.news place desks across ${new Set(allEvents.map(e => e.place)).size} Algarve places (mostly technology and AI, which is what those desks cover).</p><p><a href="/events/">Events, place by place</a></p></section>`,
+    events: `<section class="card events" aria-labelledby="h-events"><h2 id="h-events">What's on</h2>${(() => { const w = research.events ? research.events.events.filter(e => (e.end || e.start) >= today).sort((x, y) => x.start.localeCompare(y.start)) : []; const nx = w.filter(e => e.start >= today).slice(0, 3); return w.length ? `<p>${w.length} events from the councils' own agendas to early January.${nx.length ? ` Next: ${nx.map(e => `${esc(e.title)} (${esc(placeName(e.place))}, ${esc(day(e.start))})`).join('; ')}.` : ''}</p>` : ''; })()}<p>${allEvents.length} technology and AI events listed by the PrompTugal.news place desks.</p><p><a href="/events/">What's on in the Algarve</a></p></section>`,
     tourism: `<section class="card tourism" aria-labelledby="h-tourism"><h2 id="h-tourism">Tourism as an industry</h2>${tourismHead ? `<p>${esc(tourismHead.text)} <span class="meta">${a(tourismHead.url, tourismHead.publisher)}</span></p>` : '<p>Official statistics (INE, Turismo de Portugal) are being gathered.</p>'}<p><a href="/tourism/">Tourism in numbers</a></p></section>`,
   };
   const order = {
@@ -387,15 +388,32 @@ ${gaps.length ? `<section aria-labelledby="h-gaps"><h2 id="h-gaps">Gaps</h2><ul>
 }
 
 // ---------- events ----------
+// What's on (travel.b@PrompTugal.dinis, 18 Nov 2026): festivals, markets, Christmas and New Year from the councils'
+// and Visit Algarve's own agendas (data/research/events-algarve.json, travel.b.events@, Sonnet, each with its page and
+// the date read), then the technology events the PrompTugal.news place desks list.
 {
   const by = municipalities.concat(['algarve']).map(id => ({ id, name: placeName(id), events: ((desk[id] || {}).events || []) })).filter(p => p.events.length);
   const total = by.reduce((n, p) => n + p.events.length, 0);
+  const ev = research.events;
+  const KIND = { christmas: 'Christmas', market: 'Market', festival: 'Festival', music: 'Music', sport: 'Sport', food: 'Food', 'new-year': 'New Year', culture: 'Culture' };
+  const whatson = ev ? ev.events.filter(e => (e.end || e.start) >= today).sort((x, y) => x.start.localeCompare(y.start) || x.place.localeCompare(y.place)) : [];
+  const when = e => e.end && e.end !== e.start ? `${day(e.start)} to ${day(e.end)}` : day(e.start);
+  const months = [...new Set(whatson.map(e => (e.start < today ? today : e.start).slice(0, 7)))];
+  const monthName = ym => new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(ym + '-15T12:00:00Z'));
+  const inMonth = ym => whatson.filter(e => (e.start < today ? today : e.start).slice(0, 7) === ym);
+  const evLi = e => `<li><strong>${esc(when(e))}</strong> · ${esc(placeName(e.place))}: <b>${esc(e.title)}</b>${e.name_pt ? ` <span lang="pt">(${esc(e.name_pt)})</span>` : ''}. ${esc(e.what || '')} <span class="meta">${esc(KIND[e.kind] || e.kind || '')}${e.free === true ? ' · free' : ''}${e.where ? ` · ${esc(e.where)}` : ''} · ${a(e.source.url, host(e.source.url))}, read ${esc(e.source.read)}</span></li>`;
+  const evMd = e => `- **${when(e)}**, ${placeName(e.place)}: ${e.title}${e.name_pt ? ` (${e.name_pt})` : ''}. ${e.what || ''} ${ml(e.source.url, host(e.source.url))}, read ${e.source.read}.`;
+  const gaps = ev ? (ev.gaps || []) : [];
   page({
-    path: '/events/', title: 'Events by place',
-    description: 'Events in the Algarve, place by place, as listed by the PrompTugal.news place desks, each linked to its official page with the date read.',
-    body: `<h1>Events by place</h1><p class="dek">${total} events across ${by.length} Algarve places, as the PrompTugal.news place desks listed them. Those desks cover technology and AI, so this is not yet a full what's-on: festivals, markets and sport are next, from the councils' own agendas.</p>
-${by.map(p => `<section aria-labelledby="h-${esc(p.id)}"><h2 id="h-${esc(p.id)}">${esc(p.name)}</h2><ul class="events">${p.events.map(e => `<li><strong>${esc(e.date)}</strong>: ${a(e.url, e.title)} <span class="meta">read ${esc(e.read_on)}</span></li>`).join('')}</ul><p class="meta">From ${a(`https://promptugal.news/${(placesList.find(x => x.id === p.id) || {}).path || ''}`, `PrompTugal.news ${p.name}`)}.</p></section>`).join('\n')}`,
-    md: `${total} events across ${by.length} Algarve places, as listed by the PrompTugal.news place desks (technology and AI).\n\n${by.map(p => `## ${p.name}\n\n${p.events.map(e => `- **${e.date}**: ${ml(e.url, e.title)} (read ${e.read_on})`).join('\n')}`).join('\n\n')}`,
+    path: '/events/', title: "What's on in the Algarve",
+    description: "Christmas markets, festivals, fairs, concerts and New Year in the Algarve, from the councils' and Visit Algarve's own agendas, each with its page and the date read; plus technology events by place.",
+    body: `<h1>What's on in the Algarve</h1><p class="dek">${whatson.length ? `${whatson.length} events from the councils' and Visit Algarve's own agendas, from today to early January, each linked to the page its dates were read from. Dates change: check the organiser's page before you travel.` : 'The councils\' agendas are being read.'}</p>
+${months.map(ym => `<section aria-labelledby="h-${ym}"><h2 id="h-${ym}">${esc(monthName(ym))}</h2><ul class="events">${inMonth(ym).map(evLi).join('')}</ul></section>`).join('\n')}
+${gaps.length ? `<section aria-labelledby="h-evgaps"><h2 id="h-evgaps">What we could not read</h2><ul>${gaps.map(g => `<li>${esc(g.what)}: ${esc(g.why)}</li>`).join('')}</ul></section>` : ''}
+<section aria-labelledby="h-tech"><h2 id="h-tech">Technology and AI events, by place</h2><p>${total} events across ${by.length} Algarve places, as the PrompTugal.news place desks listed them.</p>
+${by.map(p => `<h3 id="h-${esc(p.id)}">${esc(p.name)}</h3><ul class="events">${p.events.map(e => `<li><strong>${esc(e.date)}</strong>: ${a(e.url, e.title)} <span class="meta">read ${esc(e.read_on)}</span></li>`).join('')}</ul><p class="meta">From ${a(`https://promptugal.news/${(placesList.find(x => x.id === p.id) || {}).path || ''}`, `PrompTugal.news ${p.name}`)}.</p>`).join('\n')}</section>`,
+    md: `${whatson.length} events from the councils' and Visit Algarve's agendas, today to early January. Dates change: check the organiser's page before you travel.\n\n${months.map(ym => `## ${monthName(ym)}\n\n${inMonth(ym).map(evMd).join('\n')}`).join('\n\n')}${gaps.length ? `\n\n## What we could not read\n\n${gaps.map(g => `- ${g.what}: ${g.why}`).join('\n')}` : ''}\n\n## Technology and AI events, by place\n\n${total} events across ${by.length} places, as listed by the PrompTugal.news place desks.\n\n${by.map(p => `### ${p.name}\n\n${p.events.map(e => `- **${e.date}**: ${ml(e.url, e.title)} (read ${e.read_on})`).join('\n')}`).join('\n\n')}`,
+    provenance: prov({ agents: ev ? [`${ev.by} read the councils' and Visit Algarve's agendas on ${ev.read_at}; travel.b@PrompTugal.dinis checked a sample of them against their pages`] : [] }),
   });
 }
 
@@ -516,7 +534,7 @@ Page views and reading time, publicly, in PrompTugal.news's observability lane f
 // ---------- API, llms.txt, sitemap ----------
 mkdirSync('_site/api/v1', { recursive: true });
 cpSync('data/inputs/manifest.json', '_site/api/v1/manifest.json');
-for (const [k, f] of [['transport-algarve', 'data/research/transport-algarve.json'], ['disruptions', 'data/research/disruptions.json'], ['tourism', 'data/research/tourism.json'], ['holidays', 'data/editorial/holidays.json']]) if (existsSync(f)) cpSync(f, `_site/api/v1/${k}.json`);
+for (const [k, f] of [['events-algarve', 'data/research/events-algarve.json'], ['transport-algarve', 'data/research/transport-algarve.json'], ['disruptions', 'data/research/disruptions.json'], ['tourism', 'data/research/tourism.json'], ['holidays', 'data/editorial/holidays.json']]) if (existsSync(f)) cpSync(f, `_site/api/v1/${k}.json`);
 if (existsSync('data/series/faro-airport.jsonl')) cpSync('data/series/faro-airport.jsonl', '_site/api/v1/faro-airport.jsonl');
 writeFileSync('_site/api/v1/travel.json', JSON.stringify({
   about: 'travel.promptugal.news digest: what the front page shows, each value with its source.', version, built, data_read: manifest.read_at,
