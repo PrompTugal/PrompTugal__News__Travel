@@ -41,6 +41,8 @@ for (const f of files.filter(f => f.endsWith('index.html'))) {
   if (!/class="provenance"/.test(s)) fail(`${f}: no "how this page was made" block`);
 }
 if (!existsSync('_site/llms.txt')) fail('no llms.txt');
+// security post-review (18 Nov 2026): no script-capable link scheme in any built page
+for (const f of files.filter(f => f.endsWith('.html'))) if (/href="\s*(javascript|data|vbscript):/i.test(readFileSync(f, 'utf8'))) fail(`${f}: a javascript:, data: or vbscript: link`);
 // travel.b@PrompTugal.dinis (18 Nov 2026), Dinis's licence rule: every item in the site's JSON that names a source url
 // carries a license, and every outside link in a page's body is followed by its licence or terms mark.
 const noLic = (o, f, path = '') => { if (Array.isArray(o)) return o.forEach((v, i) => noLic(v, f, `${path}[${i}]`)); if (!o || typeof o !== 'object') return; const u = [o.url, o.page, o.source].find(x => typeof x === 'string' && /^https?:/.test(x)); if (u && !/creativecommons\.org|opendatacommons\.org/.test(u) && !(o.license && o.license.url)) fail(`${f}${path || '/'}: names ${u} with no license`); for (const [k, v] of Object.entries(o)) if (k !== 'license') noLic(v, f, `${path}.${k}`); };

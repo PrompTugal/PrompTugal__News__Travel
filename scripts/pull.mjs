@@ -22,6 +22,7 @@ import { join } from 'node:path';
 const BASE = 'https://promptugal.news/data/by-place/';
 const DATA = 'https://data.promptugal.news/api/v1/by-place/';
 const STALE_H = 3;
+const MAX_BYTES = 5 * 1024 * 1024; // security post-review, 18 Nov 2026: no unbounded bodies
 const UA = 'travel.promptugal.news reader (+https://travel.promptugal.news/about/; a few requests an hour)';
 const OUT = 'data/inputs/by-place';
 const args = process.argv.slice(2);
@@ -39,8 +40,9 @@ async function read(path, base = BASE) {
   }
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      const r = await fetch(base + path, { headers: { 'user-agent': UA, accept: 'application/json' } });
+      const r = await fetch(base + path, { headers: { 'user-agent': UA, accept: 'application/json' }, redirect: 'error', signal: AbortSignal.timeout(20000) });
       const body = await r.text();
+      if (body.length > MAX_BYTES) return { path, url: base + path, via: 'https', at, status: 'too large', body: null };
       if (r.ok) return { path, url: base + path, via: 'https', at, status: r.status, body };
       if (r.status === 403 || r.status === 429) return { path, url: base + path, via: 'https', at, status: r.status, body: null };
     } catch (e) { if (attempt) return { path, url: base + path, via: 'https', at, status: 0, body: null, error: e.message }; }
@@ -57,7 +59,8 @@ reads.push(places);
 if (!places.body) { console.error(`pull: places.json answered ${places.status}; nothing changed`); process.exit(1); }
 writeFileSync(join(OUT, 'places.json'), places.body);
 const list = JSON.parse(places.body).places.filter(p => p.id === 'algarve' || p.parent === 'algarve' || ['quarteira'].includes(p.id));
-const ids = [...new Set(list.map(p => p.id))];
+// Place ids become file paths and URL paths: only lower-case letters, digits and hyphens (security post-review, 18 Nov 2026).
+const ids = [...new Set(list.map(p => p.id))].filter(id => typeof id === 'string' && /^[a-z0-9-]{1,40}$/.test(id));
 for (const id of ids) {
   // the place desk (events): promptugal.news only
   if (!from) await sleep(2000);
@@ -111,14 +114,15 @@ writeFileSync('data/inputs/manifest.json', JSON.stringify(manifest, null, 2) + '
 const faroPath = join(OUT, 'now/faro.json');
 if (existsSync(faroPath)) {
   const a = JSON.parse(readFileSync(faroPath, 'utf8')).airport;
-  if (a && a.at) {
+  if (a && typeof a.at === 'string' && /^\d{4}-\d\d-\d\dT\d\d:\d\d(:\d\d)?Z$/.test(a.at)) {
     const seriesPath = 'data/series/faro-airport.jsonl';
     mkdirSync('data/series', { recursive: true });
     const seen = existsSync(seriesPath) ? readFileSync(seriesPath, 'utf8') : '';
     if (!seen.includes(`"at":"${a.at}"`)) {
       const by = {};
-      for (const f of a.airline || []) by[f.airline] = (by[f.airline] || 0) + 1;
-      const row = { at: a.at, within_nm: a.within_nm, airline_total: (a.airline || []).length, on_ground: (a.airline || []).filter(f => f.on_ground).length, by_airline: by, other_aircraft: a.other_aircraft, source: a.source };
+      for (const f of a.airline || []) if (/^[A-Z0-9]{2,4}$/.test(f.airline || '')) by[f.airline] = (by[f.airline] || 0) + 1;
+      const num = x => (Number.isFinite(x) ? x : null);
+      const row = { at: a.at, within_nm: num(a.within_nm), airline_total: (a.airline || []).length, on_ground: (a.airline || []).filter(f => f.on_ground).length, by_airline: by, other_aircraft: num(a.other_aircraft), source: a.source };
       appendFileSync(seriesPath, JSON.stringify(row) + '\n');
     }
   }

@@ -17,7 +17,7 @@ Files under `data/inputs/` (`by-place/`, `by-place/now/`, `events/`), `data/inpu
 ## What it trusts, and what could go wrong
 | Threat | Effect | Mitigation |
 |---|---|---|
-| A hostile or broken `places.json` gives a place id like `../../x` | A write outside `data/inputs/` | Place ids must match `^[a-z0-9-]+$` before use (added after this review if missing; see the checklist). |
+| A hostile or broken `places.json` gives a place id like `../../x` | A write outside `data/inputs/` | Place ids must match `^[a-z0-9-]+$` before use (added 18 Nov 2026). |
 | A source serves HTML or script inside a JSON value (a title, a URL) | Injection into our pages | `scripts/build.mjs` escapes every value it writes into HTML (`esc()`) and only links `http(s)` URLs. The browser script `now.js` uses `textContent`. |
 | A source serves text written to instruct an agent ("ignore your rules...") | Prompt injection when an agent reads the data | Agents treat all data as material, never instruction (CLAUDE.md). Any such text is reported to security@. |
 | A source is down, slow or answers 403/429 | Stale data | One retry with backoff; the stale file stays and the manifest records the status. The page shows the time each value was read. |
@@ -25,7 +25,9 @@ Files under `data/inputs/` (`by-place/`, `by-place/now/`, `events/`), `data/inpu
 | A copy is stale (data.promptugal.news more than 3 hours old) | Old data shown as current | The newer copy is used; the manifest records which, and why. |
 
 ## Checklist (for security@)
-- [ ] Place ids validated against `^[a-z0-9-]+$` before any path is built.
-- [ ] Response size cap (for example 5 MB) before `JSON.parse`.
+- [x] Place ids validated against `^[a-z0-9-]{1,40}$` before any path is built (18 Nov 2026).
+- [x] Response size cap (5 MB), a 20 s timeout, and no redirects followed (18 Nov 2026).
+- [x] Series rows: numbers coerced, the time checked, airline codes checked (18 Nov 2026).
+- [ ] A `timeout-minutes` on the CI build job.
 - [x] Hosts fixed in code; no host or path taken from fetched data, apart from the validated id.
 - [x] Polite: about 2 seconds between requests, a named user agent, no retries beyond one backoff.

@@ -35,7 +35,7 @@ const municipalities = algarveIds.filter(id => id !== 'algarve' && now[id]);
 
 // ---------- helpers ----------
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const mdesc = s => String(s ?? '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
+const mdesc = s => String(s ?? '').replace(/[\r\n\u0000-\u001f]+/g, ' ').replace(/([|\[\]<>])/g, '\\$1');
 const nodash = s => String(s ?? '').replace(/—/g, ',').replace(/–/g, '-');
 const lisbon = (iso, withDate = true) => {
   if (!iso) return 'not known';
@@ -47,8 +47,11 @@ const lisbon = (iso, withDate = true) => {
 const day = iso => { const d = new Date(iso + 'T12:00:00Z'); return isNaN(d) ? iso : new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(d); };
 const longDay = iso => { const d = new Date(iso + 'T12:00:00Z'); return isNaN(d) ? iso : new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(d); };
 const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; } };
-const a = (url, text) => (url ? `<a href="${esc(url)}">${esc(text ?? host(url))}</a>` : esc(text));
-const ml = (url, text) => (url ? `[${mdesc(text ?? host(url))}](${url})` : mdesc(text));
+// Only http(s), site-relative, fragment and mailto addresses become links (security post-review, 18 Nov 2026: a data URL
+// such as javascript: must never reach an href); anything else is shown as text.
+const safeUrl = u => typeof u === 'string' && /^(https?:\/\/|\/(?!\/)|#|mailto:)/i.test(u.trim());
+const a = (url, text) => (url && safeUrl(url) ? `<a href="${esc(url)}">${esc(text ?? host(url))}</a>` : esc(text ?? ''));
+const ml = (url, text) => (url && safeUrl(url) ? `[${mdesc(text ?? host(url))}](${String(url).replace(/[\s()]/g, encodeURIComponent)})` : mdesc(text ?? ''));
 const today = built.slice(0, 10);
 const firstSentence = s => { const m = String(s || '').match(/^.*?[.!?](\s|$)/); return m ? m[0].trim() : s; };
 
@@ -315,7 +318,7 @@ page({
 {
   const ap = airportBlock(true);
   const byRows = Object.entries(ap.by || {}).sort((x, y) => y[1] - x[1]);
-  const sHtml = series.length ? `<table><caption>Our readings so far (one row per pull, counts only)</caption><thead><tr><th scope="col">Read at</th><th scope="col" class="num">Airline flights</th><th scope="col" class="num">On the ground</th><th scope="col" class="num">Other aircraft</th><th scope="col">By airline</th></tr></thead><tbody>${series.slice(-24).reverse().map(r => `<tr><td>${esc(lisbon(r.at))}</td><td class="num">${r.airline_total}</td><td class="num">${r.on_ground}</td><td class="num">${r.other_aircraft}</td><td>${esc(Object.entries(r.by_airline).map(([k, v]) => `${airlineName(k)} ${v}`).join(', '))}</td></tr>`).join('')}</tbody></table>` : '';
+  const sHtml = series.length ? `<table><caption>Our readings so far (one row per pull, counts only)</caption><thead><tr><th scope="col">Read at</th><th scope="col" class="num">Airline flights</th><th scope="col" class="num">On the ground</th><th scope="col" class="num">Other aircraft</th><th scope="col">By airline</th></tr></thead><tbody>${series.slice(-24).reverse().map(r => `<tr><td>${esc(lisbon(r.at))}</td><td class="num">${esc(r.airline_total)}</td><td class="num">${esc(r.on_ground)}</td><td class="num">${esc(r.other_aircraft)}</td><td>${esc(Object.entries(r.by_airline).map(([k, v]) => `${airlineName(k)} ${v}`).join(', '))}</td></tr>`).join('')}</tbody></table>` : '';
   const strikeAir = upcoming.filter(d => d.mode === 'air' || d.mode === 'border');
   page({
     path: '/flights/', title: 'Flights: Faro airport',

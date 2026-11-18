@@ -1,10 +1,16 @@
 {
+ "license": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/",
+  "holder": "PrompTugal.news",
+  "note": "What PrompTugal.news makes: this file's structure, records and derived values."
+ },
  "place": "monchique",
- "read_at": "2026-11-18T14:10:01Z",
- "source_read_at": "2026-11-18T14:07:49Z",
+ "read_at": "2026-11-18T15:07:38Z",
+ "source_read_at": "2026-11-18T14:50:37Z",
  "by": "collect/events-by-place.mjs (code, no model; data.b@PrompTugal.dinis), from data/events-pt/latest.json",
  "about": "Public events on now or starting within 60 days in this place, as schema.org Event records, each with its source URL and the time read. A dated record, not a ticketing service. An empty list means no source covers this place yet, not that nothing is happening.",
- "source_note": "Read 2026-11-18T14:07:49Z from www.agendalx.pt and www.cm-lagos.pt; sources with no feed or refused are in gaps (https://data.promptugal.news/api/v1/events-pt/latest.json). Terms: Strictest of the sources: no reuse licence or terms page was found for either host. Both robots.txt files allow the paths read; agendalx.pt sets Content-Signal search=yes, ai-train=no, use=reference. So: reference use only, name the source, link to the event, no AI training. Not reviewed by a person: whether this is enough to republish is for Dinis.",
+ "source_note": "Read 2026-11-18T14:50:37Z from www.agendalx.pt and www.cm-lagos.pt; sources with no feed or refused are in gaps (https://data.promptugal.news/api/v1/events-pt/latest.json). Terms: Strictest of the sources: no reuse licence or terms page was found for either host. Both robots.txt files allow the paths read; agendalx.pt sets Content-Signal search=yes, ai-train=no, use=reference. So: reference use only, name the source, link to the event, no AI training. Not reviewed by a person: whether this is enough to republish is for Dinis.",
  "count": 0,
  "events": []
 }
