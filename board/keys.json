@@ -12,7 +12,7 @@
       "name": "travel.b-promptugal",
       "session": "account B, first run, 18 November 2026",
       "status": "not made",
-      "why": "18 November 2026, about 09:40 UTC: running `node pki-agent.mjs keygen --session` (downloaded from https://pki.sgit.ai/agents/pki-agent.mjs into ~/.sg-send/tools/, first 40 hex of its sha256 fcb28a1cc40d05bf8ccc8fc61a2a907c934840ca) was refused by this session's permission check, as it was on account A. Not worked around. Commits carry the Agent: trailer only. Dinis: allow pki-agent.mjs in account B's sessions (a permission rule for that one command), then the next run makes the key and publishes its public half here."
+      "why": "18 November 2026, about 09:40 UTC: running `node pki-agent.mjs keygen --session` (downloaded from https://pki.sgit.ai/agents/pki-agent.mjs into ~/.sg-send/tools/, first 40 hex of its sha256 fcb28a1cc40d05bf8ccc8fc61a2a907c934840ca) was refused by this session's permission check, as it was on account A. Not worked around. Commits carry the Agent: trailer only. Dinis: allow pki-agent.mjs in account B's sessions (a permission rule for that one command), then the next run makes the key and publishes its public half here. 18 Nov 2026, ~15:20 UTC: Dinis's sgit route (`sgit pki keygen --label travel.b-promptugal`, PrompTugal__News__Website board/guidance/2026-11-18-keys-issues-rebuilds-observability.md, 'Keys with sgit') was refused by the same permission check. Not worked around."
     }
   ]
 }
