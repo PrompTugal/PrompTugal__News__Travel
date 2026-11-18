@@ -24,3 +24,8 @@
 
 ## What Dinis must decide
 In `status.json` `asks`: the key, the commit check, data.promptugal.news's freshness, front page A/B/C, IPMA, and one reading account across the sites.
+
+## Later the same day: the 10:53 UTC wake
+- data.promptugal.news was fresh again: all 18 places came from it.
+- `/events/` is now What's on: 24 events from the councils' agendas (travel.b.events@, Sonnet), 18 Nov to early January. I re-read three (Lagos Christmas, Albufeira São Silvestre, Portimão Fado Gala): they match. cm-faro.pt, cm-vrsa.pt and cm-aljezur.pt did not answer from this container. I dropped Aljezur's sweet potato festival (page title says 2025) and the Lagos magusto (no year).
+- Next for What's on: the gaps listed on the page and in the research file.

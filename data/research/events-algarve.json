@@ -1,0 +1,442 @@
+{
+  "by": "travel.b.events@PrompTugal.dinis (Sonnet)",
+  "read_at": "2026-11-18",
+  "about": "Events a visitor to the Algarve can go to, 18 November 2026 to early January 2027, from the councils' own agendas, each with the page its dates were read from. Not a complete what's-on: see gaps.",
+  "checked_by_lead": "travel.b@PrompTugal.dinis re-read Natal em Lagos, the Albufeira São Silvestre and the Portimão Fado Gala on 18 Nov 2026: dates match. cm-faro.pt, cm-vrsa.pt and cm-aljezur.pt did not answer from the lead's session. Dropped: Aljezur's sweet potato festival (its page title says 2025, so the year is in doubt) and Lagos's magusto (no year on its page).",
+  "events": [
+    {
+      "id": "natal-em-lagos-2026",
+      "title": "Christmas in Lagos: Christmas Village, ice rink and market",
+      "name_pt": "Natal em Lagos 2026",
+      "place": "lagos",
+      "where": "Praça do Infante (village to 24 Dec); events across the municipality",
+      "start": "2026-11-28",
+      "end": "2027-01-05",
+      "kind": "christmas",
+      "free": null,
+      "what": "The council's Christmas programme. The Christmas Village in Praça do Infante (28 Nov to 24 Dec) has Santa's house, a small market, an ice rink, a train and carousels.",
+      "source": {
+        "url": "https://www.cm-lagos.pt/municipio/eventos/16236-natal-em-lagos-2026",
+        "title": "Natal em Lagos 2026 (Município de Lagos)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "lagos-presepio-animado-2026",
+      "title": "Animated nativity scene by José Cortes",
+      "name_pt": "Presépio Animado de Natal, de José Cortes",
+      "place": "lagos",
+      "where": "Centro Cultural de Lagos",
+      "start": "2026-11-28",
+      "end": "2027-01-09",
+      "kind": "christmas",
+      "free": null,
+      "what": "An animated nativity scene at the cultural centre, through the festive season.",
+      "source": {
+        "url": "https://www.cm-lagos.pt/municipio/eventos",
+        "title": "Eventos, Município de Lagos (listing)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "lagos-mostra-artesanato-natal-2026",
+      "title": "Christmas craft show",
+      "name_pt": "Mostra de Artesanato de Natal",
+      "place": "lagos",
+      "where": "Mercado de Levante",
+      "start": "2026-12-11",
+      "end": "2026-12-12",
+      "kind": "market",
+      "free": null,
+      "what": "Christmas crafts from local makers in the Levante market hall.",
+      "source": {
+        "url": "https://www.cm-lagos.pt/municipio/eventos",
+        "title": "Eventos, Município de Lagos (listing)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "lagos-concerto-natal-orquestra-algarve-2026",
+      "title": "Christmas concert: Algarve Orchestra and Community Choir",
+      "name_pt": "Concerto de Natal, Orquestra do Algarve e Coro Comunitário do Algarve",
+      "place": "lagos",
+      "where": "19h00; venue not on the listing",
+      "start": "2026-12-05",
+      "end": "2026-12-05",
+      "kind": "music",
+      "free": null,
+      "what": "The Algarve Orchestra with the region's community choir.",
+      "source": {
+        "url": "https://www.cm-lagos.pt/municipio/eventos",
+        "title": "Eventos, Município de Lagos (listing)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "lagos-feira-franca-2026-11",
+      "title": "Feira Franca, open-air fair",
+      "name_pt": "Feira Franca",
+      "place": "lagos",
+      "where": "Next to the Estádio Municipal",
+      "start": "2026-11-20",
+      "end": "2026-11-22",
+      "kind": "market",
+      "free": null,
+      "what": "A three-day fair next to the municipal stadium.",
+      "source": {
+        "url": "https://www.cm-lagos.pt/municipio/eventos",
+        "title": "Eventos, Município de Lagos (listing)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "lagos-presepios-santo-amaro-2026",
+      "title": "Nativity scenes exhibition",
+      "name_pt": "Exposição de Presépios de Natal",
+      "place": "lagos",
+      "where": "Mercado de Santo Amaro",
+      "start": "2026-12-02",
+      "end": "2027-01-07",
+      "kind": "christmas",
+      "free": null,
+      "what": "Nativity scenes in the Santo Amaro market.",
+      "source": {
+        "url": "https://www.cm-lagos.pt/municipio/eventos",
+        "title": "Eventos, Município de Lagos (listing)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "lagos-passagem-de-ano-2026",
+      "title": "New Year's Eve party with Nininho Vaz Maia",
+      "name_pt": "Festa de Passagem de Ano",
+      "place": "lagos",
+      "where": "Praça do Infante, 22h30",
+      "start": "2026-12-31",
+      "end": "2026-12-31",
+      "kind": "new-year",
+      "free": null,
+      "what": "The council's New Year's Eve party in the main square.",
+      "source": {
+        "url": "https://www.cm-lagos.pt/municipio/eventos",
+        "title": "Eventos, Município de Lagos (listing)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "faro-festival-orgao-algarve-2026",
+      "title": "Algarve International Organ Festival: Faro concerts",
+      "name_pt": "XIX Festival Internacional de Órgão do Algarve",
+      "place": "faro",
+      "where": "Sé (cathedral), 21h00",
+      "start": "2026-11-21",
+      "end": "2026-11-28",
+      "kind": "music",
+      "free": null,
+      "what": "Organ recitals in Faro cathedral on 21 and 28 November.",
+      "source": {
+        "url": "https://www.cm-faro.pt/pt/agenda/91696/xix-festival-internacional-de-orgao-do-algarve-2026.aspx",
+        "title": "XIX Festival Internacional de Órgão do Algarve 2026 (Câmara Municipal de Faro)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "faro-scianema-2026",
+      "title": "Scianema environmental film showcase",
+      "name_pt": "Scianema, Mostra de Cinema Ambiental de Faro",
+      "place": "faro",
+      "where": "Teatro Lethes, 16h00",
+      "start": "2026-11-21",
+      "end": "2026-11-21",
+      "kind": "culture",
+      "free": null,
+      "what": "A one-day environmental film showcase in Faro's historic theatre.",
+      "source": {
+        "url": "https://www.cm-faro.pt/pt/agenda/101741/scianema--mostra-de-cinema-ambiental-de-faro.aspx",
+        "title": "Scianema (Câmara Municipal de Faro)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "faro-cachola-collection-2026",
+      "title": "Exhibition from the António Cachola Collection",
+      "name_pt": "Em cofre não se guarda coisa alguma",
+      "place": "faro",
+      "where": "Venue not on the page",
+      "start": "2026-11-14",
+      "end": "2027-04-04",
+      "kind": "culture",
+      "free": null,
+      "what": "Contemporary art from a public collection.",
+      "source": {
+        "url": "https://www.cm-faro.pt/pt/agenda/91747/em-cofre-nao-se-guarda-coisa-alguma---colecao-antonio-cachola.aspx",
+        "title": "Em cofre não se guarda coisa alguma (Câmara Municipal de Faro)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "loule-som-riscado-2026",
+      "title": "Som Riscado music and image festival",
+      "name_pt": "Som Riscado 2026",
+      "place": "loule",
+      "where": "Cineteatro Louletano",
+      "start": "2026-11-19",
+      "end": "2026-11-22",
+      "kind": "festival",
+      "free": null,
+      "what": "Four days of music and image at Loulé's cine-theatre.",
+      "source": {
+        "url": "https://www.cm-loule.pt/pt/agenda/54834/som-riscado-2026---festival-de-musica-e-imagem.aspx",
+        "title": "Som Riscado 2026 (Câmara Municipal de Loulé)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "albufeira-mercadinho-natal-2026",
+      "title": "Little Christmas market",
+      "name_pt": "Mercadinho de Natal",
+      "place": "albufeira",
+      "where": "Espaço Multiusos, 14h to 19h",
+      "start": "2026-11-21",
+      "end": "2026-11-22",
+      "kind": "market",
+      "free": null,
+      "what": "A weekend Christmas market in Albufeira's multipurpose hall.",
+      "source": {
+        "url": "https://www.cm-albufeira.pt/evento/mercadinho-de-natal",
+        "title": "Mercadinho de Natal (Município de Albufeira)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "albufeira-sao-silvestre-2026",
+      "title": "São Silvestre do Algarve race",
+      "name_pt": "Corrida de São Silvestre do Algarve",
+      "place": "albufeira",
+      "where": "Rua do Município",
+      "start": "2026-12-19",
+      "end": "2026-12-19",
+      "kind": "sport",
+      "free": false,
+      "what": "A 10.6 km run and 5.8 km walk, with a free children's race. Entry by paid registration.",
+      "source": {
+        "url": "https://www.cm-albufeira.pt/artigo/corrida-sao-silvestre-regressa-albufeira-e-espera-reunir-2000-participantes",
+        "title": "Corrida São Silvestre regressa a Albufeira (Município de Albufeira)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "lagoa-estatuas-vivas-natal-2026",
+      "title": "Living statues at Christmas",
+      "name_pt": "Estátuas Vivas no Natal",
+      "place": "lagoa",
+      "where": "Rua 25 de Abril and Largo 5 de Outubro",
+      "start": "2026-12-11",
+      "end": "2026-12-12",
+      "kind": "christmas",
+      "free": null,
+      "what": "Street performers as living statues in the town centre.",
+      "source": {
+        "url": "https://cm-lagoa.pt/conhecer/eventos/evento/xii-edicao-estatuas-vivas-no-natal-2026",
+        "title": "Estátuas Vivas no Natal 2026 (Município de Lagoa)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "lagoa-christmas-jazz-2026",
+      "title": "Christmas jazz by Sofia Hoffmann",
+      "name_pt": "Christmas Jazz by Sofia Hoffmann",
+      "place": "lagoa",
+      "where": "Auditório Carlos do Carmo, 19h00",
+      "start": "2026-12-12",
+      "end": "2026-12-12",
+      "kind": "music",
+      "free": null,
+      "what": "A Christmas jazz concert.",
+      "source": {
+        "url": "https://cm-lagoa.pt/conhecer/eventos/evento/christmas-jazz-by-sofia-hoffmann",
+        "title": "Christmas Jazz by Sofia Hoffmann (Município de Lagoa)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "lagoa-concerto-natal-solidario-2026",
+      "title": "Charity Christmas concert",
+      "name_pt": "Concerto de Natal Solidário",
+      "place": "lagoa",
+      "where": "Centro de Congressos, 18h00",
+      "start": "2026-12-20",
+      "end": "2026-12-20",
+      "kind": "music",
+      "free": null,
+      "what": "A charity Christmas concert.",
+      "source": {
+        "url": "https://cm-lagoa.pt/conhecer/eventos/evento/concerto-de-natal-solidario",
+        "title": "Concerto de Natal Solidário (Município de Lagoa)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "vrsa-presepio-gigante-2026",
+      "title": "Giant nativity scene",
+      "name_pt": "Presépio Gigante",
+      "place": "vila-real-de-santo-antonio",
+      "where": "Centro Cultural António Aleixo",
+      "start": "2026-11-28",
+      "end": "2027-01-06",
+      "kind": "christmas",
+      "free": null,
+      "what": "A nativity scene of more than 6,000 figures, open to Epiphany.",
+      "source": {
+        "url": "https://www.cm-vrsa.pt/pt/agenda/68415/presepio-gigante-de-vila-real-de-santo-antonio.aspx",
+        "title": "Presépio Gigante (Câmara Municipal de Vila Real de Santo António)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "vrsa-samhainbaucogna-2026",
+      "title": "SamhainBaucogna international film festival",
+      "name_pt": "Festival Internacional de Cinema SamhainBaucogna",
+      "place": "vila-real-de-santo-antonio",
+      "where": "Biblioteca Municipal Vicente Campinas",
+      "start": "2026-11-24",
+      "end": "2026-11-29",
+      "kind": "festival",
+      "free": null,
+      "what": "Six days of genre film at the town library.",
+      "source": {
+        "url": "https://www.cm-vrsa.pt/pt/noticias/68409/vila-real-de-santo-antonio-acolhe-terceira-edicao-do-festival-internacional-de-cinema-samhainbaucogna.aspx",
+        "title": "SamhainBaucogna (Câmara Municipal de Vila Real de Santo António)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "castro-marim-vila-coracao-2026",
+      "title": "Vila Coração: Christmas opening",
+      "name_pt": "Vila Coração",
+      "place": "castro-marim",
+      "where": "Praça 1.º de Maio",
+      "start": "2026-11-28",
+      "end": "2026-12-01",
+      "kind": "christmas",
+      "free": null,
+      "what": "The opening of Castro Marim's Christmas programme.",
+      "source": {
+        "url": "https://cm-castromarim.pt/site/evento/vila-coracao",
+        "title": "Vila Coração (Câmara Municipal de Castro Marim)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "castro-marim-mercado-mensal-dez-2026",
+      "title": "Monthly market",
+      "name_pt": "Mercado mensal de Castro Marim",
+      "place": "castro-marim",
+      "where": "Campo de Futebol",
+      "start": "2026-12-12",
+      "end": "2026-12-12",
+      "kind": "market",
+      "free": null,
+      "what": "The monthly market.",
+      "source": {
+        "url": "https://cm-castromarim.pt/site/evento/mercado-mensal-de-castro-marim-1",
+        "title": "Mercado mensal de Castro Marim (Câmara Municipal de Castro Marim)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "silves-jazz-adegas-low-tech-groove-2026",
+      "title": "Jazz in the wineries: Low Tech Groove",
+      "name_pt": "Jazz nas Adegas, Low Tech Groove",
+      "place": "silves",
+      "where": "Adega Cabrita, 27 Nov 21h00, 28 Nov 17h00",
+      "start": "2026-11-27",
+      "end": "2026-11-28",
+      "kind": "music",
+      "free": null,
+      "what": "Jazz in a winery, part of the Jazz nas Adegas series.",
+      "source": {
+        "url": "https://www.cm-silves.pt/pt/agenda/43529/jazz-nas-adegas---low-tech-groove.aspx",
+        "title": "Jazz nas Adegas (Câmara Municipal de Silves)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "silves-jazz-adegas-scooby-2026",
+      "title": "Jazz in the wineries: Scooby 4 Tet",
+      "name_pt": "Jazz nas Adegas, Scooby 4 Tet",
+      "place": "silves",
+      "where": "Quinta do Francês, Odelouca, 4 Dec 21h00, 5 Dec 17h00",
+      "start": "2026-12-04",
+      "end": "2026-12-05",
+      "kind": "music",
+      "free": null,
+      "what": "Jazz at a wine estate.",
+      "source": {
+        "url": "https://www.cm-silves.pt/pt/agenda/43530/jazz-nas-agedas---scooby-4-tet.aspx",
+        "title": "Jazz nas Adegas (Câmara Municipal de Silves)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "portimao-gala-de-fado-2026",
+      "title": "Portimão Fado Gala",
+      "name_pt": "II Gala de Fado de Portimão",
+      "place": "portimao",
+      "where": "TEMPO, Teatro Municipal, 21h00",
+      "start": "2026-12-05",
+      "end": "2026-12-05",
+      "kind": "music",
+      "free": null,
+      "what": "A fado gala at the municipal theatre.",
+      "source": {
+        "url": "https://vivaportimao.pt/noticias/noticia?idNoticia=3270",
+        "title": "II Gala de Fado de Portimão (Viva Portimão, the council's events site)",
+        "read": "2026-11-18"
+      }
+    },
+    {
+      "id": "tavira-fernando-lemos-2026",
+      "title": "Exhibition: Fernando Lemos",
+      "name_pt": "As imagens que nos olham, Fernando Lemos",
+      "place": "tavira",
+      "where": "Venue not on the page",
+      "start": "2026-11-14",
+      "end": "2027-04-03",
+      "kind": "culture",
+      "free": null,
+      "what": "An exhibition of the Portuguese artist Fernando Lemos.",
+      "source": {
+        "url": "https://cm-tavira.pt/site/evento/exposicao-as-imagens-que-nos-olham-fernando-lemos/",
+        "title": "As imagens que nos olham (Câmara Municipal de Tavira)",
+        "read": "2026-11-18"
+      }
+    }
+  ],
+  "gaps": [
+    {
+      "what": "Visit Algarve's agenda",
+      "why": "visitalgarve.pt gave no event data to an automated reader (a JavaScript page)."
+    },
+    {
+      "what": "Olhão, Vila do Bispo and Alcoutim",
+      "why": "Their sites gave only a page shell with no events."
+    },
+    {
+      "what": "Monchique's Christmas dates",
+      "why": "Named for 2026, but the dates are in a poster image."
+    },
+    {
+      "what": "New Year's Eve outside Lagos (Albufeira, Quarteira, Faro, Portimão, Tavira, Monte Gordo)",
+      "why": "The official pages read did not list them yet; reports mixed 2025 and 2026 editions."
+    },
+    {
+      "what": "December in Faro, Loulé, Silves, São Brás de Alportel and Tavira",
+      "why": "Only some agenda pages were read; the rest is next."
+    },
+    {
+      "what": "Prices",
+      "why": "Most pages give none, so free or paid is shown only where a page says."
+    }
+  ]
+}

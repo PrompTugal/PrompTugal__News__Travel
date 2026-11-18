@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T11:10Z",
+  "updated": "2026-11-18T11:35Z",
   "run": "second run on account B (18 Nov 2026, 10:53 UTC wake)",
   "observability": {
     "lane": "travel",
@@ -52,7 +52,7 @@
   "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
   "next": [
     "Each wake: pull, build, gate, commit inputs and the Faro series, release.",
-    "What's on: travel.b.events@ (Sonnet) is reading the councils' and Visit Algarve's agendas (18 Nov to 6 Jan); the /events/ page shows them once data/research/events-algarve.json lands.",
+    "What's on: fill the gaps (December agendas of Faro, Loulé, Silves, São Brás, Tavira; New Year's Eves; Olhão, Vila do Bispo, Alcoutim, Monchique) and drop past events each wake.",
     "Re-check disruptions each wake: on 18 Nov the easyJet 19 to 23 December strike still stood as announced; DGERT answered 503.",
     "Getting-around gaps: island ferries, tolls."
   ],
@@ -62,5 +62,6 @@
     "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
     "Dinis: IPMA-based pages stay free until you decide (ask IPMA, or keep them free).",
     "Dinis: the reading credit here is separate from promptugal.news's (browser storage is per site). One account across the sites needs the vault work in board/spec-one-reader-across-devices.md of the Website repo."
-  ]
+  ],
+  "live_changes": "18 Nov 10:53 wake: /events/ is What's on (24 events from councils' agendas); all 18 places from data.promptugal.news."
 }
