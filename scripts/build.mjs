@@ -66,13 +66,13 @@ const airlineName = c => AIRLINES[c] || c;
 const LIC = maybe('data/editorial/licences.json') || { hosts: {}, ours: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' } };
 const OURS = LIC.ours || { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' };
 const OWN_HOSTS = /(^|\.)travel\.promptugal\.news$/;
-const LIC_ALIASES = { 'api.ipma.pt': 'ipma.pt', 'files.diariodarepublica.pt': 'diariodarepublica.pt', 'en.newsroom.ana.pt': 'ana.pt', 'fct.ualg.pt': 'ualg.pt', 'global.flixbus.com': 'flixbus.pt', 'geo.turismodeportugal.pt': 'turismodeportugal.pt', 'travelbi.turismodeportugal.pt': 'turismodeportugal.pt', 'vamusalgarve.pt': 'vamus.pt', 'api.adsb.lol': 'adsb.lol', 'globe.adsb.lol': 'adsb.lol', 'www2.cm-olhao.pt': 'cm-olhao.pt' };
+const LIC_ALIASES = { 'api.ipma.pt': 'ipma.pt', 'files.diariodarepublica.pt': 'diariodarepublica.pt', 'en.newsroom.ana.pt': 'ana.pt', 'fct.ualg.pt': 'ualg.pt', 'global.flixbus.com': 'flixbus.pt', 'geo.turismodeportugal.pt': 'turismodeportugal.pt', 'travelbi.turismodeportugal.pt': 'turismodeportugal.pt', 'vamusalgarve.pt': 'vamus.pt', 'adsb.lol': 'api.adsb.lol', 'globe.adsb.lol': 'api.adsb.lol', 'www2.cm-olhao.pt': 'cm-olhao.pt' };
 const licFor = url => {
   let h; try { h = new URL(url).hostname.replace(/^www\d?\./, ''); } catch { return null; }
   if (OWN_HOSTS.test(h)) return { name: OURS.name, url: OURS.url, kind: 'licence' };
   if (/(^|\.)creativecommons\.org$|(^|\.)opendatacommons\.org$/.test(h)) return null;
   const k = LIC_ALIASES[h] || h, e = LIC.hosts[k] || LIC.hosts[h.split('.').slice(-2).join('.')];
-  if (e && e.url) return { name: e.kind === 'licence' ? e.name : "the source's terms", url: e.url, kind: e.kind || 'terms' };
+  if (e && e.url) return { name: e.kind === 'licence' ? e.name : e.terms_found === false ? "the source's terms (no terms page found; its home page)" : "the source's terms", url: e.url, kind: e.kind || 'terms' };
   return { name: "the source's terms (not yet found)", url: `https://${h}/`, kind: 'terms' };
 };
 // a licence mark after every outside link in a page's body (HTML) and its markdown twin

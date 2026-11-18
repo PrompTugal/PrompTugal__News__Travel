@@ -34,3 +34,9 @@ In `status.json` `asks`: the key, the commit check, data.promptugal.news's fresh
 - Fresh pull, all 18 places from data.promptugal.news. Faro: Iberia Express and Royal Air Maroc now named.
 - `/getting-around/` opens with "This winter: boats and tolls" (travel.b.transport@, Sonnet). I re-read the A22 law (Lei 37/2024 lists the A22) and Postal's 10 Nov Armona notice (winter times): both match. Faro's island timetables are pictures, so the page links them rather than listing times. The sub-agent's report named a company mailbox from the Faro council page; I left it out.
 - Next: the disruptions re-check, What's on gaps, the boat timetables published as pictures.
+
+## Afternoon, 14:00 to 15:10 UTC
+- Storm items: plan in `board/team/travel/storm-plan.md` (5 taken, 2 collectors left with data.b@).
+- What's on reads data.promptugal.news's events by place (titles, dates, links; Lagos 89 so far).
+- Dinis's licence rule applied: marks on every outside link, `license` in every API item, a gate check, a register of 53 sources (travel.b.licences@, Sonnet). I spot-checked IPMA's and adsb.lol's entries (consistent with what we knew and with data.b@'s finding).
+- One mistake: commit bd57ab6's Claude-Session trailer names conductor.b@'s session, not this one. Left as is (no history rewrite).

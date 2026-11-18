@@ -1,0 +1,434 @@
+{
+ "about": "The licence or terms behind each source this site uses (Dinis, 18 Nov 2026: every piece of data carries its licence link). Read by travel.b.licences@PrompTugal.dinis (Sonnet).",
+ "read_at": "2026-11-18",
+ "ours": {
+  "name": "CC BY 4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/"
+ },
+ "hosts": {
+  "aeroportofaro.pt": {
+   "name": "the source's terms",
+   "url": "https://www.aeroportofaro.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Not read: the site answers with a bot check (Incapsula), so no terms page could be fetched. Home page given.",
+   "read": "2026-11-18"
+  },
+  "algarvedailynews.com": {
+   "name": "the source's terms",
+   "url": "https://algarvedailynews.com/terms-conditions",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Terms and Conditions: \"All content ... is the property of the site creators\"; no reuse licence named.",
+   "read": "2026-11-18"
+  },
+  "algarveevolution.pt": {
+   "name": "the source's terms",
+   "url": "https://algarveevolution.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Not read: the server resets the connection to our reader. Home page given.",
+   "read": "2026-11-18"
+  },
+  "algarveprimeiro.com": {
+   "name": "the source's terms",
+   "url": "https://algarveprimeiro.com/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Only a Politica de Privacidade page found (no terms of use or licence). Home page given.",
+   "read": "2026-11-18"
+  },
+  "algarvetechhub.com": {
+   "name": "the source's terms",
+   "url": "https://algarvetechhub.com/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Only a Privacy Policy page found (no terms of use or licence). Home page given.",
+   "read": "2026-11-18"
+  },
+  "ana.pt": {
+   "name": "the source's terms",
+   "url": "https://www.ana.pt/en/terms-and-conditions",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Terms and Conditions: intellectual property belongs to ANA; no reproduction or distribution without prior consent; download or print for personal, non-commercial use. en.newsroom.ana.pt links to the same terms.",
+   "read": "2026-11-18"
+  },
+  "api.adsb.lol": {
+   "name": "ODbL 1.0",
+   "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+   "kind": "licence",
+   "terms_found": true,
+   "note": "adsb.lol historical data page: \"license: ODbL 1.0, use it freely, just keep it open\"; data shared by feeders is waived under CC0 (adsb.lol/docs/privacy-license). The live API page itself states no licence.",
+   "read": "2026-11-18"
+  },
+  "barlavento.pt": {
+   "name": "the source's terms",
+   "url": "https://www.barlavento.pt/termos-e-condicoes/",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Termos e Condições: content protected by copyright, not to be used without the publisher's consent; external content excluded.",
+   "read": "2026-11-18"
+  },
+  "ccdr-alg.pt": {
+   "name": "the source's terms",
+   "url": "https://www.ccdr-alg.pt/site/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Only a Politica de Privacidade and an accessibility page found (no terms of use or licence). Home page given.",
+   "read": "2026-11-18"
+  },
+  "cm-albufeira.pt": {
+   "name": "the source's terms",
+   "url": "https://www.cm-albufeira.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Only a Politica de Privacidade page found (no terms of use or licence). Home page given.",
+   "read": "2026-11-18"
+  },
+  "cm-castromarim.pt": {
+   "name": "the source's terms",
+   "url": "https://cm-castromarim.pt/site/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "No terms, legal notice or licence page found in the site footer. Home page given.",
+   "read": "2026-11-18"
+  },
+  "cm-faro.pt": {
+   "name": "the source's terms",
+   "url": "https://www.cm-faro.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Only a Politica de Privacidade page found (no terms of use or licence). Home page given.",
+   "read": "2026-11-18"
+  },
+  "cm-lagoa.pt": {
+   "name": "the source's terms",
+   "url": "https://www.cm-lagoa.pt/ficha-tecnica/avisos-legais",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "\"Avisos Legais\" page, with \"Termos de utilizacao e condicoes gerais de acesso\" and \"Regras de utilizacao do Website\"; no reuse licence named.",
+   "read": "2026-11-18"
+  },
+  "cm-lagos.pt": {
+   "name": "the source's terms",
+   "url": "https://www.cm-lagos.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "No terms, legal notice or licence page found in the site footer. Home page given.",
+   "read": "2026-11-18"
+  },
+  "cm-loule.pt": {
+   "name": "the source's terms",
+   "url": "https://www.cm-loule.pt/pt/menu/4285/termos-e-condicoes-de-utilizacao.aspx",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "\"Termos e Condicoes de Utilizacao\": the Camara is holder of the copyright on the site as a collective work; no reuse licence named.",
+   "read": "2026-11-18"
+  },
+  "cm-olhao.pt": {
+   "name": "the source's terms",
+   "url": "https://cm-olhao.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "No terms, legal notice or licence page found (home page is mostly script-driven). Home page given.",
+   "read": "2026-11-18"
+  },
+  "cm-silves.pt": {
+   "name": "the source's terms",
+   "url": "https://www.cm-silves.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Only a Politica de Privacidade and an accessibility page found (no terms of use or licence). Home page given.",
+   "read": "2026-11-18"
+  },
+  "cm-tavira.pt": {
+   "name": "the source's terms",
+   "url": "https://cm-tavira.pt/site/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Only a Politica de Privacidade e Protecao de Dados page found (no terms of use or licence). Home page given.",
+   "read": "2026-11-18"
+  },
+  "cm-vrsa.pt": {
+   "name": "the source's terms",
+   "url": "https://www.cm-vrsa.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Only a Politica de Protecao e Privacidade page found (no terms of use or licence). Home page given.",
+   "read": "2026-11-18"
+  },
+  "cp.pt": {
+   "name": "the source's terms",
+   "url": "https://www.cp.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Not read: the pages are built by JavaScript and show no text to our reader. Home page given.",
+   "read": "2026-11-18"
+  },
+  "dados.gov.pt": {
+   "name": "CC BY 4.0 (default for state data)",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "kind": "licence",
+   "terms_found": true,
+   "note": "Termos de utilizacao (dados.gov.pt/pt/termos-de-utilizacao): data from state bodies is published under CC BY 4.0 \"exceto se houver uma especificacao em contrario\"; each dataset can name another open licence, so check the dataset.",
+   "read": "2026-11-18"
+  },
+  "data.promptugal.news": {
+   "name": "CC BY 4.0 (our work); sources keep their own terms",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "kind": "licence",
+   "terms_found": true,
+   "note": "Site footer: \"Code Apache-2.0. Text CC BY 4.0. Data: each source's own terms (see its card)\".",
+   "read": "2026-11-18"
+  },
+  "dgert.gov.pt": {
+   "name": "the source's terms",
+   "url": "https://www.dgert.gov.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Not read: the site's TLS certificate does not verify from our reader and we do not bypass that. Home page given.",
+   "read": "2026-11-18"
+  },
+  "diariodarepublica.pt": {
+   "name": "the source's terms",
+   "url": "https://diariodarepublica.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Not read: the site is JavaScript-only and returns no text to our reader (files.diariodarepublica.pt is the same service). Home page given.",
+   "read": "2026-11-18"
+  },
+  "dn.pt": {
+   "name": "the source's terms",
+   "url": "https://www.dn.pt/termos-de-utilizacao",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Termos de Utilizacao (Global Media Group): rights held by GMG or its licensors; no copying, changing or commercial use without prior authorisation.",
+   "read": "2026-11-18"
+  },
+  "dnoticias.pt": {
+   "name": "the source's terms",
+   "url": "https://www.dnoticias.pt/legal/termos-e-condicoes",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Termos e Condicoes: \"Todos os direitos de propriedade intelectual sao reservados\"; no republishing without credit and authorisation.",
+   "read": "2026-11-18"
+  },
+  "eco.sapo.pt": {
+   "name": "the source's terms",
+   "url": "https://eco.sapo.pt/termos-e-condicoes/",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Termos e Condicoes: content is ECO's property and protected; \"nao pode ser utilizado sem o consentimento previo do ECO\".",
+   "read": "2026-11-18"
+  },
+  "faroairport.pt": {
+   "name": "the source's terms",
+   "url": "https://www.faroairport.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Not read: the site answers with a bot check (Incapsula), so no terms page could be fetched. Home page given.",
+   "read": "2026-11-18"
+  },
+  "flixbus.pt": {
+   "name": "the source's terms",
+   "url": "https://www.flixbus.com/online-terms-of-use",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "FlixBus Online Terms of Use (flixbus.pt and global.flixbus.com redirect to flixbus.com): materials are copyrighted; only a limited personal-use licence; no copying or derivative works.",
+   "read": "2026-11-18"
+  },
+  "gdg.community.dev": {
+   "name": "the source's terms",
+   "url": "https://gdg.community.dev/participation-terms/",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "GDG Event Participation Terms (event participation, not a content licence); no reuse licence named for site content.",
+   "read": "2026-11-18"
+  },
+  "ine.pt": {
+   "name": "CC BY 4.0",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "kind": "licence",
+   "terms_found": true,
+   "note": "INE copyright page: statistical data \"can be used and reused ... in accordance with the Creative Commons CC BY Attribution 4.0 licence\" (page: ine.pt, xpgid=ine_cont_inst).",
+   "read": "2026-11-18"
+  },
+  "infraestruturasdeportugal.pt": {
+   "name": "the source's terms",
+   "url": "https://www.infraestruturasdeportugal.pt/pt-pt/termos-de-utilizacao-ip",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Termos de Utilizacao: published documents may be copied or distributed with express reference to IP and copyright notices kept; commercial use excluded.",
+   "read": "2026-11-18"
+  },
+  "ipma.pt": {
+   "name": "the source's terms",
+   "url": "https://www.ipma.pt/pt/siteinfo/",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "IPMA \"Avisos legais\": content protected by copyright; free use for personal or public use \"desde que dessa utilização não decorram finalidades lucrativas ou ofensivas\"; the source must always be named. No named licence for api.ipma.pt.",
+   "read": "2026-11-18"
+  },
+  "jornaldoalgarve.pt": {
+   "name": "the source's terms",
+   "url": "https://www.jornaldoalgarve.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Not read: the site shows a Cloudflare bot check (\"Just a moment\"), which we do not work around. Home page given.",
+   "read": "2026-11-18"
+  },
+  "nap-portugal.imt-ip.pt": {
+   "name": "the source's terms",
+   "url": "https://nap-portugal.imt-ip.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Not read: the page is script-driven and shows no text to our reader. Home page given.",
+   "read": "2026-11-18"
+  },
+  "newsroom.sgit.ai": {
+   "name": "CC BY 4.0",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "kind": "licence",
+   "terms_found": true,
+   "note": "Site footer: \"All content CC BY 4.0 unless a page states otherwise\" (see also newsroom.sgit.ai/rights/index.html).",
+   "read": "2026-11-18"
+  },
+  "parlamento.pt": {
+   "name": "the source's terms",
+   "url": "https://www.parlamento.pt/Cidadania/Paginas/DadosAbertos.aspx",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Dados abertos page: data \"podem ser livremente reutilizados por qualquer instituicao ou pessoa ... devendo apenas ser mencionada a fonte (Assembleia da Republica)\"; no named licence. Propriedade page: parlamento.pt/Paginas/propriedade.aspx.",
+   "read": "2026-11-18"
+  },
+  "passeios-ria-formosa.com": {
+   "name": "the source's terms",
+   "url": "https://www.passeios-ria-formosa.com/termos-e-condicoes/",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Termos e Condicoes (booking terms of a tour operator); no content licence stated.",
+   "read": "2026-11-18"
+  },
+  "portaldasportagens.pt": {
+   "name": "the source's terms",
+   "url": "https://www.portaldasportagens.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Not read: the host could not be reached from our reader (connection failed). Home page given.",
+   "read": "2026-11-18"
+  },
+  "portugal.com": {
+   "name": "the source's terms",
+   "url": "https://www.portugal.com/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Only a Privacy Policy page found (no terms of use or licence). Home page given.",
+   "read": "2026-11-18"
+  },
+  "postal.pt": {
+   "name": "the source's terms",
+   "url": "https://postal.pt/legal/politica-de-privacidade/",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Politica de Privacidade, section \"Direitos de propriedade intelectual\": all content is POSTAL's and protected; no use without express prior consent.",
+   "read": "2026-11-18"
+  },
+  "promptugal.news": {
+   "name": "CC BY 4.0 (text and data we make); code Apache-2.0",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "kind": "licence",
+   "terms_found": true,
+   "note": "Site footer: \"Text CC BY 4.0, code Apache-2.0\"; page note: \"text and data CC BY 4.0\".",
+   "read": "2026-11-18"
+  },
+  "proximo.pt": {
+   "name": "the source's terms",
+   "url": "https://www.proximo.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Not read: the page is script-driven and shows no text to our reader. Home page given.",
+   "read": "2026-11-18"
+  },
+  "pttolls.com": {
+   "name": "the source's terms",
+   "url": "https://pttolls.com/termos-de-utilizacao-pttolls",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Termos de Utilizacao: content for personal information only; documents may be copied with credit to IP, S.A. and notices kept; commercial use excluded.",
+   "read": "2026-11-18"
+  },
+  "rede-expressos.pt": {
+   "name": "the source's terms",
+   "url": "https://rede-expressos.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Not read: the site shows a Cloudflare bot check (\"Just a moment\"), which we do not work around. Home page given.",
+   "read": "2026-11-18"
+  },
+  "rioguadiana.net": {
+   "name": "the source's terms",
+   "url": "https://www.rioguadiana.net/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "No terms, legal notice or licence page found. Home page given.",
+   "read": "2026-11-18"
+  },
+  "rtp.pt": {
+   "name": "the source's terms",
+   "url": "https://media.rtp.pt/rgpd/termos-e-condicoes/",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Termos e Condicoes de Utilizacao, section 4: content is RTP's or third parties' and protected; copying, reproduction or other use is forbidden without RTP's prior express consent.",
+   "read": "2026-11-18"
+  },
+  "sabado.pt": {
+   "name": "the source's terms",
+   "url": "https://www.sabado.pt/",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Home page footer: \"E expressamente proibida a reproducao na totalidade ou em parte ... sem previa permissao por escrito da Medialivre S.A.\"; no separate terms page found.",
+   "read": "2026-11-18"
+  },
+  "silnido.com": {
+   "name": "the source's terms",
+   "url": "https://www.silnido.com/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "A \"Termos e condicoes\" link exists but leads to no readable terms page; only a privacy policy found. Home page given.",
+   "read": "2026-11-18"
+  },
+  "turismodeportugal.pt": {
+   "name": "the source's terms",
+   "url": "https://dadosabertos.turismodeportugal.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Turismo de Portugal Dados Abertos portal; its pages are script-driven and state no licence to our reader, and geo./travelbi. show only a privacy policy. Portal given.",
+   "read": "2026-11-18"
+  },
+  "ualg.pt": {
+   "name": "the source's terms",
+   "url": "https://www.ualg.pt/politica-de-protecao-de-dados-e-de-privacidade",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "Only a data protection and privacy policy found on ualg.pt and fct.ualg.pt; no terms of use or licence. Page given is that policy.",
+   "read": "2026-11-18"
+  },
+  "vamus.pt": {
+   "name": "the source's terms",
+   "url": "http://vamus.pt/termos-de-utilizacao-e-politica-de-privacidade/",
+   "kind": "terms",
+   "terms_found": true,
+   "note": "Termos de utilizacao e politica de privacidade (vamus.pt; vamusalgarve.pt is a script-driven page with no text); no content licence named.",
+   "read": "2026-11-18"
+  },
+  "vivaportimao.pt": {
+   "name": "the source's terms",
+   "url": "https://vivaportimao.pt/",
+   "kind": "terms",
+   "terms_found": false,
+   "note": "No terms, legal notice or licence page found (only a Ficha Tecnica). Home page given.",
+   "read": "2026-11-18"
+  }
+ }
+}
