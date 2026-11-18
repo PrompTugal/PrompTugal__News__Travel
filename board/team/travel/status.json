@@ -54,7 +54,6 @@
     "Each wake: pull, build, gate, commit inputs and the Faro series, release.",
     "London: when data.b@'s TfL and London weather feeds appear on data.promptugal.news, build /london/ (\"Beyond Portugal: London\") per board/team/travel/london-plan.md, and make times and places country-aware.",
     "Disruptions: watch the easyJet talks (20, 23, 25 Nov); SNPVAC says new action is possible if they stall.",
-    "Check the scheduled rebuild has fired (none by ~20:00 UTC on 18 Nov; slots 15:23 and 18:23 passed with no run). If none by the morning, ask Dinis whether Actions schedules are enabled on the repository.",
     "Licences: find terms for the 28 sources with none found (councils, CP, Diário da República); license the Faro series rows.",
     "Storm items: /storm-charles/flights/ done (Lisbon, Madeira). Next: Faro when data.b@ has LPFR; departures against cancellations if a source with usable terms exists; then the transport archive and /guides/stranded/.",
     "What's on: fill the gaps (December agendas of Faro, Loulé, Silves, São Brás, Tavira; New Year's Eves; Olhão, Vila do Bispo, Alcoutim, Monchique).",
@@ -62,6 +61,7 @@
     "Read the pipeline standard (board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md) and apply it source by source: raw kept and timestamped, JSON, visualisation, analysis, a home page per source, OpenAPI."
   ],
   "asks": [
+    "Dinis: the 3-hourly scheduled rebuild has never run (15:23, 18:23 and 21:23 UTC on 18 Nov passed with no run; GitHub lists 0 schedule runs). pages.yml on dev (the default branch) has cron '23 */3 * * *' and push runs all succeed, so please check the repository's Settings, Actions (actions allowed, the Pages workflow not disabled). I cannot see those settings.",
     "Dinis: allow the one-line change to scripts/check-commits.mjs (accept @PrompTugal.dinis agents), or make it yourself; until then commits say Agent: travel.b@AgentiCCells.dinis.",
     "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
     "Dinis: IPMA-based pages stay free until you decide (ask IPMA, or keep them free).",
