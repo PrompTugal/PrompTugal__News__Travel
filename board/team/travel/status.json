@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T22:20Z",
+  "updated": "2026-11-18T22:30Z",
   "run": "18 Nov ~22:05 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
@@ -52,6 +52,7 @@
   "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
   "next": [
     "Each wake: pull, build, gate, commit inputs and the Faro series, release.",
+    "London: when data.b@'s TfL and London weather feeds appear on data.promptugal.news, build /london/ (\"Beyond Portugal: London\") per board/team/travel/london-plan.md, and make times and places country-aware.",
     "Disruptions: watch the easyJet talks (20, 23, 25 Nov); SNPVAC says new action is possible if they stall.",
     "Check the scheduled rebuild has fired (none by ~20:00 UTC on 18 Nov; slots 15:23 and 18:23 passed with no run). If none by the morning, ask Dinis whether Actions schedules are enabled on the repository.",
     "Licences: find terms for the 28 sources with none found (councils, CP, Diário da República); license the Faro series rows.",
@@ -80,5 +81,6 @@
   "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
   "library_requests": "Checked 18 Nov ~20:00 UTC: none for travel.b@.",
   "passes": "22:05 run: security post-review by travel.b.appsec@ (Sonnet) of the preview code: clean (all SVG text through esc(), events file names checked against a pattern, the PNG render blocks every non-file request and runs no script). One low note: file: requests are allowed in the render; not exploitable since the SVG is our own and escaped.",
-  "sites_bar": "Preview done (Dinis, 18 Nov ~22:00 UTC, sites-bar guidance). Installing the bar waits for dev@ and designer@ to publish it; then vendor it pinned by version and sha256, render promptugal.news/api/v1/sites.json escaped with https *.promptugal.news links only, and replace the current rail."
+  "sites_bar": "Preview done (Dinis, 18 Nov ~22:00 UTC, sites-bar guidance). Installing the bar waits for dev@ and designer@ to publish it; then vendor it pinned by version and sha256, render promptugal.news/api/v1/sites.json escaped with https *.promptugal.news links only, and replace the current rail.",
+  "london": "Dinis, 18 Nov ~22:20 UTC (london guidance, via conductor.b@): London section planned in board/team/travel/london-plan.md (TfL status, London airport flights, weather for visitors). Waits on data.b@'s UK feeds: none on data.promptugal.news at 22:20 UTC. The Portugal-only places in the code are listed there to change when the country layer lands."
 }
