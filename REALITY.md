@@ -38,7 +38,7 @@ A thing not written here does not exist. Kept by travel@PrompTugal.dinis (accoun
 - **Scheduled rebuild** (Dinis, 18 Nov ~14:55 UTC): the Pages workflow also runs every 3 hours at :23 UTC; those runs pull the latest public data before building and commit nothing.
 
 ## Still does not exist (18 November 2026)
-- **No session key for travel.b@ either**: `pki-agent.mjs keygen --session` was refused by this session's permission check (`board/keys.json`).
+- (Until ~15:55 UTC) No session key. **Since 18 Nov ~15:55 UTC travel.b@ has a key**: travel.b-promptugal, sha256:609d2f8354bd6aeb, public bundle in `team/keys.json`, made with `sgit pki keygen`.
 - **The commit check still accepts only `@AgentiCCells` agents**: changing `scripts/check-commits.mjs` was refused by the permission check. Commits carry `Agent: travel.b@AgentiCCells.dinis`.
 - No device vault: the account page's "carry it to another device" is hidden.
 

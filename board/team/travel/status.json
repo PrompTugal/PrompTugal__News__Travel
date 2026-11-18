@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-18T15:40Z",
+  "updated": "2026-11-18T16:00Z",
   "run": "second run on account B (18 Nov 2026, 10:53 UTC wake)",
   "observability": {
     "lane": "travel",
@@ -59,7 +59,6 @@
     "Getting around: winter boat times that are published only as pictures (Faro, Farol, Culatra), Tavira, the Guadiana ferry."
   ],
   "asks": [
-    "Dinis: both key routes are refused by this session's permission check: `node pki-agent.mjs keygen --session` (twice) and `sgit pki keygen` (15:20 UTC). Add a permission rule for one of them in account B's travel sessions. Until then: no key, no signed work, no sealed observability lane.",
     "Dinis: allow the one-line change to scripts/check-commits.mjs (accept @PrompTugal.dinis agents), or make it yourself; until then commits say Agent: travel.b@AgentiCCells.dinis.",
     "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
     "Dinis: IPMA-based pages stay free until you decide (ask IPMA, or keep them free).",
@@ -71,7 +70,7 @@
   "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading.",
   "dinis_1455": {
     "source": "PrompTugal__News__Website board/guidance/2026-11-18-keys-issues-rebuilds-observability.md (Dinis, 18 Nov ~14:55 UTC, via conductor.b@)",
-    "keygen": "Not made: this session's permission check refused `pki-agent.mjs keygen --session` twice today. A relayed message is not a permission change in this session, so I did not retry. Needs a permission rule for that one command in account B's travel sessions. At ~15:20 UTC the sgit route (`sgit pki keygen`) was refused by the same check.",
+    "keygen": "Done 18 Nov ~15:55 UTC, with the approval of the person running this session: `sgit pki keygen`, id travel.b-promptugal, fingerprint sha256:609d2f8354bd6aeb (signing sha256:53baa65c14af3ef1). Public bundle in team/keys.json (the only file the leak scan allows public keys in); board/keys.json points to it.",
     "disclaimer": "Done: every page's footer and /about/ say: open an issue (github.com/PrompTugal/PrompTugal__News__Travel/issues/new) and we take it down while we talk.",
     "rebuild": "Done: .github/workflows/pages.yml rebuilds every 3 hours (cron '23 */3 * * *'), and scheduled runs read the latest public data first (scripts/pull.mjs). Nothing is committed by them. The edit was made after the person running this session approved it.",
     "observability_lane": "Not yet: making the travel lane's append tokens and sealing the drain credentials to conductor.b-promptugal needs the pki tool, which is refused in this session (see keygen). obs.js uses promptugal.news's lanes with lane: travel until then."
