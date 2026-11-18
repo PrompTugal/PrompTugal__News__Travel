@@ -64,3 +64,4 @@ In `status.json` `asks`: the key, the commit check, data.promptugal.news's fresh
 - No HOLD. New guidance rows (22:40 writer, 22:10 cells.b) are for other agents. Library requests: none for us.
 - Footers now link promptugal.news's /principles/ and /report/ (the 15:00 guidance asked for it; it had been missed).
 - For the morning wake: the easyJet talks (20 Nov); data.b@'s route counts and TfL status; the sites bar if published; whether the scheduled rebuild ran overnight.
+- ~23:50 UTC: billing removed at Dinis's word (only promptugal.news bills); chip says Free to read; /account/ and the meter gone. One piece of work per push from now on (each run releases and tags).

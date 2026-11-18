@@ -115,6 +115,7 @@ thead th { border-bottom: 2px solid var(--ink); font-size: .8rem; text-transform
 .bar .tools { margin-left: auto; }
 .bar .tool.meter { height: 26px; padding: 0 10px; border: 1px solid var(--red); border-radius: 999px; background: var(--card); color: var(--ink); text-decoration: none; font: 500 12px/1 var(--mono); }
 .bar .tool.meter .meter-label { display: inline; font-family: var(--ui); color: var(--red); }
+.bar .tool.meter.free { border-color: var(--green); } .bar .tool.meter.free .meter-label { color: var(--green); }
 @media (max-width: 767px) { .bar .tools .tool.meter { display: inline-flex !important; } }
 @media (max-width: 430px) { .bar > span:not(.version):not(.tools) { display: none; } }
 /* The PrompTugal.news sites: a rail at the right edge on wide screens (promptugal.news's top.css, em-net), a line in the footer everywhere */

@@ -101,8 +101,8 @@ const pages = [];
 // The PrompTugal.news sites, as promptugal.news's rail (PrompTugal__News__Website assets/top/top.tmpl, em-net).
 const SITES = [['Weather', 'https://weather.promptugal.news/'], ['Civic', 'https://civic.promptugal.news/'], ['Startups', 'https://startups.promptugal.news/'], ['Travel', 'https://travel.promptugal.news/'], ['Data', 'https://data.promptugal.news/']];
 const siteLinks = () => SITES.map(([n, u]) => n === 'Travel' ? `<a href="/" aria-current="true">${n}</a>` : `<a href="${u}" rel="noopener">${n}</a>`).join('');
-// type: the meter's page type (data 1p, site 1p, account 0). ipma: built on IPMA data, so free, outside the meter
-// (IPMA's terms rule out profit-making use; account-B fix 4, until Dinis decides).
+// type and ipma: kept from the reading meter, which this site no longer has (Dinis, 18 Nov 2026 ~23:45 UTC: only
+// promptugal.news bills). Every page is free; the page's type is still written in its meta for other tools.
 function page({ path, title, description, body, md, provenance, variant = '', script = '', noindex = false, type = 'data', ipma = false }) {
   const pageType = ipma ? 'free' : type;
   const isHome = path === '/';
@@ -130,14 +130,13 @@ function page({ path, title, description, body, md, provenance, variant = '', sc
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
-<link rel="stylesheet" href="/assets/meter/meter.css">
 <meta name="page-type" content="${pageType}">
 <meta name="page-date" content="${today}">
 ${noindex ? '<meta name="robots" content="noindex">\n' : ''}</head>
 <body class="${esc(variant)}">
 <a class="skip" href="#main">Skip to the content</a>
 <header class="masthead">
-<div class="bar"><span class="version" data-version="${esc(version)}">Version ${esc(version)}</span><span>Independent: not an official site. Your airline or operator decides whether your service runs: its site or app has the latest.</span><span class="tools" id="nr-tools"><a class="tool meter" id="nr-meter-chip" href="/account/"><span class="meter-label">Pay for what you read</span></a></span></div>
+<div class="bar"><span class="version" data-version="${esc(version)}">Version ${esc(version)}</span><span>Independent: not an official site. Your airline or operator decides whether your service runs: its site or app has the latest.</span><span class="tools" id="nr-tools"><a class="tool meter free" id="nr-meter-chip" href="/about/#h-pay"><span class="meter-label">Free to read</span></a></span></div>
 <div class="brand"><a class="wordmark" href="/" aria-label="PrompTugal.news Travel, the front page"><img class="light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="220" height="36"><img class="dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="220" height="36"><span class="sub">· Travel</span></a>
 <p class="tagline">Travel and tourism in Portugal, the Algarve first. Every value with its source and the time it was read.</p></div>
 <nav aria-label="Sections"><ul>${NAV.map(([h, t]) => `<li><a href="${h}"${h === path ? ' aria-current="page"' : ''}>${esc(t)}</a></li>`).join('')}</ul></nav>
@@ -147,13 +146,13 @@ ${noindex ? '<meta name="robots" content="noindex">\n' : ''}</head>
 <div class="body">
 ${body}
 </div>
-${ipma ? `<p class="free-note"><strong>Free to read.</strong> This page is built on ${withLicHtml(a('https://www.ipma.pt/', 'IPMA'))} data, whose terms rule out profit-making use, so it is outside the reading meter.</p>\n` : ''}${provHtml}
+${provHtml}
 </main>
 <footer class="foot"><p>${a('https://promptugal.news/', 'PrompTugal.news')}: Portugal, town by town. Raw data from ${a('https://data.promptugal.news/', 'data.promptugal.news')} and from ${a('https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/data/by-place', 'PrompTugal.news place data')}. Not a warning service: follow ${a('https://www.ipma.pt/', 'IPMA')} and ${a('https://prociv.gov.pt/', 'ANEPC')}.</p>
 <p class="takedown">Is something here yours, and do you think we should not show it? ${a('https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new', 'Open an issue')} and we take it down while we talk. Text and data we make: CC BY 4.0; what we show from others stays under its source\'s licence or terms, linked beside it.</p>
 <p class="sites">Also from PrompTugal.news: ${siteLinks()}</p>
-<p class="obs-row">Version ${esc(version)} · ${a('https://github.com/PrompTugal/PrompTugal__News__Travel', 'Source')} · Code Apache-2.0, text CC BY 4.0 · ${a('/llms.txt', 'llms.txt')} · ${a('/version.json', 'version.json')} · ${a('/account/', 'Your reading account')} · ${a('/security/', 'Security')} · ${a('https://promptugal.news/principles/', 'Principles')} · ${a('https://promptugal.news/report/', 'Report a problem')}</p></footer>
-${script ? `<script src="${script}" defer></script>\n` : ''}<script src="/assets/meter/meter.js" defer></script>
+<p class="obs-row">Version ${esc(version)} · ${a('https://github.com/PrompTugal/PrompTugal__News__Travel', 'Source')} · Code Apache-2.0, text CC BY 4.0 · ${a('/llms.txt', 'llms.txt')} · ${a('/version.json', 'version.json')} · ${a('/security/', 'Security')} · ${a('https://promptugal.news/principles/', 'Principles')} · ${a('https://promptugal.news/report/', 'Report a problem')}</p></footer>
+${script ? `<script src="${script}" defer></script>\n` : ''}
 <script src="/assets/obs/obs.js" defer></script>
 </body>
 </html>
@@ -176,7 +175,7 @@ ${md.trim()}
 - Agents: ${p.agents.join('; ')}.
 - A person: ${p.person}
 
-${ipma ? 'Free to read: built on IPMA data, whose terms rule out profit-making use, so outside the reading meter.\n\n' : ''}Independent: not an official site. Your airline or operator decides whether your service runs: its site or app has the latest. Version ${version}. Code Apache-2.0, text CC BY 4.0. Principles: https://promptugal.news/principles/ · Report a problem: https://promptugal.news/report/
+Independent: not an official site. Your airline or operator decides whether your service runs: its site or app has the latest. Version ${version}. Code Apache-2.0, text CC BY 4.0. Principles: https://promptugal.news/principles/ · Report a problem: https://promptugal.news/report/
 
 Is something here yours, and do you think we should not show it? Open an issue at https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new and we take it down while we talk.
 `;
@@ -492,7 +491,7 @@ ${(t.gaps || []).length ? `<section aria-labelledby="h-tg"><h2 id="h-tg">Gaps</h
 <section aria-labelledby="h-data"><h2 id="h-data">Where the data comes from</h2><ul><li><strong>The place data</strong> of PrompTugal.news (${a('https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/data/by-place', 'data/by-place')}, public and signed): IPMA's weather, warnings, sea, UV and fire risk; adsb.lol's aircraft near Faro; events by place. Last pulled ${esc(lisbon(manifest.read_at))}: ${okReads} of ${manifest.reads.length} files read; each read's time and the start of its sha256 are in ${a('/api/v1/manifest.json', 'manifest.json')}.</li><li><strong>${a('https://data.promptugal.news/api/v1/', 'data.promptugal.news')}</strong>, the PrompTugal.news data site: since 18 November 2026 each place's "now" (IPMA's weather, warnings, sea, UV and fire risk; adsb.lol's aircraft near Faro) is read from its ${a('https://data.promptugal.news/api/v1/by-place/now/', '/api/v1/by-place/now/')} first. When its copy is more than ${esc(manifest.stale_after_hours || 3)} hours older than the pull, the same file from the place data is used instead; ${a('/api/v1/manifest.json', 'manifest.json')} says, place by place, which was used and why. Last pull: ${esc(Object.values(manifest.now || {}).filter(v => /data\.promptugal/.test(v.from || '')).length)} of ${esc(Object.keys(manifest.now || {}).length)} places from data.promptugal.news.</li><li><strong>Research</strong> by the sub-agents from official and operator pages, each fact with its page and the date read: ${[['transport-algarve', 'transport', research.transport], ['disruptions', 'disruptions', research.disruptions], ['tourism', 'tourism', research.tourism]].filter(x => x[2]).map(x => a(`/api/v1/${x[0]}.json`, x[1])).join(', ')}.</li><li>This site runs no collectors of its own.</li></ul></section>
 <section aria-labelledby="h-rules"><h2 id="h-rules">The rules we read by</h2><ul><li>Public, official sources first; operators' published information only.</li><li>One request every 2 to 3 seconds, a named reader, a backoff. A refusal (403, a bot check, robots.txt) is respected and recorded as a gap, never worked around.</li><li>Where an operator's terms ask consent to reproduce its content (ANA, CP, Infraestruturas de Portugal), we give figures and titles in our own words, with the link.</li><li>Airline flights by callsign; every other aircraft only counted.</li><li>No private person's contact, ever. No advice: your airline or operator decides whether your service runs.</li></ul></section>
 <section aria-labelledby="h-api"><h2 id="h-api">Reuse</h2><p>Everything this site shows is in its JSON: ${a('/api/v1/travel.json', '/api/v1/travel.json')} (the digest), the inputs and the research files beside it, and a markdown twin of every page (add <code>index.md</code> to any address). For language models: ${a('/llms.txt', 'llms.txt')}. Text CC BY 4.0, code Apache-2.0; adsb.lol data ODbL 1.0; IPMA data under IPMA's terms.</p></section>
-<section aria-labelledby="h-pay"><h2 id="h-pay">Pay for what you read</h2><p>PrompTugal.news asks readers to pay for what they read. The chip at the top of every page shows your reading credit here; ${a('/account/', 'your reading account')} shows what you read, what each page cost and your reading graph, all kept in your browser. Pages built on IPMA data (the front page, weather and sea) are free: IPMA's terms rule out profit-making use. ${a('/account/billing/', 'How pages are priced')}.</p></section>
+<section aria-labelledby="h-pay"><h2 id="h-pay">Free to read</h2><p>This site carries no billing: only ${a('https://promptugal.news/', 'promptugal.news')} bills its readers (Dinis, 18 November 2026). Every page here is free, and may show any public data, IPMA's and Open-Meteo's included, each with its licence and where it came from.</p></section>
 <section aria-labelledby="h-take"><h2 id="h-take">If we show something of yours</h2><p>Much of what this site shows comes from public bodies (councils, IPMA, INE) and from operators, each linked with its licence or terms. If you think we should not show your data, ${a('https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new', 'open a public issue')} and we take it down while we talk (Dinis, 18 November 2026). Organisers can send their own events the same way: they are published, credited and dated as theirs.</p></section>
 <section aria-labelledby="h-tm"><h2 id="h-tm">What runs on its own, and its threat models</h2><p>Three things run without a person: the data reader (${a('https://github.com/PrompTugal/PrompTugal__News__Travel/blob/dev/docs/threat-models/pull.md', 'threat model')}), the scheduled rebuild every 3 hours (${a('https://github.com/PrompTugal/PrompTugal__News__Travel/blob/dev/docs/threat-models/scheduled-rebuild.md', 'threat model')}) and the page-view counter (${a('https://github.com/PrompTugal/PrompTugal__News__Travel/blob/dev/docs/threat-models/observability.md', 'threat model')}). Each says what it reads, what it writes, what it trusts, what could go wrong and how that is limited. security@PrompTugal.dinis reviews them.</p></section>
 <section aria-labelledby="h-obs"><h2 id="h-obs">What is counted</h2><p>Page views and reading time are counted, publicly, in PrompTugal.news's observability lane for this site ("travel"), as on promptugal.news: the page, the time to the minute, the screen size class, the browser's language and time zone, and the town your browser's own lookup gives. No IP address, no cookie, no fingerprint. Do Not Track, Global Privacy Control and Pause in the footer turn it off. ${a('https://promptugal.news/newsroom/observability/index.html', 'The report')}.</p></section>`,
@@ -519,9 +518,9 @@ Public, official sources first; polite reading; refusals recorded as gaps; opera
 
 ${SITE}/api/v1/travel.json, markdown twins, ${SITE}/llms.txt. Text CC BY 4.0, code Apache-2.0.
 
-## Pay for what you read
+## Free to read
 
-The chip at the top of every page shows your reading credit on this site; ${SITE}/account/ shows what you read, what each page cost and your reading graph, kept in your browser. Pages built on IPMA data (the front page, weather and sea) are free: IPMA's terms rule out profit-making use. How pages are priced: ${SITE}/account/billing/
+This site carries no billing: only promptugal.news bills its readers (Dinis, 18 November 2026). Every page here is free, and may show any public data, IPMA's and Open-Meteo's included, each with its licence and where it came from.
 
 ## What is counted
 
@@ -702,50 +701,8 @@ ${london ? `<section aria-labelledby="h-uk-wx"><h2 id="h-uk-wx">Weather side by 
   });
 }
 
-// ---------- the reading account (account-B fix 3: promptugal.news's meter, assets/meter/, here) ----------
-{
-  const mc = J('data/editorial/meter.json');
-  const meterProv = prov({ code: ['assets/meter/meter.js and sg-meter-core.js (vendored from PrompTugal__News__Website, Apache-2.0) draw this in your browser from your browser\'s own storage'] });
-  const kept = 'Everything here is kept in this browser only: nothing is sent anywhere. A browser keeps each website\'s storage apart, so the credit on this site is not the one on promptugal.news; one account across the PrompTugal sites and your devices is being built with vaults.';
-  const noJs = '<p class="notice">Your reading account is drawn by a script in your browser from your browser\'s own storage. With scripts off, nothing is counted or charged.</p>';
-  page({
-    path: '/account/', title: 'Your reading account', type: 'account',
-    description: 'Your reading credit on travel.promptugal.news, the pages you read and what each cost, and your reading graph: kept in your browser only.',
-    body: `<h1>Your reading account</h1><p class="dek">Pay for what you read: each page costs a penny or so, for the share of it you read, and a rating can make it free or double. ${esc(kept)}</p>
-<div id="nr-account" class="nr-mount">${noJs}</div>
-<p class="meta">${a('/account/billing/', 'How pages are priced')} · ${a('/account/top-up/', 'Top up')}</p>`,
-    md: `Pay for what you read: each page costs a penny or so, for the share of it you read; a rating can make it free or double. ${kept}\n\nYour balance, history and reading graph are drawn in your browser at ${SITE}/account/. How pages are priced: ${SITE}/account/billing/`,
-    provenance: meterProv,
-  });
-  page({
-    path: '/account/top-up/', title: 'Top up your reading credit', type: 'account', noindex: true,
-    description: 'Add reading credit on travel.promptugal.news: one payment on Stripe\'s own page.',
-    body: `<h1>Top up your reading credit</h1><p class="dek">${esc(mc.symbol)}${(mc.topup.amount / 100).toFixed(2)} on Stripe's own page; this site never sees your card. ${esc(kept)}</p>
-<div id="nr-topup" class="nr-mount">${noJs}</div>`,
-    md: `${mc.symbol}${(mc.topup.amount / 100).toFixed(2)} on Stripe's own page; this site never sees your card. ${kept}`,
-    provenance: meterProv,
-  });
-  page({
-    path: '/account/topped-up/', title: 'Topped up', type: 'account', noindex: true,
-    description: 'The page a top-up returns to: it adds the credit once per payment reference, in this browser.',
-    body: `<h1>Topped up</h1><p class="dek">This page adds a payment's credit to this browser, once per payment reference. A static page cannot check a payment with Stripe, so it trusts the reference, as promptugal.news does.</p>
-<div id="nr-topped" class="nr-mount">${noJs}</div>`,
-    md: 'This page adds a payment\'s credit to this browser, once per payment reference. A static page cannot check a payment with Stripe, so it trusts the reference, as promptugal.news does.',
-    provenance: meterProv,
-  });
-  const rows = Object.entries(mc.types).map(([t, v]) => [t, mc.prices[t], v.why || ({ data: 'Reference pages assembled from public sources: flights, getting around, strikes, events, tourism.', site: 'The site\'s account of itself.', account: 'The meter\'s own pages. Charging a reader to see their bill is not a price.' })[t] || '']);
-  page({
-    path: '/account/billing/', title: 'How pages are priced', type: 'account',
-    description: 'The prices of travel.promptugal.news\'s pages under PrompTugal.news\'s reading meter, and why pages built on IPMA data are free.',
-    body: `<h1>How pages are priced</h1><p class="dek">PrompTugal.news's reading meter (sg-meter, as on promptugal.news): a page's price times the share of it you read, never less than the minimum, charged once per page per visit. A rating sets the final price: not useful is free, excellent is double. You start with ${esc(mc.symbol)}${(mc.start / 100).toFixed(2)} of credit; nothing is ever blocked.</p>
-<table class="ledger"><thead><tr><th>Kind of page</th><th class="num">Price</th><th>Why</th></tr></thead><tbody>${rows.map(([t, p, w]) => `<tr><td>${esc(t)}</td><td class="num">${esc(p)}p</td><td>${esc(w)}</td></tr>`).join('')}</tbody></table>
-<p class="meta">From ${a('/api/v1/billing/meter.json', 'this site\'s meter config')}, taken from ${a(mc.source.url, 'promptugal.news\'s')} (${esc(mc.source.version)}, read ${esc(mc.source.read_at)}).</p>`,
-    md: `A page's price times the share of it you read, never less than the minimum, once per page per visit; a rating sets the final price (not useful is free, excellent double). Start: ${mc.symbol}${(mc.start / 100).toFixed(2)}. Nothing is blocked.\n\n| Kind of page | Price | Why |\n|---|---|---|\n${rows.map(([t, p, w]) => `| ${t} | ${p}p | ${mdesc(w)} |`).join('\n')}\n\nConfig: ${SITE}/api/v1/billing/meter.json`,
-    provenance: meterProv,
-  });
-  mkdirSync('_site/api/v1/billing', { recursive: true });
-  writeFileSync('_site/api/v1/billing/meter.json', JSON.stringify({ ...mc, version }, null, 2) + '\n');
-}
+// ---------- no reading account (Dinis, 18 Nov 2026 ~23:45 UTC; board/guidance/2026-11-18-billing-only-on-the-main-site.md):
+// only promptugal.news bills, so this site has no meter, no top-up and no billing pages; the chip says the site is free.
 
 // ---------- API, llms.txt, sitemap ----------
 mkdirSync('_site/api/v1', { recursive: true });
