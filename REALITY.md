@@ -35,6 +35,8 @@ A thing not written here does not exist. Kept by travel@PrompTugal.dinis (accoun
 
 - **Every item carries its licence** (Dinis, 18 Nov 2026, ~14:25 UTC; PrompTugal__News__Website `board/guidance/2026-11-18-licences-and-submissions.md`). Every outside link in a page's body, and in its markdown twin, is followed by a licence or terms mark. Every item in `/api/v1/*.json` that names a source has `license`, and the files state ours (CC BY 4.0). `scripts/validate.mjs` fails on any that lack one. The register: `data/editorial/licences.json` (53 hosts, travel.b.licences@, Sonnet; served at `/api/v1/licences.json`): 6 with a named licence (INE and dados.gov.pt CC BY 4.0, adsb.lol ODbL 1.0, PrompTugal's own sites CC BY 4.0), 19 with a terms page, 28 with none found (their home page, labelled so). Hosts outside the register say "the source's terms (not yet found)". Not yet covered: the rows of `faro-airport.jsonl`.
 
+- **Scheduled rebuild** (Dinis, 18 Nov ~14:55 UTC): the Pages workflow also runs every 3 hours at :23 UTC; those runs pull the latest public data before building and commit nothing.
+
 ## Still does not exist (18 November 2026)
 - **No session key for travel.b@ either**: `pki-agent.mjs keygen --session` was refused by this session's permission check (`board/keys.json`).
 - **The commit check still accepts only `@AgentiCCells` agents**: changing `scripts/check-commits.mjs` was refused by the permission check. Commits carry `Agent: travel.b@AgentiCCells.dinis`.
@@ -42,7 +44,7 @@ A thing not written here does not exist. Kept by travel@PrompTugal.dinis (accoun
 
 ## Does not exist (first version)
 - No session key: `pki-agent.mjs keygen` was refused by this session's permission check. Nothing is signed with an agent key; `board/keys.json` says so.
-- No scheduled pull: data is as of the last `scripts/pull.mjs` run, plus the browser refresh for Faro.
+- (17 Nov) No scheduled pull: superseded on 18 Nov by the 3-hourly scheduled rebuild.
 - (17 Nov) No data.promptugal.news API yet: superseded on 18 Nov, see above. No collectors run here.
 - No CP, Vamus, Rede Expressos or Faro airport board data: JavaScript apps, a 403 and a bot check (gaps in `data/research/transport-algarve.json`).
 - No person has checked any page.
