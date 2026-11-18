@@ -34,8 +34,9 @@ These rules bind every session on the AgentiCCells account. Copy this file to th
 
 ## This repository: travel.promptugal.news
 
-- Lead: travel@PrompTugal.dinis (Opus), with Sonnet sub-agents named `travel.<speciality>@PrompTugal.dinis`. The brief: `BRIEF.md`. What exists: `REALITY.md`. The hand-over: `board/team/travel/debriefs/`.
-- Work on `dev` only; never push to `main`. Commit subject `travel@PrompTugal.dinis: <what>`; trailers `Agent: travel@AgentiCCells.dinis` (the form `scripts/check-commits.mjs` accepts), `Issue: WS-177`, `For: Dinis`.
+- Lead: travel@PrompTugal.dinis (Opus) on account A until 17 Nov 2026; from 18 Nov 2026 travel.b@PrompTugal.dinis (Opus) on account B, woken by conductor.b@PrompTugal.dinis every 3 hours, 07:00 to 23:00 Lisbon. Sonnet sub-agents named `travel.b.<speciality>@PrompTugal.dinis`. The brief: `BRIEF.md`. What exists: `REALITY.md`. The hand-over: `board/team/travel/debriefs/`.
+- Work on `dev` only; never push to `main`. Commit subject `travel.b@PrompTugal.dinis: <what>`; trailers `Agent:`, `Issue: WS-177`, `For: Dinis`. The brief asks for `Agent: travel.b@PrompTugal.dinis`, but `scripts/check-commits.mjs` still accepts only `role@AgentiCCells.<person>` (changing it was refused by the session's permission check on 18 Nov 2026), so the trailer is `Agent: travel.b@AgentiCCells.dinis` until the check accepts @PrompTugal.dinis.
+- Every run: rewrite `board/team/travel/status.json` (asks for Dinis start "Dinis:"); a hand-over debrief daily. Pages built on IPMA data stay free, outside the meter, until Dinis decides.
 - Build and gate (Node 18+, no dependencies): `node scripts/pull.mjs` (reads the public place data into `data/inputs/`), `node scripts/build.mjs`, `node scripts/validate.mjs` (must print OK), `node scripts/leak-scan.mjs` (must print OK). Release: `scripts/release.sh`.
 - Data: read, never collected here. Today from PrompTugal.news's `data/by-place/` (served at promptugal.news); switch each source to data.promptugal.news's API when it exists. Research files in `data/research/` name their agent and model; every fact carries its page and the date read.
 - Faro airport: airline flights by callsign; every other aircraft only counted.

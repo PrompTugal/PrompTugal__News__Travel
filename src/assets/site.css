@@ -2,7 +2,7 @@
    PrompTugal__News__Website), the Travel sub-brand. travel@PrompTugal.dinis, 17 November 2026. */
 :root {
   --paper: #f6f3ec; --ink: #121317; --red: #c52830; --green: #006600; --rule: #d8d4cb; --muted: #666860;
-  --card: #fffdf8; --sea: #0b5c7a; --amber: #9a6a00;
+  --card: #fffdf8; --sea: #0b5c7a; --amber: #9a6a00; --brand: #006600; --on-brand: #fff; --panel: var(--card); --hair: var(--rule); --ink-3: var(--muted);
   --editorial: Newsreader, Georgia, 'Times New Roman', serif;
   --ui: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
@@ -26,7 +26,7 @@ a:hover { color: var(--red); }
 .wordmark img { height: 36px; width: auto; }
 .wordmark .dark { display: none; }
 @media (prefers-color-scheme: dark) { .wordmark .light { display: none; } .wordmark .dark { display: inline; } }
-.sub { font: 600 1.6rem/1 var(--editorial); color: var(--green); }
+.wordmark .sub { font: 600 1.6rem/1 var(--editorial); color: var(--green); }
 .tagline { margin: .3rem 0 0; color: var(--muted); font-size: .95rem; }
 nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: .2rem 1.1rem; padding: .6rem 0; margin: 0; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--rule); }
 nav a { text-decoration: none; font-weight: 600; font-size: .95rem; }
@@ -108,3 +108,26 @@ thead th { border-bottom: 2px solid var(--ink); font-size: .8rem; text-transform
   .strip li:nth-child(n+4) { display: none; }
   .provenance dl { grid-template-columns: 1fr; }
 }
+
+/* account-B fixes (travel.b@PrompTugal.dinis, 18 November 2026): the meter's chip, the sites rail, the free note.
+   The chip: "Pay for what you read · £balance", one chip at the right of the top bar, on phones too (the meter's own
+   stylesheet hides it under 768px; Dinis, 17 November 2026: "I need to see the value of my budget, always"). */
+.bar .tools { margin-left: auto; }
+.bar .tool.meter { height: 26px; padding: 0 10px; border: 1px solid var(--red); border-radius: 999px; background: var(--card); color: var(--ink); text-decoration: none; font: 500 12px/1 var(--mono); }
+.bar .tool.meter .meter-label { display: inline; font-family: var(--ui); color: var(--red); }
+@media (max-width: 767px) { .bar .tools .tool.meter { display: inline-flex !important; } }
+@media (max-width: 430px) { .bar > span:not(.version):not(.tools) { display: none; } }
+/* The PrompTugal.news sites: a rail at the right edge on wide screens (promptugal.news's top.css, em-net), a line in the footer everywhere */
+.em-net { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 20; display: flex; flex-direction: column; gap: 2px; padding: 8px 6px; background: var(--paper); border: 1px solid var(--rule); border-right: 0; border-radius: 10px 0 0 10px; font: 600 12px var(--ui); }
+.em-net span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--green); align-self: center; margin-bottom: 6px; }
+.em-net a { color: var(--ink); text-decoration: none; padding: 5px 6px; border-radius: 6px; }
+.em-net a:hover, .em-net a:focus-visible { background: color-mix(in srgb, var(--green) 14%, transparent); }
+.em-net a[aria-current] { color: var(--green); }
+@media (max-width: 1180px) { .em-net { display: none; } }
+.foot .sites a { margin-right: .6rem; }
+.foot .sites a[aria-current] { font-weight: 600; color: var(--green); }
+.free-note { margin: 1.5rem 0 0; padding: .6rem .8rem; border-left: 3px solid var(--green); background: var(--card); font-size: .9rem; }
+/* the account page: this site has no device vault yet, so the meter's "Carry it to another device" button is hidden */
+#nr-account .balance-card .actions .btn.quiet { display: none; }
+.nr-graph { width: 100%; height: auto; background: var(--card); border: 1px solid var(--rule); }
+@media (prefers-color-scheme: dark) { .nr-graph text { fill: var(--ink); } }

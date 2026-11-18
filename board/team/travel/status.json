@@ -1,0 +1,38 @@
+{
+  "about": "travel.b@PrompTugal.dinis's status, rewritten every run. Asks for Dinis start \"Dinis:\". conductor.b@PrompTugal.dinis reads it.",
+  "agent": "travel.b@PrompTugal.dinis",
+  "model": "Opus (Claude), with Sonnet sub-agents named travel.b.<speciality>@PrompTugal.dinis",
+  "account": "B",
+  "site": "https://travel.promptugal.news",
+  "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
+  "updated": "2026-11-18T10:00Z",
+  "run": "first run on account B (18 Nov 2026, morning)",
+  "observability": {
+    "lane": "travel",
+    "how": "src/assets/obs/obs.js (promptugal.news's obs.js) on every page; it reads promptugal.news/assets/obs/obs.json and writes to that vault's site lanes, each event tagged lane: \"travel\" and site: travel.promptugal.news.",
+    "for": "conductor.b@PrompTugal.dinis relays the lane name to account A's observability@PrompTugal.dinis, whose drain should count events with lane \"travel\" (or site travel.promptugal.news) as this site's."
+  },
+  "fixes": [
+    { "n": 1, "what": "session key, published as travel.b-promptugal", "state": "blocked", "why": "pki-agent.mjs keygen --session was refused by this session's permission check (as on account A). Not worked around. board/keys.json records it." },
+    { "n": 2, "what": "commit check accepts @PrompTugal.dinis; Agent trailer travel.b@PrompTugal.dinis", "state": "blocked", "why": "editing scripts/check-commits.mjs was refused by this session's permission check. Commits use Agent: travel.b@AgentiCCells.dinis, which the current check accepts, so CI releases still work." },
+    { "n": 3, "what": "masthead chip, reading graph, sites rail", "state": "done", "detail": "promptugal.news's meter (meter.js, meter.css, sg-meter-core.js v1.5.0) vendored; chip 'Pay for what you read · £balance' in the top bar on every page (phones too); /account/ with balance, history and the reading graph; /account/top-up/, /account/topped-up/, /account/billing/; the sites rail (Weather, Civic, Startups, Travel, Data) at the right edge on wide screens and as a footer line everywhere. This site keeps its own balance: browsers keep each site's storage apart." },
+    { "n": 4, "what": "IPMA pages free, outside the meter", "state": "done", "detail": "/, /weather/ and /design/ (A, B, C) are page type 'free' (price 0) with a note saying why; the other pages are 1p." },
+    { "n": 5, "what": "read data.promptugal.news /api/v1/by-place/now/<place>.json", "state": "done", "detail": "scripts/pull.mjs reads it first for all 18 places; when its copy is more than 3 h older than the pull, promptugal.news's is used and manifest.json says so. At 09:32 UTC on 18 Nov every data.promptugal.news now file was read 02:28 UTC (7 h old), so all 18 came from promptugal.news. The browser refresh (now.js) reads both and keeps the newer." },
+    { "n": 6, "what": "observability with lane 'travel'", "state": "done" }
+  ],
+  "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
+  "next": [
+    "Each wake: pull, build, gate, commit inputs and the Faro series, release.",
+    "Apply the disruptions re-check (travel.b.research@) each wake; the easyJet 19 to 23 December strike first.",
+    "Events beyond technology: councils' agendas (Faro, Loulé, Lagos, Portimão, Tavira).",
+    "Getting-around gaps: island ferries, tolls."
+  ],
+  "asks": [
+    "Dinis: allow `node pki-agent.mjs keygen --session` in account B's sessions (it was refused again), so travel.b@ can make and publish its key.",
+    "Dinis: allow the one-line change to scripts/check-commits.mjs (accept @PrompTugal.dinis agents), or make it yourself; until then commits say Agent: travel.b@AgentiCCells.dinis.",
+    "Dinis: data.promptugal.news's now files were 7 hours old at 09:32 UTC on 18 Nov (read 02:28 UTC): is its hourly collection running on account B? (data.b@'s question; the Data repo's CI secrets are yours.)",
+    "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
+    "Dinis: IPMA-based pages stay free until you decide (ask IPMA, or keep them free).",
+    "Dinis: the reading credit here is separate from promptugal.news's (browser storage is per site). One account across the sites needs the vault work in board/spec-one-reader-across-devices.md of the Website repo."
+  ]
+}
