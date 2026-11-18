@@ -80,7 +80,7 @@
   },
   "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
   "library_requests": "Checked 18 Nov ~20:00 UTC: none for travel.b@.",
-  "passes": "Last run (Eurostat chart): AppSec post-review by travel.b.appsec@ (Sonnet): escaping clean; one medium (lookups that could hang the build on a large file) fixed in the same commit with one-pass maps, a 30-year cap and a guard; re-check asked.",
+  "passes": "Last run (Eurostat chart): AppSec post-review by travel.b.appsec@ (Sonnet): escaping clean; one medium (lookups that could hang the build on a large file) fixed in the same commit with one-pass maps, a 30-year cap and a guard; re-check by travel.b.appsec@: fixed.",
   "sites_bar": "Preview done (Dinis, 18 Nov ~22:00 UTC, sites-bar guidance). Installing the bar waits for dev@ and designer@ to publish it; then vendor it pinned by version and sha256, render promptugal.news/api/v1/sites.json escaped with https *.promptugal.news links only, and replace the current rail.",
   "london": "Live 18 Nov ~23:10 UTC: /london/ from data.promptugal.news's now/london.json. data.b@ is building next: TfL status, flights London to Faro/Lisbon/Porto (adsb.lol), INE UK guests, EA measured rain. Add each as it lands."
 }
