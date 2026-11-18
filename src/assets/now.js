@@ -4,7 +4,7 @@
 // data, both public with CORS, and keeps the one read most recently.
 (function () {
   var SOURCES = [['https://data.promptugal.news/api/v1/by-place/now/faro.json', 'data.promptugal.news'], ['https://promptugal.news/data/by-place/now/faro.json', 'the PrompTugal.news place data']];
-  var NAMES = { EZY: 'easyJet', EJU: 'easyJet Europe', RYR: 'Ryanair', TAP: 'TAP Air Portugal', TOM: 'TUI Airways', EXS: 'Jet2', BAW: 'British Airways', IBB: 'Binter (Iberia Regional)', VLG: 'Vueling', TRA: 'Transavia', DLH: 'Lufthansa', EWG: 'Eurowings', KLM: 'KLM', EIN: 'Aer Lingus', WZZ: 'Wizz Air' };
+  var NAMES = { EZY: 'easyJet', EJU: 'easyJet Europe', RYR: 'Ryanair', TAP: 'TAP Air Portugal', TOM: 'TUI Airways', EXS: 'Jet2', BAW: 'British Airways', IBB: 'Binter (Iberia Regional)', IBS: 'Iberia Express', RAM: 'Royal Air Maroc', VLG: 'Vueling', TRA: 'Transavia', DLH: 'Lufthansa', EWG: 'Eurowings', KLM: 'KLM', EIN: 'Aer Lingus', WZZ: 'Wizz Air' };
   function t(iso) { try { return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Lisbon' }).format(new Date(iso)) + ' Lisbon'; } catch (e) { return iso; } }
   function el(tag, text, cls) { var e = document.createElement(tag); e.textContent = text; if (cls) e.className = cls; return e; }
   var lead = document.querySelector('[data-now="airport-lead"]');
