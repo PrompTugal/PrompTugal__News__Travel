@@ -41,6 +41,14 @@ for (const f of files.filter(f => f.endsWith('index.html'))) {
   if (!/class="provenance"/.test(s)) fail(`${f}: no "how this page was made" block`);
 }
 if (!existsSync('_site/llms.txt')) fail('no llms.txt');
+// travel.b@PrompTugal.dinis (18 Nov 2026), Dinis's licence rule: every item in the site's JSON that names a source url
+// carries a license, and every outside link in a page's body is followed by its licence or terms mark.
+const noLic = (o, f, path = '') => { if (Array.isArray(o)) return o.forEach((v, i) => noLic(v, f, `${path}[${i}]`)); if (!o || typeof o !== 'object') return; const u = [o.url, o.page, o.source].find(x => typeof x === 'string' && /^https?:/.test(x)); if (u && !/creativecommons\.org|opendatacommons\.org/.test(u) && !(o.license && o.license.url)) fail(`${f}${path || '/'}: names ${u} with no license`); for (const [k, v] of Object.entries(o)) if (k !== 'license') noLic(v, f, `${path}.${k}`); };
+for (const f of files.filter(f => /_site\/api\/v1\/[^/]+\.json$/.test(f) && !/licences\.json$/.test(f))) noLic(JSON.parse(readFileSync(f, 'utf8')), f);
+for (const f of files.filter(f => f.endsWith('index.html'))) {
+  const main = (readFileSync(f, 'utf8').match(/<main[\s\S]*?<\/main>/) || [''])[0];
+  for (const m of main.matchAll(/<a href="(https?:\/\/[^"]+)"[^>]*>[\s\S]*?<\/a>(<a class="lic")?/g)) if (!m[2] && !/creativecommons\.org|opendatacommons\.org/.test(m[1])) fail(`${f}: outside link ${m[1]} has no licence mark`);
+}
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {
   const h = JSON.parse(readFileSync('hub.json', 'utf8'));

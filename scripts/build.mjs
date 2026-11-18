@@ -59,6 +59,28 @@ const WIND = { 1: 'N', 2: 'NE', 3: 'E', 4: 'SE', 5: 'S', 6: 'SW', 7: 'W', 8: 'NW
 const AIRLINES = { EZY: 'easyJet', EJU: 'easyJet Europe', EZS: 'easyJet Switzerland', RYR: 'Ryanair', RUK: 'Ryanair UK', MAY: 'Malta Air (Ryanair)', TAP: 'TAP Air Portugal', TOM: 'TUI Airways', TFL: 'TUI fly Netherlands', JAF: 'TUI fly Belgium', TUI: 'TUIfly', EXS: 'Jet2', BAW: 'British Airways', IBB: 'Binter (Iberia Regional)', IBE: 'Iberia', IBS: 'Iberia Express', RAM: 'Royal Air Maroc', VLG: 'Vueling', TRA: 'Transavia', TVF: 'Transavia France', DLH: 'Lufthansa', EWG: 'Eurowings', AFR: 'Air France', KLM: 'KLM', SAS: 'SAS', NAX: 'Norwegian', NSZ: 'Norwegian', WZZ: 'Wizz Air', WUK: 'Wizz Air UK', EIN: 'Aer Lingus', BEL: 'Brussels Airlines', SWR: 'Swiss', CFG: 'Condor', LOG: 'Loganair', SXS: 'SunExpress', PGA: 'Portugalia', SAT: 'SATA Azores Airlines', RZO: 'Azores Airlines', LGL: 'Luxair', BTI: 'airBaltic', FIN: 'Finnair', ENT: 'Enter Air', AEA: 'Air Europa', EDW: 'Edelweiss', TAY: 'ASL Airlines Belgium', ABR: 'ASL Airlines Ireland' };
 const airlineName = c => AIRLINES[c] || c;
 
+// ---------- licences (Dinis, 18 Nov 2026: "Every single piece of data that we get should have a link to the license
+// that it has"; PrompTugal__News__Website board/guidance/2026-11-18-licences-and-submissions.md) ----------
+// Ours is CC BY 4.0. A source's item carries the source's licence, or a link to its terms labelled "the source's terms";
+// never blank: a host not yet in data/editorial/licences.json links to its home page as "the source's terms (not yet found)".
+const LIC = maybe('data/editorial/licences.json') || { hosts: {}, ours: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' } };
+const OURS = LIC.ours || { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' };
+const OWN_HOSTS = /(^|\.)travel\.promptugal\.news$/;
+const LIC_ALIASES = { 'api.ipma.pt': 'ipma.pt', 'files.diariodarepublica.pt': 'diariodarepublica.pt', 'en.newsroom.ana.pt': 'ana.pt', 'fct.ualg.pt': 'ualg.pt', 'global.flixbus.com': 'flixbus.pt', 'geo.turismodeportugal.pt': 'turismodeportugal.pt', 'travelbi.turismodeportugal.pt': 'turismodeportugal.pt', 'vamusalgarve.pt': 'vamus.pt', 'api.adsb.lol': 'adsb.lol', 'globe.adsb.lol': 'adsb.lol', 'www2.cm-olhao.pt': 'cm-olhao.pt' };
+const licFor = url => {
+  let h; try { h = new URL(url).hostname.replace(/^www\d?\./, ''); } catch { return null; }
+  if (OWN_HOSTS.test(h)) return { name: OURS.name, url: OURS.url, kind: 'licence' };
+  if (/(^|\.)creativecommons\.org$|(^|\.)opendatacommons\.org$/.test(h)) return null;
+  const k = LIC_ALIASES[h] || h, e = LIC.hosts[k] || LIC.hosts[h.split('.').slice(-2).join('.')];
+  if (e && e.url) return { name: e.kind === 'licence' ? e.name : "the source's terms", url: e.url, kind: e.kind || 'terms' };
+  return { name: "the source's terms (not yet found)", url: `https://${h}/`, kind: 'terms' };
+};
+// a licence mark after every outside link in a page's body (HTML) and its markdown twin
+const withLicHtml = html => html.replace(/(<a href="(https?:\/\/[^"]+)"[^>]*>[\s\S]*?<\/a>)/g, (m, link, url) => { const l = licFor(url.replace(/&amp;/g, '&')); return l ? `${link}<a class="lic" rel="license" href="${esc(l.url)}" title="${esc(l.name)}">${l.kind === 'licence' ? esc(l.name) : 'terms'}</a>` : link; });
+const withLicMd = md => md.replace(/(\[[^\]]*\]\((https?:\/\/[^)\s]+)\))/g, (m, link, url) => { const l = licFor(url); return l ? `${link} ([${l.kind === 'licence' ? l.name : "the source's terms"}](${l.url}))` : link; });
+// in JSON: every object that names a source url gets its license
+const withLicJson = o => { if (Array.isArray(o)) return o.map(withLicJson); if (o && typeof o === 'object') { const out = {}; for (const [k, v] of Object.entries(o)) out[k] = withLicJson(v); const u = typeof o.url === 'string' ? o.url : typeof o.page === 'string' ? o.page : typeof o.source === 'string' && /^https?:/.test(o.source) ? o.source : null; if (u && !o.license) { const l = licFor(u); if (l) out.license = l; } return out; } return o; };
+
 // ---------- provenance ----------
 const MODELS = { lead: 'Opus (Claude)', sub: 'Sonnet (Claude)' };
 const prov = (extra = {}) => ({
@@ -83,6 +105,7 @@ function page({ path, title, description, body, md, provenance, variant = '', sc
   const isHome = path === '/';
   const fullTitle = isHome ? 'PrompTugal.news Travel' : `${title} · PrompTugal.news Travel`;
   const p = provenance || prov();
+  body = withLicHtml(body); md = withLicMd(md);
   const provHtml = `<section class="provenance" aria-label="How this page was made"><h2>How this page was made</h2><dl>
 <dt>Code</dt><dd>${p.code.map(esc).join('; ')}.</dd>
 <dt>Agents</dt><dd>${p.agents.map(esc).join('; ')}.</dd>
@@ -117,7 +140,7 @@ ${noindex ? '<meta name="robots" content="noindex">\n' : ''}</head>
 <div class="body">
 ${body}
 </div>
-${ipma ? `<p class="free-note"><strong>Free to read.</strong> This page is built on ${a('https://www.ipma.pt/', 'IPMA')} data, whose terms rule out profit-making use, so it is outside the reading meter.</p>\n` : ''}${provHtml}
+${ipma ? `<p class="free-note"><strong>Free to read.</strong> This page is built on ${withLicHtml(a('https://www.ipma.pt/', 'IPMA'))} data, whose terms rule out profit-making use, so it is outside the reading meter.</p>\n` : ''}${provHtml}
 </main>
 <footer class="foot"><p>${a('https://promptugal.news/', 'PrompTugal.news')}: Portugal, town by town. Raw data from ${a('https://data.promptugal.news/', 'data.promptugal.news')} and from ${a('https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/data/by-place', 'PrompTugal.news place data')}. Not a warning service: follow ${a('https://www.ipma.pt/', 'IPMA')} and ${a('https://prociv.gov.pt/', 'ANEPC')}.</p>
 <p class="sites">Also from PrompTugal.news: ${siteLinks()}</p>
@@ -539,15 +562,16 @@ Page views and reading time, publicly, in PrompTugal.news's observability lane f
 
 // ---------- API, llms.txt, sitemap ----------
 mkdirSync('_site/api/v1', { recursive: true });
-cpSync('data/inputs/manifest.json', '_site/api/v1/manifest.json');
-for (const [k, f] of [['events-algarve', 'data/research/events-algarve.json'], ['transport-algarve', 'data/research/transport-algarve.json'], ['disruptions', 'data/research/disruptions.json'], ['tourism', 'data/research/tourism.json'], ['holidays', 'data/editorial/holidays.json']]) if (existsSync(f)) cpSync(f, `_site/api/v1/${k}.json`);
+writeFileSync('_site/api/v1/manifest.json', JSON.stringify(withLicJson({ license_ours: OURS, ...manifest }), null, 2) + '\n');
+for (const [k, f] of [['events-algarve', 'data/research/events-algarve.json'], ['transport-algarve', 'data/research/transport-algarve.json'], ['disruptions', 'data/research/disruptions.json'], ['tourism', 'data/research/tourism.json'], ['holidays', 'data/editorial/holidays.json']]) if (existsSync(f)) writeFileSync(`_site/api/v1/${k}.json`, JSON.stringify(withLicJson({ license_ours: OURS, ...J(f) }), null, 2) + '\n');
 if (existsSync('data/series/faro-airport.jsonl')) cpSync('data/series/faro-airport.jsonl', '_site/api/v1/faro-airport.jsonl');
-writeFileSync('_site/api/v1/travel.json', JSON.stringify({
+writeFileSync('_site/api/v1/licences.json', JSON.stringify(LIC, null, 2) + '\n');
+writeFileSync('_site/api/v1/travel.json', JSON.stringify(withLicJson({ license_ours: OURS, licences: '/api/v1/licences.json',
   about: 'travel.promptugal.news digest: what the front page shows, each value with its source.', version, built, data_read: manifest.read_at,
   faro_now: { station: faro.station, forecast: faro.forecast, warnings: faro.warnings, sea: faro.sea },
   faro_airport: airport ? { ...airport, airline: (airport.airline || []).map(f => ({ ...f, airline_name: airlineName(f.airline) })) } : null,
   disruptions_ahead: upcoming, holidays: holidays ? holidays.days : [],
-}, null, 2) + '\n');
+}), null, 2) + '\n');
 const listed = pages.filter(p => !p.noindex);
 writeFileSync('_site/llms.txt', `# PrompTugal.news Travel\n\n> Travel and tourism in Portugal, the Algarve first: flights at Faro, getting around, strikes and disruptions, weather and sea for visitors, events by place, tourism statistics. Every value with its source and the time read. Independent, not official. Version ${version}.\n\n## Pages (markdown twins)\n\n${listed.map(p => `- [${p.title}](${SITE}${p.path}index.md): ${p.description}`).join('\n')}\n\n## Data\n\n- [Digest](${SITE}/api/v1/travel.json)\n- [Inputs manifest](${SITE}/api/v1/manifest.json)\n- [Faro airport series](${SITE}/api/v1/faro-airport.jsonl)\n- [Disruptions](${SITE}/api/v1/disruptions.json)\n- [Transport](${SITE}/api/v1/transport-algarve.json)\n- [Tourism](${SITE}/api/v1/tourism.json)\n`);
 writeFileSync('_site/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${listed.map(p => `<url><loc>${SITE}${p.path}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
