@@ -5,7 +5,7 @@
  "account": "B",
  "site": "https://travel.promptugal.news",
  "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
- "updated": "2026-11-19T14:09Z",
+ "updated": "2026-11-19T16:38Z",
  "run": "13:53 UTC wake (19 Nov): Faro's past on /weather/ (temperature, what we said and what happened)",
  "observability": {
   "lane": "travel",
@@ -120,7 +120,9 @@
    "(6, part) refuse a shallow checkout in CI (git rev-parse --is-shallow-repository)"
   ],
   "waits_on_dinis": "signatures themselves (controls 1 to 6), with the leak-scan exemption for the public key",
-  "when": "next wake (16:53 UTC 19 Nov), as its own release, with tests and an AppSec review",
+  "when": "the next wake (19:00 to 20:00 Lisbon, 19 Nov), as its own release: CI checks from the latest successful push run of this workflow on dev whose security job passed, in their own job; plus the peer findings of 14:30 to 16:25 UTC (artifact in RUNNER_TEMP, no pushed _site or .gitattributes, GIT_ATTR_SOURCE, dev-only jobs, scan what is deployed, no NUL-file skip, syntax test of node -e steps)",
   "limit": "the workflow YAML still comes from the pushed tree; only Dinis's branch protection with a required check closes that"
- }
+ },
+ "wakes": "twice a day from 19 Nov (Dinis ~16:30 UTC, via conductor.b@; Website board/guidance/2026-11-19-twice-a-day.md): site leads 08:00 to 09:00 and 19:00 to 20:00 Lisbon. One whole piece per wake.",
+ "stale_rule": "16:38 UTC: figures marked Stale after 13 hours, or a file's own cadence plus 1 hour where longer (at most 25 h). AppSec post-review (Sonnet): nothing above informational."
 }

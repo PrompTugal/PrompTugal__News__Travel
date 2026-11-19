@@ -10,7 +10,8 @@
 //   when it is older than STALE_H hours.
 (function () {
   if (!window.fetch || !window.Promise) return;
-  var STALE_H = 3, EVERY_MS = 10 * 60 * 1000;
+  // 13 hours: data is collected twice a day (Dinis, 19 Nov 2026 ~16:30 UTC, via conductor.b@; Website board/guidance/2026-11-19-twice-a-day.md)
+  var STALE_H = 13, EVERY_MS = 10 * 60 * 1000;
   var OPTS = { cache: 'no-cache', credentials: 'omit', referrerPolicy: 'no-referrer' };
   var NAMES = { EZY: 'easyJet', EJU: 'easyJet Europe', EZS: 'easyJet Switzerland', RYR: 'Ryanair', RUK: 'Ryanair UK', MAY: 'Malta Air (Ryanair)', TAP: 'TAP Air Portugal', TOM: 'TUI Airways', EXS: 'Jet2', BAW: 'British Airways', IBB: 'Binter (Iberia Regional)', IBE: 'Iberia', IBS: 'Iberia Express', RAM: 'Royal Air Maroc', VLG: 'Vueling', TRA: 'Transavia', TVF: 'Transavia France', DLH: 'Lufthansa', EWG: 'Eurowings', AFR: 'Air France', KLM: 'KLM', EIN: 'Aer Lingus', WZZ: 'Wizz Air', WUK: 'Wizz Air UK', SXS: 'SunExpress', LOG: 'Loganair' };
   var WMO = { 0: 'clear sky', 1: 'mainly clear', 2: 'partly cloudy', 3: 'overcast', 45: 'fog', 48: 'freezing fog', 51: 'light drizzle', 53: 'drizzle', 55: 'heavy drizzle', 61: 'light rain', 63: 'rain', 65: 'heavy rain', 71: 'light snow', 73: 'snow', 75: 'heavy snow', 80: 'light showers', 81: 'showers', 82: 'heavy showers', 95: 'thunderstorm' };
@@ -27,7 +28,7 @@
   // the page's status line: live file or built copy, when read, stale or not
   var status = q('[data-now="status"]');
   var shown = { at: null, from: null, limit: null };
-  // how old is stale: 3 hours, or a file's own cadence plus an hour (data.b@'s London forecast is 6-hourly by design:
+  // how old is stale: 13 hours, or a file's own cadence plus an hour where that is longer (data.b@'s London forecast is 6-hourly by design:
   // forecast.expected_cadence, 19 Nov 2026); seconds from 600 to 86400 only
   function cadence(c) { return c && typeof c.seconds === 'number' && c.seconds % 1 === 0 && c.seconds >= 600 && c.seconds <= 86400 ? (c.seconds + 3600) * 1000 : null; }
   function builtLimit() { var v = status ? Number(status.getAttribute('data-stale-s')) : NaN; return v % 1 === 0 && v >= 4200 && v <= 90000 ? v * 1000 : null; }
@@ -36,7 +37,7 @@
     var at = shown.at || ms(status.getAttribute('data-read'));
     if (!at) return;
     var zone = status.getAttribute('data-zone') === 'london' ? ['Europe/London', 'London'] : ['Europe/Lisbon', 'Lisbon'];
-    var lim = (shown.at ? shown.limit : builtLimit()) || STALE_H * 3600 * 1000, hrs = Math.round(lim / 3600000);
+    var lim = Math.max((shown.at ? shown.limit : builtLimit()) || 0, STALE_H * 3600 * 1000), hrs = Math.round(lim / 3600000);
     var old = Date.now() - at > lim;
     status.textContent = (shown.from ? 'Live: figures updated in your browser from ' + shown.from + ', read ' : 'Built copy: figures read ') + when(new Date(at).toISOString(), zone[0], zone[1]) + '.' + (old ? ' Stale: older than ' + hrs + ' hours.' : '');
     status.className = 'live-status' + (old ? ' stale' : '');
