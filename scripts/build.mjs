@@ -103,6 +103,16 @@ const pages = [];
 // vendored in src/assets/sites-bar/1.1.0/ and checked by sha256 here; rendered at build from data/inputs/sites.json
 // (promptugal.news/api/v1/sites.json, read by scripts/pull.mjs). If the renderer refuses the registry it returns ''
 // and the pages go out without a bar, never a hand-made one. It replaces the old rail and footer list.
+// The shared time-zone-to-country table for obs.js (dev@'s assets/obs/tz-country.json), checked at every build against
+// the live registry's obs_tz.integrity (security@'s ruling, 19 Nov 2026 04:51 UTC, option 1: the pin is read from the
+// registry and never written into this repository). No registry, or a different digest: the build stops.
+{
+  let reg = null;
+  try { const r = await fetch('https://promptugal.news/api/v1/sites.json', { redirect: 'error', signal: AbortSignal.timeout(20000), headers: { accept: 'application/json' } }); const t = await r.text(); if (r.ok && t.length < 1_000_000) reg = JSON.parse(t); } catch {}
+  const want = reg && reg.obs_tz && typeof reg.obs_tz.integrity === 'string' ? reg.obs_tz.integrity : '';
+  const got = 'sha256-' + createHash('sha256').update(readFileSync('src/assets/obs/tz-country.json')).digest('base64');
+  if (!/^sha256-[A-Za-z0-9+/]{43}=$/.test(want) || got !== want) { console.error(`build: src/assets/obs/tz-country.json does not match the registry's obs_tz.integrity (${want ? 'differs' : 'registry unreadable'})`); process.exit(1); }
+}
 const SB = 'src/assets/sites-bar/1.1.0/';
 // The first 40 hex digits of each file's sha256 (160 bits; the leak scan allows hex up to a git object id's length).
 const SB_SHA = { 'sites-bar-render.mjs': 'b9b50ae32fd5dc234ba6e9b4660061afb25554b5', 'sites-bar.css': '302e2544eb34e3d6ce8d8e14fe2918c9f658a587', 'sites-bar.js': 'bc97a820a8f4fbda60ff65c3073be6fe79b2d1d3' };

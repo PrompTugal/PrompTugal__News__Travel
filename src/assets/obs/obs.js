@@ -69,17 +69,18 @@
         // the country only, from the browser's own time zone through a fixed table, with no network call (Dinis, 19 Nov
         // 2026 ~03:15 UTC: "remove the IP base. So we're going to keep the country still"; PrompTugal__News__Website
         // board/guidance/2026-11-19-no-ip-lookup-predictions-and-small-decisions.md). No region, city or map position.
-        const TZ_CC = { 'Europe/Lisbon': 'PT', 'Atlantic/Madeira': 'PT', 'Atlantic/Azores': 'PT', 'Europe/London': 'GB', 'Europe/Belfast': 'GB', 'Europe/Dublin': 'IE',
-            'Europe/Madrid': 'ES', 'Atlantic/Canary': 'ES', 'Africa/Ceuta': 'ES', 'Europe/Paris': 'FR', 'Europe/Berlin': 'DE', 'Europe/Busingen': 'DE', 'Europe/Amsterdam': 'NL',
-            'Europe/Brussels': 'BE', 'Europe/Luxembourg': 'LU', 'Europe/Zurich': 'CH', 'Europe/Vienna': 'AT', 'Europe/Rome': 'IT', 'Europe/Copenhagen': 'DK',
-            'Europe/Stockholm': 'SE', 'Europe/Oslo': 'NO', 'Europe/Helsinki': 'FI', 'Europe/Warsaw': 'PL', 'Europe/Prague': 'CZ', 'Europe/Budapest': 'HU',
-            'Europe/Athens': 'GR', 'Europe/Bucharest': 'RO', 'Europe/Sofia': 'BG', 'Europe/Kyiv': 'UA', 'Europe/Kiev': 'UA', 'Europe/Istanbul': 'TR', 'Europe/Moscow': 'RU',
-            'America/New_York': 'US', 'America/Chicago': 'US', 'America/Denver': 'US', 'America/Los_Angeles': 'US', 'America/Phoenix': 'US', 'America/Anchorage': 'US',
-            'Pacific/Honolulu': 'US', 'America/Toronto': 'CA', 'America/Vancouver': 'CA', 'America/Sao_Paulo': 'BR', 'America/Mexico_City': 'MX',
-            'America/Argentina/Buenos_Aires': 'AR', 'Africa/Luanda': 'AO', 'Africa/Maputo': 'MZ', 'Atlantic/Cape_Verde': 'CV', 'Africa/Johannesburg': 'ZA',
-            'Asia/Kolkata': 'IN', 'Asia/Calcutta': 'IN', 'Asia/Shanghai': 'CN', 'Asia/Tokyo': 'JP', 'Asia/Singapore': 'SG', 'Asia/Dubai': 'AE', 'Asia/Macau': 'MO',
-            'Australia/Sydney': 'AU', 'Australia/Melbourne': 'AU', 'Pacific/Auckland': 'NZ' }
-        const place = async () => { let tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '' } catch { } const cc = typeof tz === 'string' && Object.prototype.hasOwnProperty.call(TZ_CC, tz) ? TZ_CC[tz] : ''; return { country_code: /^[A-Z]{2}$/.test(cc) ? cc : '' } }   // own keys only, two letters only (events.b@'s review, 19 Nov)
+        // the shared table (promptugal.news assets/obs/tz-country.json, vendored here; scripts/build.mjs checks it against the
+        // live registry's obs_tz.integrity at every build): read once per tab from this host into a null-prototype map;
+        // own keys only, two capital letters only
+        let tzTable = null
+        const place = async () => {
+            let tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '' } catch { }
+            try {
+                if (!tzTable) { const r = await fetch('/assets/obs/tz-country.json', { credentials: 'omit', referrerPolicy: 'no-referrer' }); const j = r.ok ? await r.json() : null; tzTable = Object.assign(Object.create(null), j && j.zones && typeof j.zones === 'object' ? j.zones : {}) }
+            } catch { tzTable = Object.create(null) }
+            const cc = typeof tz === 'string' && Object.prototype.hasOwnProperty.call(tzTable, tz) ? tzTable[tz] : ''
+            return { country_code: typeof cc === 'string' && /^[A-Z]{2}$/.test(cc) ? cc : '' }
+        }
         // a link's tag (Dinis, 6 November: "I just sent a link to somebody ... I would like to see if they open it ... and
         // forward it"): ?via=<tag> (or utm_source / utm_campaign) on the link you send. Kept for the tab, so the pages read
         // after arriving count too; a tag names the link, never the person. Letters, digits, '.', '_' and '-', 40 at most.
