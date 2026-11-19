@@ -1,111 +1,116 @@
 {
-  "about": "travel.b@PrompTugal.dinis's status, rewritten every run. Asks for Dinis start \"Dinis:\". conductor.b@PrompTugal.dinis reads it.",
-  "agent": "travel.b@PrompTugal.dinis",
-  "model": "Opus (Claude), with Sonnet sub-agents named travel.b.<speciality>@PrompTugal.dinis",
-  "account": "B",
-  "site": "https://travel.promptugal.news",
-  "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-19T07:17Z",
-  "run": "19 Nov ~00:55 UTC, on conductor.b@'s sites-bar message",
-  "observability": {
-    "lane": "travel",
-    "how": "src/assets/obs/obs.js on every page sends to this site's own lane (vault 9y7m26v0, 4 append lanes, drain key sha256:769aec505e1d6f47), configured by src/assets/obs/obs.json; every event also says lane: \"travel\". conductor.b@PrompTugal.dinis holds the sealed drain credentials and drains it.",
-    "for": "conductor.b@PrompTugal.dinis relays the lane name to account A's observability@PrompTugal.dinis, whose drain should count events with lane \"travel\" (or site travel.promptugal.news) as this site's."
+ "about": "travel.b@PrompTugal.dinis's status, rewritten every run. Asks for Dinis start \"Dinis:\". conductor.b@PrompTugal.dinis reads it.",
+ "agent": "travel.b@PrompTugal.dinis",
+ "model": "Opus (Claude), with Sonnet sub-agents named travel.b.<speciality>@PrompTugal.dinis",
+ "account": "B",
+ "site": "https://travel.promptugal.news",
+ "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
+ "updated": "2026-11-19T07:21Z",
+ "run": "07:21 UTC 19 Nov: answered conductor.b@ 07:19 notes on bar 1.2.0",
+ "observability": {
+  "lane": "travel",
+  "how": "src/assets/obs/obs.js on every page sends to this site's own lane (vault 9y7m26v0, 4 append lanes, drain key sha256:769aec505e1d6f47), configured by src/assets/obs/obs.json; every event also says lane: \"travel\". conductor.b@PrompTugal.dinis holds the sealed drain credentials and drains it.",
+  "for": "conductor.b@PrompTugal.dinis relays the lane name to account A's observability@PrompTugal.dinis, whose drain should count events with lane \"travel\" (or site travel.promptugal.news) as this site's."
+ },
+ "fixes": [
+  {
+   "n": 1,
+   "what": "session key, published as travel.b-promptugal",
+   "state": "blocked",
+   "why": "pki-agent.mjs keygen --session was refused by this session's permission check (as on account A). Not worked around. board/keys.json records it."
   },
-  "fixes": [
-    {
-      "n": 1,
-      "what": "session key, published as travel.b-promptugal",
-      "state": "blocked",
-      "why": "pki-agent.mjs keygen --session was refused by this session's permission check (as on account A). Not worked around. board/keys.json records it."
-    },
-    {
-      "n": 2,
-      "what": "commit check accepts @PrompTugal.dinis; Agent trailer travel.b@PrompTugal.dinis",
-      "state": "blocked",
-      "why": "editing scripts/check-commits.mjs was refused by this session's permission check. Commits use Agent: travel.b@AgentiCCells.dinis, which the current check accepts, so CI releases still work."
-    },
-    {
-      "n": 3,
-      "what": "masthead chip, reading graph, sites rail",
-      "state": "superseded",
-      "detail": "Removed 18 Nov ~23:45 UTC at Dinis's word (only promptugal.news bills): no meter, no account pages; the chip says Free to read. The sites rail stays until the shared sites bar replaces it."
-    },
-    {
-      "n": 4,
-      "what": "IPMA pages free, outside the meter",
-      "state": "superseded",
-      "detail": "Every page is free now; IPMA data may be shown with its licence and provenance (Dinis, 18 Nov ~23:45 UTC)."
-    },
-    {
-      "n": 5,
-      "what": "read data.promptugal.news /api/v1/by-place/now/<place>.json",
-      "state": "done",
-      "detail": "scripts/pull.mjs reads it first for all 18 places; when its copy is more than 3 h older than the pull, promptugal.news's is used and manifest.json says so. At 09:32 UTC on 18 Nov every data.promptugal.news now file was read 02:28 UTC (7 h old), so all 18 came from promptugal.news. The browser refresh (now.js) reads both and keeps the newer. At the 10:53 UTC wake the data site was fresh again: all 18 places came from data.promptugal.news."
-    },
-    {
-      "n": 6,
-      "what": "observability with lane 'travel'",
-      "state": "done"
-    }
-  ],
-  "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
-  "next": [
-    "Signed commits: wire scripts/test-leak-scan.mjs into release.sh and CI before the scan; the ssh_signing.public_key exemption waits on Dinis (asks).",
-    "Next wake, first: signed commits (Dinis, 19 Nov ~01:10 UTC; PrompTugal__News__Website board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md, section 2). An SSH signing key for this session, its public half and session id in team/keys.json; every commit signed (gpg.ssh.program set repo-locally); a check in release.sh and CI (pattern: PrompTugal__Cyber c8fff24, scripts/check-signatures.mjs) from the commit that adds it, CI's own commits exempt. If the permission check refuses a step, stop and ask. Build in from the start (conductor.b@, 01:16 UTC, from signals.b@'s review of its own check, PrompTugal__News__Signals 0101639): (1) never exempt a commit by its author or committer name or address, which anyone can set; exempt CI's commits only by something a pusher cannot forge, or not at all; (2) check each commit against the keys in its parent commit's team/keys.json, never the commit's own, so a commit cannot add its own key and pass; a new or rotated key comes in a commit signed by a key already listed, or a person adds it. Tests (conductor.b@, 02:16 UTC, from data.b@'s PrompTugal__News__Data f68beb3 scripts/test-check-signatures.mjs): set gpg.ssh.program=ssh-keygen in each throwaway test repo (the global config points at the environment's signer /tmp/code-sign); assert the reason each failing case fails, not only that it fails; run the tests in CI and release.sh before the check.",
-    "Next wake, from security@'s rulings (Website a250cc4240 and 312c46011f; review board/team/security/reviews/2026-11-19-0130-bar-signing-live-data.md): (a) sites bar 1.1.1 from assets/sites-bar/1.1.1/, pinned by the registry's full SRI integrity values (sha256-<base64>), checked in full; preview.svg gate refuses script, foreignObject, event attributes and outside references. (b) The signed-commit check with all five controls: no exemption by name (CI only by content: unsigned commits touching only CI-owned version paths, or none); keys from the parent commit's team/keys.json; every commit in the range, merges and side branches included; the whole range refused on one failure and nothing deployed; Agent: and the full Claude-Session: must match the key. (c) team/keys.json in full plain forms, exempt from the entropy rule only by field and exact pattern. (d) Show each loaded file's licence next to the figures it loads.",
-    "Show the past: London forecast vs measured rain from data.b@'s history file (first), then Faro; then disruptions as a kept record (see predictions).",
-    "Each wake: pull, build, gate, commit inputs and the Faro series, release.",
-    "London and UK-Portugal: add data.b@'s feeds as each lands (TfL status, London to Faro/Lisbon/Porto flights, INE UK guests, EA measured rain); make the masthead line ('Travel and tourism in Portugal, the Algarve first') say Beyond Portugal too, if Dinis agrees.",
-    "Disruptions: watch the easyJet talks (20, 23, 25 Nov); SNPVAC says new action is possible if they stall.",
-    "Licences: find terms for the 28 sources with none found (councils, CP, Diário da República); license the Faro series rows.",
-    "Storm items: /storm-charles/flights/ done (Lisbon, Madeira). Next: Faro when data.b@ has LPFR; departures against cancellations if a source with usable terms exists; then the transport archive and /guides/stranded/.",
-    "What's on: fill the gaps (December agendas of Faro, Loulé, Silves, São Brás, Tavira; New Year's Eves; Olhão, Vila do Bispo, Alcoutim, Monchique).",
-    "Getting around: winter boat times that are published only as pictures (Faro, Farol, Culatra), Tavira, the Guadiana ferry.",
-    "Read the pipeline standard (board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md) and apply it source by source: raw kept and timestamped, JSON, visualisation, analysis, a home page per source, OpenAPI."
-  ],
-  "asks": [
-    "Dinis: security@'s key ruling (Website 1acd10498) lets an ssh public key stand in its published field (team/keys.json ssh_signing.public_key). Adding that exemption to scripts/leak-scan.mjs was refused by this session's permission check at 2026-11-19T05:14Z; I have not worked around it. Signed commits need it: approve the exemption (that field, the exact key-line pattern, with a test), or make it yourself.",
-    "Dinis: a meta CSP cannot set frame-ancestors (clickjacking protection); GitHub Pages sets no such header. Accept, or a host that sets headers (same question as nosniff for the sites bar).",
-    "Dinis: INE's API asks its users to accept its conditions before use; data.b@ will not accept terms for anyone. Will you accept them (or ask INE), so UK guests by month for Portugal and the Algarve can be read?",
-    "Dinis: the sites bar asks for /preview.svg with nosniff; GitHub Pages sends image/svg+xml but no X-Content-Type-Options header, and a static site cannot add one. The SVG has no script or external reference. Accept, or move the site behind a host that sets headers?",
-    "Dinis: the bar sits after the page's 'Skip to the content' link rather than strictly first in <body>, so keyboard users can still skip it. Say if you want it first.",
-    "Dinis: allow the one-line change to scripts/check-commits.mjs (accept @PrompTugal.dinis agents), or make it yourself; until then commits say Agent: travel.b@AgentiCCells.dinis.",
-    "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
-    "Dinis: What's on lists events from the councils' own pages as titles, dates and links (reference use, source named), from the council research and from data.promptugal.news's feed. data.b@'s note says no reuse licence was found for those sites and agendalx.pt asks reference use only. Is listing them this way all right, or should the page only link to each council's agenda?"
-  ],
-  "live_changes": "2026-11-19T07:17Z: sites bar 1.2.0 (sideways row on phones, current site centred, same-tab links, News first); pins for the bar and the tz table read per version from the live registry. Earlier: tz table 1.1.0, leak-scan key rules and tests.",
-  "storm": "The Storm site's 7 travel items (data.b@'s handoff): plan in board/team/travel/storm-plan.md. Pages and charts come here, reading data.promptugal.news; the collectors stay with data.b@.",
-  "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading.",
-  "dinis_1455": {
-    "source": "PrompTugal__News__Website board/guidance/2026-11-18-keys-issues-rebuilds-observability.md (Dinis, 18 Nov ~14:55 UTC, via conductor.b@)",
-    "keygen": "Done 18 Nov ~15:55 UTC, with the approval of the person running this session: `sgit pki keygen`, id travel.b-promptugal, fingerprint sha256:609d2f8354bd6aeb (signing sha256:53baa65c14af3ef1). Public bundle in team/keys.json (the only file the leak scan allows public keys in); board/keys.json points to it.",
-    "disclaimer": "Done: every page's footer and /about/ say: open an issue (github.com/PrompTugal/PrompTugal__News__Travel/issues/new) and we take it down while we talk.",
-    "rebuild": "Done: .github/workflows/pages.yml rebuilds every 3 hours (cron '23 */3 * * *'), and scheduled runs read the latest public data first (scripts/pull.mjs). Nothing is committed by them. The edit was made after the person running this session approved it.",
-    "observability_lane": "Live 18 Nov ~16:50 UTC. The leak scan allows src/assets/obs/obs.json (and its built copy) for two kinds only (append tokens, drain public key), approved by the person running this session. Credentials sealed to conductor.b@ and sent."
+  {
+   "n": 2,
+   "what": "commit check accepts @PrompTugal.dinis; Agent trailer travel.b@PrompTugal.dinis",
+   "state": "blocked",
+   "why": "editing scripts/check-commits.mjs was refused by this session's permission check. Commits use Agent: travel.b@AgentiCCells.dinis, which the current check accepts, so CI releases still work."
   },
-  "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
-  "library_requests": "Checked 18 Nov ~23:05 UTC: none for travel.b@ (our request file 404; the index does not name travel.b@).",
-  "passes": "Sites bar 1.2.0: AppSec post-review by travel.b.appsec@ (Sonnet): one low/medium fixed here (a bar version the registry no longer lists is now removed from the built site, not just unlinked); the rest clean (import only after all pins pass; own-key lookups). Lead tested: tampered bar file stops the build; 1280 and 390 px, no sideways scroll, no CSP errors.",
-  "sites_bar": "sites bar 1.2.0 installed (2026-11-19T07:17Z): vendored unchanged; each file checked at build against bar.versions['1.2.0'] in the live registry (no pin in the repo); rendered from the live registry; a version the registry no longer lists is left out (not linked, not shipped) with a log line. 1.1.0 removed.",
-  "london": "Live: /london/ (forecast beside Faro, flood alerts, measured rain). From data.b@: London to Faro/Lisbon/Porto routes held (adsb.lol's route lookup returned none); INE UK guests wait for Dinis (INE's API asks users to accept its conditions); TfL status next.",
-  "releases": "Every push carries one piece of work, so each Pages run releases and tags it (Dinis, 18 Nov ~23:45 UTC); pages.yml already tags each run's commit.",
-  "scheduled_runs": "Removed 19 Nov ~02:00 UTC at Dinis's word (every run starts from a commit). Pages run on push to dev or by hand; figures load in the browser.",
-  "data_in_browser": "Live since 19 Nov ~01:50 UTC: now.js loads Faro and London figures from data.promptugal.news with checks; status line Live / Built copy / Stale (3 h); CSP on every page. Tested in a browser: live Faro file loaded, a tampered file refused, no CSP errors.",
-  "predictions": {
-    "source": "Dinis, 19 Nov 2026 ~01:17 to 01:24 UTC (PrompTugal__News__Website board/guidance/2026-11-19-show-the-past.md, via conductor.b@): show the past beside the forecast; keep every prediction as shown and check it.",
-    "what_this_site_predicts": [
-      "Weather forecasts shown for Faro and the Algarve places (IPMA) and London (Open-Meteo): /, /weather/, /london/, /uk-portugal/.",
-      "Strikes and disruptions announced ahead (dates, who, what): /disruptions/, the front page. They are predictions until the day: they happen, are called off (the easyJet 19 to 23 Dec strike, called off 18 Nov) or change.",
-      "Events listed ahead (What's on): whether they took place as listed.",
-      "Nothing else: no risk scores or expected dates."
-    ],
-    "first": "London rain: Open-Meteo's forecast for each day beside the Environment Agency's measured rain (already on /london/ for today and yesterday), read from data.b@'s /api/v1/history/weather/london.json in the browser, with the forecast issued 1, 2 and 3 days before, gaps shown as gaps, and the first day of the record stated. Then Faro's IPMA forecast beside its station.",
-    "second": "Disruptions as a record: every announced strike kept with the date it was announced and its sources; when its day comes, what happened (went ahead, called off, changed), shown beside it. A running record per announcer (unions, operators).",
-    "how": "This site keeps nothing it does not show; the forecast history comes from data.b@'s committed history files. Disruption records live in data/research/disruptions.json, which is in git, so every change is a commit.",
-    "drawing": "designer@'s spec PrompTugal__News__Website board/spec-past-and-forecast.md (PF1 to PF9; mock design/past-and-forecast/mock.mjs): observed solid, forecast hatched, today a sand column, gaps dashed outlines, 'Record begins <day>', the forecast shown as a green outline beside what was measured with the difference in plain units, a track-record line under the chart. Use it for the London rain view first.",
-    "library": "In the library as PRED 2026/0002 (library 05d8817, from Travel 6b1ca3d): library.promptugal.news/predictions/, lines at /api/v1/predictions/series/PRED-2026-0002.json. library.b@ re-reads data/predictions/predictions.jsonl each wake; append only."
+  {
+   "n": 3,
+   "what": "masthead chip, reading graph, sites rail",
+   "state": "superseded",
+   "detail": "Removed 18 Nov ~23:45 UTC at Dinis's word (only promptugal.news bills): no meter, no account pages; the chip says Free to read. The sites rail stays until the shared sites bar replaces it."
   },
-  "times_note": "From 2026-11-19T01:50Z every time in status, commits and messages is taken from `date -u` (security@'s ruling, 19 Nov). Earlier 'updated' values tonight (02:05Z to 02:15Z) were ahead of the clock: they were estimates, wrong by about 20 to 25 minutes.",
-  "tz_table": "tz-country 1.1.0 on, matching the registry (checked 2026-11-19T05:14Z)."
+  {
+   "n": 4,
+   "what": "IPMA pages free, outside the meter",
+   "state": "superseded",
+   "detail": "Every page is free now; IPMA data may be shown with its licence and provenance (Dinis, 18 Nov ~23:45 UTC)."
+  },
+  {
+   "n": 5,
+   "what": "read data.promptugal.news /api/v1/by-place/now/<place>.json",
+   "state": "done",
+   "detail": "scripts/pull.mjs reads it first for all 18 places; when its copy is more than 3 h older than the pull, promptugal.news's is used and manifest.json says so. At 09:32 UTC on 18 Nov every data.promptugal.news now file was read 02:28 UTC (7 h old), so all 18 came from promptugal.news. The browser refresh (now.js) reads both and keeps the newer. At the 10:53 UTC wake the data site was fresh again: all 18 places came from data.promptugal.news."
+  },
+  {
+   "n": 6,
+   "what": "observability with lane 'travel'",
+   "state": "done"
+  }
+ ],
+ "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
+ "next": [
+  "Signed commits: wire scripts/test-leak-scan.mjs into release.sh and CI before the scan; the ssh_signing.public_key exemption waits on Dinis (asks).",
+  "Next wake, first: signed commits (Dinis, 19 Nov ~01:10 UTC; PrompTugal__News__Website board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md, section 2). An SSH signing key for this session, its public half and session id in team/keys.json; every commit signed (gpg.ssh.program set repo-locally); a check in release.sh and CI (pattern: PrompTugal__Cyber c8fff24, scripts/check-signatures.mjs) from the commit that adds it, CI's own commits exempt. If the permission check refuses a step, stop and ask. Build in from the start (conductor.b@, 01:16 UTC, from signals.b@'s review of its own check, PrompTugal__News__Signals 0101639): (1) never exempt a commit by its author or committer name or address, which anyone can set; exempt CI's commits only by something a pusher cannot forge, or not at all; (2) check each commit against the keys in its parent commit's team/keys.json, never the commit's own, so a commit cannot add its own key and pass; a new or rotated key comes in a commit signed by a key already listed, or a person adds it. Tests (conductor.b@, 02:16 UTC, from data.b@'s PrompTugal__News__Data f68beb3 scripts/test-check-signatures.mjs): set gpg.ssh.program=ssh-keygen in each throwaway test repo (the global config points at the environment's signer /tmp/code-sign); assert the reason each failing case fails, not only that it fails; run the tests in CI and release.sh before the check.",
+  "Next wake, from security@'s rulings (Website a250cc4240 and 312c46011f; review board/team/security/reviews/2026-11-19-0130-bar-signing-live-data.md): (a) sites bar 1.1.1 from assets/sites-bar/1.1.1/, pinned by the registry's full SRI integrity values (sha256-<base64>), checked in full; preview.svg gate refuses script, foreignObject, event attributes and outside references. (b) The signed-commit check with all five controls: no exemption by name (CI only by content: unsigned commits touching only CI-owned version paths, or none); keys from the parent commit's team/keys.json; every commit in the range, merges and side branches included; the whole range refused on one failure and nothing deployed; Agent: and the full Claude-Session: must match the key. (c) team/keys.json in full plain forms, exempt from the entropy rule only by field and exact pattern. (d) Show each loaded file's licence next to the figures it loads.",
+  "Show the past: London forecast vs measured rain from data.b@'s history file (first), then Faro; then disruptions as a kept record (see predictions).",
+  "Each wake: pull, build, gate, commit inputs and the Faro series, release.",
+  "London and UK-Portugal: add data.b@'s feeds as each lands (TfL status, London to Faro/Lisbon/Porto flights, INE UK guests, EA measured rain); make the masthead line ('Travel and tourism in Portugal, the Algarve first') say Beyond Portugal too, if Dinis agrees.",
+  "Disruptions: watch the easyJet talks (20, 23, 25 Nov); SNPVAC says new action is possible if they stall.",
+  "Licences: find terms for the 28 sources with none found (councils, CP, Diário da República); license the Faro series rows.",
+  "Storm items: /storm-charles/flights/ done (Lisbon, Madeira). Next: Faro when data.b@ has LPFR; departures against cancellations if a source with usable terms exists; then the transport archive and /guides/stranded/.",
+  "What's on: fill the gaps (December agendas of Faro, Loulé, Silves, São Brás, Tavira; New Year's Eves; Olhão, Vila do Bispo, Alcoutim, Monchique).",
+  "Getting around: winter boat times that are published only as pictures (Faro, Farol, Culatra), Tavira, the Guadiana ferry.",
+  "Read the pipeline standard (board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md) and apply it source by source: raw kept and timestamped, JSON, visualisation, analysis, a home page per source, OpenAPI."
+ ],
+ "asks": [
+  "Dinis: security@'s key ruling (Website 1acd10498) lets an ssh public key stand in its published field (team/keys.json ssh_signing.public_key). Adding that exemption to scripts/leak-scan.mjs was refused by this session's permission check at 2026-11-19T05:14Z; I have not worked around it. Signed commits need it: approve the exemption (that field, the exact key-line pattern, with a test), or make it yourself.",
+  "Dinis: a meta CSP cannot set frame-ancestors (clickjacking protection); GitHub Pages sets no such header. Accept, or a host that sets headers (same question as nosniff for the sites bar).",
+  "Dinis: INE's API asks its users to accept its conditions before use; data.b@ will not accept terms for anyone. Will you accept them (or ask INE), so UK guests by month for Portugal and the Algarve can be read?",
+  "Dinis: the sites bar asks for /preview.svg with nosniff; GitHub Pages sends image/svg+xml but no X-Content-Type-Options header, and a static site cannot add one. The SVG has no script or external reference. Accept, or move the site behind a host that sets headers?",
+  "Dinis: the bar sits after the page's 'Skip to the content' link rather than strictly first in <body>, so keyboard users can still skip it. Say if you want it first.",
+  "Dinis: allow the one-line change to scripts/check-commits.mjs (accept @PrompTugal.dinis agents), or make it yourself; until then commits say Agent: travel.b@AgentiCCells.dinis.",
+  "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
+  "Dinis: What's on lists events from the councils' own pages as titles, dates and links (reference use, source named), from the council research and from data.promptugal.news's feed. data.b@'s note says no reuse licence was found for those sites and agendalx.pt asks reference use only. Is listing them this way all right, or should the page only link to each council's agenda?"
+ ],
+ "live_changes": "2026-11-19T07:17Z: sites bar 1.2.0 (sideways row on phones, current site centred, same-tab links, News first); pins for the bar and the tz table read per version from the live registry. Earlier: tz table 1.1.0, leak-scan key rules and tests.",
+ "storm": "The Storm site's 7 travel items (data.b@'s handoff): plan in board/team/travel/storm-plan.md. Pages and charts come here, reading data.promptugal.news; the collectors stay with data.b@.",
+ "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading.",
+ "dinis_1455": {
+  "source": "PrompTugal__News__Website board/guidance/2026-11-18-keys-issues-rebuilds-observability.md (Dinis, 18 Nov ~14:55 UTC, via conductor.b@)",
+  "keygen": "Done 18 Nov ~15:55 UTC, with the approval of the person running this session: `sgit pki keygen`, id travel.b-promptugal, fingerprint sha256:609d2f8354bd6aeb (signing sha256:53baa65c14af3ef1). Public bundle in team/keys.json (the only file the leak scan allows public keys in); board/keys.json points to it.",
+  "disclaimer": "Done: every page's footer and /about/ say: open an issue (github.com/PrompTugal/PrompTugal__News__Travel/issues/new) and we take it down while we talk.",
+  "rebuild": "Done: .github/workflows/pages.yml rebuilds every 3 hours (cron '23 */3 * * *'), and scheduled runs read the latest public data first (scripts/pull.mjs). Nothing is committed by them. The edit was made after the person running this session approved it.",
+  "observability_lane": "Live 18 Nov ~16:50 UTC. The leak scan allows src/assets/obs/obs.json (and its built copy) for two kinds only (append tokens, drain public key), approved by the person running this session. Credentials sealed to conductor.b@ and sent."
+ },
+ "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
+ "library_requests": "Checked 18 Nov ~23:05 UTC: none for travel.b@ (our request file 404; the index does not name travel.b@).",
+ "passes": "Sites bar 1.2.0: AppSec post-review by travel.b.appsec@ (Sonnet): one low/medium fixed here (a bar version the registry no longer lists is now removed from the built site, not just unlinked); the rest clean (import only after all pins pass; own-key lookups). Lead tested: tampered bar file stops the build; 1280 and 390 px, no sideways scroll, no CSP errors.",
+ "sites_bar": {
+  "was": "sites bar 1.2.0 installed (2026-11-19T07:17Z): vendored unchanged; each file checked at build against bar.versions['1.2.0'] in the live registry (no pin in the repo); rendered from the live registry; a version the registry no longer lists is left out (not linked, not shipped) with a log line. 1.1.0 removed.",
+  "registry_shapes": "build reads both: today's bar.versions[v].{render,css,js} and obs_tz.versions[v].integrity (string), and dev@'s reshape versions[v].integrity.<file> (own keys, strings only). A missing pin: bar off, tz table off; a wrong pin stops the build. No exemption (security@: reshape, don't widen).",
+  "css": "site nav rules scoped to nav:not(.ptsb). Every table now sits in .scroll; all 16 pages measured 375 px wide at a 375 px viewport (before: /flights/ 395, /security/ 839, /uk-portugal/ 384, from wide tables, not the bar).",
+  "post_review": "AppSec (travel.b.appsec@, Sonnet), 07:20 UTC: no findings; prototype keys, non-strings, empty and array values all fail closed."
+ },
+ "london": "Live: /london/ (forecast beside Faro, flood alerts, measured rain). From data.b@: London to Faro/Lisbon/Porto routes held (adsb.lol's route lookup returned none); INE UK guests wait for Dinis (INE's API asks users to accept its conditions); TfL status next.",
+ "releases": "Every push carries one piece of work, so each Pages run releases and tags it (Dinis, 18 Nov ~23:45 UTC); pages.yml already tags each run's commit.",
+ "scheduled_runs": "Removed 19 Nov ~02:00 UTC at Dinis's word (every run starts from a commit). Pages run on push to dev or by hand; figures load in the browser.",
+ "data_in_browser": "Live since 19 Nov ~01:50 UTC: now.js loads Faro and London figures from data.promptugal.news with checks; status line Live / Built copy / Stale (3 h); CSP on every page. Tested in a browser: live Faro file loaded, a tampered file refused, no CSP errors.",
+ "predictions": {
+  "source": "Dinis, 19 Nov 2026 ~01:17 to 01:24 UTC (PrompTugal__News__Website board/guidance/2026-11-19-show-the-past.md, via conductor.b@): show the past beside the forecast; keep every prediction as shown and check it.",
+  "what_this_site_predicts": [
+   "Weather forecasts shown for Faro and the Algarve places (IPMA) and London (Open-Meteo): /, /weather/, /london/, /uk-portugal/.",
+   "Strikes and disruptions announced ahead (dates, who, what): /disruptions/, the front page. They are predictions until the day: they happen, are called off (the easyJet 19 to 23 Dec strike, called off 18 Nov) or change.",
+   "Events listed ahead (What's on): whether they took place as listed.",
+   "Nothing else: no risk scores or expected dates."
+  ],
+  "first": "London rain: Open-Meteo's forecast for each day beside the Environment Agency's measured rain (already on /london/ for today and yesterday), read from data.b@'s /api/v1/history/weather/london.json in the browser, with the forecast issued 1, 2 and 3 days before, gaps shown as gaps, and the first day of the record stated. Then Faro's IPMA forecast beside its station.",
+  "second": "Disruptions as a record: every announced strike kept with the date it was announced and its sources; when its day comes, what happened (went ahead, called off, changed), shown beside it. A running record per announcer (unions, operators).",
+  "how": "This site keeps nothing it does not show; the forecast history comes from data.b@'s committed history files. Disruption records live in data/research/disruptions.json, which is in git, so every change is a commit.",
+  "drawing": "designer@'s spec PrompTugal__News__Website board/spec-past-and-forecast.md (PF1 to PF9; mock design/past-and-forecast/mock.mjs): observed solid, forecast hatched, today a sand column, gaps dashed outlines, 'Record begins <day>', the forecast shown as a green outline beside what was measured with the difference in plain units, a track-record line under the chart. Use it for the London rain view first.",
+  "library": "In the library as PRED 2026/0002 (library 05d8817, from Travel 6b1ca3d): library.promptugal.news/predictions/, lines at /api/v1/predictions/series/PRED-2026-0002.json. library.b@ re-reads data/predictions/predictions.jsonl each wake; append only."
+ },
+ "times_note": "From 2026-11-19T01:50Z every time in status, commits and messages is taken from `date -u` (security@'s ruling, 19 Nov). Earlier 'updated' values tonight (02:05Z to 02:15Z) were ahead of the clock: they were estimates, wrong by about 20 to 25 minutes.",
+ "tz_table": "tz-country 1.1.0 on, matching the registry (checked 2026-11-19T05:14Z)."
 }

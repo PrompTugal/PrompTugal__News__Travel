@@ -28,9 +28,9 @@ a:hover { color: var(--red); }
 @media (prefers-color-scheme: dark) { .wordmark .light { display: none; } .wordmark .dark { display: inline; } }
 .wordmark .sub { font: 600 1.6rem/1 var(--editorial); color: var(--green); }
 .tagline { margin: .3rem 0 0; color: var(--muted); font-size: .95rem; }
-nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: .2rem 1.1rem; padding: .6rem 0; margin: 0; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--rule); }
-nav a { text-decoration: none; font-weight: 600; font-size: .95rem; }
-nav a[aria-current] { color: var(--red); }
+nav:not(.ptsb) ul { list-style: none; display: flex; flex-wrap: wrap; gap: .2rem 1.1rem; padding: .6rem 0; margin: 0; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--rule); }
+nav:not(.ptsb) a { text-decoration: none; font-weight: 600; font-size: .95rem; }
+nav:not(.ptsb) a[aria-current] { color: var(--red); }
 main { padding-top: 1.2rem; padding-bottom: 2rem; }
 h1 { font: 600 clamp(1.8rem, 4vw, 2.7rem)/1.12 var(--editorial); margin: .4rem 0 .5rem; letter-spacing: -.01em; }
 h2 { font: 600 1.35rem/1.25 var(--editorial); margin: 1.6rem 0 .5rem; }

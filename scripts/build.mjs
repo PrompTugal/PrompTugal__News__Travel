@@ -115,7 +115,10 @@ let tzTableWithheld = false;
 {
   const raw = readFileSync('src/assets/obs/tz-country.json');
   let haveV = ''; try { haveV = String(JSON.parse(raw).version || ''); } catch {}
-  const pin = pinFor(REG.obs_tz.versions, haveV), want = pin && typeof pin.integrity === 'string' ? pin.integrity : '';
+  // both registry shapes (civic.b@, 19 Nov): today versions[v].integrity is the string; dev@'s reshape makes it
+  // versions[v].integrity['tz-country.json']
+  const pin = pinFor(REG.obs_tz.versions, haveV), integ = pin ? pin.integrity : null;
+  const want = typeof integ === 'string' ? integ : integ && typeof integ === 'object' && Object.prototype.hasOwnProperty.call(integ, 'tz-country.json') && typeof integ['tz-country.json'] === 'string' ? integ['tz-country.json'] : '';
   if (!want) { console.warn(`build: tz-country ${haveV || 'none'} off: the registry names ${REG.obs_tz.version} and no longer lists ${haveV || 'this version'} (no country sent until upgraded)`); tzTableWithheld = true; }
   else if (!SRI.test(want) || sriOf(raw) !== want) { console.error(`build: src/assets/obs/tz-country.json ${haveV} does not match the registry's pin for that version`); process.exit(1); }
   else if (REG.obs_tz.version !== haveV) console.warn(`build: tz-country ${haveV} on; the registry's newest is ${REG.obs_tz.version}: upgrade at the next wake`);
@@ -129,8 +132,11 @@ let sitesBar = '', sitesBarChecked = false;
   const pin = pinFor(REG.bar.versions, SBV);
   if (!pin) console.warn(`build: sites-bar ${SBV} off: the registry names ${REG.bar.version} and no longer lists ${SBV}`);
   else {
+    // both registry shapes (civic.b@, 19 Nov): today versions[v] is the map {render, css, js}; dev@'s reshape makes it
+    // versions[v].integrity.<file>; an own key, a string, or nothing
+    const own = (o, k) => o && typeof o === 'object' && Object.prototype.hasOwnProperty.call(o, k) && typeof o[k] === 'string' ? o[k] : '';
     for (const [f, k] of [['sites-bar-render.mjs', 'render'], ['sites-bar.css', 'css'], ['sites-bar.js', 'js']]) {
-      const want = typeof pin[k] === 'string' ? pin[k] : '';
+      const want = own(pin.integrity, f) || own(pin.integrity, k) || own(pin, k);
       if (!SRI.test(want) || sriOf(readFileSync(SB + f)) !== want) { console.error(`build: ${SB + f} does not match the registry's pin for sites-bar ${SBV}`); process.exit(1); }
     }
     sitesBarChecked = true;
@@ -221,7 +227,10 @@ Is something here yours, and do you think we should not show it? Open an issue a
 `;
   const dir = join('_site', path);
   mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, 'index.html'), nodash(html));
+  // every table sits in a box that scrolls on its own, so a wide table never makes the page scroll sideways at 375 px
+  // (conductor.b@'s check, 19 Nov 2026); tables already inside .scroll are left as they are
+  const boxed = html.replace(/(<div class="scroll">\s*)?<table\b([\s\S]*?)<\/table>/g, (m, inBox) => inBox ? m : `<div class="scroll">${m}</div>`);
+  writeFileSync(join(dir, 'index.html'), nodash(boxed));
   writeFileSync(join(dir, 'index.md'), nodash(mdOut));
   pages.push({ path, title, description, noindex });
 }
