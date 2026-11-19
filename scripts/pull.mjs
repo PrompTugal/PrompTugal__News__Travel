@@ -128,6 +128,13 @@ for (const id of BEYOND) {
   reads.push({ ...r, path: 'beyond/history/london.json', role: 'beyond' });
   if (r.body) { try { const j = JSON.parse(r.body); if (j.place !== 'london' || !Array.isArray(j.rows)) throw new Error('wrong place or no rows'); mkdirSync('data/inputs/beyond/history', { recursive: true }); writeFileSync('data/inputs/beyond/history/london.json', r.body); r.used = true; } catch { r.status = 'not json, wrong place or no rows'; } }
 }
+// Faro's temperature history, the same shape (travel.b@, 19 Nov 2026): kept only when it parses, is Faro's and has rows.
+{
+  if (!from) await sleep(2000);
+  const r = await read('history/weather/faro.json', 'https://data.promptugal.news/api/v1/');
+  reads.push({ ...r, path: 'beyond/history/faro.json', role: 'beyond' });
+  if (r.body) { try { const j = JSON.parse(r.body); if (j.place !== 'faro' || !Array.isArray(j.rows)) throw new Error('wrong place or no rows'); mkdirSync('data/inputs/beyond/history', { recursive: true }); writeFileSync('data/inputs/beyond/history/faro.json', r.body); r.used = true; } catch { r.status = 'not json, wrong place or no rows'; } }
+}
 // The sites registry for the shared sites bar (Dinis, 18 Nov 2026, the sites-bar guidance): promptugal.news/api/v1/sites.json.
 // Kept only when it parses and has a sites list; when it is down, the last copy stays and the build keeps the last bar.
 {

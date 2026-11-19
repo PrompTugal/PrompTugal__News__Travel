@@ -449,6 +449,41 @@ ${calledOff.length ? `<section aria-labelledby="h-off"><h2 id="h-off">Called off
   });
 }
 
+// Serialise the chart's node tree: tag and attribute names from the module's allowlists only, every value through esc().
+const svgOf = n => {
+  if (n.text !== undefined) return esc(n.text);
+  if (!PAST_TAGS.includes(n.t)) throw new Error(`build: tag ${n.t} is not allowed in the chart`);
+  const at = Object.entries(n.a).map(([k, v]) => { if (!pastOkAttr(n.t, k, v)) throw new Error(`build: attribute ${k} is not allowed on ${n.t} in the chart`); return ` ${k}="${esc(String(v))}"`; }).join('');
+  if (!n.c.length && (n.t === 'line' || n.t === 'rect')) return `<${n.t}${at}/>`;
+  return `<${n.t}${at}>${n.c.map(svgOf).join('')}</${n.t}>`;
+};
+// "Faro: what we said and what happened" (Dinis, 18 Nov 2026, "show the past"; designer@ PF1 to PF9): the temperature chart on
+// /weather/, from data/inputs/beyond/history/faro.json (data.promptugal.news's history/weather/faro.json) and IPMA's city
+// forecast for Faro. Missing or unusable history: no chart, and the build goes on. IPMA data: free page, outside the meter.
+const faroTemp = (() => {
+  const none = { html: '', md: '', used: null };
+  let h = null;
+  try { h = existsSync('data/inputs/beyond/history/faro.json') ? J('data/inputs/beyond/history/faro.json') : null; } catch { h = null; }
+  if (!h || h.place !== 'faro' || !Array.isArray(h.rows)) return none;
+  let m = null, svg = '';
+  try {
+    const days = ((faro.forecast && faro.forecast.days) || []).filter(x => x && typeof x.date === 'string');
+    m = pastModel(h, days, today, { kind: 'temp', place: 'faro' });
+    if (!m) return none;
+    svg = svgOf(pastTree(m));
+  } catch { return none; }
+  const { track } = m, tbl = m.table;
+  const read = typeof h.data_read_at === 'string' ? lisbon(h.data_read_at) : 'not known';
+  const histUrl = 'https://data.promptugal.news/api/v1/history/weather/faro.json';
+  const note = `Measured: IPMA station ${esc((faro.station || {}).name || 'Faro (Aeródromo)')}, each day's lowest and highest reading (a day is complete when it has all its hours). What we said: IPMA's forecast for Faro kept the day before. Forecast ahead: IPMA's forecast for Faro, read ${esc(lisbon(faro.read_at))}. History read <span data-now="temp-read">${esc(read)}</span>; ${a(histUrl, 'the history file')}. Source: ${a('https://api.ipma.pt/', 'IPMA, Instituto Português do Mar e da Atmosfera')}, used under the source's terms: not for commercial use.`;
+  const table = `<details><summary>Table view</summary><div class="tscroll"><table><thead><tr><th>Day</th><th>Measured low to high</th><th>What we said the day before</th><th>Difference in the high</th><th>Forecast</th></tr></thead><tbody data-now="temp-table">${tbl.map(r => `<tr><td>${esc(r.day)}</td><td>${esc(r.meas)}</td><td>${esc(r.said)}</td><td>${esc(r.diff)}</td><td>${esc(r.fc)}</td></tr>`).join('')}</tbody></table></div></details>`;
+  return {
+    used: histUrl,
+    html: `<section aria-labelledby="h-faro-temp"><h2 id="h-faro-temp">Faro: what we said and what happened</h2><figure class="chart" data-now="temp-chart" data-read="${esc(typeof h.data_read_at === 'string' ? h.data_read_at : '')}"><div class="chart-wide">${svg}</div><figcaption>${esc(track)}</figcaption></figure>${table}<p class="meta">${note}</p></section>`,
+    md: `\n\n## Faro: what we said and what happened\n\n${mdesc(track)}\n\n| Day | Measured low to high | What we said the day before | Difference in the high | Forecast |\n|---|---|---|---|---|\n${tbl.map(r => `| ${mdesc(r.day)} | ${mdesc(r.meas)} | ${mdesc(r.said)} | ${mdesc(r.diff)} | ${mdesc(r.fc)} |`).join('\n')}\n\nMeasured: IPMA station ${mdesc((faro.station || {}).name || 'Faro (Aeródromo)')}. What we said: IPMA's forecast kept the day before. Forecast ahead: IPMA, read ${mdesc(lisbon(faro.read_at))}. History read ${mdesc(read)}. ${ml(histUrl, 'History file')}. Source: ${ml('https://api.ipma.pt/', 'IPMA')}, the source's terms, not for commercial use.`,
+  };
+})();
+
 // ---------- weather and sea ----------
 {
   const rows = municipalities.map(id => {
@@ -462,13 +497,15 @@ ${calledOff.length ? `<section aria-labelledby="h-off"><h2 id="h-off">Called off
   page({
     path: '/weather/', title: 'Weather and sea for visitors', ipma: true,
     description: 'The weather, the sea, UV and fire risk in each Algarve municipality, from IPMA open data, with warnings in force and the time each value was read.',
-    script: '/assets/now.js',
+    script: '/assets/now.js', extraModule: '/assets/past-chart-live.mjs',
     body: `<h1>Weather and sea for visitors</h1><p class="dek">Each Algarve municipality: the latest station reading, today and tomorrow, the sea on its coast, UV and fire risk. From IPMA's open data, via the PrompTugal.news place data, read ${esc(lisbon(faro.read_at))}. For storms and warnings, ${a('https://weather.promptugal.news/', 'PrompTugal.news Weather')} goes deeper.</p>
 <section aria-labelledby="h-w"><h2 id="h-w">Warnings in force</h2>${w.html}</section>
 <section aria-labelledby="h-coast"><h2 id="h-coast">The sea, coast by coast</h2><ul class="coasts">${Object.values(coasts).map(s => `<li><strong>${esc(s.coast)}</strong>: waves up to ${esc(cell(s.waves_max_m))} m, swell up to ${esc(cell(s.sea_max_m))} m, sea temperature up to ${esc(cell(s.sea_temp_max_c))}°C (${esc(s.date)}). ${a(s.page, 'IPMA')}</li>`).join('')}</ul><p class="meta">The Faro coast faces south (Olhão to Vila Real de Santo António, Albufeira, Quarteira); the Sagres coast covers the west and the Barlavento (Lagos, Portimão, Aljezur, Vila do Bispo), as IPMA groups them.</p></section>
 <section aria-labelledby="h-places"><h2 id="h-places">Place by place</h2><div class="scroll"><table class="places"><thead><tr><th scope="col">Place</th><th scope="col" class="num">Now (°C)</th><th scope="col">Today</th><th scope="col">Tomorrow</th><th scope="col" class="num">UV</th><th scope="col">Fire risk</th></tr></thead><tbody>${rows.map(r => `<tr><th scope="row">${esc(r.name)}<span class="meta"> ${esc(r.station || '')}</span></th><td class="num">${esc(cell(r.temp))}</td><td>${esc(r.today.t_max_c != null ? `${Math.round(r.today.t_max_c)}° / ${Math.round(r.today.t_min_c)}°, ${WT[r.today.weather_type] || ''}, rain ${r.today.rain_prob_pct}%` : 'n/a')}</td><td>${esc(r.tomorrow.t_max_c != null ? `${Math.round(r.tomorrow.t_max_c)}° / ${Math.round(r.tomorrow.t_min_c)}°, ${WT[r.tomorrow.weather_type] || ''}, rain ${r.tomorrow.rain_prob_pct}%` : 'n/a')}</td><td class="num">${esc(r.uv ? r.uv.index : 'n/a')}</td><td>${esc(r.fire ? r.fire.level : 'n/a')}</td></tr>`).join('')}</tbody></table></div>
-<p class="meta">"Now" is the nearest IPMA station with a reading; n/a means that station sent none in the hour read. Forecasts: IPMA's daily forecast for the nearest town. ${a('https://www.ipma.pt/en/otempo/prev.localidade.hora/', 'IPMA forecasts')} · ${a('https://www.ipma.pt/en/riscoincendio/rcm.pt/', 'IPMA fire risk')} · ${a('https://www.ipma.pt/en/otempo/prev.uv/', 'IPMA UV')}</p></section>`,
-    md: `Each Algarve municipality, from IPMA's open data via the PrompTugal.news place data, read ${lisbon(faro.read_at)}.\n\n## Warnings in force\n\n${w.md}\n\n## The sea\n\n${Object.values(coasts).map(s => `- **${s.coast}**: waves up to ${cell(s.waves_max_m)} m, sea temperature up to ${cell(s.sea_temp_max_c)}°C (${s.date}).`).join('\n')}\n\n## Place by place\n\n| Place | Now (°C) | Today | Tomorrow | UV | Fire risk |\n|---|---|---|---|---|---|\n${rows.map(r => `| ${r.name} | ${cell(r.temp)} | ${r.today.t_max_c != null ? `${r.today.t_max_c}/${r.today.t_min_c}, ${WT[r.today.weather_type] || ''}, rain ${r.today.rain_prob_pct}%` : 'n/a'} | ${r.tomorrow.t_max_c != null ? `${r.tomorrow.t_max_c}/${r.tomorrow.t_min_c}, ${WT[r.tomorrow.weather_type] || ''}, rain ${r.tomorrow.rain_prob_pct}%` : 'n/a'} | ${r.uv ? r.uv.index : 'n/a'} | ${r.fire ? r.fire.level : 'n/a'} |`).join('\n')}\n\nSource: IPMA open data (api.ipma.pt).`,
+<p class="meta">"Now" is the nearest IPMA station with a reading; n/a means that station sent none in the hour read. Forecasts: IPMA's daily forecast for the nearest town. ${a('https://www.ipma.pt/en/otempo/prev.localidade.hora/', 'IPMA forecasts')} · ${a('https://www.ipma.pt/en/riscoincendio/rcm.pt/', 'IPMA fire risk')} · ${a('https://www.ipma.pt/en/otempo/prev.uv/', 'IPMA UV')}</p></section>
+${faroTemp.html}`,
+    md: `Each Algarve municipality, from IPMA's open data via the PrompTugal.news place data, read ${lisbon(faro.read_at)}.\n\n## Warnings in force\n\n${w.md}\n\n## The sea\n\n${Object.values(coasts).map(s => `- **${s.coast}**: waves up to ${cell(s.waves_max_m)} m, sea temperature up to ${cell(s.sea_temp_max_c)}°C (${s.date}).`).join('\n')}\n\n## Place by place\n\n| Place | Now (°C) | Today | Tomorrow | UV | Fire risk |\n|---|---|---|---|---|---|\n${rows.map(r => `| ${r.name} | ${cell(r.temp)} | ${r.today.t_max_c != null ? `${r.today.t_max_c}/${r.today.t_min_c}, ${WT[r.today.weather_type] || ''}, rain ${r.today.rain_prob_pct}%` : 'n/a'} | ${r.tomorrow.t_max_c != null ? `${r.tomorrow.t_max_c}/${r.tomorrow.t_min_c}, ${WT[r.tomorrow.weather_type] || ''}, rain ${r.tomorrow.rain_prob_pct}%` : 'n/a'} | ${r.uv ? r.uv.index : 'n/a'} | ${r.fire ? r.fire.level : 'n/a'} |`).join('\n')}\n\nSource: IPMA open data (api.ipma.pt).${faroTemp.md}`,
+    provenance: prov({ code: ['built from IPMA\'s open data via the PrompTugal.news place data', ...(faroTemp.used ? ['and data.promptugal.news\'s weather history file for Faro, history/weather/faro.json (data.b@PrompTugal.dinis keeps it)'] : [])], agents: ['travel.b.charts@PrompTugal.dinis (Sonnet) drew the Faro chart; travel.b@PrompTugal.dinis reviewed it'] }),
   });
 }
 
@@ -650,14 +687,6 @@ const eaRainTable = (() => {
 // What we said beside what happened (designer@ PF1 to PF9; Dinis, 18 Nov 2026, "show the past"): one bar per day, past first,
 // today, then the forecast. From data/inputs/beyond/history/london.json (data.promptugal.news's history/weather/london.json).
 import { model as pastModel, tree as pastTree, TAGS as PAST_TAGS, okAttr as pastOkAttr } from '../src/assets/past-chart.mjs';
-// Serialise the chart's node tree: tag and attribute names from the module's allowlists only, every value through esc().
-const svgOf = n => {
-  if (n.text !== undefined) return esc(n.text);
-  if (!PAST_TAGS.includes(n.t)) throw new Error(`build: tag ${n.t} is not allowed in the chart`);
-  const at = Object.entries(n.a).map(([k, v]) => { if (!pastOkAttr(n.t, k, v)) throw new Error(`build: attribute ${k} is not allowed on ${n.t} in the chart`); return ` ${k}="${esc(String(v))}"`; }).join('');
-  if (!n.c.length && (n.t === 'line' || n.t === 'rect')) return `<${n.t}${at}/>`;
-  return `<${n.t}${at}>${n.c.map(svgOf).join('')}</${n.t}>`;
-};
 const historyFile = 'data/inputs/beyond/history/london.json';
 const eaRain = (() => {
   let h = null;

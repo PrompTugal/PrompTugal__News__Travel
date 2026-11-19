@@ -1,6 +1,8 @@
 // "Rain in London: what we said and what happened": the logic and the drawing, shared by the build (scripts/build.mjs)
 // and the browser (past-chart-live.mjs). No dependencies. Moved out of build.mjs on 19 Nov 2026 (travel.b@, Dinis's rule
 // "load the data in the browser"); behaviour unchanged.
+// A second kind, 'temp' (Faro's temperatures, 19 Nov 2026), is drawn by modelTemp/treeTemp below; 'rain' is the default and its
+// output is unchanged.
 // model(history, forecastDays, today) checks the data and returns the items, the track-record text and the table rows,
 // or null when the history is not usable. tree(model) returns a plain node tree: {t, a, c} for an element and {text}
 // for text. Attribute values are numbers or fixed strings from this module; no data string ever becomes a tag name,
@@ -13,9 +15,10 @@ export const STYLES = [
   'fill:var(--ink)', 'fill:var(--muted)', 'fill:var(--sand)', 'stroke:var(--ink);stroke-width:1.5', 'stroke:var(--rule)',
   'fill:none;stroke:var(--green);stroke-width:2', 'fill:url(#lon-hatch);stroke:var(--ink);stroke-width:1.5',
   'fill:none;stroke:var(--ink);stroke-width:1.5;stroke-dasharray:3 3',
+  'fill:url(#faro-hatch);stroke:var(--ink);stroke-width:1.5',   // 8: the temperature chart's forecast
 ];
 const STRING_ATTR = {
-  role: /^img$/, 'aria-labelledby': /^lon-rain-t lon-rain-d$/, id: /^(lon-rain-t|lon-rain-d|lon-hatch)$/,
+  role: /^img$/, 'aria-labelledby': /^(lon-rain-t lon-rain-d|faro-temp-t faro-temp-d)$/, id: /^(lon-rain-t|lon-rain-d|lon-hatch|faro-temp-t|faro-temp-d|faro-hatch)$/,
   viewBox: /^0 0 \d{1,4} \d{1,4}$/, width: /^100%$/, patternUnits: /^userSpaceOnUse$/, patternTransform: /^rotate\(45\)$/,
   'text-anchor': /^(middle|end)$/, 'font-weight': /^700$/, transform: /^translate\(-?\d{1,5}(\.\d)? -?\d{1,5}(\.\d)?\)$/,
 };
@@ -32,7 +35,8 @@ const cl = v => (typeof v === 'number' && Number.isFinite(v) ? Math.min(500, Mat
 const r1 = v => Math.round(v * 10) / 10;
 export const day = iso => { const d = new Date(iso + 'T12:00:00Z'); return isNaN(d) ? iso : new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(d); };
 
-export function model(h, forecastDays, today) {
+export function model(h, forecastDays, today, opts) {
+  if (opts && opts.kind === 'temp') return modelTemp(h, forecastDays, today, opts.place);
   if (!h || typeof h !== 'object' || h.place !== 'london' || !Array.isArray(h.rows) || h.rows.length > 400 || typeof today !== 'string' || !DATE.test(today)) return null;
   // one row per date (the last one in the file wins; AppSec post-review, low), oldest first
   const rows = [...new Map(h.rows.filter(r => r && typeof r.date === 'string' && DATE.test(r.date)).map(r => [r.date, r])).values()].sort((x, y) => x.date.localeCompare(y.date));
@@ -72,6 +76,7 @@ const el = (t, a, c) => ({ t, a: a || {}, c: c || [] });
 const tx = s => ({ text: String(s) });
 
 export function tree(m) {
+  if (m.kind === 'temp') return treeTemp(m);
   const { items, first, track, labels } = m;
   const W = 640, L = 40, R = 8, T = 46, base = 258, H = 350, n = items.length;
   const colW = (W - L - R) / n, bw = Math.min(20, colW / 2 - 3);
@@ -123,6 +128,111 @@ export function tree(m) {
     el('title', { id: 'lon-rain-t' }, [tx(ttl)]),
     el('desc', { id: 'lon-rain-d' }, [tx(`Millimetres of rain per day, past days first, then today, then the forecast. ${desc}. ${track}`)]),
     el('defs', {}, [el('pattern', { id: 'lon-hatch', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' }, [el('line', { x1: 0, y1: 0, x2: 0, y2: 6, style: STYLES[3] })])]),
+    ...g, ...grid, el('text', { x: L, y: 14, 'font-size': 11, style: STYLES[0] }, [tx(`Record begins ${day(first)}`)]),
+    ...out, ...legend,
+  ]);
+}
+
+// ---------- temperatures: "Faro: what we said and what happened" ----------
+// rows: {date, observed: null | {low_c, high_c, complete}, forecast: {d1: null | {t_min_c, t_max_c}}}. Degrees are clamped
+// to -30..55 (a value outside is treated as missing); a day's range needs both ends.
+const deg = v => (typeof v === 'number' && Number.isFinite(v) && v >= -30 && v <= 55 ? r1(v) : null);
+const range = (lo, hi) => { const a = deg(lo), b = deg(hi); return a != null && b != null && a <= b ? [a, b] : [null, null]; };
+const whole = v => Math.round(v);
+const sgn = d => (d === 0 ? '✓' : `${d > 0 ? '+' : '−'}${Math.abs(d).toFixed(1)}°`);
+
+export function modelTemp(h, forecastDays, today, place) {
+  if (!h || typeof h !== 'object' || typeof place !== 'string' || h.place !== place || !Array.isArray(h.rows) || h.rows.length > 400 || typeof today !== 'string' || !DATE.test(today)) return null;
+  const rows = [...new Map(h.rows.filter(r => r && typeof r.date === 'string' && DATE.test(r.date)).map(r => [r.date, r])).values()].sort((x, y) => x.date.localeCompare(y.date));
+  const byDate = Object.fromEntries(rows.map(r => [r.date, r]));
+  const first = typeof h.first_day === 'string' && DATE.test(h.first_day) && h.first_day >= '2026-11-01' && h.first_day <= today ? h.first_day : (rows[0] ? rows[0].date : null);
+  if (!first) return null;
+  const mk = (date, kind) => {
+    const r = byDate[date] || {}; const o = r.observed && typeof r.observed === 'object' ? r.observed : null;
+    const d1 = r.forecast && r.forecast.d1 && typeof r.forecast.d1 === 'object' ? r.forecast.d1 : null;
+    const [lo, hi] = o ? range(o.low_c, o.high_c) : [null, null], [sLo, sHi] = d1 ? range(d1.t_min_c, d1.t_max_c) : [null, null];
+    return { date, kind, lo, hi, complete: !!(o && o.complete === true && hi != null), sLo, sHi, fLo: null, fHi: null };
+  };
+  const past = rows.filter(r => r.date < today && r.date >= first).slice(-7).map(r => mk(r.date, 'past'));
+  const items = [...past, mk(today, 'today')];
+  for (const f of Array.isArray(forecastDays) ? forecastDays.slice(0, 16) : []) {
+    if (!f || typeof f.date !== 'string' || !DATE.test(f.date) || f.date <= today || items.filter(i => i.kind === 'future').length >= 5) continue;
+    const [fLo, fHi] = range(f.t_min_c, f.t_max_c);
+    items.push({ date: f.date, kind: 'future', lo: null, hi: null, complete: false, sLo: null, sHi: null, fLo, fHi });
+  }
+  // a difference only for a complete past day with a forecast kept; today and part days are not scored
+  const diff = it => (it.kind === 'past' && it.complete && it.hi != null && it.sHi != null ? r1(it.hi - it.sHi) : null);
+  const said = it => (it.sLo != null ? `${whole(it.sLo)}° to ${whole(it.sHi)}°` : null);
+  const scored = items.filter(it => diff(it) != null);
+  const hits = scored.filter(it => Math.abs(diff(it)) <= 1 + 1e-9).length;
+  const track = scored.length
+    ? `${hits} of ${scored.length} past complete days with the high within 1° of what we said the day before, since ${day(first)}.`
+    : 'No complete day yet has a forecast we kept, so there is no track record yet. It begins as days are kept.';
+  // the lines of text under each column
+  const labels = items.map(it => {
+    if (it.kind === 'future') return ['forecast'];
+    if (it.hi == null) return ['no', 'reading'];
+    if (!it.complete) return it.kind === 'today' ? (said(it) ? ['said', `${whole(it.sLo)}° to`, `${whole(it.sHi)}°`] : ['so far']) : ['part day'];
+    return diff(it) != null ? [sgn(diff(it))] : ['not kept'];
+  });
+  const table = items.map(it => {
+    const fut = it.kind === 'future', rg = (a, b) => (a == null ? null : `${a}° to ${b}°`);
+    const df = diff(it);
+    return { day: day(it.date) + (it.kind === 'today' ? ' (today)' : ''),
+      meas: fut ? '' : it.hi == null ? 'no reading' : `${rg(it.lo, it.hi)}${it.complete ? '' : it.kind === 'today' ? ' (so far)' : ' (part day)'}`,
+      said: fut ? '' : rg(it.sLo, it.sHi) || 'not kept',
+      diff: fut ? '' : df != null ? (df === 0 ? '✓ (equal)' : `${sgn(df)} (measured high minus said high)`) : (it.sHi != null && it.hi != null ? 'not scored: the day is not complete' : ''),
+      fc: fut ? rg(it.fLo, it.fHi) || 'none' : '' };
+  });
+  return { kind: 'temp', first, items, labels, track, table };
+}
+
+export function treeTemp(m) {
+  const { items, first, track, labels } = m;
+  const W = 640, L = 40, R = 8, T = 46, base = 258, H = 372, n = items.length;
+  const colW = (W - L - R) / n, bw = Math.min(16, colW / 2 - 3);
+  const vals = items.flatMap(it => [it.lo, it.hi, it.sLo, it.sHi, it.fLo, it.fHi]).filter(v => v != null);
+  let lo = vals.length ? Math.floor(Math.min(...vals) / 5) * 5 : 10, hi = vals.length ? Math.ceil(Math.max(...vals) / 5) * 5 : 25;
+  if (hi - lo < 10) hi = lo + 10;   // never a flat axis
+  const Y = v => base - (base - T) * (v - lo) / (hi - lo), f1 = v => v.toFixed(1), N = v => Number(f1(v));
+  const bar = (x, a, b, st, tip) => {
+    const top = Y(b), hgt = Math.max(3, Y(a) - top), rx = Math.min(4, hgt / 2);
+    return el('rect', { x: N(x), y: N(top), width: N(bw), height: N(hgt), rx: N(rx), style: st }, [el('title', {}, [tx(tip)])]);
+  };
+  const gap = (x, tip) => el('rect', { x: N(x), y: base - 16, width: N(bw), height: 16, rx: 4, style: STYLES[7] }, [el('title', {}, [tx(tip)])]);
+  const txt = (x, y, s, bold) => el('text', bold ? { x: N(x), y, 'text-anchor': 'middle', 'font-size': 11, 'font-weight': '700', style: STYLES[0] } : { x: N(x), y, 'text-anchor': 'middle', 'font-size': 11, style: STYLES[0] }, [tx(s)]);
+  const shortDay = iso => { const t = day(iso).split(' '); return `${t[0]} ${t[1]}`; };
+  const g = [];
+  items.forEach((it, i) => { if (it.kind === 'today') g.push(el('rect', { x: N(L + colW * i), y: T - 12, width: N(colW), height: base - T + 74, style: STYLES[2] }), txt(L + colW * (i + 0.5), 38, 'Today', true)); });
+  const out = [];
+  items.forEach((it, i) => {
+    const cx = L + colW * (i + 0.5), nm = day(it.date), s = [];
+    if (it.kind === 'future') {
+      if (it.fLo != null) s.push(bar(cx - bw / 2, it.fLo, it.fHi, STYLES[8], `Forecast for ${nm}: ${it.fLo}° to ${it.fHi}° (${it.date}), not yet measured`));
+    } else {
+      const part = !it.complete && it.hi != null;
+      if (it.sLo != null) s.push(bar(cx - bw - 1, it.sLo, it.sHi, STYLES[5], `What we said the day before, for ${nm}: ${it.sLo}° to ${it.sHi}° (${it.date})`));
+      if (it.hi != null) s.push(bar(cx + 1, it.lo, it.hi, STYLES[0], `Measured on ${nm}: ${it.lo}° to ${it.hi}° (${it.date})${part ? (it.kind === 'today' ? ', so far' : ', part day') : ''}`));
+      else s.push(gap(cx + 1, `No reading for ${nm} (${it.date}); nothing is filled in`));
+    }
+    labels[i].forEach((l, k) => s.push(txt(cx, base + 28 + 13 * k, l)));
+    s.push(txt(cx, base + 14, shortDay(it.date)));
+    out.push(el('g', {}, s));
+  });
+  const grid = [], step = (hi - lo) / 5 > 9 ? 10 : 5;
+  for (let v = lo; v <= hi; v += step) {
+    grid.push(el('line', { x1: L, x2: W - R, y1: N(Y(v)), y2: N(Y(v)), style: 'stroke:var(--rule)' }));
+    grid.push(el('text', { x: L - 6, y: N(Y(v) + 4), 'text-anchor': 'end', 'font-size': 11, style: STYLES[0] }, [tx(v)]));
+  }
+  grid.push(el('text', { x: 4, y: T - 22, 'font-size': 11, style: STYLES[1] }, [tx('°C')]));
+  const lg = (x, style, label) => el('g', { transform: `translate(${x} ${H - 18})` }, [el('rect', { width: 16, height: 12, rx: 3, style }), el('text', { x: 22, y: 11, 'font-size': 11, style: STYLES[0] }, [tx(label)])]);
+  const legend = [lg(L, STYLES[0], 'measured'), lg(L + 100, STYLES[5], 'what we said'), lg(L + 220, STYLES[8], 'forecast'), lg(L + 320, STYLES[7], 'no reading')];
+  const rg = (a, b) => (a == null ? 'none' : `${a}° to ${b}°`);
+  const desc = items.map(it => it.kind === 'future' ? `${day(it.date)}: forecast ${rg(it.fLo, it.fHi)}` : `${day(it.date)}: measured ${it.hi != null ? rg(it.lo, it.hi) : 'no reading'}, said ${it.sLo != null ? rg(it.sLo, it.sHi) : 'not kept'}`).join('; ');
+  return el('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', role: 'img', 'aria-labelledby': 'faro-temp-t faro-temp-d' }, [
+    el('title', { id: 'faro-temp-t' }, [tx('Faro temperatures, what we said beside what was measured, with the forecast ahead')]),
+    el('desc', { id: 'faro-temp-d' }, [tx(`Each day's lowest to highest temperature in degrees Celsius, past days first, then today, then the forecast. ${desc}. ${track}`)]),
+    el('defs', {}, [el('pattern', { id: 'faro-hatch', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' }, [el('line', { x1: 0, y1: 0, x2: 0, y2: 6, style: STYLES[3] })])]),
     ...g, ...grid, el('text', { x: L, y: 14, 'font-size': 11, style: STYLES[0] }, [tx(`Record begins ${day(first)}`)]),
     ...out, ...legend,
   ]);

@@ -1,6 +1,7 @@
-// /london/: redraw "Rain in London: what we said and what happened" from the latest files when the page opens and every
+// /london/ and /weather/: redraw "Rain in London: what we said and what happened" from the latest files when the page opens and every
 // 10 minutes while it is visible (Dinis, 19 Nov 2026 ~01:13 UTC, "load the data in the browser"). travel.b@, 19 Nov 2026.
-// - reads data.promptugal.news's history/weather/london.json and by-place/now/london.json only, with no cookie, no
+// - reads data.promptugal.news's history/weather/<place>.json and by-place/now/<place>.json only (london: the rain chart;
+//   faro, on /weather/: the temperature chart, added 19 Nov 2026), with no cookie, no
 //   referrer and no stored state (same options and read-time rule as now.js);
 // - redraws only when the history file's data_read_at is newer than the one built into the page, and only when both
 //   files pass their checks; anything else leaves the built chart as it is;
@@ -10,8 +11,7 @@ import { model, tree, TAGS, okAttr } from '/assets/past-chart.mjs';
 
 const EVERY_MS = 10 * 60 * 1000, NS = 'http://www.w3.org/2000/svg';
 const OPTS = { cache: 'no-cache', credentials: 'omit', referrerPolicy: 'no-referrer' };
-const HIST = 'https://data.promptugal.news/api/v1/history/weather/london.json';
-const NOW = 'https://data.promptugal.news/api/v1/by-place/now/london.json';
+const API = 'https://data.promptugal.news/api/v1/';
 // a read time: ISO 8601 UTC only, and never more than 5 minutes in the future (as now.js)
 const ms = iso => { const n = typeof iso === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d{1,3})?)?Z$/.test(iso) ? Date.parse(iso) : NaN; return isNaN(n) || n > Date.now() + 5 * 60 * 1000 ? null : n; };
 const getJson = url => fetch(url, OPTS).then(r => (r.ok ? r.json() : null)).catch(() => null);
@@ -24,26 +24,38 @@ function draw(n) {
   for (const c of n.c) e.appendChild(draw(c));
   return e;
 }
-function validForecast(d) {
-  if (!d || d.place !== 'london' || !d.forecast || !ms(d.forecast.at) || !Array.isArray(d.forecast.days) || d.forecast.days.length > 16) return null;
-  for (const x of d.forecast.days) if (!x || typeof x.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(x.date) || (x.rain_mm != null && !(typeof x.rain_mm === 'number' && isFinite(x.rain_mm) && x.rain_mm >= 0 && x.rain_mm <= 500))) return null;
+const DATE = /^\d{4}-\d{2}-\d{2}$/;
+const num = (v, lo, hi) => v == null || (typeof v === 'number' && isFinite(v) && v >= lo && v <= hi);
+function validForecast(d, place) {
+  if (!d || d.place !== place || !d.forecast || !ms(place === 'faro' ? d.read_at : d.forecast.at) || !Array.isArray(d.forecast.days) || d.forecast.days.length > 16) return null;
+  for (const x of d.forecast.days) {
+    if (!x || typeof x.date !== 'string' || !DATE.test(x.date)) return null;
+    if (place === 'faro' ? !(num(x.t_min_c, -30, 55) && num(x.t_max_c, -30, 55)) : !num(x.rain_mm, 0, 500)) return null;
+  }
   return d.forecast.days;
 }
 
-async function run() {
-  const fig = document.querySelector('[data-now="rain-chart"]'), body = document.querySelector('[data-now="rain-table"]');
+// one entry per chart: the figure's data-now names, the place, the model options
+const CHARTS = [
+  { place: 'london', fig: 'rain-chart', table: 'rain-table', read: 'rain-read', opts: undefined },
+  { place: 'faro', fig: 'temp-chart', table: 'temp-table', read: 'temp-read', opts: { kind: 'temp', place: 'faro' } },
+];
+
+async function run(c) {
+  const HIST = `${API}history/weather/${c.place}.json`, NOW = `${API}by-place/now/${c.place}.json`;
+  const fig = document.querySelector(`[data-now="${c.fig}"]`), body = document.querySelector(`[data-now="${c.table}"]`);
   if (!fig || !body) return;
   const wrap = fig.querySelector('.chart-wide'), cap = fig.querySelector('figcaption');
   if (!wrap || !cap) return;
   const [h, now] = await Promise.all([getJson(HIST), getJson(NOW)]);
-  if (!h || h.place !== 'london' || !Array.isArray(h.rows) || h.rows.length > 400) return;
+  if (!h || h.place !== c.place || !Array.isArray(h.rows) || h.rows.length > 400) return;
   const at = ms(h.data_read_at), built = ms(fig.getAttribute('data-read'));
   if (!at || !built || at <= built) return;   // no valid built time: leave the built chart (AppSec post-review, low)
-  const days = validForecast(now);
+  const days = validForecast(now, c.place);
   if (!days) return;
   let svg, m;
   try {
-    m = model(h, days, new Date().toISOString().slice(0, 10));
+    m = model(h, days, new Date().toISOString().slice(0, 10), c.opts);
     if (!m) return;
     svg = draw(tree(m));
   } catch { return; }
@@ -53,12 +65,12 @@ async function run() {
   body.replaceChildren(...rows);
   fig.setAttribute('data-read', h.data_read_at);
   // the note's read time follows the file drawn (travel.b@ review), in London time, as text
-  const rd = document.querySelector('[data-now="rain-read"]');
+  const rd = document.querySelector(`[data-now="${c.read}"]`);
   if (rd) { try { rd.textContent = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' }).format(new Date(at)) + ' London, in your browser'; } catch {} }
 }
 
 if (window.fetch && Element.prototype.replaceChildren) {
-  const go = () => run().catch(() => {});
+  const go = () => CHARTS.forEach(c => run(c).catch(() => {}));
   go();
   setInterval(() => { if (!document.hidden) go(); }, EVERY_MS);
 }

@@ -1,5 +1,5 @@
 {
- "data_read_at": "2026-11-19T10:09:36Z",
+ "data_read_at": "2026-11-19T13:08:53Z",
  "expected_cadence": {
   "name": "hourly",
   "seconds": 3600
@@ -33,7 +33,7 @@
  },
  "place": "london",
  "country": "GB",
- "read_at": "2026-11-19T10:09:36Z",
+ "read_at": "2026-11-19T13:08:53Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "coords": {
   "lat": 51.50722,
@@ -76,6 +76,11 @@
    }
   ],
   "at": "2026-11-19T06:15:51Z",
+  "expected_cadence": {
+   "name": "every 6 hours",
+   "seconds": 21600,
+   "why": "Open-Meteo's free API is shared; it answered 429 to an hourly read on 19 Nov 2026 11:00 UTC"
+  },
   "source": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
   "attribution": "Weather data by Open-Meteo.com",
   "license": {
@@ -99,7 +104,7 @@
    }
   ],
   "stations": 10,
-  "at": "2026-11-19T10:04:25Z",
+  "at": "2026-11-19T13:04:17Z",
   "source": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
   "attribution": "this uses Environment Agency flood and river level data from the real-time data API (Beta)",
   "license": {
@@ -110,7 +115,7 @@
  "reads": {
   "ea-flood": {
    "url": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
-   "at": "2026-11-19T10:04:25Z"
+   "at": "2026-11-19T13:04:17Z"
   },
   "open-meteo-london": {
    "url": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
