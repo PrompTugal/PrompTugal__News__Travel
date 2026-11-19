@@ -1,9 +1,10 @@
 {
  "license": {
-  "name": "CC BY 4.0",
-  "url": "https://creativecommons.org/licenses/by/4.0/",
-  "holder": "PrompTugal.news",
-  "note": "What PrompTugal.news makes: this file's structure, records and derived values."
+  "name": "Eurostat reuse policy (Commission Decision of 12 December 2011)",
+  "url": "https://ec.europa.eu/eurostat/web/main/help/copyright-notice",
+  "holder": "Eurostat",
+  "commercial_use": "allowed",
+  "note": "Credit: \"Source: Eurostat\" with the dataset code."
  },
  "source": "eurostat-tourism",
  "title": "Tourist nights by where guests live: Portugal, Algarve, Lisbon, London (Eurostat)",
@@ -15,11 +16,11 @@
   "lisboa",
   "london"
  ],
- "read_at": "2026-11-18T22:52:55Z",
+ "read_at": "2026-11-18T23:43:26Z",
  "provenance": {
   "source": "https://ec.europa.eu/eurostat/web/tourism/database",
   "page": "https://ec.europa.eu/eurostat/databrowser/view/tour_occ_nin2/default/table",
-  "read_at": "2026-11-18T22:52:55Z",
+  "read_at": "2026-11-18T23:43:26Z",
   "by": "sources/eurostat-tourism/collect.mjs (code, no model; run by data.b@PrompTugal.dinis)",
   "terms": "Reuse of statistical data is authorised for commercial or non-commercial purposes provided the source is acknowledged (Commission Decision of 12 December 2011); no key. Acknowledge with \"Source: Eurostat\" and the dataset code. Not reviewed by a person.",
   "attribution": "Source: Eurostat",

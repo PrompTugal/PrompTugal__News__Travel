@@ -4,6 +4,7 @@
 // SITE_VERSION is set by CI only (v0.1.N); a local build says "dev". Node 18+, no dependencies.
 import { cpSync, rmSync, readdirSync, readFileSync, writeFileSync, statSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
+import { createHash } from 'node:crypto';
 
 const version = process.env.SITE_VERSION || 'dev';
 const SITE = 'https://travel.promptugal.news';
@@ -98,9 +99,16 @@ const NAV = [
   ['/weather/', 'Weather and sea'], ['/events/', "What's on"], ['/tourism/', 'Tourism'], ['/uk-portugal/', 'UK and Portugal'], ['/london/', 'London'], ['/about/', 'How it is made'],
 ];
 const pages = [];
-// The PrompTugal.news sites, as promptugal.news's rail (PrompTugal__News__Website assets/top/top.tmpl, em-net).
-const SITES = [['Weather', 'https://weather.promptugal.news/'], ['Civic', 'https://civic.promptugal.news/'], ['Startups', 'https://startups.promptugal.news/'], ['Travel', 'https://travel.promptugal.news/'], ['Data', 'https://data.promptugal.news/']];
-const siteLinks = () => SITES.map(([n, u]) => n === 'Travel' ? `<a href="/" aria-current="true">${n}</a>` : `<a href="${u}" rel="noopener">${n}</a>`).join('');
+// The shared sites bar v1.1.0 (Dinis, 18 Nov 2026; PrompTugal__News__Website board/guidance/2026-11-18-the-sites-bar.md),
+// vendored in src/assets/sites-bar/1.1.0/ and checked by sha256 here; rendered at build from data/inputs/sites.json
+// (promptugal.news/api/v1/sites.json, read by scripts/pull.mjs). If the renderer refuses the registry it returns ''
+// and the pages go out without a bar, never a hand-made one. It replaces the old rail and footer list.
+const SB = 'src/assets/sites-bar/1.1.0/';
+// The first 40 hex digits of each file's sha256 (160 bits; the leak scan allows hex up to a git object id's length).
+const SB_SHA = { 'sites-bar-render.mjs': 'b9b50ae32fd5dc234ba6e9b4660061afb25554b5', 'sites-bar.css': '302e2544eb34e3d6ce8d8e14fe2918c9f658a587', 'sites-bar.js': 'bc97a820a8f4fbda60ff65c3073be6fe79b2d1d3' };
+for (const [f, h] of Object.entries(SB_SHA)) { const got = createHash('sha256').update(readFileSync(SB + f)).digest('hex').slice(0, 40); if (got !== h) { console.error(`build: ${SB + f} sha256 ${got} is not the pinned ${h}`); process.exit(1); } }
+const { render: renderSitesBar } = await import(new URL('../' + SB + 'sites-bar-render.mjs', import.meta.url));
+const sitesBar = existsSync('data/inputs/sites.json') ? renderSitesBar(J('data/inputs/sites.json'), { here: 'travel.promptugal.news' }) : '';
 // type and ipma: kept from the reading meter, which this site no longer has (Dinis, 18 Nov 2026 ~23:45 UTC: only
 // promptugal.news bills). Every page is free; the page's type is still written in its meta for other tools.
 function page({ path, title, description, body, md, provenance, variant = '', script = '', noindex = false, type = 'data', ipma = false }) {
@@ -130,18 +138,18 @@ function page({ path, title, description, body, md, provenance, variant = '', sc
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
-<meta name="page-type" content="${pageType}">
+${sitesBar ? '<link rel="stylesheet" href="/assets/sites-bar/1.1.0/sites-bar.css">\n' : ''}<meta name="page-type" content="${pageType}">
 <meta name="page-date" content="${today}">
 ${noindex ? '<meta name="robots" content="noindex">\n' : ''}</head>
 <body class="${esc(variant)}">
 <a class="skip" href="#main">Skip to the content</a>
+${sitesBar}
 <header class="masthead">
 <div class="bar"><span class="version" data-version="${esc(version)}">Version ${esc(version)}</span><span>Independent: not an official site. Your airline or operator decides whether your service runs: its site or app has the latest.</span><span class="tools" id="nr-tools"><a class="tool meter free" id="nr-meter-chip" href="/about/#h-pay"><span class="meter-label">Free to read</span></a></span></div>
 <div class="brand"><a class="wordmark" href="/" aria-label="PrompTugal.news Travel, the front page"><img class="light" src="/assets/brand/promptugal-wordmark-light.svg" alt="PrompTugal.news" width="220" height="36"><img class="dark" src="/assets/brand/promptugal-wordmark-dark.svg" alt="" width="220" height="36"><span class="sub">· Travel</span></a>
 <p class="tagline">Travel and tourism in Portugal, the Algarve first. Every value with its source and the time it was read.</p></div>
 <nav aria-label="Sections"><ul>${NAV.map(([h, t]) => `<li><a href="${h}"${h === path ? ' aria-current="page"' : ''}>${esc(t)}</a></li>`).join('')}</ul></nav>
 </header>
-<nav class="em-net" aria-label="The PrompTugal.news sites"><span>Also from PrompTugal.news</span>${siteLinks()}</nav>
 <main id="main">
 <div class="body">
 ${body}
@@ -150,10 +158,9 @@ ${provHtml}
 </main>
 <footer class="foot"><p>${a('https://promptugal.news/', 'PrompTugal.news')}: Portugal, town by town. Raw data from ${a('https://data.promptugal.news/', 'data.promptugal.news')} and from ${a('https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/data/by-place', 'PrompTugal.news place data')}. Not a warning service: follow ${a('https://www.ipma.pt/', 'IPMA')} and ${a('https://prociv.gov.pt/', 'ANEPC')}.</p>
 <p class="takedown">Is something here yours, and do you think we should not show it? ${a('https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new', 'Open an issue')} and we take it down while we talk. Text and data we make: CC BY 4.0; what we show from others stays under its source\'s licence or terms, linked beside it.</p>
-<p class="sites">Also from PrompTugal.news: ${siteLinks()}</p>
 <p class="obs-row">Version ${esc(version)} · ${a('https://github.com/PrompTugal/PrompTugal__News__Travel', 'Source')} · Code Apache-2.0, text CC BY 4.0 · ${a('/llms.txt', 'llms.txt')} · ${a('/version.json', 'version.json')} · ${a('/security/', 'Security')} · ${a('https://promptugal.news/principles/', 'Principles')} · ${a('https://promptugal.news/report/', 'Report a problem')}</p></footer>
 ${script ? `<script src="${script}" defer></script>\n` : ''}
-<script src="/assets/obs/obs.js" defer></script>
+<script src="/assets/obs/obs.js" defer></script>${sitesBar ? '\n<script src="/assets/sites-bar/1.1.0/sites-bar.js" defer></script>' : ''}
 </body>
 </html>
 `;
@@ -758,9 +765,28 @@ ${figs.map((f, i) => { const x = 60 + i * (cw + 10); return `<rect x="${x}" y="2
 <text x="60" y="590" font-family="Arial, sans-serif" font-size="18" fill="#666860">Independent, not official. travel.promptugal.news</text>
 </svg>
 `;
-  writeFileSync('_site/preview.svg', svg);
+  // the 1200 x 630 picture for social cards (rendered to /preview.png by scripts/preview-png.mjs)
+  writeFileSync('_site/preview-card.svg', svg);
+  // /preview.svg: the sites bar's pop-up card, 320 x 180, from designer@'s template (PrompTugal__News__Website
+  // design/sites-bar/preview-template.svg.txt): no script, no external reference, system font fall-backs only.
+  const rdAt = airport && airport.at ? new Date(airport.at).toISOString().slice(0, 16).replace('T', ' ') + ' UTC' : 'not known';
+  const card = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img" aria-label="${esc(`Travel: ${figs.map(f => `${f[0]} ${f[1]}`).join('; ')}`)}">
+  <rect width="320" height="180" rx="6" fill="#f6f3ec"/>
+  <rect x="0" y="0" width="320" height="4" fill="#0b5c7a"/>
+  <text x="16" y="30" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1.2" fill="#666860">TRAVEL · NOW</text>
+  <text x="16" y="84" font-family="Newsreader, Georgia, serif" font-size="46" fill="#121317">${esc(figs[0][0])}</text>
+  <text x="16" y="104" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="#3a3b40">${esc(figs[0][1])}</text>
+  <text x="176" y="72" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">${esc(figs[2][0])}</text>
+  <text x="176" y="88" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">${esc(figs[2][1])}</text>
+  <text x="176" y="120" font-family="Newsreader, Georgia, serif" font-size="26" fill="#121317">${esc(figs[3][0])}</text>
+  <text x="176" y="136" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" fill="#3a3b40">${esc(figs[3][1])}</text>
+  <line x1="16" y1="150" x2="304" y2="150" stroke="#d8d4cb"/>
+  <text x="16" y="168" font-family="IBM Plex Mono, monospace" font-size="10" fill="#666860">read ${esc(rdAt)} · CC BY 4.0 · adsb.lol, IPMA</text>
+</svg>
+`;
+  writeFileSync('_site/preview.svg', card);
   writeFileSync('_site/api/v1/preview.json', JSON.stringify({ license_ours: OURS, about: 'The numbers in /preview.svg, with where each came from.', built, version, data_read: manifest.read_at,
-    figures: figs.map(([value, label, source]) => ({ value, label, source })), png: '/preview.png', png_note: 'preview.png is rendered from preview.svg by scripts/preview-png.mjs when a browser is available; it may be from an earlier build than the SVG.' }, null, 2) + '\n');
+    figures: figs.map(([value, label, source]) => ({ value, label, source })), png: '/preview.png', card: '/preview-card.svg', png_note: 'preview.png is rendered from preview-card.svg by scripts/preview-png.mjs when a browser is available; it may be from an earlier build than the SVG.' }, null, 2) + '\n');
 }
 
 // ---------- stamp the version (from the factory build) ----------

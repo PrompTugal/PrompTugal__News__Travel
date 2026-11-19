@@ -5,8 +5,8 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-19T00:05Z",
-  "run": "18 Nov ~23:45 UTC, on conductor.b@'s billing message",
+  "updated": "2026-11-19T01:15Z",
+  "run": "19 Nov ~00:55 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
     "how": "src/assets/obs/obs.js on every page sends to this site's own lane (vault 9y7m26v0, 4 append lanes, drain key sha256:769aec505e1d6f47), configured by src/assets/obs/obs.json; every event also says lane: \"travel\". conductor.b@PrompTugal.dinis holds the sealed drain credentials and drains it.",
@@ -63,11 +63,13 @@
   "asks": [
     "Dinis: the 3-hourly scheduled rebuild has never run (15:23, 18:23 and 21:23 UTC on 18 Nov passed with no run; GitHub lists 0 schedule runs). pages.yml on dev (the default branch) has cron '23 */3 * * *' and push runs all succeed, so please check the repository's Settings, Actions (actions allowed, the Pages workflow not disabled). I cannot see those settings.",
     "Dinis: INE's API asks its users to accept its conditions before use; data.b@ will not accept terms for anyone. Will you accept them (or ask INE), so UK guests by month for Portugal and the Algarve can be read?",
+    "Dinis: the sites bar asks for /preview.svg with nosniff; GitHub Pages sends image/svg+xml but no X-Content-Type-Options header, and a static site cannot add one. The SVG has no script or external reference. Accept, or move the site behind a host that sets headers?",
+    "Dinis: the bar sits after the page's 'Skip to the content' link rather than strictly first in <body>, so keyboard users can still skip it. Say if you want it first.",
     "Dinis: allow the one-line change to scripts/check-commits.mjs (accept @PrompTugal.dinis agents), or make it yourself; until then commits say Agent: travel.b@AgentiCCells.dinis.",
     "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
     "Dinis: What's on lists events from the councils' own pages as titles, dates and links (reference use, source named), from the council research and from data.promptugal.news's feed. data.b@'s note says no reuse licence was found for those sites and agendalx.pt asks reference use only. Is listing them this way all right, or should the page only link to each council's agenda?"
   ],
-  "live_changes": "~23:50 UTC: billing removed (only promptugal.news bills): chip says Free to read, /account/ pages and the meter gone. Earlier tonight: footer Principles and Report links, London rain, Eurostat nights, /london/, /uk-portugal/, preview.svg/png, /storm-charles/flights/.",
+  "live_changes": "~01:10 UTC 19 Nov: sites bar 1.1.0 installed; /preview.svg now the bar's 320 x 180 card. Earlier: billing removed, footer Principles and Report links, London rain, Eurostat nights, /london/, /uk-portugal/.",
   "storm": "The Storm site's 7 travel items (data.b@'s handoff): plan in board/team/travel/storm-plan.md. Pages and charts come here, reading data.promptugal.news; the collectors stay with data.b@.",
   "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading.",
   "dinis_1455": {
@@ -79,8 +81,8 @@
   },
   "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
   "library_requests": "Checked 18 Nov ~23:05 UTC: none for travel.b@ (our request file 404; the index does not name travel.b@).",
-  "passes": "Billing removal: AppSec post-review by travel.b.appsec@ (Sonnet): clean (no dangling references, obs.js still loads); REALITY.md updated as it noted.",
-  "sites_bar": "Preview done (Dinis, 18 Nov ~22:00 UTC, sites-bar guidance). Installing the bar waits for dev@ and designer@ to publish it; then vendor it pinned by version and sha256, render promptugal.news/api/v1/sites.json escaped with https *.promptugal.news links only, and replace the current rail.",
+  "passes": "Sites bar: AppSec post-review by travel.b.appsec@ (Sonnet): clean; the lead read render()'s URL checks and the browser script before vendoring.",
+  "sites_bar": "sites bar 1.1.0 installed (19 Nov ~01:10 UTC): vendored unchanged, sha256-checked at build, registry read at pull, bar first in body (after the skip link), CSS and deferred JS from this host; old rail removed; /preview.svg is the 320 x 180 card.",
   "london": "Live: /london/ (forecast beside Faro, flood alerts, measured rain). From data.b@: London to Faro/Lisbon/Porto routes held (adsb.lol's route lookup returned none); INE UK guests wait for Dinis (INE's API asks users to accept its conditions); TfL status next.",
   "releases": "Every push carries one piece of work, so each Pages run releases and tags it (Dinis, 18 Nov ~23:45 UTC); pages.yml already tags each run's commit."
 }

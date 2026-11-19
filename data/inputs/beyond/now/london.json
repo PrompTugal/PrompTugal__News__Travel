@@ -4,22 +4,26 @@
   "url": "https://creativecommons.org/licenses/by/4.0/",
   "holder": "PrompTugal.news",
   "note": "Our record; each value keeps its source, under that source's licence: the Environment Agency's flood data under the Open Government Licence v3.0, Open-Meteo's forecast under CC BY 4.0 (each block carries its own).",
+  "commercial_use": "per item",
+  "commercial_note": "Environment Agency values: allowed. Open-Meteo forecast: not allowed (free tier).",
   "sources": {
    "environment-agency": {
     "name": "Open Government Licence v3.0",
     "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
-    "holder": "Environment Agency"
+    "holder": "Environment Agency",
+    "commercial_use": "allowed"
    },
    "open-meteo": {
-    "name": "CC BY 4.0",
-    "url": "https://open-meteo.com/en/licence",
-    "holder": "Open-Meteo"
+    "name": "CC BY 4.0 (free API, non-commercial use)",
+    "url": "https://open-meteo.com/en/terms",
+    "holder": "Open-Meteo",
+    "commercial_use": "not allowed"
    }
   }
  },
  "place": "london",
  "country": "GB",
- "read_at": "2026-11-18T22:57:53Z",
+ "read_at": "2026-11-19T00:29:50Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "coords": {
   "lat": 51.50722,
@@ -41,17 +45,17 @@
   "days": [
    {
     "date": "2026-11-18",
-    "t_min_c": 9,
+    "t_min_c": 9.1,
     "t_max_c": 13,
-    "rain_mm": 4,
+    "rain_mm": 4.2,
     "weather_code": 61
    },
    {
     "date": "2026-11-19",
     "t_min_c": 7.2,
     "t_max_c": 10.7,
-    "rain_mm": 5.4,
-    "weather_code": 63
+    "rain_mm": 5.3,
+    "weather_code": 61
    },
    {
     "date": "2026-11-20",
@@ -61,7 +65,7 @@
     "weather_code": 3
    }
   ],
-  "at": "2026-11-18T22:57:24Z",
+  "at": "2026-11-18T23:49:04Z",
   "source": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
   "attribution": "Weather data by Open-Meteo.com",
   "license": {
@@ -85,7 +89,7 @@
    }
   ],
   "stations": 10,
-  "at": "2026-11-18T22:51:58Z",
+  "at": "2026-11-19T00:19:28Z",
   "source": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
   "attribution": "this uses Environment Agency flood and river level data from the real-time data API (Beta)",
   "license": {
@@ -96,11 +100,11 @@
  "reads": {
   "ea-flood": {
    "url": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
-   "at": "2026-11-18T22:51:58Z"
+   "at": "2026-11-19T00:19:28Z"
   },
   "open-meteo-london": {
    "url": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
-   "at": "2026-11-18T22:57:24Z"
+   "at": "2026-11-18T23:49:04Z"
   }
  }
 }

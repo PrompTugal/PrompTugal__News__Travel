@@ -121,6 +121,14 @@ for (const id of BEYOND) {
   reads.push({ ...r, path: 'beyond/ea-flood.json', role: 'beyond' });
   if (r.body) { try { const j = JSON.parse(r.body); if (!j.daily_rain || typeof j.daily_rain !== 'object') throw new Error('no daily_rain'); writeFileSync('data/inputs/beyond/ea-flood.json', r.body); r.used = true; } catch { r.status = 'not json or no daily_rain'; } }
 }
+// The sites registry for the shared sites bar (Dinis, 18 Nov 2026, the sites-bar guidance): promptugal.news/api/v1/sites.json.
+// Kept only when it parses and has a sites list; when it is down, the last copy stays and the build keeps the last bar.
+{
+  if (!from) await sleep(2000);
+  const r = await read('sites.json', 'https://promptugal.news/api/v1/');
+  reads.push({ ...r, path: 'sites.json', role: 'sites-bar' });
+  if (r.body) { try { const j = JSON.parse(r.body); if (!Array.isArray(j.sites)) throw new Error('no sites'); writeFileSync('data/inputs/sites.json', JSON.stringify({ about: 'The sites list from promptugal.news/api/v1/sites.json, as read by scripts/pull.mjs (its bar hashes left out: the vendored files are pinned in scripts/build.mjs).', source: 'https://promptugal.news/api/v1/sites.json', read_at: r.at, version: j.version, license: j.license, sites: j.sites }, null, 2) + '\n'); r.used = true; } catch { r.status = 'not json or no sites'; } }
+}
 const manifest = {
   about: `What scripts/pull.mjs read, when, and the first 40 hex digits of each answer's sha256. Each place's now file: data.promptugal.news/api/v1/by-place/now/ first, promptugal.news/data/by-place/now/ when that is stale or fails ("now" says which was used and why). places.json and the place desks (events): PrompTugal__News__Website data/by-place (public; each file signed beside it as <file>.sig), served at promptugal.news.`,
   by: 'scripts/pull.mjs (travel@PrompTugal.dinis; data.promptugal.news first since 18 Nov 2026, travel.b@PrompTugal.dinis)',

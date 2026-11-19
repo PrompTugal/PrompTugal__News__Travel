@@ -4,23 +4,28 @@
   "url": "https://creativecommons.org/licenses/by/4.0/",
   "holder": "PrompTugal.news",
   "note": "Our record; each value keeps its source, under that source's licence: IPMA values under IPMA's terms (https://api.ipma.pt/), adsb.lol counts under ODbL 1.0.",
+  "commercial_use": "per item",
+  "commercial_note": "IPMA values: not allowed (no profit-making purpose). adsb.lol counts: allowed (ODbL, share-alike).",
   "sources": {
    "ipma": {
     "name": "the source's terms",
     "url": "https://api.ipma.pt/",
     "holder": "IPMA, Instituto Português do Mar e da Atmosfera",
-    "note": "No named licence: free copying and use for personal or public use without profit-making purpose, IPMA named as the source."
+    "note": "No named licence: free copying and use for personal or public use without profit-making purpose, IPMA named as the source.",
+    "commercial_use": "not allowed",
+    "commercial_note": "IPMA allows use without a profit-making purpose only; a paid site needs IPMA's permission or another source."
    },
    "adsb.lol": {
     "name": "ODbL 1.0",
     "url": "https://opendatacommons.org/licenses/odbl/1-0/",
     "holder": "adsb.lol contributors",
+    "commercial_use": "allowed",
     "note": "Share-alike: what we derive from it stays under ODbL."
    }
   }
  },
  "place": "tavira",
- "read_at": "2026-11-18T22:57:53Z",
+ "read_at": "2026-11-19T00:29:50Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "coords": {
   "lat": 37.13085,
@@ -109,15 +114,15 @@
   "municipality": "0814",
   "days": [
    {
-    "date": "2026-11-18",
-    "level": "low"
-   },
-   {
     "date": "2026-11-19",
     "level": "low"
    },
    {
     "date": "2026-11-20",
+    "level": "low"
+   },
+   {
+    "date": "2026-11-21",
     "level": "low"
    }
   ],
@@ -144,37 +149,37 @@
  "reads": {
   "observations": {
    "url": "https://data.promptugal.news/api/v1/ipma-observations/latest.json",
-   "at": "2026-11-18T22:56:47Z",
+   "at": "2026-11-19T00:29:22Z",
    "status": 200
   },
   "warnings": {
    "url": "https://data.promptugal.news/api/v1/ipma-warnings/latest.json",
-   "at": "2026-11-18T22:57:04Z",
+   "at": "2026-11-19T00:29:40Z",
    "status": 200
   },
   "forecasts": {
    "url": "https://data.promptugal.news/api/v1/ipma-city-forecasts/latest.json",
-   "at": "2026-11-18T22:55:09Z",
+   "at": "2026-11-19T00:27:45Z",
    "status": 200
   },
   "fire-risk": {
    "url": "https://data.promptugal.news/api/v1/ipma-fire-risk/latest.json",
-   "at": "2026-11-18T22:56:39Z",
+   "at": "2026-11-19T00:29:15Z",
    "status": 200
   },
   "uv": {
    "url": "https://data.promptugal.news/api/v1/ipma-uv/latest.json",
-   "at": "2026-11-18T22:57:02Z",
+   "at": "2026-11-19T00:29:37Z",
    "status": 200
   },
   "sea": {
    "url": "https://data.promptugal.news/api/v1/ipma-sea/latest.json",
-   "at": "2026-11-18T22:56:52Z",
+   "at": "2026-11-19T00:29:28Z",
    "status": 200
   },
   "adsb": {
    "url": "https://data.promptugal.news/api/v1/adsb-faro/latest.json",
-   "at": "2026-11-18T22:51:48Z",
+   "at": "2026-11-19T00:19:22Z",
    "status": 200
   }
  }

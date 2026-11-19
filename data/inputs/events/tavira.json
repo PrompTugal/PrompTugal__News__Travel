@@ -3,14 +3,16 @@
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
   "holder": "PrompTugal.news",
-  "note": "What PrompTugal.news makes: this file's structure, records and derived values."
+  "note": "What PrompTugal.news makes: this file's structure, records and derived values.",
+  "commercial_use": "allowed",
+  "commercial_note": "With credit to PrompTugal.news; values taken from a source keep that source's licence."
  },
  "place": "tavira",
- "read_at": "2026-11-18T22:57:53Z",
- "source_read_at": "2026-11-18T22:53:03Z",
+ "read_at": "2026-11-19T00:29:50Z",
+ "source_read_at": "2026-11-18T23:43:33Z",
  "by": "collect/events-by-place.mjs (code, no model; data.b@PrompTugal.dinis), from data/events-pt/latest.json",
  "about": "Public events on now or starting within 60 days in this place, as schema.org Event records, each with its source URL and the time read. A dated record, not a ticketing service. An empty list means no source covers this place yet, not that nothing is happening.",
- "source_note": "Read 2026-11-18T22:53:03Z from www.agendalx.pt and www.cm-lagos.pt and teatrodasfiguras.pt and cm-tavira.pt; sources with no feed or refused are in gaps (https://data.promptugal.news/api/v1/events-pt/latest.json). Terms: Strictest of the sources: no reuse licence or terms page was found for any of the four hosts (teatrodasfiguras.pt and cm-tavira.pt show only \"Todos os direitos reservados\" in their footers, and cm-tavira.pt has no robots.txt). The robots.txt files that exist allow the paths read; agendalx.pt sets Content-Signal search=yes, ai-train=no, use=reference. So: reference use only, name the source, link to the event, no AI training. Not reviewed by a person: whether this is enough to republish is for Dinis.",
+ "source_note": "Read 2026-11-18T23:43:33Z from www.agendalx.pt and www.cm-lagos.pt and teatrodasfiguras.pt and cm-tavira.pt; sources with no feed or refused are in gaps (https://data.promptugal.news/api/v1/events-pt/latest.json). Terms: Strictest of the sources: no reuse licence or terms page was found for any of the four hosts (teatrodasfiguras.pt and cm-tavira.pt show only \"Todos os direitos reservados\" in their footers, and cm-tavira.pt has no robots.txt). The robots.txt files that exist allow the paths read; agendalx.pt sets Content-Signal search=yes, ai-train=no, use=reference. So: reference use only, name the source, link to the event, no AI training. Not reviewed by a person: whether this is enough to republish is for Dinis.",
  "count": 39,
  "events": [
   {
@@ -27,7 +29,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/dansante-no-teatro-aula-de-danca-para-a-saude-e-bem-estar-dos-seniores/2026-11-18/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -49,7 +51,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/festival-internacional-de-orgao-do-algarve-2026-visita-ao-novo-orgao-pelo-organeiro-dinarte-machado/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -71,7 +73,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/encontro-com-autores-apresentacao-do-livro-comer-a-natureza-de-paulo-moreira/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -93,7 +95,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/festival-internacional-de-orgao-do-algarve-2026-concerto-por-daniel-ricardo-de-pinho/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -115,7 +117,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/seroes-de-outono-2026-ana-lua-caiano/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -137,7 +139,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/em-familia-no-museu-presepios-algarvios-em-barro-pelo-ceramista-mario-mendonca/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -159,7 +161,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/visita-orientada-ao-lagar-de-azeite-da-cooperativa-agricola-de-santa-catarina/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -181,7 +183,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/tavira-convida-pedalar-74/2026-11-21/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -203,7 +205,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/passeios-na-historia-de-tavira-pao-vinho-e-azeite-a-dieta-mediterranica-na-arte-sacra-de-tavira/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -225,7 +227,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/encontro-com-autores-apresentacao-do-livro-romanceiro-da-urgencia-de-afonso-dias/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -247,7 +249,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/musica-nas-igrejas-duo-fortissimo-guitarra/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -269,7 +271,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/festa-na-horta/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -291,7 +293,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/todos-a-caminhar-103/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -313,7 +315,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/todos-a-caminhar-106/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -335,7 +337,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/festival-internacional-de-orgao-do-algarve-2026-concerto-por-arturo-barba-espanha-e-coro-jubilate-deo/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -357,7 +359,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/a-apanha-da-azeitona-workshop-de-expressao-plastica/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -379,7 +381,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/documentario-the-librarians/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -401,7 +403,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/workshop-solidario-de-costura/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -423,7 +425,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/conferencia-o-impacto-dos-sistemas-alimentares-na-acao-climatica-o-papel-do-poder-local/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -445,7 +447,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/alut-algarviana-ultra-trail-3/2026-11-26/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -467,7 +469,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/artes-letra-conferencia-filosofica-e-psicanalitica-a-alma-deus-espiritualidade-o-que-e-o-homem-por-fernand-viegas/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -489,7 +491,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/alut-algarviana-ultra-trail-3/2026-11-27/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -511,7 +513,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/o-arquiteto-a-ativista-e-a-comunidade-em-prol-do-bairro-evocacao-de-joao-moitinho-luisa-anselmo-e-associacoes-saal/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -533,7 +535,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/noite-de-fados-5/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -555,7 +557,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/as-mulheres-vao-sempre-a-frente-e-ainda-hoje-continuamvisita-a-exposicao-tudo-em-prol-do-bairro/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -577,7 +579,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/alut-algarviana-ultra-trail-3/2026-11-28/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -599,7 +601,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/tavira-convida-pedalar-75/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -621,7 +623,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/tavira-convida-pedalar-76/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -643,7 +645,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/tecnica-e-interpretacao-da-voz-cantada-com-lidia-brandao/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -665,7 +667,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/visita-orientada-a-exposicao-judeus-em-tavira-fragmentos-de-uma-historia-sob-a-orientacao-de-marco-sousa-santos-historiador-de-arte-museu-municipal-de-tavira/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -687,7 +689,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/encontro-de-coros-grupo-coral-de-tavira/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -709,7 +711,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/iniciativa-mostra-la/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -731,7 +733,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/musica-nas-igrejas-josue-nunes-guitarra-8/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -753,7 +755,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/4-o-encontro-cidade-de-tavira/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -775,7 +777,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/todos-a-caminhar-104/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -797,7 +799,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/procissao-em-honra-de-santa-catarina-e-sao-luis-2/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -819,7 +821,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/desfile-de-natal-solidario-moto-manos/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -841,7 +843,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/diogo-zambujo-vir-a-ser/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
@@ -863,7 +865,7 @@
    "organizer": null,
    "url": "https://cm-tavira.pt/site/evento/mercadinho-de-natal-2/",
    "source": "https://cm-tavira.pt/site/evento/ (Camara Municipal de Tavira, Events Calendar route /site/wp-json/tribe/events/v1/events)",
-   "read_at": "2026-11-18T22:53:23Z",
+   "read_at": "2026-11-18T23:43:53Z",
    "place": "tavira",
    "license": {
     "name": "the source's terms",
