@@ -139,3 +139,6 @@ a.lic:hover { color: var(--green); border-color: var(--green); }
 /* charts drawn at build time (Storm Charles archive) */
 figure.chart { margin: 1rem 0; } figure.chart svg { width: 100%; height: auto; background: var(--card); border: 1px solid var(--rule); color: var(--muted); }
 figure.chart figcaption { font-size: .85rem; color: var(--muted); }
+/* data in the browser (19 Nov 2026): the line that says whether figures are live or the built copy */
+.live-status { font: 500 .8rem/1.4 var(--ui); color: var(--muted); border-left: 3px solid var(--sea); padding: .2rem .6rem; margin: .6rem 0; }
+.live-status.stale { border-left-color: var(--amber); color: var(--amber); }

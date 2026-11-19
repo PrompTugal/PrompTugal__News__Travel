@@ -127,6 +127,8 @@ function page({ path, title, description, body, md, provenance, variant = '', sc
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- CSP (data in the browser, 19 Nov 2026): scripts from this host only; data from our hosts; dev.send.sgraph.ai, ipapi.co and ipwho.is for obs.js (the page-view counter, its approved country look-up). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.promptugal.news https://promptugal.news; connect-src 'self' https://data.promptugal.news https://promptugal.news https://*.promptugal.news https://dev.send.sgraph.ai https://ipapi.co https://ipwho.is; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>${esc(fullTitle)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
@@ -151,6 +153,7 @@ ${sitesBar}
 <nav aria-label="Sections"><ul>${NAV.map(([h, t]) => `<li><a href="${h}"${h === path ? ' aria-current="page"' : ''}>${esc(t)}</a></li>`).join('')}</ul></nav>
 </header>
 <main id="main">
+${script === '/assets/now.js' ? (() => { const lonPage = /^\/(london|uk-portugal)\//.test(path); const at = lonPage ? (london && london.forecast && london.forecast.at) : (airport && airport.at) || manifest.read_at; return `<p class="live-status" data-now="status" data-read="${esc(at || '')}"${lonPage ? ` data-zone="london" data-london-read="${esc(at || '')}"` : ''}>Built copy: figures read ${esc(lonPage ? ukTime(at) : lisbon(at))}. Your browser loads newer figures from data.promptugal.news when they pass their checks.</p>`; })() : ''}
 <div class="body">
 ${body}
 </div>
@@ -215,7 +218,7 @@ function airportBlock(full = false) {
   const tbl = rows.length ? `<table class="flights"><caption>Airline flights near Faro (LPFR) at ${esc(lisbon(airport.at))}</caption><thead><tr><th scope="col">Callsign</th><th scope="col">Airline</th><th scope="col">Type</th><th scope="col">Phase</th><th scope="col" class="num">Altitude (ft)</th></tr></thead><tbody data-now="airport-rows">${rows.map(f => `<tr><td class="mono">${esc(f.callsign)}</td><td>${esc(f.name)}</td><td class="mono">${esc(f.type)}</td><td>${esc(f.phase)}</td><td class="num">${f.on_ground ? 'ground' : esc(f.alt_ft?.toLocaleString('en-GB'))}</td></tr>`).join('')}</tbody></table>` : '';
   const md = `${lead}\n\n${rows.length ? '| Callsign | Airline | Type | Phase | Altitude (ft) |\n|---|---|---|---|---|\n' + rows.map(f => `| ${f.callsign} | ${f.name} | ${f.type} | ${f.phase} | ${f.on_ground ? 'ground' : f.alt_ft} |`).join('\n') : ''}\n\nSource: ${ml(airport.source, 'adsb.lol')} community receivers (ODbL 1.0), read by the PrompTugal.news place data. Airline flights by callsign; other aircraft only counted. ${ml(airport.page, 'The live map at adsb.lol')}`;
   return {
-    html: `<p class="lead" data-now="airport-lead">${esc(lead)}</p>${tbl}<p class="meta">Source: ${a(airport.source, 'adsb.lol')} community receivers (data under ODbL 1.0), as read by the PrompTugal.news place data. Airline flights by callsign; other aircraft only counted. A snapshot, not a departures board. ${a(airport.page, 'The live map at adsb.lol')}</p>`,
+    html: `<p class="lead" data-now="airport-lead" data-at="${esc(airport.at)}">${esc(lead)}</p>${tbl}<p class="meta">Source: ${a(airport.source, 'adsb.lol')} community receivers (data under ODbL 1.0), as read by the PrompTugal.news place data. Airline flights by callsign; other aircraft only counted. A snapshot, not a departures board. ${a(airport.page, 'The live map at adsb.lol')}</p>`,
     md, by, rows,
   };
 }
@@ -580,10 +583,10 @@ const faroDays = () => ((faro.forecast && faro.forecast.days) || []).filter(x =>
 const sideBySide = () => {
   const ld = londonDays(), fd = Object.fromEntries(faroDays().map(x => [x.date, x]));
   if (!ld.length) return { html: '<p>London\'s forecast is not available at this build.</p>', md: 'London\'s forecast is not available at this build.' };
-  const rows = ld.map(l => { const f = fd[l.date] || {}; return { day: day(l.date), lon: `${numC(l.t_min_c)} to ${numC(l.t_max_c)}, ${(Object.hasOwn(WMO, l.weather_code) && WMO[l.weather_code]) || 'weather not known'}${Number.isFinite(l.rain_mm) ? `, ${l.rain_mm} mm rain` : ''}`, faro: f.date ? `${numC(f.t_min_c)} to ${numC(f.t_max_c)}, ${(Object.hasOwn(WT, f.weather_type) && WT[f.weather_type]) || 'weather not known'}${Number.isFinite(f.rain_prob_pct) ? `, ${f.rain_prob_pct}% chance of rain` : ''}` : 'not in the forecast' }; });
+  const rows = ld.map(l => { const f = fd[l.date] || {}; return { date: l.date, day: day(l.date), lon: `${numC(l.t_min_c)} to ${numC(l.t_max_c)}, ${(Object.hasOwn(WMO, l.weather_code) && WMO[l.weather_code]) || 'weather not known'}${Number.isFinite(l.rain_mm) ? `, ${l.rain_mm} mm rain` : ''}`, faro: f.date ? `${numC(f.t_min_c)} to ${numC(f.t_max_c)}, ${(Object.hasOwn(WT, f.weather_type) && WT[f.weather_type]) || 'weather not known'}${Number.isFinite(f.rain_prob_pct) ? `, ${f.rain_prob_pct}% chance of rain` : ''}` : 'not in the forecast' }; });
   const note = `London: ${a('https://open-meteo.com/', 'Weather data by Open-Meteo.com')}, read ${esc(ukTime(london.forecast.at))} via ${a(london.forecast.source, 'data.promptugal.news')}. Faro: IPMA's forecast, read ${esc(lisbon(faro.read_at))}. The two forecasts come from different services and are not measured the same way (rain in millimetres for London, a chance of rain for Faro).`;
   return {
-    html: `<table><thead><tr><th>Day</th><th>London</th><th>Faro</th></tr></thead><tbody>${rows.map(r => `<tr><td>${esc(r.day)}</td><td>${esc(r.lon)}</td><td>${esc(r.faro)}</td></tr>`).join('')}</tbody></table><p class="meta">${note}</p>`,
+    html: `<table><thead><tr><th>Day</th><th>London</th><th>Faro</th></tr></thead><tbody>${rows.map(r => `<tr><td>${esc(r.day)}</td><td data-now-london="${esc(r.date)}">${esc(r.lon)}</td><td>${esc(r.faro)}</td></tr>`).join('')}</tbody></table><p class="meta">${note}</p>`,
     md: `| Day | London | Faro |\n|---|---|---|\n${rows.map(r => `| ${mdesc(r.day)} | ${mdesc(r.lon)} | ${mdesc(r.faro)} |`).join('\n')}\n\nLondon: ${ml('https://open-meteo.com/', 'Weather data by Open-Meteo.com')}, via data.promptugal.news. Faro: IPMA.`,
   };
 };
@@ -609,12 +612,12 @@ if (london) {
   const fl = (london.floods || {}), warns = (fl.warnings || []).filter(w => w && typeof w.area === 'string');
   const sb = sideBySide();
   page({
-    path: '/london/', title: 'Beyond Portugal: London',
+    path: '/london/', title: 'Beyond Portugal: London', script: '/assets/now.js',
     description: 'London for a visitor: the three-day forecast (Open-Meteo) beside Faro\'s, and the Environment Agency\'s flood alerts and warnings. The first place beyond Portugal. Each value with its source and the time read.',
     body: `<h1>Beyond Portugal: London</h1><p class="dek">The first place on this site outside Portugal. For a visitor: the weather for the next three days, side by side with Faro, and any flood alerts. London's transport (TfL) and its airports come next, as data.promptugal.news collects them. See also ${a('/uk-portugal/', 'the UK and Portugal')}.</p>
 <section aria-labelledby="h-lon-wx"><h2 id="h-lon-wx">The next three days, London and Faro</h2>${sb.html}</section>
 ${eaRain.html}
-<section aria-labelledby="h-lon-fl"><h2 id="h-lon-fl">Flood alerts and warnings</h2>${warns.length ? `<ul>${warns.map(w => `<li><strong>${esc(w.severity || 'Notice')}</strong>: ${a(w.url, w.area)}</li>`).join('')}</ul>` : '<p>None in force at the time read.</p>'}<p class="meta">From the Environment Agency (${a('https://check-for-flooding.service.gov.uk/', 'Check for flooding')}), read ${esc(ukTime(fl.at))} via ${a(fl.source, 'data.promptugal.news')}. ${esc(fl.attribution || '')}. Not a warning service: for flooding follow the Environment Agency, and the Met Office for the weather.</p></section>`,
+<section aria-labelledby="h-lon-fl"><h2 id="h-lon-fl">Flood alerts and warnings</h2>${warns.length ? `<ul data-now="london-floods">${warns.map(w => `<li><strong>${esc(w.severity || 'Notice')}</strong>: ${a(w.url, w.area)}</li>`).join('')}</ul>` : '<p>None in force at the time read.</p>'}<p class="meta">From the Environment Agency (${a('https://check-for-flooding.service.gov.uk/', 'Check for flooding')}), read ${esc(ukTime(fl.at))} via ${a(fl.source, 'data.promptugal.news')}. ${esc(fl.attribution || '')}. Not a warning service: for flooding follow the Environment Agency, and the Met Office for the weather.</p></section>`,
     md: `The first place on this site outside Portugal.\n\n## The next three days, London and Faro\n\n${sb.md}${eaRain.md}\n\n## Flood alerts and warnings\n\n${warns.length ? warns.map(w => `- ${mdesc(w.severity || 'Notice')}: ${ml(w.url, w.area)}`).join('\n') : 'None in force at the time read.'}\n\nFrom the Environment Agency, via data.promptugal.news. Not a warning service.\n`,
     ipma: true,
     provenance: prov({ code: ['built from data.promptugal.news\'s now file for London'], agents: ['data.b@PrompTugal.dinis collects the London sources; travel.b@PrompTugal.dinis wrote this page'] }),
@@ -671,7 +674,7 @@ if (existsSync('data/research/uk-portugal.json')) {
     };
   })();
   page({
-    path: '/uk-portugal/', title: 'The UK and Portugal',
+    path: '/uk-portugal/', title: 'The UK and Portugal', script: london ? '/assets/now.js' : '',
     description: 'British visitors to Portugal in numbers (ONS), what a British visitor needs to enter Portugal and what a Portuguese visitor needs for the UK (gov.uk), and UK airlines seen near Faro. Each value with its source and the date read.',
     body: `<h1>The UK and Portugal</h1><p class="dek">Beyond Portugal: the link with the UK. Residents of Great Britain made ${src1 ? n(src1.value) : 'many'} visits to Portugal in 2025. Below: the numbers, the rules both ways, and the UK airlines our receivers see near Faro. London itself comes when its data does.</p>
 <section aria-labelledby="h-ons"><h2 id="h-ons">British visitors to Portugal, 2025</h2><table><thead><tr><th>What</th><th>2025</th></tr></thead><tbody>${ons.map(x => `<tr><td>${esc(x.title)}</td><td>${fig(x)}</td></tr>`).join('')}</tbody></table>
