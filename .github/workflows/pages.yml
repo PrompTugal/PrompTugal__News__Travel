@@ -5,12 +5,10 @@ name: Pages
 on:
   push:
     branches: [dev]
+  # workflow_dispatch: for a person, by hand. No timer (Dinis, 19 Nov 2026 ~01:20 UTC: every run starts from a
+  # commit; PrompTugal__News__Website board/guidance/2026-11-19-every-run-starts-from-a-commit.md). The 3-hourly
+  # schedule of 18 Nov is removed: pages load their changing figures in the browser instead.
   workflow_dispatch:
-  # A scheduled rebuild (Dinis, 18 Nov 2026, ~14:55 UTC: "Yes, we should have a scheduled rebuild";
-  # PrompTugal__News__Website board/guidance/2026-11-18-keys-issues-rebuilds-observability.md), every 3 hours.
-  # Scheduled runs read the latest public data first (scripts/pull.mjs); nothing is committed by them.
-  schedule:
-    - cron: '23 */3 * * *'
 permissions:
   contents: read
 concurrency:
@@ -56,9 +54,6 @@ jobs:
         run: |
           last=$(git describe --tags --abbrev=0 --match "v${VERSION_BASE}.*" "$AFTER" 2>/dev/null || true)
           node scripts/check-commits.mjs "${last:-$BEFORE}" "$AFTER"
-      - name: Read the latest public data (scheduled runs only)
-        if: github.event_name == 'schedule'
-        run: node scripts/pull.mjs
       - run: node scripts/build.mjs
         env:
           SITE_VERSION: ${{ steps.version.outputs.version }}

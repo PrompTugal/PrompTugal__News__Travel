@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-19T01:55Z",
+  "updated": "2026-11-19T02:05Z",
   "run": "19 Nov ~00:55 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
@@ -62,7 +62,6 @@
     "Read the pipeline standard (board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md) and apply it source by source: raw kept and timestamped, JSON, visualisation, analysis, a home page per source, OpenAPI."
   ],
   "asks": [
-    "Dinis: noted, no rebuild token: figures now load in the browser (data in the browser). The schedule stays as a backup (1 scheduled run so far, #34 at 22:38 UTC on 18 Nov).",
     "Dinis: a meta CSP cannot set frame-ancestors (clickjacking protection); GitHub Pages sets no such header. Accept, or a host that sets headers (same question as nosniff for the sites bar).",
     "Dinis: INE's API asks its users to accept its conditions before use; data.b@ will not accept terms for anyone. Will you accept them (or ask INE), so UK guests by month for Portugal and the Algarve can be read?",
     "Dinis: the sites bar asks for /preview.svg with nosniff; GitHub Pages sends image/svg+xml but no X-Content-Type-Options header, and a static site cannot add one. The SVG has no script or external reference. Accept, or move the site behind a host that sets headers?",
@@ -71,7 +70,7 @@
     "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
     "Dinis: What's on lists events from the councils' own pages as titles, dates and links (reference use, source named), from the council research and from data.promptugal.news's feed. data.b@'s note says no reuse licence was found for those sites and agendalx.pt asks reference use only. Is listing them this way all right, or should the page only link to each council's agenda?"
   ],
-  "live_changes": "~01:50 UTC 19 Nov: data in the browser (Faro and London figures load live with checks; Live / Built copy / Stale line; CSP). Earlier: sites bar 1.1.0, billing removed, London, UK-Portugal.",
+  "live_changes": "~02:00 UTC 19 Nov: the Pages workflow's timer removed (every run starts from a commit); new threat model for the browser data. Earlier: data in the browser, sites bar 1.1.0, billing removed.",
   "storm": "The Storm site's 7 travel items (data.b@'s handoff): plan in board/team/travel/storm-plan.md. Pages and charts come here, reading data.promptugal.news; the collectors stay with data.b@.",
   "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading.",
   "dinis_1455": {
@@ -87,6 +86,6 @@
   "sites_bar": "sites bar 1.1.0 installed (19 Nov ~01:10 UTC): vendored unchanged, sha256-checked at build, registry read at pull, bar first in body (after the skip link), CSS and deferred JS from this host; old rail removed; /preview.svg is the 320 x 180 card.",
   "london": "Live: /london/ (forecast beside Faro, flood alerts, measured rain). From data.b@: London to Faro/Lisbon/Porto routes held (adsb.lol's route lookup returned none); INE UK guests wait for Dinis (INE's API asks users to accept its conditions); TfL status next.",
   "releases": "Every push carries one piece of work, so each Pages run releases and tags it (Dinis, 18 Nov ~23:45 UTC); pages.yml already tags each run's commit.",
-  "scheduled_runs": "Checked 19 Nov ~01:30 UTC (Actions, event schedule): 1 run, #34, 22:38 UTC 18 Nov, success. GitHub fires schedules far less often than the cron asks (conductor.b@, 01:20 UTC, from Dinis's look at the weather repo).",
+  "scheduled_runs": "Removed 19 Nov ~02:00 UTC at Dinis's word (every run starts from a commit). Pages run on push to dev or by hand; figures load in the browser.",
   "data_in_browser": "Live since 19 Nov ~01:50 UTC: now.js loads Faro and London figures from data.promptugal.news with checks; status line Live / Built copy / Stale (3 h); CSP on every page. Tested in a browser: live Faro file loaded, a tampered file refused, no CSP errors."
 }

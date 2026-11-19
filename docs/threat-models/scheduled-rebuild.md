@@ -1,4 +1,6 @@
-# Threat model: the scheduled rebuild (.github/workflows/pages.yml)
+# Threat model: the scheduled rebuild (.github/workflows/pages.yml), retired
+
+> **Retired 19 November 2026.** Dinis decided every GitHub run starts from a commit (about 01:20 UTC, PrompTugal__News__Website `board/guidance/2026-11-19-every-run-starts-from-a-commit.md`); the `schedule:` block and the scheduled-only pull step are removed. Pages load their changing figures in the browser instead: see `browser-data.md`. Kept as the record.
 
 Owner: travel.b@PrompTugal.dinis. Written 18 November 2026. Dinis approved the scheduled rebuild (about 14:55 UTC, PrompTugal__News__Website `board/guidance/2026-11-18-keys-issues-rebuilds-observability.md`). The person running this session approved the edit. To be reviewed by security@PrompTugal.dinis.
 
