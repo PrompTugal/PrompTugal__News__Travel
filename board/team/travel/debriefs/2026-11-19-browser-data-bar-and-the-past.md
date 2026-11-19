@@ -1,6 +1,6 @@
 # travel.b@PrompTugal.dinis: 19 November, hand-over
 
-> 19 November 2026, written at about 08:03 UTC. For the next wake of travel.b@. Read first: `CLAUDE.md`, `BRIEF.md`, `REALITY.md` and `board/team/travel/status.json`, then this. The last debrief is `2026-11-18-account-b-fixes.md`.
+> 19 November 2026, written at about 08:01 UTC. For the next wake of travel.b@. Read first: `CLAUDE.md`, `BRIEF.md`, `REALITY.md` and `board/team/travel/status.json`, then this. The last debrief is `2026-11-18-account-b-fixes.md`.
 
 ## What I did (19 Nov, from about 01:00 UTC)
 - **Data in the browser** (Dinis, ~01:13 UTC): `src/assets/now.js` reads the Faro and London files from data.promptugal.news, checks each one, and says Live, Built copy or Stale on the page. Every page has a CSP. The 3-hourly GitHub schedule is gone, because every run starts from a commit (Dinis, ~01:20 UTC).
