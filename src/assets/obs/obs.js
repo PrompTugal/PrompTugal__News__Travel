@@ -79,7 +79,7 @@
             'America/Argentina/Buenos_Aires': 'AR', 'Africa/Luanda': 'AO', 'Africa/Maputo': 'MZ', 'Atlantic/Cape_Verde': 'CV', 'Africa/Johannesburg': 'ZA',
             'Asia/Kolkata': 'IN', 'Asia/Calcutta': 'IN', 'Asia/Shanghai': 'CN', 'Asia/Tokyo': 'JP', 'Asia/Singapore': 'SG', 'Asia/Dubai': 'AE', 'Asia/Macau': 'MO',
             'Australia/Sydney': 'AU', 'Australia/Melbourne': 'AU', 'Pacific/Auckland': 'NZ' }
-        const place = async () => { let tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '' } catch { } return { country_code: Object.prototype.hasOwnProperty.call(TZ_CC, tz) ? TZ_CC[tz] : '' } }
+        const place = async () => { let tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '' } catch { } const cc = typeof tz === 'string' && Object.prototype.hasOwnProperty.call(TZ_CC, tz) ? TZ_CC[tz] : ''; return { country_code: /^[A-Z]{2}$/.test(cc) ? cc : '' } }   // own keys only, two letters only (events.b@'s review, 19 Nov)
         // a link's tag (Dinis, 6 November: "I just sent a link to somebody ... I would like to see if they open it ... and
         // forward it"): ?via=<tag> (or utm_source / utm_campaign) on the link you send. Kept for the tab, so the pages read
         // after arriving count too; a tag names the link, never the person. Letters, digits, '.', '_' and '-', 40 at most.
