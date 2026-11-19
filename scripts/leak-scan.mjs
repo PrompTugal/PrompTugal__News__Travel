@@ -97,6 +97,7 @@ const ALLOW = [
 ];
 const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
 
+const SSH_PUBLIC = /\b(?:ssh-ed25519|ssh-rsa|ssh-dss|ecdsa-sha2-nistp(?:256|384|521)|sk-ssh-ed25519@openssh\.com) AAAA[A-Za-z0-9+/]{16,}/;
 const PUBLIC_KEY_FILES = (p) => p === 'team/keys.json' || /^team\/keys\/[a-z0-9-]+\.json$/.test(p);
 
 // Returns a list of {line, kind} for one file's text. Never returns the match.
@@ -113,6 +114,9 @@ export function scanText(path, text) {
     const n = i + 1;
     for (const [kind, re] of SHAPES) if (re.test(line)) add(n, kind);
     if (PUBLIC_BEGIN.test(line)) add(n, 'public key outside team/keys');
+    // an OpenSSH public key line outside the published keys file (security@'s ruling, 19 Nov 2026: the entropy rule alone
+    // missed about 1 in 75)
+    if (!PUBLIC_KEY_FILES(path) && SSH_PUBLIC.test(line)) add(n, 'ssh public key outside team/keys');
     if (vaultPair(line)) add(n, 'sgit vault key shape (passphrase:vault_id)');
     for (const m of line.matchAll(ASSIGN)) {
       const v = m[1];

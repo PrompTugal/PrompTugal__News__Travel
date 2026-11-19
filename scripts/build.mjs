@@ -119,7 +119,7 @@ let tzTableWithheld = false;
   if (wantV !== haveV) {
     // the registry names another version (conductor.b@, 19 Nov 05:10 UTC, from data.b@'s trap): ship with no table, so
     // obs.js sends no country, deploy the rest, and upgrade at the next wake
-    console.warn(`build: the registry names tz-country ${wantV}, this site has ${haveV || 'none'}: building without the table (no country sent) until it is upgraded`);
+    console.warn(`build: tz-country ${haveV || 'none'} off: the registry names ${wantV} (built without the table, so no country is sent, until it is upgraded)`);
     tzTableWithheld = true;
   } else if (got !== want) { console.error(`build: src/assets/obs/tz-country.json ${haveV} does not match the registry's obs_tz.integrity for the same version`); process.exit(1); }
 }
