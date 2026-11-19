@@ -5,7 +5,7 @@
  "account": "B",
  "site": "https://travel.promptugal.news",
  "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
- "updated": "2026-11-19T14:01Z",
+ "updated": "2026-11-19T14:09Z",
  "run": "13:53 UTC wake (19 Nov): Faro's past on /weather/ (temperature, what we said and what happened)",
  "observability": {
   "lane": "travel",
@@ -51,6 +51,7 @@
  ],
  "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
  "next": [
+  "signing controls 7 (widened) and 8 on the checks we already run (see signing_controls)",
   "signed commits (waits on the leak-scan exemption ask)",
   "licence of each loaded file next to the live figures",
   "easyJet talks 20, 23, 25 Nov",
@@ -110,5 +111,16 @@
  },
  "times_note": "From 2026-11-19T01:50Z every time in status, commits and messages is taken from `date -u` (security@'s ruling, 19 Nov). Earlier 'updated' values tonight (02:05Z to 02:15Z) were ahead of the clock: they were estimates, wrong by about 20 to 25 minutes. 19 Nov ~11:00 UTC: wrote 11:05/11:08 before the clock reached them (it said 10:59); corrected in the next commit. Rule kept: take date -u first, then write.",
  "tz_table": "tz-country 1.1.0 on, matching the registry (checked 2026-11-19T05:14Z).",
- "faro_past": "live from 14:01 UTC: /weather/ chart 'Faro: what we said and what happened' (PF1 to PF9), measured low to high (IPMA station Faro Aeródromo), IPMA's forecast kept the day before, the forecast ahead; table view; redrawn in the browser from data.b@'s history/weather/faro.json. IPMA: free page only, never promptugal.news. No kept forecast yet, so no track record."
+ "faro_past": "live from 14:01 UTC: /weather/ chart 'Faro: what we said and what happened' (PF1 to PF9), measured low to high (IPMA station Faro Aeródromo), IPMA's forecast kept the day before, the forecast ahead; table view; redrawn in the browser from data.b@'s history/weather/faro.json. IPMA: free page only, never promptugal.news. No kept forecast yet, so no track record.",
+ "signing_controls": {
+  "from": "security@'s rulings via conductor.b@: 14:01, 14:07 and 14:08 UTC 19 Nov (Website a21986a69, fae9649db)",
+  "applies_now": [
+   "(7, widened) CI runs scripts/check-commits.mjs and scripts/leak-scan.mjs, and reads scripts/commit-exemptions.json, from the pushed tree; they must come from the last release's copy (git show <tag>:path into a temp file), failing closed if that copy is missing",
+   "(8) check-commits.mjs skips 'older than the check' by committer time (forgeable) and by descent from the commit that added it; it must skip only ancestors of a pinned trusted base (git merge-base --is-ancestor), with a test that a commit removing the checker and adding an unsigned change fails",
+   "(6, part) refuse a shallow checkout in CI (git rev-parse --is-shallow-repository)"
+  ],
+  "waits_on_dinis": "signatures themselves (controls 1 to 6), with the leak-scan exemption for the public key",
+  "when": "next wake (16:53 UTC 19 Nov), as its own release, with tests and an AppSec review",
+  "limit": "the workflow YAML still comes from the pushed tree; only Dinis's branch protection with a required check closes that"
+ }
 }
