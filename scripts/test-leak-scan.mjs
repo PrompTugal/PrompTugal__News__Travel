@@ -20,7 +20,7 @@ for (const k of ['OPENSSH PRIVATE KEY', 'RSA PRIVATE KEY', 'EC PRIVATE KEY', 'DS
 
 // 2. An OpenSSH public key line outside the published keys file is flagged. (Its exemption inside team/keys.json's
 // ssh_signing.public_key field is not built yet: it waits on the signed-commits work and an approval.)
-for (const t of ['ssh-ed25519', 'ssh-rsa', 'ecdsa-sha2-nistp256'])
+for (const t of ['ssh-ed25519', 'ssh-rsa', 'ssh-dss', 'ecdsa-sha2-nistp256', 'ecdsa-sha2-nistp384', 'ecdsa-sha2-nistp521', 'sk-ssh-ed25519@openssh.com', 'sk-ecdsa-sha2-nistp256@openssh.com'])
   expect(`${t} public key in a note`, 'board/team/travel/status.json', `{"k": "${sshPub(t)}"}`, 'ssh public key outside team/keys');
 
 // 3. A PEM public key block outside team/keys is flagged.
