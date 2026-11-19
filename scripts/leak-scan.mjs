@@ -19,7 +19,7 @@
 // Public keys are allowed only in team/keys.json and team/keys/*.json, and only
 // when those files hold no private part. Any change to the allowlist below must
 // be narrow (one path, one kind) and say why.
-import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
+import { readFileSync, lstatSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -127,39 +127,56 @@ export function scanText(path, text) {
   return found;
 }
 
-function isBinary(buf) { return buf.subarray(0, 8000).includes(0); }
+// lstat, never stat: a symlink is never followed, and any symlink is a failure (security@'s control 10).
+function lstatOrNull(p) { try { return lstatSync(p); } catch { return null; } }
 
-function walk(dir) {
-  if (!existsSync(dir)) return [];
-  return readdirSync(dir).flatMap((n) => {
+// Returns the files under dir and, separately, every symlink met (not followed).
+function walk(dir, links = []) {
+  const st = lstatOrNull(dir);
+  if (!st) return { files: [], links };
+  if (st.isSymbolicLink()) { links.push(dir); return { files: [], links }; }
+  const files = [];
+  for (const n of readdirSync(dir)) {
     const p = join(dir, n);
-    return statSync(p).isDirectory() ? walk(p) : [p];
-  });
+    const s = lstatOrNull(p);
+    if (!s) continue;
+    if (s.isSymbolicLink()) links.push(p);
+    else if (s.isDirectory()) files.push(...walk(p, links).files);
+    else files.push(p);
+  }
+  return { files, links };
 }
 
 function scanTree() {
   const files = execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], { cwd: root })
     .toString().split('\0').filter(Boolean);
   const siteDir = join(root, '_site');
-  if (!existsSync(join(siteDir, 'index.html'))) return { errors: ['_site/ is not built: run node scripts/build.mjs first'], count: 0 };
-  const paths = [...new Set([...files, ...walk(siteDir).map((p) => p.slice(root.length + 1))])];
   const errors = [];
-  let count = 0, skipped = 0;
+  const siteStat = lstatOrNull(join(siteDir, 'index.html'));
+  if (!siteStat || !siteStat.isFile()) return { errors: ['_site/ is not built: run node scripts/build.mjs first'], count: 0 };
+  const site = walk(siteDir);
+  for (const l of site.links) errors.push(`${l.slice(root.length + 1)}: a symlink in the built site`);
+  const paths = [...new Set([...files, ...site.files.map((p) => p.slice(root.length + 1))])];
+  let count = 0, skipped = 0; // skipped: only the vault's ciphertext; binary files are scanned like any other
   // The vault's own secrets, when this checkout holds them, must appear nowhere.
   const secrets = [];
   for (const k of ['.sg_vault/local/vault_key', '.sg_vault/local/token']) {
     const f = join(root, k);
-    if (existsSync(f)) { const v = readFileSync(f, 'utf8').trim(); secrets.push(v, v.split(':')[0]); }
+    const fs = lstatOrNull(f);
+    if (fs && fs.isFile()) { const v = readFileSync(f, 'utf8').trim(); secrets.push(v, v.split(':')[0]); }
   }
   for (const p of paths) {
     if (p.startsWith('.sg_vault/local/')) { errors.push(`${p}: a file from .sg_vault/local/ is in the tree (it holds vault keys)`); continue; }
     if (p.startsWith('.sg_vault/bare/')) { skipped++; continue; } // ciphertext, protected by the vault key
     const full = join(root, p);
-    if (!existsSync(full) || statSync(full).isDirectory()) continue; // deleted in the working tree
-    const buf = readFileSync(full);
-    if (isBinary(buf)) { skipped++; continue; }
+    const st = lstatOrNull(full);
+    if (!st) continue; // deleted in the working tree
+    if (st.isSymbolicLink()) { errors.push(`${p}: a symlink (symlinks are never followed and never allowed)`); continue; }
+    if (st.isDirectory()) continue;
+    // Binary files are scanned too, with the same rules, decoded as latin1 (one byte, one character). A NUL byte
+    // never causes a skip.
+    const t = readFileSync(full).toString('latin1');
     count++;
-    const t = buf.toString('utf8');
     for (const f of scanText(p, t)) errors.push(`${p}:${f.line}: ${f.kind}`);
     for (const x of secrets) if (x && x.length >= 8 && t.includes(x)) errors.push(`${p}: holds this checkout's vault key or token`);
   }
@@ -201,5 +218,5 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     console.error(`FAILED (${errors.length}) in ${count} ${history ? 'commits' : 'files'}`);
     process.exit(1);
   }
-  console.log(history ? `OK (${count} commits)` : `OK (${count} files, ${skipped} binary skipped)`);
+  console.log(history ? `OK (${count} commits)` : `OK (${count} files, ${skipped} vault ciphertext skipped)`);
 }

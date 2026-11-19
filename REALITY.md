@@ -70,3 +70,4 @@ A thing not written here does not exist. Kept by travel@PrompTugal.dinis (accoun
 - No CP, Vamus, Rede Expressos or Faro airport board data: JavaScript apps, a 403 and a bot check (gaps in `data/research/transport-algarve.json`).
 - No person has checked any page.
 - Events are only those the PrompTugal.news place desks listed (technology and AI); no councils' agendas yet.
+- **CI security job** (19 Nov ~20:04 UTC; security@'s controls 6 to 10): `.github/workflows/pages.yml` has a `security` job between build and deploy that runs no pushed code: the anchor A comes from GitHub's own record of the newest successful dev push run whose `security` job passed, the trailer check and leak scan come from A's tree, and the deployed artifact is the scanned one. See `docs/threat-models/ci-checks.md`, including its plain limit: until branch protection, it guards against mistakes, not against someone with push access.

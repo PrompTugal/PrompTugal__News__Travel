@@ -60,15 +60,221 @@ jobs:
       - run: node scripts/validate.mjs
       - name: Leak scan (tracked files and the built site)
         run: node scripts/leak-scan.mjs
+      - name: Leak scan tests
+        run: node scripts/test-leak-scan.mjs
+      - name: CI check tests (trailer check, leak scan, this workflow)
+        run: node scripts/test-ci-checks.mjs
       - if: steps.mode.outputs.deploy == 'true'
         uses: actions/configure-pages@v5
       - if: steps.mode.outputs.deploy == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-  deploy:
+  # The security job runs no pushed code (docs/threat-models/ci-checks.md). It uses git, curl, jq, tar, find and the
+  # node binary, and it runs the checkers as they were in the last run that passed this same job (A), not as pushed.
+  # security@'s controls 6 to 10 for the trailer check and the leak scan. Signatures (control 11 and on) wait on a decision.
+  security:
     needs: build
-    if: needs.build.outputs.deploy == 'true'
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    defaults:
+      run:
+        shell: bash
+    env:
+      GIT_NO_REPLACE_OBJECTS: '1'
+      NODE_OPTIONS: ''
+      # The empty tree: git reads no attributes from the checkout.
+      GIT_ATTR_SOURCE: 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+      # The pinned trusted base: dev's head on 19 Nov 2026. It is A only when GitHub's run records list no earlier run
+      # that passed this job. Nothing (no input, no variable) overrides A. Moving this is a person's decision.
+      TRUSTED_BASE: 75dc63dfa3aa2dc52519246067c823721902f518
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Record the node path
+        run: |
+          set -euo pipefail
+          node_bin=$(command -v node)
+          case "$node_bin" in /*) ;; *) echo "security: node is not an absolute path" >&2; exit 1 ;; esac
+          echo "NODE_BIN=$node_bin" >> "$GITHUB_ENV"
+      - name: "Checks 1 and 2: git version, a full clone, no pushed _site or .gitattributes"
+        run: |
+          set -euo pipefail
+          die() { echo "security: $*" >&2; exit 1; }
+          ver=$(git --version | sed -En 's/^git version ([0-9]+)\.([0-9]+).*/\1 \2/p')
+          [ -n "$ver" ] || die "cannot read the git version"
+          read -r gmaj gmin <<< "$ver"
+          if [ "$gmaj" -lt 2 ] || { [ "$gmaj" -eq 2 ] && [ "$gmin" -lt 42 ]; }; then die "git 2.42 or later is needed (GIT_ATTR_SOURCE); this is $(git --version)"; fi
+          shallow=$(git rev-parse --is-shallow-repository)
+          [ "$shallow" = false ] || die "the clone is shallow ($shallow)"
+          [ "$(git rev-parse HEAD)" = "$GITHUB_SHA" ] || die "HEAD is not the pushed commit"
+          git ls-tree -r -z --name-only "$GITHUB_SHA" > "$RUNNER_TEMP/paths.bin"
+          while IFS= read -r -d '' p; do
+            case "$p" in
+              _site|_site/*) die "a pushed path is under _site (the built site is made here, never pushed)" ;;
+              .gitattributes|*/.gitattributes) die "a .gitattributes is pushed (attributes can change what git shows)" ;;
+            esac
+          done < "$RUNNER_TEMP/paths.bin"
+          echo "checks 1 and 2 passed"
+      - name: "Check 3: anchor A from GitHub's own run records"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          die() { echo "security: $*" >&2; exit 1; }
+          api="${GITHUB_API_URL:-https://api.github.com}/repos/$GITHUB_REPOSITORY"
+          fetch() {
+            local code
+            code=$(curl -sS --max-time 60 -o "$2" -w '%{http_code}' \
+              -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/vnd.github+json' \
+              -H 'X-GitHub-Api-Version: 2022-11-28' -H 'User-Agent: promptugal-ci-security' "$1") || die "the GitHub API call failed"
+            [ "$code" = 200 ] || die "the GitHub API answered $code (no fallback to the bootstrap on an API error)"
+          }
+          # Every page of successful push runs on dev, newest first (travel.b@ review: a fixed window of 50 could be
+          # filled by successful runs of a pushed workflow without the security job, and then fall back to the bootstrap).
+          # Bootstrap only when GitHub lists no run at all in which the security job passed; a page cap fails, never falls back.
+          anchor=""
+          page=1
+          while [ -z "$anchor" ]; do
+            [ "$page" -le 100 ] || die "no passing security run in 100 pages of runs: refusing to fall back to the bootstrap"
+            fetch "$api/actions/workflows/pages.yml/runs?branch=dev&event=push&status=success&per_page=100&page=$page" "$RUNNER_TEMP/runs.json"
+            ok=$(jq -r '(.workflow_runs | type) == "array"' "$RUNNER_TEMP/runs.json") || die "the run list is not JSON"
+            [ "$ok" = true ] || die "the run list has no workflow_runs array"
+            n=$(jq -r '.workflow_runs | length' "$RUNNER_TEMP/runs.json")
+            [ "$n" -gt 0 ] || break
+            jq -r --arg cur "$GITHUB_RUN_ID" '.workflow_runs | map(select((.id | tostring) != $cur)) | sort_by(.created_at) | reverse | .[] | "\(.id) \(.head_sha)"' "$RUNNER_TEMP/runs.json" > "$RUNNER_TEMP/runs.txt"
+            while read -r id sha; do
+              [[ "$id" =~ ^[0-9]+$ ]] || die "a run id is not a number"
+              fetch "$api/actions/runs/$id/jobs?per_page=100" "$RUNNER_TEMP/jobs.json"
+              passed=$(jq -r '.jobs | any(.name == "security" and .conclusion == "success")' "$RUNNER_TEMP/jobs.json") || die "the job list is not JSON"
+              if [ "$passed" = true ]; then
+                [[ "$sha" =~ ^[0-9a-f]{40}$ ]] || die "a run's head_sha is not 40 hex digits"
+                anchor=$sha
+                break
+              fi
+            done < "$RUNNER_TEMP/runs.txt"
+            page=$((page + 1))
+          done
+          if [ -z "$anchor" ]; then
+            [[ "$TRUSTED_BASE" =~ ^[0-9a-f]{40}$ ]] || die "the pinned trusted base is not 40 hex digits"
+            anchor=$TRUSTED_BASE
+            echo "bootstrap: A is the pinned trusted base"
+          fi
+          printf '%s\n' "$anchor" > "$RUNNER_TEMP/anchor.sha"
+          echo "A is $anchor"
+      - name: "Checks 4 to 6: ancestry, no orphans, no symlinks"
+        run: |
+          set -euo pipefail
+          die() { echo "security: $*" >&2; exit 1; }
+          A=$(cat "$RUNNER_TEMP/anchor.sha")
+          [[ "$A" =~ ^[0-9a-f]{40}$ ]] || die "A is not 40 hex digits"
+          git cat-file -e "$A^{commit}" || die "A is not in this clone"
+          git merge-base --is-ancestor "$A" "$GITHUB_SHA" || die "A is not an ancestor of the pushed commit (history was rewritten, or this is another history)"
+          # Control 6: no commit without a parent in A..AFTER, merges included.
+          git rev-list --parents "$A..$GITHUB_SHA" > "$RUNNER_TEMP/revs.txt"
+          while read -r c p; do
+            if [ -z "$p" ]; then die "commit ${c:0:7} has no parent (an unrelated history)"; fi
+          done < "$RUNNER_TEMP/revs.txt"
+          # Control 10 (a): no commit in A..AFTER adds or changes a path to a symlink (mode 120000). No exceptions.
+          git rev-list "$A..$GITHUB_SHA" > "$RUNNER_TEMP/commits.txt"
+          mapfile -t commits < "$RUNNER_TEMP/commits.txt"
+          for c in "${commits[@]}"; do
+            git diff-tree -r -m --raw -z --no-commit-id --root "$c" > "$RUNNER_TEMP/dt.bin"
+            while IFS= read -r -d '' tok; do
+              case "$tok" in :*) ;; *) die "commit ${c:0:7}: unexpected diff-tree output" ;; esac
+              read -r om nm os ns st <<< "${tok#:}"
+              if [ "$nm" = 120000 ]; then die "commit ${c:0:7} adds a symlink"; fi
+              if [ "$nm" = 160000 ]; then die "commit ${c:0:7} adds a gitlink (submodule)"; fi
+              case "$st" in R*|C*) n=2 ;; *) n=1 ;; esac
+              for ((i = 0; i < n; i++)); do IFS= read -r -d '' _path || die "commit ${c:0:7}: truncated diff-tree output"; done
+            done < "$RUNNER_TEMP/dt.bin"
+          done
+          # Control 10 (b): no symlink in the pushed tree.
+          git ls-tree -r -z "$GITHUB_SHA" > "$RUNNER_TEMP/tree.bin"
+          while IFS= read -r -d '' rec; do
+            mode=${rec%% *}
+            if [ "$mode" = 120000 ]; then die "the pushed tree holds a symlink"; fi
+            if [ "$mode" = 160000 ]; then die "the pushed tree holds a gitlink (submodule)"; fi
+          done < "$RUNNER_TEMP/tree.bin"
+          # Control 10 (c): no symlink on disk, .git included. Bytes are compared, never lines.
+          find "$GITHUB_WORKSPACE" -type l -print0 > "$RUNNER_TEMP/links.bin"
+          if [ -s "$RUNNER_TEMP/links.bin" ]; then
+            echo "security: the workspace holds a symlink (names shown with odd characters replaced):" >&2
+            head -c 2000 "$RUNNER_TEMP/links.bin" | LC_ALL=C tr -c '[:alnum:]/._-' '?' >&2
+            echo >&2
+            exit 1
+          fi
+          echo "checks 4 to 6 passed"
+      - name: "Check 7: the checkers as they were in A"
+        run: |
+          set -euo pipefail
+          die() { echo "security: $*" >&2; exit 1; }
+          A=$(cat "$RUNNER_TEMP/anchor.sha")
+          [[ "$A" =~ ^[0-9a-f]{40}$ ]] || die "A is not 40 hex digits"
+          for f in scripts/check-commits.mjs scripts/leak-scan.mjs; do
+            git cat-file -e "$A:$f" || die "A has no $f"
+          done
+          mkdir -p scripts
+          # Written over the pushed copies only now that the tree and the disk are known to hold no symlink. A file A
+          # lacks is removed, so a pushed exemption or test cannot be used.
+          for f in scripts/check-commits.mjs scripts/leak-scan.mjs scripts/test-leak-scan.mjs scripts/commit-exemptions.json; do
+            if git cat-file -e "$A:$f" 2>/dev/null; then git show "$A:$f" > "$f"; else rm -f "$f"; fi
+          done
+          # The bootstrap A has the old checkers: the base's copy runs only on the push that adds the new ones.
+          "$NODE_BIN" scripts/check-commits.mjs "$A" "$GITHUB_SHA"
+          if [ -e scripts/test-leak-scan.mjs ]; then "$NODE_BIN" scripts/test-leak-scan.mjs; fi
+      - name: "Check 8, before the download: nowhere to hide an old artifact"
+        if: needs.build.outputs.deploy == 'true'
+        run: |
+          set -euo pipefail
+          for d in "$RUNNER_TEMP/pages" "$RUNNER_TEMP/site"; do
+            if [ -e "$d" ] || [ -L "$d" ]; then echo "security: $d exists before the download" >&2; exit 1; fi
+          done
+      - name: Download the Pages artifact the build job uploaded
+        if: needs.build.outputs.deploy == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/pages
+      - name: "Check 8: vet the artifact, then scan the bytes that are deployed"
+        if: needs.build.outputs.deploy == 'true'
+        run: |
+          set -euo pipefail
+          die() { echo "security: $*" >&2; exit 1; }
+          tarf="$RUNNER_TEMP/pages/artifact.tar"
+          [ -f "$tarf" ] && [ ! -L "$tarf" ] || die "artifact.tar is missing or not a regular file"
+          # Escaped names keep one entry to one line, whatever the name holds.
+          tar --quoting-style=escape -tvf "$tarf" > "$RUNNER_TEMP/tar.verbose"
+          tar --quoting-style=escape -tf "$tarf" > "$RUNNER_TEMP/tar.names"
+          [ "$(wc -l < "$RUNNER_TEMP/tar.verbose")" = "$(wc -l < "$RUNNER_TEMP/tar.names")" ] || die "the two listings of the artifact differ in length"
+          [ -s "$RUNNER_TEMP/tar.names" ] || die "the artifact is empty"
+          while IFS= read -r line; do
+            case "${line:0:1}" in -|d) ;; *) die "the artifact holds an entry that is not a regular file or a directory" ;; esac
+          done < "$RUNNER_TEMP/tar.verbose"
+          while IFS= read -r name; do
+            if [[ "$name" == /* ]]; then die "the artifact holds an absolute path"; fi
+            if [[ "$name" =~ (^|/)\.\.(/|$) ]]; then die "the artifact holds a path with a .. component"; fi
+          done < "$RUNNER_TEMP/tar.names"
+          mkdir "$RUNNER_TEMP/site"
+          tar --no-same-owner --no-same-permissions -xf "$tarf" -C "$RUNNER_TEMP/site"
+          find "$RUNNER_TEMP/site" -type l -print0 > "$RUNNER_TEMP/site-links.bin"
+          if [ -s "$RUNNER_TEMP/site-links.bin" ]; then die "the extracted artifact holds a symlink"; fi
+          [ -f "$RUNNER_TEMP/site/index.html" ] || die "the artifact has no index.html"
+          if [ -e "$GITHUB_WORKSPACE/_site" ] || [ -L "$GITHUB_WORKSPACE/_site" ]; then die "the workspace already has _site"; fi
+          mv "$RUNNER_TEMP/site" "$GITHUB_WORKSPACE/_site"
+          # A's leak scan: the tracked files and the _site that deploy will publish.
+          "$NODE_BIN" scripts/leak-scan.mjs
+  deploy:
+    needs: [build, security]
+    if: needs.build.outputs.deploy == 'true' && github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -80,8 +286,8 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
   tag:
-    needs: [build, deploy]
-    if: ${{ always() && needs.build.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
+    needs: [build, security, deploy]
+    if: ${{ always() && github.ref == 'refs/heads/dev' && needs.build.result == 'success' && needs.security.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -91,5 +297,7 @@ jobs:
         env:
           VERSION: ${{ needs.build.outputs.version }}
         run: |
-          git tag "$VERSION" "$GITHUB_SHA"
+          # the version comes from the build job (pushed code): check its shape, and end options before it (AppSec, low)
+          [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "tag: version $VERSION has the wrong shape" >&2; exit 1; }
+          git tag -- "$VERSION" "$GITHUB_SHA"
           git push origin "$VERSION"
