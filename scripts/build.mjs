@@ -147,7 +147,7 @@ let sitesBar = '', sitesBarChecked = false;
 }
 // type and ipma: kept from the reading meter, which this site no longer has (Dinis, 18 Nov 2026 ~23:45 UTC: only
 // promptugal.news bills). Every page is free; the page's type is still written in its meta for other tools.
-function page({ path, title, description, body, md, provenance, variant = '', script = '', noindex = false, type = 'data', ipma = false }) {
+function page({ path, title, description, body, md, provenance, variant = '', script = '', noindex = false, type = 'data', ipma = false, extraModule = '' }) {
   const pageType = ipma ? 'free' : type;
   const isHome = path === '/';
   const fullTitle = isHome ? 'PrompTugal.news Travel' : `${title} · PrompTugal.news Travel`;
@@ -198,7 +198,7 @@ ${provHtml}
 <footer class="foot"><p>${a('https://promptugal.news/', 'PrompTugal.news')}: Portugal, town by town. Raw data from ${a('https://data.promptugal.news/', 'data.promptugal.news')} and from ${a('https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/data/by-place', 'PrompTugal.news place data')}. Not a warning service: follow ${a('https://www.ipma.pt/', 'IPMA')} and ${a('https://prociv.gov.pt/', 'ANEPC')}.</p>
 <p class="takedown">Is something here yours, and do you think we should not show it? ${a('https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new', 'Open an issue')} and we take it down while we talk. Text and data we make: CC BY 4.0; what we show from others stays under its source\'s licence or terms, linked beside it.</p>
 <p class="obs-row">Version ${esc(version)} · ${a('https://github.com/PrompTugal/PrompTugal__News__Travel', 'Source')} · Code Apache-2.0, text CC BY 4.0 · ${a('/llms.txt', 'llms.txt')} · ${a('/version.json', 'version.json')} · ${a('/security/', 'Security')} · ${a('https://promptugal.news/principles/', 'Principles')} · ${a('https://promptugal.news/report/', 'Report a problem')}</p></footer>
-${script ? `<script src="${script}" defer></script>\n` : ''}
+${script ? `<script src="${script}" defer></script>\n` : ''}${extraModule ? `<script type="module" src="${extraModule}"></script>\n` : ''}
 <script src="/assets/obs/obs.js" defer></script>${sitesBar ? `\n<script src="/assets/sites-bar/${SBV}/sites-bar.js" defer></script>` : ''}
 </body>
 </html>
@@ -649,94 +649,32 @@ const eaRainTable = (() => {
 })();
 // What we said beside what happened (designer@ PF1 to PF9; Dinis, 18 Nov 2026, "show the past"): one bar per day, past first,
 // today, then the forecast. From data/inputs/beyond/history/london.json (data.promptugal.news's history/weather/london.json).
+import { model as pastModel, tree as pastTree, TAGS as PAST_TAGS, okAttr as pastOkAttr } from '../src/assets/past-chart.mjs';
+// Serialise the chart's node tree: tag and attribute names from the module's allowlists only, every value through esc().
+const svgOf = n => {
+  if (n.text !== undefined) return esc(n.text);
+  if (!PAST_TAGS.includes(n.t)) throw new Error(`build: tag ${n.t} is not allowed in the chart`);
+  const at = Object.entries(n.a).map(([k, v]) => { if (!pastOkAttr(n.t, k, v)) throw new Error(`build: attribute ${k} is not allowed on ${n.t} in the chart`); return ` ${k}="${esc(String(v))}"`; }).join('');
+  if (!n.c.length && (n.t === 'line' || n.t === 'rect')) return `<${n.t}${at}/>`;
+  return `<${n.t}${at}>${n.c.map(svgOf).join('')}</${n.t}>`;
+};
 const historyFile = 'data/inputs/beyond/history/london.json';
 const eaRain = (() => {
   let h = null;
   try { h = existsSync(historyFile) ? J(historyFile) : null; } catch { h = null; }
   if (!h || h.place !== 'london' || !Array.isArray(h.rows)) return eaRainTable;
-  const DATE = /^\d{4}-\d{2}-\d{2}$/;
-  const cl = v => (typeof v === 'number' && Number.isFinite(v) ? Math.min(500, Math.max(0, v)) : null);
-  const r1 = v => Math.round(v * 10) / 10;
-  // one row per date (the last one in the file wins; AppSec post-review, low), oldest first
-  const rows = [...new Map(h.rows.filter(r => r && typeof r.date === 'string' && DATE.test(r.date)).map(r => [r.date, r])).values()].sort((x, y) => x.date.localeCompare(y.date));
-  const byDate = Object.fromEntries(rows.map(r => [r.date, r]));
-  const first = typeof h.first_day === 'string' && DATE.test(h.first_day) ? h.first_day : (rows[0] ? rows[0].date : null);
-  if (!first) return eaRainTable;
-  const mk = (date, kind) => {
-    const r = byDate[date] || {}; const o = r.observed && typeof r.observed === 'object' ? r.observed : null;
-    const d1 = r.forecast && r.forecast.d1 && typeof r.forecast.d1 === 'object' ? r.forecast.d1 : null;
-    return { date, kind, obs: o ? cl(o.rain_mm_mean) : null, complete: !!(o && o.complete === true), said: d1 ? cl(d1.rain_mm) : null, fc: null };
-  };
-  const past = rows.filter(r => r.date < today && r.date >= first).slice(-7).map(r => mk(r.date, 'past'));
-  const items = [...past, mk(today, 'today')];
-  for (const f of londonDays()) { if (DATE.test(f.date) && f.date > today) items.push({ date: f.date, kind: 'future', obs: null, complete: false, said: null, fc: cl(f.rain_mm) }); }
-  // a difference only for a complete day: today and part days are not over, so they are not scored (travel.b@ review)
-  const diff = it => (it.complete && it.obs != null && it.said != null ? r1(it.obs - it.said) : null);
-  const diffTxt = it => { const d = diff(it); return d == null ? (it.said != null ? `said ${it.said} mm` : null) : d === 0 ? '✓' : `${d > 0 ? '+' : '−'}${Math.abs(d).toFixed(1)} mm`; };
-  const diffSigned = it => { const d = diff(it); return d == null ? (it.said != null && it.obs != null ? 'not scored: the day is not complete' : '') : d === 0 ? '✓ (equal)' : `${d > 0 ? '+' : '−'}${Math.abs(d).toFixed(1)} mm (measured minus said)`; };
-  // the track record, computed
-  const scored = past.filter(it => it.complete && it.obs != null && it.said != null);
-  const hits = scored.filter(it => Math.abs(it.obs - it.said) <= 1 + 1e-9).length;
-  const track = scored.length
-    ? `${hits} of ${scored.length} past complete days within 1 mm of what we said the day before, since ${day(first)}.`
-    : 'No complete day yet has a forecast we kept, so there is no track record yet. It begins as days are kept.';
-  // geometry
-  const W = 640, L = 40, R = 8, T = 46, base = 258, H = 350, n = items.length;
-  const colW = (W - L - R) / n, bw = Math.min(20, colW / 2 - 3);
-  const top = Math.max(5, Math.ceil(Math.max(0, ...items.flatMap(it => [it.obs, it.said, it.fc]).filter(v => v != null)) / 5) * 5);
-  const Y = v => base - (base - T) * v / top, f1 = v => v.toFixed(1);
-  const bar = (x, v, cls, tip) => {
-    const hgt = Math.max(1.5, base - Y(v)), rx = Math.min(4, hgt / 2);
-    const st = cls === 'obs' ? 'fill:var(--ink)' : cls === 'said' ? 'fill:none;stroke:var(--green);stroke-width:2' : 'fill:url(#lon-hatch);stroke:var(--ink);stroke-width:1.5';
-    return `<rect x="${f1(x)}" y="${f1(base - hgt)}" width="${f1(bw)}" height="${f1(hgt)}" rx="${f1(rx)}" style="${st}"><title>${esc(tip)}</title></rect>`;
-  };
-  const gap = (x, tip) => `<rect x="${f1(x)}" y="${base - 16}" width="${f1(bw)}" height="16" rx="4" style="fill:none;stroke:var(--ink);stroke-width:1.5;stroke-dasharray:3 3"><title>${esc(tip)}</title></rect>`;
-  const txt = (x, y, s, extra = '') => `<text x="${f1(x)}" y="${y}" text-anchor="middle" font-size="11" ${extra} style="fill:var(--ink)">${esc(s)}</text>`;
-  const shortDay = iso => { const t = day(iso).split(' '); return `${t[0]} ${t[1]}`; };
-  let g = '';
-  items.forEach((it, i) => {
-    const cx = L + colW * (i + 0.5), nm = day(it.date);
-    if (it.kind === 'today') g += `<rect x="${f1(L + colW * i)}" y="${T - 12}" width="${f1(colW)}" height="${base - T + 66}" style="fill:var(--sand)"/>` + txt(cx, 38, 'Today', 'font-weight="700"');
-  });
-  const out = [];
-  items.forEach((it, i) => {
-    const cx = L + colW * (i + 0.5), nm = day(it.date);
-    let s = '';
-    if (it.kind === 'future') {
-      if (it.fc != null) s += bar(cx - bw / 2, it.fc, 'fc', `Forecast for ${nm}: ${it.fc} mm of rain (${it.date}), not yet measured`);
-      s += txt(cx, base + 28, 'forecast');
-    } else {
-      const part = !it.complete && it.obs != null;
-      if (it.said != null) s += bar(cx - bw - 1, it.said, 'said', `What we said the day before, for ${nm}: ${it.said} mm of rain (${it.date})`);
-      if (it.obs != null) s += bar(cx + 1, it.obs, 'obs', `Measured on ${nm}: ${it.obs} mm of rain (${it.date})${part ? (it.kind === 'today' ? ', so far' : ', part day') : ''}`);
-      else s += gap(cx + 1, `No reading for ${nm} (${it.date}); nothing is filled in`);
-      const dt = diffTxt(it);
-      s += txt(cx, base + 28, it.obs == null ? 'no reading' : it.said == null ? 'not kept' : dt);
-      if (it.obs != null && it.said == null) { /* line shown above */ }
-      if (part) s += txt(cx, base + 42, it.kind === 'today' ? 'so far' : 'part day');
-    }
-    s += txt(cx, base + 14, shortDay(it.date));
-    out.push(`<g>${s}</g>`);
-  });
-  const grid = [0, top / 2, top].map(v => `<line x1="${L}" x2="${W - R}" y1="${f1(Y(v))}" y2="${f1(Y(v))}" style="stroke:var(--rule)"/><text x="${L - 6}" y="${f1(Y(v) + 4)}" text-anchor="end" font-size="11" style="fill:var(--ink)">${esc(v % 1 ? v.toFixed(1) : v)}</text>`).join('') + `<text x="4" y="${T - 22}" font-size="11" style="fill:var(--muted)">mm</text>`;
-  const lg = (x, sw, label) => `<g transform="translate(${x} ${H - 18})">${sw}<text x="22" y="11" font-size="11" style="fill:var(--ink)">${label}</text></g>`;
-  const legend = lg(L, '<rect width="16" height="12" rx="3" style="fill:var(--ink)"/>', 'measured') + lg(L + 100, '<rect width="16" height="12" rx="3" style="fill:none;stroke:var(--green);stroke-width:2"/>', 'what we said') + lg(L + 220, '<rect width="16" height="12" rx="3" style="fill:url(#lon-hatch);stroke:var(--ink);stroke-width:1.5"/>', 'forecast') + lg(L + 320, '<rect width="16" height="12" rx="3" style="fill:none;stroke:var(--ink);stroke-width:1.5;stroke-dasharray:3 3"/>', 'no reading');
-  const ttl = 'Rain in London, what we said beside what was measured, with the forecast ahead';
-  const desc = items.map(it => it.kind === 'future' ? `${day(it.date)}: forecast ${it.fc != null ? it.fc + ' mm' : 'none'}` : `${day(it.date)}: measured ${it.obs != null ? it.obs + ' mm' : 'no reading'}, said ${it.said != null ? it.said + ' mm' : 'not kept'}`).join('; ');
-  const svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-labelledby="lon-rain-t lon-rain-d"><title id="lon-rain-t">${esc(ttl)}</title><desc id="lon-rain-d">${esc(`Millimetres of rain per day, past days first, then today, then the forecast. ${desc}. ${track}`)}</desc><defs><pattern id="lon-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" style="stroke:var(--ink);stroke-width:1.5"/></pattern></defs>${g}${grid}<text x="${L}" y="14" font-size="11" style="fill:var(--ink)">${esc(`Record begins ${day(first)}`)}</text>${out.join('')}${legend}</svg>`;
-  const tbl = items.map(it => {
-    const fut = it.kind === 'future', mm = v => (v == null ? null : `${v} mm`);
-    return { day: day(it.date) + (it.kind === 'today' ? ' (today)' : ''),
-      meas: fut ? '' : it.obs == null ? 'no reading' : `${it.obs} mm${it.complete ? '' : it.kind === 'today' ? ' (so far)' : ' (part day)'}`,
-      said: fut ? '' : mm(it.said) || 'not kept', diff: fut ? '' : diffSigned(it), fc: fut ? mm(it.fc) || 'none' : '' };
-  });
+  // the logic and the drawing live in src/assets/past-chart.mjs, shared with the browser (past-chart-live.mjs)
+  const m = pastModel(h, londonDays(), today);
+  if (!m) return eaRainTable;
+  const { track, first } = m, tbl = m.table;
+  const svg = svgOf(pastTree(m));
   const read = typeof h.data_read_at === 'string' ? ukTime(h.data_read_at) : 'not known';
   const histUrl = 'https://data.promptugal.news/api/v1/history/weather/london.json';
-  const note = `Measured: Environment Agency rain gauges around London, mean of the gauges, days in UTC (${a('https://environment.data.gov.uk/flood-monitoring/doc/reference', 'OGL v3.0')}). Forecast: ${a('https://open-meteo.com/', 'Open-Meteo')} (CC BY 4.0), and what we said is the forecast kept the day before. Read ${esc(read)}; ${a(histUrl, 'the history file')}. A day is complete when its gauges have all their readings.`;
-  const table = `<details><summary>Table view</summary><div class="tscroll"><table><thead><tr><th>Day</th><th>Measured</th><th>What we said the day before</th><th>Difference</th><th>Forecast</th></tr></thead><tbody>${tbl.map(r => `<tr><td>${esc(r.day)}</td><td>${esc(r.meas)}</td><td>${esc(r.said)}</td><td>${esc(r.diff)}</td><td>${esc(r.fc)}</td></tr>`).join('')}</tbody></table></div></details>`;
+  const note = `Measured: Environment Agency rain gauges around London, mean of the gauges, days in UTC (${a('https://environment.data.gov.uk/flood-monitoring/doc/reference', 'OGL v3.0')}). Forecast: ${a('https://open-meteo.com/', 'Open-Meteo')} (CC BY 4.0), and what we said is the forecast kept the day before. Read <span data-now="rain-read">${esc(read)}</span>; ${a(histUrl, 'the history file')}. A day is complete when its gauges have all their readings.`;
+  const table = `<details><summary>Table view</summary><div class="tscroll"><table><thead><tr><th>Day</th><th>Measured</th><th>What we said the day before</th><th>Difference</th><th>Forecast</th></tr></thead><tbody data-now="rain-table">${tbl.map(r => `<tr><td>${esc(r.day)}</td><td>${esc(r.meas)}</td><td>${esc(r.said)}</td><td>${esc(r.diff)}</td><td>${esc(r.fc)}</td></tr>`).join('')}</tbody></table></div></details>`;
   return {
     used: histUrl,
-    html: `<section aria-labelledby="h-lon-rain"><h2 id="h-lon-rain">Rain in London: what we said and what happened</h2><figure class="chart"><div class="chart-wide">${svg}</div><figcaption>${esc(track)}</figcaption></figure>${table}<p class="meta">${note}</p></section>`,
+    html: `<section aria-labelledby="h-lon-rain"><h2 id="h-lon-rain">Rain in London: what we said and what happened</h2><figure class="chart" data-now="rain-chart" data-read="${esc(typeof h.data_read_at === 'string' ? h.data_read_at : '')}"><div class="chart-wide">${svg}</div><figcaption>${esc(track)}</figcaption></figure>${table}<p class="meta">${note}</p></section>`,
     md: `\n\n## Rain in London: what we said and what happened\n\n${mdesc(track)}\n\n| Day | Measured | What we said the day before | Difference | Forecast |\n|---|---|---|---|---|\n${tbl.map(r => `| ${mdesc(r.day)} | ${mdesc(r.meas)} | ${mdesc(r.said)} | ${mdesc(r.diff)} | ${mdesc(r.fc)} |`).join('\n')}\n\nMeasured: Environment Agency rain gauges (OGL v3.0). Forecast: Open-Meteo (CC BY 4.0). Read ${mdesc(read)}. ${ml(histUrl, 'History file')}.`,
   };
 })();
@@ -744,7 +682,7 @@ if (london) {
   const fl = (london.floods || {}), warns = (fl.warnings || []).filter(w => w && typeof w.area === 'string');
   const sb = sideBySide();
   page({
-    path: '/london/', title: 'Beyond Portugal: London', script: '/assets/now.js',
+    path: '/london/', title: 'Beyond Portugal: London', script: '/assets/now.js', extraModule: '/assets/past-chart-live.mjs',
     description: 'London for a visitor: the three-day forecast (Open-Meteo) beside Faro\'s, and the Environment Agency\'s flood alerts and warnings. The first place beyond Portugal. Each value with its source and the time read.',
     body: `<h1>Beyond Portugal: London</h1><p class="dek">The first place on this site outside Portugal. For a visitor: the weather for the next three days, side by side with Faro, and any flood alerts. London's transport (TfL) and its airports come next, as data.promptugal.news collects them. See also ${a('/uk-portugal/', 'the UK and Portugal')}.</p>
 <section aria-labelledby="h-lon-wx"><h2 id="h-lon-wx">The next three days, London and Faro</h2>${sb.html}</section>

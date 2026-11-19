@@ -5,8 +5,8 @@
  "account": "B",
  "site": "https://travel.promptugal.news",
  "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
- "updated": "2026-11-19T08:02Z",
- "run": "07:53 UTC wake (19 Nov): London rain chart (what we said beside what happened) on /london/; bar 1.2.1 staged and verified, released next",
+ "updated": "2026-11-19T11:08Z",
+ "run": "10:53 UTC wake (19 Nov): the London rain chart now redraws in the browser",
  "observability": {
   "lane": "travel",
   "how": "src/assets/obs/obs.js on every page sends to this site's own lane (vault 9y7m26v0, 4 append lanes, drain key sha256:769aec505e1d6f47), configured by src/assets/obs/obs.json; every event also says lane: \"travel\". conductor.b@PrompTugal.dinis holds the sealed drain credentials and drains it.",
@@ -51,9 +51,10 @@
  ],
  "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
  "next": [
-  "London chart refreshed in the browser; then Faro's past (IPMA, free page)",
+  "Faro's past (data.b@'s IPMA history), on a free page only",
   "signed commits (waits on the leak-scan exemption ask)",
-  "library requests: none open for travel.b@ at 07:53"
+  "licence of each loaded file next to the live figures",
+  "easyJet talks 20, 23, 25 Nov"
  ],
  "asks": [
   "Dinis: security@'s key ruling (Website 1acd10498) lets an ssh public key stand in its published field (team/keys.json ssh_signing.public_key). Adding that exemption to scripts/leak-scan.mjs was refused by this session's permission check at 2026-11-19T05:14Z; I have not worked around it. Signed commits need it: approve the exemption (that field, the exact key-line pattern, with a test), or make it yourself.",
@@ -76,8 +77,8 @@
   "observability_lane": "Live 18 Nov ~16:50 UTC. The leak scan allows src/assets/obs/obs.json (and its built copy) for two kinds only (append tokens, drain public key), approved by the person running this session. Credentials sealed to conductor.b@ and sent."
  },
  "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
- "library_requests": "Checked 18 Nov ~23:05 UTC: none for travel.b@ (our request file 404; the index does not name travel.b@).",
- "passes": "08:00 UTC: work by travel.b.charts@ (Sonnet); review by travel.b@ fixed 3 points (no difference for days not over, signed labels, phone labels at 9.6 px or more in a box that scrolls on its own); AppSec post-review (travel.b.appsec@, Sonnet): no high or medium; one low (duplicate dates) fixed.",
+ "library_requests": "10:53 UTC: index lists nothing for travel.b@; our file /api/v1/requests/travel.b-at-promptugal.dinis.json answered 503.",
+ "passes": "11:05 UTC: work by travel.b.charts@ (Sonnet); travel.b@'s review added the read time following the redraw; AppSec post-review (travel.b.appsec@, Sonnet): no high or medium; two lows fixed (redraw needs a valid built time; first_day bounded to 1 Nov 2026 to today). Browser: no console errors, 375 px.",
  "sites_bar": {
   "was": "sites bar 1.2.0 installed (2026-11-19T07:17Z): vendored unchanged; each file checked at build against bar.versions['1.2.0'] in the live registry (no pin in the repo); rendered from the live registry; a version the registry no longer lists is left out (not linked, not shipped) with a log line. 1.1.0 removed.",
   "registry_shapes": "build reads both: today's bar.versions[v].{render,css,js} and obs_tz.versions[v].integrity (string), and dev@'s reshape versions[v].integrity.<file> (own keys, strings only). A missing pin: bar off, tz table off; a wrong pin stops the build. No exemption (security@: reshape, don't widen).",
@@ -87,7 +88,8 @@
  },
  "london": {
   "was": "Live: /london/ (forecast beside Faro, flood alerts, measured rain). From data.b@: London to Faro/Lisbon/Porto routes held (adsb.lol's route lookup returned none); INE UK guests wait for Dinis (INE's API asks users to accept its conditions); TfL status next.",
-  "past_chart": "live from this release: /london/ rain chart (PF1 to PF9), from data.b@'s history file. Track record starts once a complete day has a kept forecast (20 Nov at the earliest). Not yet refreshed in the browser; next."
+  "past_chart": "live: /london/ rain chart (PF1 to PF9), built from data.b@'s history file and redrawn in the browser (src/assets/past-chart.mjs shared by build and browser; past-chart-live.mjs draws with createElementNS/setAttribute/textContent under allowlists, only from a newer valid file). Track record starts once a complete day has a kept forecast (20 Nov at the earliest).",
+  "freshness_seen": "11:05 UTC: data.b@'s London forecast (now/london.json) was read at 06:15 London, so the page says Stale; the history file was read at 10:04 London. For conductor.b@'s freshness check, not ours to fix."
  },
  "releases": "Every push carries one piece of work, so each Pages run releases and tags it (Dinis, 18 Nov ~23:45 UTC); pages.yml already tags each run's commit.",
  "scheduled_runs": "Removed 19 Nov ~02:00 UTC at Dinis's word (every run starts from a commit). Pages run on push to dev or by hand; figures load in the browser.",
