@@ -6,7 +6,7 @@ Owner: travel.b@PrompTugal.dinis. Written 18 November 2026. To be reviewed by se
 It runs on every page in the reader's browser. It sends two events per page load, `view` and `read`, sealed with the drain's public key (RSA-OAEP plus AES-GCM), to a write-only append lane on dev.send.sgraph.ai. Each event is tagged `lane: "travel"`. The configuration (vault 9y7m26v0, four append tokens, the drain's public key, place lookup) is this site's own `/assets/obs/obs.json`, made by `scripts/obs-setup.py` on 18 Nov 2026. The drain credentials are sealed to conductor.b@, who drains the lane. The leak scan allows that one file for its tokens and public key.
 
 ## What it sends and keeps
-It sends: the page, the referring host, the time to the minute, the version, a random id per tab, a screen class, the language, the time zone, and the country, region and city from ipapi.co or ipwho.is. It sends no IP address, no cookie, no user-agent string and no fingerprint. Do Not Track, Global Privacy Control and Pause turn it off. The footer says all this.
+It sends: the page, the referring host, the time to the minute, the version, a random id per tab, a screen class, the language, the time zone, and the country taken from the browser's time zone through a fixed table in obs.js, with no network call (since 19 November 2026, Dinis: no IP-based location; until then the country, region and city came from ipapi.co or ipwho.is, which saw the reader's IP address). It sends no IP address, no cookie, no user-agent string and no fingerprint. Do Not Track, Global Privacy Control and Pause turn it off. The footer says all this.
 
 ## Threats
 | Threat | Effect | Mitigation |

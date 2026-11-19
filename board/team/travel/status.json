@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-19T02:15Z",
+  "updated": "2026-11-19T03:21Z",
   "run": "19 Nov ~00:55 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
@@ -72,7 +72,7 @@
     "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
     "Dinis: What's on lists events from the councils' own pages as titles, dates and links (reference use, source named), from the council research and from data.promptugal.news's feed. data.b@'s note says no reuse licence was found for those sites and agendalx.pt asks reference use only. Is listing them this way all right, or should the page only link to each council's agenda?"
   ],
-  "live_changes": "~02:00 UTC 19 Nov: the Pages workflow's timer removed (every run starts from a commit); new threat model for the browser data. Earlier: data in the browser, sites bar 1.1.0, billing removed.",
+  "live_changes": "2026-11-19T03:21Z: no IP-based location: obs.js sends the country from the browser's time zone only; ipapi.co and ipwho.is gone from the code and the CSP. Earlier: the Pages timer removed, data in the browser, sites bar 1.1.0, billing removed.",
   "storm": "The Storm site's 7 travel items (data.b@'s handoff): plan in board/team/travel/storm-plan.md. Pages and charts come here, reading data.promptugal.news; the collectors stay with data.b@.",
   "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading.",
   "dinis_1455": {
@@ -84,7 +84,7 @@
   },
   "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
   "library_requests": "Checked 18 Nov ~23:05 UTC: none for travel.b@ (our request file 404; the index does not name travel.b@).",
-  "passes": "Data in the browser: AppSec post-review by travel.b.appsec@ (Sonnet): no high or medium; two lows fixed here (read times must be ISO and not in the future; upgrade-insecure-requests added); frame-ancestors cannot be set by meta, in asks. Lead tested in a browser.",
+  "passes": "IP lookup removal: AppSec post-review by travel.b.appsec@ (Sonnet): clean; one low fixed here (events queued before the change are stripped of region, city and position before sending). Lead tested in a browser: no request to ipapi.co or ipwho.is.",
   "sites_bar": "sites bar 1.1.0 installed (19 Nov ~01:10 UTC): vendored unchanged, sha256-checked at build, registry read at pull, bar first in body (after the skip link), CSS and deferred JS from this host; old rail removed; /preview.svg is the 320 x 180 card.",
   "london": "Live: /london/ (forecast beside Faro, flood alerts, measured rain). From data.b@: London to Faro/Lisbon/Porto routes held (adsb.lol's route lookup returned none); INE UK guests wait for Dinis (INE's API asks users to accept its conditions); TfL status next.",
   "releases": "Every push carries one piece of work, so each Pages run releases and tags it (Dinis, 18 Nov ~23:45 UTC); pages.yml already tags each run's commit.",
@@ -101,7 +101,8 @@
     "first": "London rain: Open-Meteo's forecast for each day beside the Environment Agency's measured rain (already on /london/ for today and yesterday), read from data.b@'s /api/v1/history/weather/london.json in the browser, with the forecast issued 1, 2 and 3 days before, gaps shown as gaps, and the first day of the record stated. Then Faro's IPMA forecast beside its station.",
     "second": "Disruptions as a record: every announced strike kept with the date it was announced and its sources; when its day comes, what happened (went ahead, called off, changed), shown beside it. A running record per announcer (unions, operators).",
     "how": "This site keeps nothing it does not show; the forecast history comes from data.b@'s committed history files. Disruption records live in data/research/disruptions.json, which is in git, so every change is a commit.",
-    "drawing": "designer@'s spec PrompTugal__News__Website board/spec-past-and-forecast.md (PF1 to PF9; mock design/past-and-forecast/mock.mjs): observed solid, forecast hatched, today a sand column, gaps dashed outlines, 'Record begins <day>', the forecast shown as a green outline beside what was measured with the difference in plain units, a track-record line under the chart. Use it for the London rain view first."
+    "drawing": "designer@'s spec PrompTugal__News__Website board/spec-past-and-forecast.md (PF1 to PF9; mock design/past-and-forecast/mock.mjs): observed solid, forecast hatched, today a sand column, gaps dashed outlines, 'Record begins <day>', the forecast shown as a green outline beside what was measured with the difference in plain units, a track-record line under the chart. Use it for the London rain view first.",
+    "library": "Predictions are one collection in the library (Dinis, 19 Nov ~03:15 UTC): send this site's prediction files to library.b@ in the form it sets, once the form is published; keep and check our own."
   },
   "times_note": "From 2026-11-19T01:50Z every time in status, commits and messages is taken from `date -u` (security@'s ruling, 19 Nov). Earlier 'updated' values tonight (02:05Z to 02:15Z) were ahead of the clock: they were estimates, wrong by about 20 to 25 minutes."
 }

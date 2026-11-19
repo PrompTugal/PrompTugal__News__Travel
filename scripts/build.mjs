@@ -127,8 +127,8 @@ function page({ path, title, description, body, md, provenance, variant = '', sc
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- CSP (data in the browser, 19 Nov 2026): scripts from this host only; data from our hosts; dev.send.sgraph.ai, ipapi.co and ipwho.is for obs.js (the page-view counter, its approved country look-up). -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.promptugal.news https://promptugal.news; connect-src 'self' https://data.promptugal.news https://promptugal.news https://*.promptugal.news https://dev.send.sgraph.ai https://ipapi.co https://ipwho.is; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<!-- CSP (data in the browser, 19 Nov 2026): scripts from this host only; data from our hosts; dev.send.sgraph.ai for obs.js (the page-view counter; no IP look-up since 19 Nov 2026). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.promptugal.news https://promptugal.news; connect-src 'self' https://data.promptugal.news https://promptugal.news https://*.promptugal.news https://dev.send.sgraph.ai; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>${esc(fullTitle)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
@@ -504,7 +504,7 @@ ${(t.gaps || []).length ? `<section aria-labelledby="h-tg"><h2 id="h-tg">Gaps</h
 <section aria-labelledby="h-pay"><h2 id="h-pay">Free to read</h2><p>This site carries no billing: only ${a('https://promptugal.news/', 'promptugal.news')} bills its readers (Dinis, 18 November 2026). Every page here is free, and may show any public data, IPMA's and Open-Meteo's included, each with its licence and where it came from.</p></section>
 <section aria-labelledby="h-take"><h2 id="h-take">If we show something of yours</h2><p>Much of what this site shows comes from public bodies (councils, IPMA, INE) and from operators, each linked with its licence or terms. If you think we should not show your data, ${a('https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new', 'open a public issue')} and we take it down while we talk (Dinis, 18 November 2026). Organisers can send their own events the same way: they are published, credited and dated as theirs.</p></section>
 <section aria-labelledby="h-tm"><h2 id="h-tm">What runs on its own, and its threat models</h2><p>Three things run without a person: the data reader (${a('https://github.com/PrompTugal/PrompTugal__News__Travel/blob/dev/docs/threat-models/pull.md', 'threat model')}), the figures your browser loads from data.promptugal.news (${a('https://github.com/PrompTugal/PrompTugal__News__Travel/blob/dev/docs/threat-models/browser-data.md', 'threat model')}) and the page-view counter (${a('https://github.com/PrompTugal/PrompTugal__News__Travel/blob/dev/docs/threat-models/observability.md', 'threat model')}). Each says what it reads, what it writes, what it trusts, what could go wrong and how that is limited. security@PrompTugal.dinis reviews them.</p></section>
-<section aria-labelledby="h-obs"><h2 id="h-obs">What is counted</h2><p>Page views and reading time are counted, publicly, in PrompTugal.news's observability lane for this site ("travel"), as on promptugal.news: the page, the time to the minute, the screen size class, the browser's language and time zone, and the town your browser's own lookup gives. No IP address, no cookie, no fingerprint. Do Not Track, Global Privacy Control and Pause in the footer turn it off. ${a('https://promptugal.news/newsroom/observability/index.html', 'The report')}.</p></section>`,
+<section aria-labelledby="h-obs"><h2 id="h-obs">What is counted</h2><p>Page views and reading time are counted, publicly, in PrompTugal.news's observability lane for this site ("travel"), as on promptugal.news: the page, the time to the minute, the screen size class, the browser's language and time zone, and the country that time zone gives (a fixed table in the page, no lookup). No IP address, no cookie, no fingerprint. Do Not Track, Global Privacy Control and Pause in the footer turn it off. ${a('https://promptugal.news/newsroom/observability/index.html', 'The report')}.</p></section>`,
     md: `travel.promptugal.news is one of five PrompTugal.news sites, built by an AI agent team for Dinis Cruz. Nothing here is official.
 
 ## Who makes it
@@ -534,7 +534,7 @@ This site carries no billing: only promptugal.news bills its readers (Dinis, 18 
 
 ## What is counted
 
-Page views and reading time, publicly, in PrompTugal.news's observability lane for this site ("travel"): no IP address, no cookie, no fingerprint. Do Not Track, Global Privacy Control and Pause in the footer turn it off. https://promptugal.news/newsroom/observability/index.html`,
+Page views and reading time, publicly, in PrompTugal.news's observability lane for this site ("travel"): the page, the time, the screen class, the language, the time zone and the country it gives; no IP address, no cookie, no fingerprint. Do Not Track, Global Privacy Control and Pause in the footer turn it off. https://promptugal.news/newsroom/observability/index.html`,
   });
 }
 

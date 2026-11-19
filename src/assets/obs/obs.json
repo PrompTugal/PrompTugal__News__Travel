@@ -16,8 +16,5 @@
     "fingerprint": "sha256:769aec505e1d6f47",
     "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAutO9U/uz/8VmM5HYkBRH\nFbrJd53SweU5DlWzZBD8FdWlTRjcHVvB9g4r5BD474qu576b2/yaqcXoNEOJJgyz\ndvr4Emn9YT10g0hAclvAUGFMCUucg2cZt9M4Yabeh+zN69NtQRaP8KmieCUaLc0l\n1jm/Pa6XJhgwQM2UBTrY1mlxfliRLdvosEiqS2wYTFa42xNokfU8zW3eSVzhOomG\n18uJe9TxXXru/1aTuppcH9ROU18t8/xlb678klzpsa40tQXGjilwccCVWXZ8kzsk\nXXYp0s6Sk1VwRbuQw/sFfx0/T2/Mb5wInRv1o7Brlg2X7GG+C1Q1uRcR2E2CQLsQ\nDocBDnUgfxBPnzVllMTMKsQwIYbCWX2iNhjnpEv3MjgkczexSC7KBbl6pqtzl9xk\nUtcgSEEeoNowLnct0WyWcTqDQNjLArpZpRDqiO0RpAWVqGSHQP5nPYSo5+lXOkk9\nizi1u0qt318koQQ6yWoYdu69PQ57eHCcRoxPpWOXj/JyDE2KfTIRJ+HpDJuIKNmf\nwn3Ai9RGlGCuwHjxrNc1NPutQY8F4wLMs5LGNzYCe+4/40NVgUeTpXN1DYbEXwql\n3q36k7Sf7QYgaFeig1vvYB4dAD8PUIAgq3bBJePnax9jKwfEGL2wWLdE7NxKJ+iK\n2aMSHEnFs5CBfQDaP7NbAyECAwEAAQ==\n-----END PUBLIC KEY-----\n"
   },
-  "geo": [
-    "https://ipapi.co/json/",
-    "https://ipwho.is/"
-  ]
+  "geo": []
 }

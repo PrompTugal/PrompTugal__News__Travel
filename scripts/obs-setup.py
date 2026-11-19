@@ -88,7 +88,7 @@ def main():
         'enabled': True, 'lane': 'travel', 'endpoint': HOST, 'vault_id': data_id,
         'lanes': {'site': toks},
         'recipient': {'fingerprint': fp, 'encrypt': pub_pem},
-        'geo': ['https://ipapi.co/json/', 'https://ipwho.is/']})
+        'geo': []})  # no IP lookup since 19 Nov 2026 (Dinis): country from the browser's time zone
 
     # 3. the credentials: outside the repository, and sealed to conductor.b@
     creds = {'type': 'promptugal.obs/creds', 'site': 'travel.promptugal.news', 'lane': 'travel', 'host': HOST, 'vault_id': data_id,
