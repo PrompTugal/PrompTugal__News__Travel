@@ -99,36 +99,46 @@ const NAV = [
   ['/weather/', 'Weather and sea'], ['/events/', "What's on"], ['/tourism/', 'Tourism'], ['/uk-portugal/', 'UK and Portugal'], ['/london/', 'London'], ['/about/', 'How it is made'],
 ];
 const pages = [];
-// The shared sites bar v1.1.0 (Dinis, 18 Nov 2026; PrompTugal__News__Website board/guidance/2026-11-18-the-sites-bar.md),
-// vendored in src/assets/sites-bar/1.1.0/ and checked by sha256 here; rendered at build from data/inputs/sites.json
-// (promptugal.news/api/v1/sites.json, read by scripts/pull.mjs). If the renderer refuses the registry it returns ''
-// and the pages go out without a bar, never a hand-made one. It replaces the old rail and footer list.
+// Vendored pieces from promptugal.news (the shared sites bar, the time-zone-to-country table), each checked at every
+// build against its own version's pin in the live registry, promptugal.news/api/v1/sites.json (security@'s rulings of
+// 19 Nov 2026: the pin is read from the registry and never written into this repository; the registry keeps every
+// version's pin, append-only). Registry unreadable, or a listed version with other bytes: the build stops. A version the
+// registry no longer lists: that piece is left out and the build log says "<piece> <version> off: ...".
+const sriOf = buf => 'sha256-' + createHash('sha256').update(buf).digest('base64');
+const SRI = /^sha256-[A-Za-z0-9+/]{43}=$/;
+let REG = null;
+try { const r = await fetch('https://promptugal.news/api/v1/sites.json', { redirect: 'error', signal: AbortSignal.timeout(20000), headers: { accept: 'application/json' } }); const t = await r.text(); if (r.ok && t.length < 1_000_000) REG = JSON.parse(t); } catch {}
+if (!REG || !REG.bar || !REG.obs_tz) { console.error('build: the registry (promptugal.news/api/v1/sites.json) cannot be read'); process.exit(1); }
+const pinFor = (versions, v) => (versions && typeof versions === 'object' && Object.prototype.hasOwnProperty.call(versions, v) ? versions[v] : null);
+// the time-zone table (obs.js reads it; without it no country is sent)
 let tzTableWithheld = false;
-// The shared time-zone-to-country table for obs.js (dev@'s assets/obs/tz-country.json), checked at every build against
-// the live registry's obs_tz.integrity (security@'s ruling, 19 Nov 2026 04:51 UTC, option 1: the pin is read from the
-// registry and never written into this repository). No registry, or a different digest: the build stops.
 {
-  let reg = null;
-  try { const r = await fetch('https://promptugal.news/api/v1/sites.json', { redirect: 'error', signal: AbortSignal.timeout(20000), headers: { accept: 'application/json' } }); const t = await r.text(); if (r.ok && t.length < 1_000_000) reg = JSON.parse(t); } catch {}
-  const want = reg && reg.obs_tz && typeof reg.obs_tz.integrity === 'string' ? reg.obs_tz.integrity : '';
-  const wantV = reg && reg.obs_tz && typeof reg.obs_tz.version === 'string' ? reg.obs_tz.version : '';
   const raw = readFileSync('src/assets/obs/tz-country.json');
   let haveV = ''; try { haveV = String(JSON.parse(raw).version || ''); } catch {}
-  const got = 'sha256-' + createHash('sha256').update(raw).digest('base64');
-  if (!/^sha256-[A-Za-z0-9+/]{43}=$/.test(want) || !/^\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(wantV)) { console.error('build: the registry\'s obs_tz cannot be read'); process.exit(1); }
-  if (wantV !== haveV) {
-    // the registry names another version (conductor.b@, 19 Nov 05:10 UTC, from data.b@'s trap): ship with no table, so
-    // obs.js sends no country, deploy the rest, and upgrade at the next wake
-    console.warn(`build: tz-country ${haveV || 'none'} off: the registry names ${wantV} (built without the table, so no country is sent, until it is upgraded)`);
-    tzTableWithheld = true;
-  } else if (got !== want) { console.error(`build: src/assets/obs/tz-country.json ${haveV} does not match the registry's obs_tz.integrity for the same version`); process.exit(1); }
+  const pin = pinFor(REG.obs_tz.versions, haveV), want = pin && typeof pin.integrity === 'string' ? pin.integrity : '';
+  if (!want) { console.warn(`build: tz-country ${haveV || 'none'} off: the registry names ${REG.obs_tz.version} and no longer lists ${haveV || 'this version'} (no country sent until upgraded)`); tzTableWithheld = true; }
+  else if (!SRI.test(want) || sriOf(raw) !== want) { console.error(`build: src/assets/obs/tz-country.json ${haveV} does not match the registry's pin for that version`); process.exit(1); }
+  else if (REG.obs_tz.version !== haveV) console.warn(`build: tz-country ${haveV} on; the registry's newest is ${REG.obs_tz.version}: upgrade at the next wake`);
 }
-const SB = 'src/assets/sites-bar/1.1.0/';
-// The first 40 hex digits of each file's sha256 (160 bits; the leak scan allows hex up to a git object id's length).
-const SB_SHA = { 'sites-bar-render.mjs': 'b9b50ae32fd5dc234ba6e9b4660061afb25554b5', 'sites-bar.css': '302e2544eb34e3d6ce8d8e14fe2918c9f658a587', 'sites-bar.js': 'bc97a820a8f4fbda60ff65c3073be6fe79b2d1d3' };
-for (const [f, h] of Object.entries(SB_SHA)) { const got = createHash('sha256').update(readFileSync(SB + f)).digest('hex').slice(0, 40); if (got !== h) { console.error(`build: ${SB + f} sha256 ${got} is not the pinned ${h}`); process.exit(1); } }
-const { render: renderSitesBar } = await import(new URL('../' + SB + 'sites-bar-render.mjs', import.meta.url));
-const sitesBar = existsSync('data/inputs/sites.json') ? renderSitesBar(J('data/inputs/sites.json'), { here: 'travel.promptugal.news' }) : '';
+// the shared sites bar (Dinis, 18 Nov 2026, the sites-bar guidance; 1.2.0 from 19 Nov, Dinis's switcher of 03:18 UTC):
+// rendered at build from the live registry; if the renderer refuses the registry it returns '' and the pages go out
+// without a bar, never a hand-made one
+const SBV = '1.2.0', SB = `src/assets/sites-bar/${SBV}/`;
+let sitesBar = '', sitesBarChecked = false;
+{
+  const pin = pinFor(REG.bar.versions, SBV);
+  if (!pin) console.warn(`build: sites-bar ${SBV} off: the registry names ${REG.bar.version} and no longer lists ${SBV}`);
+  else {
+    for (const [f, k] of [['sites-bar-render.mjs', 'render'], ['sites-bar.css', 'css'], ['sites-bar.js', 'js']]) {
+      const want = typeof pin[k] === 'string' ? pin[k] : '';
+      if (!SRI.test(want) || sriOf(readFileSync(SB + f)) !== want) { console.error(`build: ${SB + f} does not match the registry's pin for sites-bar ${SBV}`); process.exit(1); }
+    }
+    sitesBarChecked = true;
+    if (REG.bar.version !== SBV) console.warn(`build: sites-bar ${SBV} on; the registry's newest is ${REG.bar.version}: upgrade at the next wake`);
+    const { render: renderSitesBar } = await import(new URL('../' + SB + 'sites-bar-render.mjs', import.meta.url));
+    sitesBar = renderSitesBar(REG, { here: 'travel.promptugal.news' });
+  }
+}
 // type and ipma: kept from the reading meter, which this site no longer has (Dinis, 18 Nov 2026 ~23:45 UTC: only
 // promptugal.news bills). Every page is free; the page's type is still written in its meta for other tools.
 function page({ path, title, description, body, md, provenance, variant = '', script = '', noindex = false, type = 'data', ipma = false }) {
@@ -160,7 +170,7 @@ function page({ path, title, description, body, md, provenance, variant = '', sc
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
-${sitesBar ? '<link rel="stylesheet" href="/assets/sites-bar/1.1.0/sites-bar.css">\n' : ''}<meta name="page-type" content="${pageType}">
+${sitesBar ? `<link rel="stylesheet" href="/assets/sites-bar/${SBV}/sites-bar.css">\n` : ''}<meta name="page-type" content="${pageType}">
 <meta name="page-date" content="${today}">
 ${noindex ? '<meta name="robots" content="noindex">\n' : ''}</head>
 <body class="${esc(variant)}">
@@ -183,7 +193,7 @@ ${provHtml}
 <p class="takedown">Is something here yours, and do you think we should not show it? ${a('https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new', 'Open an issue')} and we take it down while we talk. Text and data we make: CC BY 4.0; what we show from others stays under its source\'s licence or terms, linked beside it.</p>
 <p class="obs-row">Version ${esc(version)} · ${a('https://github.com/PrompTugal/PrompTugal__News__Travel', 'Source')} · Code Apache-2.0, text CC BY 4.0 · ${a('/llms.txt', 'llms.txt')} · ${a('/version.json', 'version.json')} · ${a('/security/', 'Security')} · ${a('https://promptugal.news/principles/', 'Principles')} · ${a('https://promptugal.news/report/', 'Report a problem')}</p></footer>
 ${script ? `<script src="${script}" defer></script>\n` : ''}
-<script src="/assets/obs/obs.js" defer></script>${sitesBar ? '\n<script src="/assets/sites-bar/1.1.0/sites-bar.js" defer></script>' : ''}
+<script src="/assets/obs/obs.js" defer></script>${sitesBar ? `\n<script src="/assets/sites-bar/${SBV}/sites-bar.js" defer></script>` : ''}
 </body>
 </html>
 `;
@@ -814,6 +824,8 @@ ${figs.map((f, i) => { const x = 60 + i * (cw + 10); return `<rect x="${x}" y="2
 }
 
 if (tzTableWithheld) rmSync('_site/assets/obs/tz-country.json', { force: true });
+// a bar the registry no longer lists is not shipped at all, not only not linked (security post-review)
+if (!sitesBarChecked) rmSync(`_site/assets/sites-bar/${SBV}`, { recursive: true, force: true });
 // ---------- stamp the version (from the factory build) ----------
 const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 for (const f of walk('_site')) {
