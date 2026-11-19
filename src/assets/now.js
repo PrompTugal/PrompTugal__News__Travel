@@ -26,17 +26,22 @@
 
   // the page's status line: live file or built copy, when read, stale or not
   var status = q('[data-now="status"]');
-  var shown = { at: null, from: null };
+  var shown = { at: null, from: null, limit: null };
+  // how old is stale: 3 hours, or a file's own cadence plus an hour (data.b@'s London forecast is 6-hourly by design:
+  // forecast.expected_cadence, 19 Nov 2026); seconds from 600 to 86400 only
+  function cadence(c) { return c && typeof c.seconds === 'number' && c.seconds % 1 === 0 && c.seconds >= 600 && c.seconds <= 86400 ? (c.seconds + 3600) * 1000 : null; }
+  function builtLimit() { var v = status ? Number(status.getAttribute('data-stale-s')) : NaN; return v % 1 === 0 && v >= 4200 && v <= 90000 ? v * 1000 : null; }
   function say() {
     if (!status) return;
     var at = shown.at || ms(status.getAttribute('data-read'));
     if (!at) return;
     var zone = status.getAttribute('data-zone') === 'london' ? ['Europe/London', 'London'] : ['Europe/Lisbon', 'Lisbon'];
-    var old = Date.now() - at > STALE_H * 3600 * 1000;
-    status.textContent = (shown.from ? 'Live: figures updated in your browser from ' + shown.from + ', read ' : 'Built copy: figures read ') + when(new Date(at).toISOString(), zone[0], zone[1]) + '.' + (old ? ' Stale: older than ' + STALE_H + ' hours.' : '');
+    var lim = (shown.at ? shown.limit : builtLimit()) || STALE_H * 3600 * 1000, hrs = Math.round(lim / 3600000);
+    var old = Date.now() - at > lim;
+    status.textContent = (shown.from ? 'Live: figures updated in your browser from ' + shown.from + ', read ' : 'Built copy: figures read ') + when(new Date(at).toISOString(), zone[0], zone[1]) + '.' + (old ? ' Stale: older than ' + hrs + ' hours.' : '');
     status.className = 'live-status' + (old ? ' stale' : '');
   }
-  function saw(at, from) { if (!shown.at || at > shown.at) { shown.at = at; shown.from = from; } say(); }
+  function saw(at, from, limit) { if (!shown.at || at > shown.at) { shown.at = at; shown.from = from; shown.limit = limit || null; } say(); }
 
   // Faro airport and the Faro temperature (front page, flights, weather)
   var lead = q('[data-now="airport-lead"]'), rows = q('[data-now="airport-rows"]'), temp = q('[data-now="faro-temp"]');
@@ -103,7 +108,7 @@
         if (!d.floods.warnings.length) floods.appendChild(el('li', 'None in force at the time read.'));
         d.floods.warnings.forEach(function (w) { var li = document.createElement('li'); li.appendChild(el('strong', w.severity || 'Notice')); li.appendChild(document.createTextNode(': ')); var a = el('a', w.area); a.href = w.url; a.rel = 'noopener noreferrer'; li.appendChild(a); floods.appendChild(li); });
       }
-      saw(at, 'data.promptugal.news (Open-Meteo, CC BY 4.0; Environment Agency, OGL v3.0)');
+      saw(at, 'data.promptugal.news (Open-Meteo, CC BY 4.0; Environment Agency, OGL v3.0)', cadence(d.forecast.expected_cadence));
     });
   }
 

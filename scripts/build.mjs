@@ -189,7 +189,7 @@ ${sitesBar}
 <nav aria-label="Sections"><ul>${NAV.map(([h, t]) => `<li><a href="${h}"${h === path ? ' aria-current="page"' : ''}>${esc(t)}</a></li>`).join('')}</ul></nav>
 </header>
 <main id="main">
-${script === '/assets/now.js' ? (() => { const lonPage = /^\/(london|uk-portugal)\//.test(path); const at = lonPage ? (london && london.forecast && london.forecast.at) : (airport && airport.at) || manifest.read_at; return `<p class="live-status" data-now="status" data-read="${esc(at || '')}"${lonPage ? ` data-zone="london" data-london-read="${esc(at || '')}"` : ''}>Built copy: figures read ${esc(lonPage ? ukTime(at) : lisbon(at))}. Your browser loads newer figures from data.promptugal.news when they pass their checks.</p>`; })() : ''}
+${script === '/assets/now.js' ? (() => { const lonPage = /^\/(london|uk-portugal)\//.test(path); const at = lonPage ? (london && london.forecast && london.forecast.at) : (airport && airport.at) || manifest.read_at; return `<p class="live-status" data-now="status" data-read="${esc(at || '')}"${lonPage ? ` data-zone="london" data-london-read="${esc(at || '')}"${(() => { const c = london && london.forecast && london.forecast.expected_cadence; const sec = c && Number.isInteger(c.seconds) && c.seconds >= 600 && c.seconds <= 86400 ? c.seconds : null; return sec ? ` data-stale-s="${sec + 3600}"` : ''; })()}` : ''}>Built copy: figures read ${esc(lonPage ? ukTime(at) : lisbon(at))}. Your browser loads newer figures from data.promptugal.news when they pass their checks.</p>`; })() : ''}
 <div class="body">
 ${body}
 </div>

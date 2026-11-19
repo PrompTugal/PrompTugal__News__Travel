@@ -5,7 +5,7 @@
  "account": "B",
  "site": "https://travel.promptugal.news",
  "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
- "updated": "2026-11-19T10:59Z",
+ "updated": "2026-11-19T11:02Z",
  "run": "10:53 UTC wake (19 Nov): the London rain chart now redraws in the browser",
  "observability": {
   "lane": "travel",
@@ -78,7 +78,7 @@
  },
  "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
  "library_requests": "10:53 UTC: index lists nothing for travel.b@; our file /api/v1/requests/travel.b-at-promptugal.dinis.json answered 503.",
- "passes": "10:59 UTC: work by travel.b.charts@ (Sonnet); travel.b@'s review added the read time following the redraw; AppSec post-review (travel.b.appsec@, Sonnet): no high or medium; two lows fixed (redraw needs a valid built time; first_day bounded to 1 Nov 2026 to today). Browser: no console errors, 375 px.",
+ "passes": "10:59 UTC: work by travel.b.charts@ (Sonnet); travel.b@'s review added the read time following the redraw; AppSec post-review (travel.b.appsec@, Sonnet): no high or medium; two lows fixed (redraw needs a valid built time; first_day bounded to 1 Nov 2026 to today). Browser: no console errors, 375 px. 11:02 UTC, stale rule: AppSec post-review (Sonnet): no blocking; low (a feed can hide Stale for at most 25 h) accepted as the bound.",
  "sites_bar": {
   "was": "sites bar 1.2.0 installed (2026-11-19T07:17Z): vendored unchanged; each file checked at build against bar.versions['1.2.0'] in the live registry (no pin in the repo); rendered from the live registry; a version the registry no longer lists is left out (not linked, not shipped) with a log line. 1.1.0 removed.",
   "registry_shapes": "build reads both: today's bar.versions[v].{render,css,js} and obs_tz.versions[v].integrity (string), and dev@'s reshape versions[v].integrity.<file> (own keys, strings only). A missing pin: bar off, tz table off; a wrong pin stops the build. No exemption (security@: reshape, don't widen).",
@@ -89,7 +89,7 @@
  "london": {
   "was": "Live: /london/ (forecast beside Faro, flood alerts, measured rain). From data.b@: London to Faro/Lisbon/Porto routes held (adsb.lol's route lookup returned none); INE UK guests wait for Dinis (INE's API asks users to accept its conditions); TfL status next.",
   "past_chart": "live: /london/ rain chart (PF1 to PF9), built from data.b@'s history file and redrawn in the browser (src/assets/past-chart.mjs shared by build and browser; past-chart-live.mjs draws with createElementNS/setAttribute/textContent under allowlists, only from a newer valid file). Track record starts once a complete day has a kept forecast (20 Nov at the earliest).",
-  "freshness_seen": "10:58 UTC: data.b@'s London forecast (now/london.json) was read at 06:15 London, so the page says Stale; the history file was read at 10:04 London. For conductor.b@'s freshness check, not ours to fix."
+  "freshness_seen": "11:02 UTC: data.b@ says the London forecast is 6-hourly by design (Open-Meteo answered 429 to hourly); its file now carries forecast.expected_cadence (d402893). now.js marks the forecast Stale after its own cadence plus 1 hour (integer seconds, 600 to 86400 only; otherwise 3 hours). Faro keeps 3 hours."
  },
  "releases": "Every push carries one piece of work, so each Pages run releases and tags it (Dinis, 18 Nov ~23:45 UTC); pages.yml already tags each run's commit.",
  "scheduled_runs": "Removed 19 Nov ~02:00 UTC at Dinis's word (every run starts from a commit). Pages run on push to dev or by hand; figures load in the browser.",
