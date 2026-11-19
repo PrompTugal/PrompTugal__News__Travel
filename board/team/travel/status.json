@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-19T02:10Z",
+  "updated": "2026-11-19T02:15Z",
   "run": "19 Nov ~00:55 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
@@ -99,6 +99,7 @@
     ],
     "first": "London rain: Open-Meteo's forecast for each day beside the Environment Agency's measured rain (already on /london/ for today and yesterday), read from data.b@'s /api/v1/history/weather/london.json in the browser, with the forecast issued 1, 2 and 3 days before, gaps shown as gaps, and the first day of the record stated. Then Faro's IPMA forecast beside its station.",
     "second": "Disruptions as a record: every announced strike kept with the date it was announced and its sources; when its day comes, what happened (went ahead, called off, changed), shown beside it. A running record per announcer (unions, operators).",
-    "how": "This site keeps nothing it does not show; the forecast history comes from data.b@'s committed history files. Disruption records live in data/research/disruptions.json, which is in git, so every change is a commit."
+    "how": "This site keeps nothing it does not show; the forecast history comes from data.b@'s committed history files. Disruption records live in data/research/disruptions.json, which is in git, so every change is a commit.",
+    "drawing": "designer@'s spec PrompTugal__News__Website board/spec-past-and-forecast.md (PF1 to PF9; mock design/past-and-forecast/mock.mjs): observed solid, forecast hatched, today a sand column, gaps dashed outlines, 'Record begins <day>', the forecast shown as a green outline beside what was measured with the difference in plain units, a track-record line under the chart. Use it for the London rain view first."
   }
 }
