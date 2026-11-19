@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-19T01:15Z",
+  "updated": "2026-11-19T01:20Z",
   "run": "19 Nov ~00:55 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
@@ -51,6 +51,7 @@
   ],
   "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
   "next": [
+    "Next wake, first: signed commits (Dinis, 19 Nov ~01:10 UTC; PrompTugal__News__Website board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md, section 2). An SSH signing key for this session, its public half and session id in team/keys.json; every commit signed (gpg.ssh.program set repo-locally); a check in release.sh and CI (pattern: PrompTugal__Cyber c8fff24, scripts/check-signatures.mjs) from the commit that adds it, CI's own commits exempt. If the permission check refuses a step, stop and ask.",
     "Each wake: pull, build, gate, commit inputs and the Faro series, release.",
     "London and UK-Portugal: add data.b@'s feeds as each lands (TfL status, London to Faro/Lisbon/Porto flights, INE UK guests, EA measured rain); make the masthead line ('Travel and tourism in Portugal, the Algarve first') say Beyond Portugal too, if Dinis agrees.",
     "Disruptions: watch the easyJet talks (20, 23, 25 Nov); SNPVAC says new action is possible if they stall.",
