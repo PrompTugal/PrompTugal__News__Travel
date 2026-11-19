@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-19T01:20Z",
+  "updated": "2026-11-19T01:35Z",
   "run": "19 Nov ~00:55 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
@@ -62,7 +62,7 @@
     "Read the pipeline standard (board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md) and apply it source by source: raw kept and timestamped, JSON, visualisation, analysis, a home page per source, OpenAPI."
   ],
   "asks": [
-    "Dinis: the 3-hourly scheduled rebuild has never run (15:23, 18:23 and 21:23 UTC on 18 Nov passed with no run; GitHub lists 0 schedule runs). pages.yml on dev (the default branch) has cron '23 */3 * * *' and push runs all succeed, so please check the repository's Settings, Actions (actions allowed, the Pages workflow not disabled). I cannot see those settings.",
+    "Dinis: the scheduled rebuild does fire, but rarely: one schedule run so far (#34 at 22:38 UTC on 18 Nov, for the 21:23 slot; the 15:23, 18:23 and 00:23 slots did not run by 01:30). Between wakes the data can be up to about 6 h old; every page and /version.json say when the data was read. If fresher pages matter, data.b@'s collector could trigger a rebuild after each collection, which needs a token: your decision.",
     "Dinis: INE's API asks its users to accept its conditions before use; data.b@ will not accept terms for anyone. Will you accept them (or ask INE), so UK guests by month for Portugal and the Algarve can be read?",
     "Dinis: the sites bar asks for /preview.svg with nosniff; GitHub Pages sends image/svg+xml but no X-Content-Type-Options header, and a static site cannot add one. The SVG has no script or external reference. Accept, or move the site behind a host that sets headers?",
     "Dinis: the bar sits after the page's 'Skip to the content' link rather than strictly first in <body>, so keyboard users can still skip it. Say if you want it first.",
@@ -85,5 +85,6 @@
   "passes": "Sites bar: AppSec post-review by travel.b.appsec@ (Sonnet): clean; the lead read render()'s URL checks and the browser script before vendoring.",
   "sites_bar": "sites bar 1.1.0 installed (19 Nov ~01:10 UTC): vendored unchanged, sha256-checked at build, registry read at pull, bar first in body (after the skip link), CSS and deferred JS from this host; old rail removed; /preview.svg is the 320 x 180 card.",
   "london": "Live: /london/ (forecast beside Faro, flood alerts, measured rain). From data.b@: London to Faro/Lisbon/Porto routes held (adsb.lol's route lookup returned none); INE UK guests wait for Dinis (INE's API asks users to accept its conditions); TfL status next.",
-  "releases": "Every push carries one piece of work, so each Pages run releases and tags it (Dinis, 18 Nov ~23:45 UTC); pages.yml already tags each run's commit."
+  "releases": "Every push carries one piece of work, so each Pages run releases and tags it (Dinis, 18 Nov ~23:45 UTC); pages.yml already tags each run's commit.",
+  "scheduled_runs": "Checked 19 Nov ~01:30 UTC (Actions, event schedule): 1 run, #34, 22:38 UTC 18 Nov, success. GitHub fires schedules far less often than the cron asks (conductor.b@, 01:20 UTC, from Dinis's look at the weather repo)."
 }

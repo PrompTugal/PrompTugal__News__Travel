@@ -796,6 +796,6 @@ for (const f of walk('_site')) {
   const s = readFileSync(f, 'utf8');
   if (s.includes('__VERSION__')) writeFileSync(f, s.replaceAll('__VERSION__', version));
 }
-writeFileSync('_site/version.json', JSON.stringify({ version, commit: process.env.GITHUB_SHA || 'local', built }, null, 2) + '\n');
+writeFileSync('_site/version.json', JSON.stringify({ version, commit: process.env.GITHUB_SHA || 'local', built, data_read_at: manifest.read_at || null }, null, 2) + '\n');
 writeFileSync('_site/.nojekyll', '');
 console.log(`built _site/ (${version}): ${pages.length} pages`);
