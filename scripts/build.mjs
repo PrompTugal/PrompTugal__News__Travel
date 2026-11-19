@@ -719,6 +719,7 @@ mkdirSync('_site/api/v1', { recursive: true });
 writeFileSync('_site/api/v1/manifest.json', JSON.stringify(withLicJson({ license_ours: OURS, ...manifest }), null, 2) + '\n');
 for (const [k, f] of [['events-algarve', 'data/research/events-algarve.json'], ['transport-algarve', 'data/research/transport-algarve.json'], ['disruptions', 'data/research/disruptions.json'], ['tourism', 'data/research/tourism.json'], ['holidays', 'data/editorial/holidays.json']]) if (existsSync(f)) writeFileSync(`_site/api/v1/${k}.json`, JSON.stringify(withLicJson({ license_ours: OURS, ...J(f) }), null, 2) + '\n');
 if (existsSync('data/series/faro-airport.jsonl')) cpSync('data/series/faro-airport.jsonl', '_site/api/v1/faro-airport.jsonl');
+if (existsSync('data/predictions/predictions.jsonl')) cpSync('data/predictions/predictions.jsonl', '_site/api/v1/predictions.jsonl');
 writeFileSync('_site/api/v1/licences.json', JSON.stringify(LIC, null, 2) + '\n');
 writeFileSync('_site/api/v1/travel.json', JSON.stringify(withLicJson({ license_ours: OURS, licences: '/api/v1/licences.json',
   about: 'travel.promptugal.news digest: what the front page shows, each value with its source.', version, built, data_read: manifest.read_at,
