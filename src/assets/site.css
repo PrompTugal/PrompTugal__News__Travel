@@ -2,14 +2,14 @@
    PrompTugal__News__Website), the Travel sub-brand. travel@PrompTugal.dinis, 17 November 2026. */
 :root {
   --paper: #f6f3ec; --ink: #121317; --red: #c52830; --green: #006600; --rule: #d8d4cb; --muted: #666860;
-  --card: #fffdf8; --sea: #0b5c7a; --amber: #9a6a00; --brand: #006600; --on-brand: #fff; --panel: var(--card); --hair: var(--rule); --ink-3: var(--muted);
+  --card: #fffdf8; --sand: #ebe2c8; --sea: #0b5c7a; --amber: #9a6a00; --brand: #006600; --on-brand: #fff; --panel: var(--card); --hair: var(--rule); --ink-3: var(--muted);
   --editorial: Newsreader, Georgia, 'Times New Roman', serif;
   --ui: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
   color-scheme: light dark;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --paper: #121317; --ink: #f6f3ec; --red: #f07278; --green: #6dbb7e; --rule: #44453f; --muted: #b4b6ad; --card: #1b1c21; --sea: #6fb7d3; --amber: #e0b54a; }
+  :root { --paper: #121317; --ink: #f6f3ec; --red: #f07278; --green: #6dbb7e; --rule: #44453f; --muted: #b4b6ad; --card: #1b1c21; --sand: #33312a; --sea: #6fb7d3; --amber: #e0b54a; }
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -142,3 +142,7 @@ figure.chart figcaption { font-size: .85rem; color: var(--muted); }
 /* data in the browser (19 Nov 2026): the line that says whether figures are live or the built copy */
 .live-status { font: 500 .8rem/1.4 var(--ui); color: var(--muted); border-left: 3px solid var(--sea); padding: .2rem .6rem; margin: .6rem 0; }
 .live-status.stale { border-left-color: var(--amber); color: var(--amber); }
+.tscroll { overflow-x: auto; max-width: 100%; }
+/* the London rain chart keeps 560 px so its 11-unit labels stay at 9.6 px or more on a phone (designer@'s floor 9.5 px); it scrolls in its own box */
+.chart-wide { overflow-x: auto; max-width: 100%; }
+.chart-wide svg { min-width: 560px; }

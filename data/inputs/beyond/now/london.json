@@ -1,4 +1,14 @@
 {
+ "data_read_at": "2026-11-19T07:07:57Z",
+ "expected_cadence": {
+  "name": "hourly",
+  "seconds": 3600
+ },
+ "schema": {
+  "openapi": "https://data.promptugal.news/api/v1/openapi.json",
+  "path": "/api/v1/by-place/now/london.json",
+  "version": "v1"
+ },
  "license": {
   "name": "CC BY 4.0",
   "url": "https://creativecommons.org/licenses/by/4.0/",
@@ -23,7 +33,7 @@
  },
  "place": "london",
  "country": "GB",
- "read_at": "2026-11-19T00:29:50Z",
+ "read_at": "2026-11-19T07:07:57Z",
  "by": "collect/by-place-now.mjs (code, no model; data@PrompTugal.dinis), from this site's collected sources",
  "coords": {
   "lat": 51.50722,
@@ -44,28 +54,28 @@
  "forecast": {
   "days": [
    {
-    "date": "2026-11-18",
-    "t_min_c": 9.1,
-    "t_max_c": 13,
-    "rain_mm": 4.2,
-    "weather_code": 61
-   },
-   {
     "date": "2026-11-19",
     "t_min_c": 7.2,
-    "t_max_c": 10.7,
-    "rain_mm": 5.3,
-    "weather_code": 61
+    "t_max_c": 10.6,
+    "rain_mm": 6.5,
+    "weather_code": 63
    },
    {
     "date": "2026-11-20",
-    "t_min_c": 6.6,
-    "t_max_c": 10.4,
+    "t_min_c": 6.9,
+    "t_max_c": 10.2,
+    "rain_mm": 1.1,
+    "weather_code": 53
+   },
+   {
+    "date": "2026-11-21",
+    "t_min_c": 0,
+    "t_max_c": 7.5,
     "rain_mm": 0,
     "weather_code": 3
    }
   ],
-  "at": "2026-11-18T23:49:04Z",
+  "at": "2026-11-19T06:15:51Z",
   "source": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
   "attribution": "Weather data by Open-Meteo.com",
   "license": {
@@ -89,7 +99,7 @@
    }
   ],
   "stations": 10,
-  "at": "2026-11-19T00:19:28Z",
+  "at": "2026-11-19T07:04:06Z",
   "source": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
   "attribution": "this uses Environment Agency flood and river level data from the real-time data API (Beta)",
   "license": {
@@ -100,11 +110,11 @@
  "reads": {
   "ea-flood": {
    "url": "https://data.promptugal.news/api/v1/ea-flood/latest.json",
-   "at": "2026-11-19T00:19:28Z"
+   "at": "2026-11-19T07:04:06Z"
   },
   "open-meteo-london": {
    "url": "https://data.promptugal.news/api/v1/open-meteo-london/latest.json",
-   "at": "2026-11-18T23:49:04Z"
+   "at": "2026-11-19T06:15:51Z"
   }
  }
 }

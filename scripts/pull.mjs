@@ -121,6 +121,13 @@ for (const id of BEYOND) {
   reads.push({ ...r, path: 'beyond/ea-flood.json', role: 'beyond' });
   if (r.body) { try { const j = JSON.parse(r.body); if (!j.daily_rain || typeof j.daily_rain !== 'object') throw new Error('no daily_rain'); writeFileSync('data/inputs/beyond/ea-flood.json', r.body); r.used = true; } catch { r.status = 'not json or no daily_rain'; } }
 }
+// London's rain history: what was measured and the forecast we kept, per day, from data.promptugal.news (travel.b@, 19 Nov 2026).
+{
+  if (!from) await sleep(2000);
+  const r = await read('history/weather/london.json', 'https://data.promptugal.news/api/v1/');
+  reads.push({ ...r, path: 'beyond/history/london.json', role: 'beyond' });
+  if (r.body) { try { const j = JSON.parse(r.body); if (j.place !== 'london' || !Array.isArray(j.rows)) throw new Error('wrong place or no rows'); mkdirSync('data/inputs/beyond/history', { recursive: true }); writeFileSync('data/inputs/beyond/history/london.json', r.body); r.used = true; } catch { r.status = 'not json, wrong place or no rows'; } }
+}
 // The sites registry for the shared sites bar (Dinis, 18 Nov 2026, the sites-bar guidance): promptugal.news/api/v1/sites.json.
 // Kept only when it parses and has a sites list; when it is down, the last copy stays and the build keeps the last bar.
 {

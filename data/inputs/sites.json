@@ -1,8 +1,8 @@
 {
   "about": "The sites list from promptugal.news/api/v1/sites.json, as read by scripts/pull.mjs (its bar hashes left out: the vendored files are pinned in scripts/build.mjs).",
   "source": "https://promptugal.news/api/v1/sites.json",
-  "read_at": "2026-11-19T00:53:00Z",
-  "version": "v0.1.1835",
+  "read_at": "2026-11-19T07:57:02Z",
+  "version": "v0.1.1853",
   "license": {
     "name": "CC BY 4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/",
