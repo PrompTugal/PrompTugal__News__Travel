@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-19T03:31Z",
+  "updated": "2026-11-19T04:50Z",
   "run": "19 Nov ~00:55 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
@@ -51,6 +51,7 @@
   ],
   "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
   "next": [
+    "When the leak-scan question is answered: vendor the shared tz-country.json v1.0.0 (integrity matched 19 Nov 04:5x UTC), check it at build against the full SRI string, read it in obs.js into a null-prototype map, drop our own table. Two zones in our table are not in the shared one: Europe/Belfast, Europe/Busingen (asked dev@ via conductor.b@).",
     "Next wake, first: signed commits (Dinis, 19 Nov ~01:10 UTC; PrompTugal__News__Website board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md, section 2). An SSH signing key for this session, its public half and session id in team/keys.json; every commit signed (gpg.ssh.program set repo-locally); a check in release.sh and CI (pattern: PrompTugal__Cyber c8fff24, scripts/check-signatures.mjs) from the commit that adds it, CI's own commits exempt. If the permission check refuses a step, stop and ask. Build in from the start (conductor.b@, 01:16 UTC, from signals.b@'s review of its own check, PrompTugal__News__Signals 0101639): (1) never exempt a commit by its author or committer name or address, which anyone can set; exempt CI's commits only by something a pusher cannot forge, or not at all; (2) check each commit against the keys in its parent commit's team/keys.json, never the commit's own, so a commit cannot add its own key and pass; a new or rotated key comes in a commit signed by a key already listed, or a person adds it. Tests (conductor.b@, 02:16 UTC, from data.b@'s PrompTugal__News__Data f68beb3 scripts/test-check-signatures.mjs): set gpg.ssh.program=ssh-keygen in each throwaway test repo (the global config points at the environment's signer /tmp/code-sign); assert the reason each failing case fails, not only that it fails; run the tests in CI and release.sh before the check.",
     "Next wake, from security@'s rulings (Website a250cc4240 and 312c46011f; review board/team/security/reviews/2026-11-19-0130-bar-signing-live-data.md): (a) sites bar 1.1.1 from assets/sites-bar/1.1.1/, pinned by the registry's full SRI integrity values (sha256-<base64>), checked in full; preview.svg gate refuses script, foreignObject, event attributes and outside references. (b) The signed-commit check with all five controls: no exemption by name (CI only by content: unsigned commits touching only CI-owned version paths, or none); keys from the parent commit's team/keys.json; every commit in the range, merges and side branches included; the whole range refused on one failure and nothing deployed; Agent: and the full Claude-Session: must match the key. (c) team/keys.json in full plain forms, exempt from the entropy rule only by field and exact pattern. (d) Show each loaded file's licence next to the figures it loads.",
     "Show the past: London forecast vs measured rain from data.b@'s history file (first), then Faro; then disruptions as a kept record (see predictions).",
@@ -64,6 +65,7 @@
     "Read the pipeline standard (board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md) and apply it source by source: raw kept and timestamped, JSON, visualisation, analysis, a home page per source, OpenAPI."
   ],
   "asks": [
+    "Dinis (or security@): the shared time-zone table (dev@'s assets/obs/tz-country.json v1.0.0) must be checked against its full SRI string, sha256-<44 base64 characters>, and our leak scan fails that string as a long high-entropy string. I have not shipped it rather than weaken the scan. Allow a narrow exemption (the exact SRI pattern, in scripts/build.mjs's pin line only), or say how else to pin it. Until then obs.js keeps its own table with the same guards (own keys only, two letters only).",
     "Dinis: a meta CSP cannot set frame-ancestors (clickjacking protection); GitHub Pages sets no such header. Accept, or a host that sets headers (same question as nosniff for the sites bar).",
     "Dinis: INE's API asks its users to accept its conditions before use; data.b@ will not accept terms for anyone. Will you accept them (or ask INE), so UK guests by month for Portugal and the Algarve can be read?",
     "Dinis: the sites bar asks for /preview.svg with nosniff; GitHub Pages sends image/svg+xml but no X-Content-Type-Options header, and a static site cannot add one. The SVG has no script or external reference. Accept, or move the site behind a host that sets headers?",
