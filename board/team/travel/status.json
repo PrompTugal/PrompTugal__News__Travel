@@ -5,7 +5,7 @@
   "account": "B",
   "site": "https://travel.promptugal.news",
   "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
-  "updated": "2026-11-19T04:56Z",
+  "updated": "2026-11-19T05:11Z",
   "run": "19 Nov ~00:55 UTC, on conductor.b@'s sites-bar message",
   "observability": {
     "lane": "travel",
@@ -51,7 +51,7 @@
   ],
   "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
   "next": [
-    "Sites bar 1.1.1: pin it the same way as the tz table (read bar.integrity from the live registry at build, never write the pins), replacing the 40-hex prefixes in build.mjs; Europe/Belfast and Europe/Busingen are with dev@.",
+    "Sites bar 1.1.1: pin it the same way as the tz table (read bar.integrity from the live registry at build, never write the pins), replacing the 40-hex prefixes in build.mjs. The same version-aware rule for the bar: a newer bar version in the registry means build without the bar; same version, other bytes: stop.",
     "Next wake, first: signed commits (Dinis, 19 Nov ~01:10 UTC; PrompTugal__News__Website board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md, section 2). An SSH signing key for this session, its public half and session id in team/keys.json; every commit signed (gpg.ssh.program set repo-locally); a check in release.sh and CI (pattern: PrompTugal__Cyber c8fff24, scripts/check-signatures.mjs) from the commit that adds it, CI's own commits exempt. If the permission check refuses a step, stop and ask. Build in from the start (conductor.b@, 01:16 UTC, from signals.b@'s review of its own check, PrompTugal__News__Signals 0101639): (1) never exempt a commit by its author or committer name or address, which anyone can set; exempt CI's commits only by something a pusher cannot forge, or not at all; (2) check each commit against the keys in its parent commit's team/keys.json, never the commit's own, so a commit cannot add its own key and pass; a new or rotated key comes in a commit signed by a key already listed, or a person adds it. Tests (conductor.b@, 02:16 UTC, from data.b@'s PrompTugal__News__Data f68beb3 scripts/test-check-signatures.mjs): set gpg.ssh.program=ssh-keygen in each throwaway test repo (the global config points at the environment's signer /tmp/code-sign); assert the reason each failing case fails, not only that it fails; run the tests in CI and release.sh before the check.",
     "Next wake, from security@'s rulings (Website a250cc4240 and 312c46011f; review board/team/security/reviews/2026-11-19-0130-bar-signing-live-data.md): (a) sites bar 1.1.1 from assets/sites-bar/1.1.1/, pinned by the registry's full SRI integrity values (sha256-<base64>), checked in full; preview.svg gate refuses script, foreignObject, event attributes and outside references. (b) The signed-commit check with all five controls: no exemption by name (CI only by content: unsigned commits touching only CI-owned version paths, or none); keys from the parent commit's team/keys.json; every commit in the range, merges and side branches included; the whole range refused on one failure and nothing deployed; Agent: and the full Claude-Session: must match the key. (c) team/keys.json in full plain forms, exempt from the entropy rule only by field and exact pattern. (d) Show each loaded file's licence next to the figures it loads.",
     "Show the past: London forecast vs measured rain from data.b@'s history file (first), then Faro; then disruptions as a kept record (see predictions).",
@@ -73,7 +73,7 @@
     "Dinis: front page A, B or C at https://travel.promptugal.news/design/ (not waited on).",
     "Dinis: What's on lists events from the councils' own pages as titles, dates and links (reference use, source named), from the council research and from data.promptugal.news's feed. data.b@'s note says no reuse licence was found for those sites and agendalx.pt asks reference use only. Is listing them this way all right, or should the page only link to each council's agenda?"
   ],
-  "live_changes": "2026-11-19T04:56Z: obs.js uses the shared time-zone-to-country table (dev@'s v1.0.0, 143 zones), checked at every build against the live registry's obs_tz.integrity (security@'s option 1: no pin in the repo). Earlier: no IP lookup, predictions file (PRED 2026/0002), Pages timer removed, data in the browser.",
+  "live_changes": "2026-11-19T05:11Z: shared tz table 1.1.0 (487 zones, Europe/Belfast and Europe/Busingen included); the build's registry check is version-aware (a newer registry version: build without the table, no country sent; the same version with other bytes: stop). Earlier: shared tz table 1.0.0, no IP lookup, predictions PRED 2026/0002.",
   "storm": "The Storm site's 7 travel items (data.b@'s handoff): plan in board/team/travel/storm-plan.md. Pages and charts come here, reading data.promptugal.news; the collectors stay with data.b@.",
   "from_data_b": "18 Nov, via conductor.b@: data.b@ is collecting events by place now; the LPFR METAR crosswind feed and departures per airport come after; ANA cancellations only if ANA's terms allow machine reading.",
   "dinis_1455": {
@@ -85,7 +85,7 @@
   },
   "security": "AppSec post-review of today's code: no high; 3 medium and 2 low fixed in 6470998; findings published at /security/. Inner passes run from the next wake (CLAUDE.md).",
   "library_requests": "Checked 18 Nov ~23:05 UTC: none for travel.b@ (our request file 404; the index does not name travel.b@).",
-  "passes": "Shared tz table: AppSec post-review by travel.b.appsec@ (Sonnet): clean (null-prototype map, own keys, two letters; build fails closed; no pin in the repo); one low (size cap after read, bounded by the 20 s timeout). Lead tested: build passes with the real file, stops with a tampered one; the browser fetches the table from this host.",
+  "passes": "tz table 1.1.0 and version-aware check: AppSec post-review by travel.b.appsec@ (Sonnet): clean (a faked version only withholds the table; it never ships unverified). Lead tested the three cases (match, newer in registry, same version other bytes). release.sh runs under set -euo pipefail with one gate per line.",
   "sites_bar": "sites bar 1.1.0 installed (19 Nov ~01:10 UTC): vendored unchanged, sha256-checked at build, registry read at pull, bar first in body (after the skip link), CSS and deferred JS from this host; old rail removed; /preview.svg is the 320 x 180 card.",
   "london": "Live: /london/ (forecast beside Faro, flood alerts, measured rain). From data.b@: London to Faro/Lisbon/Porto routes held (adsb.lol's route lookup returned none); INE UK guests wait for Dinis (INE's API asks users to accept its conditions); TfL status next.",
   "releases": "Every push carries one piece of work, so each Pages run releases and tags it (Dinis, 18 Nov ~23:45 UTC); pages.yml already tags each run's commit.",

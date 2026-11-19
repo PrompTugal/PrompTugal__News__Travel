@@ -103,6 +103,7 @@ const pages = [];
 // vendored in src/assets/sites-bar/1.1.0/ and checked by sha256 here; rendered at build from data/inputs/sites.json
 // (promptugal.news/api/v1/sites.json, read by scripts/pull.mjs). If the renderer refuses the registry it returns ''
 // and the pages go out without a bar, never a hand-made one. It replaces the old rail and footer list.
+let tzTableWithheld = false;
 // The shared time-zone-to-country table for obs.js (dev@'s assets/obs/tz-country.json), checked at every build against
 // the live registry's obs_tz.integrity (security@'s ruling, 19 Nov 2026 04:51 UTC, option 1: the pin is read from the
 // registry and never written into this repository). No registry, or a different digest: the build stops.
@@ -110,8 +111,17 @@ const pages = [];
   let reg = null;
   try { const r = await fetch('https://promptugal.news/api/v1/sites.json', { redirect: 'error', signal: AbortSignal.timeout(20000), headers: { accept: 'application/json' } }); const t = await r.text(); if (r.ok && t.length < 1_000_000) reg = JSON.parse(t); } catch {}
   const want = reg && reg.obs_tz && typeof reg.obs_tz.integrity === 'string' ? reg.obs_tz.integrity : '';
-  const got = 'sha256-' + createHash('sha256').update(readFileSync('src/assets/obs/tz-country.json')).digest('base64');
-  if (!/^sha256-[A-Za-z0-9+/]{43}=$/.test(want) || got !== want) { console.error(`build: src/assets/obs/tz-country.json does not match the registry's obs_tz.integrity (${want ? 'differs' : 'registry unreadable'})`); process.exit(1); }
+  const wantV = reg && reg.obs_tz && typeof reg.obs_tz.version === 'string' ? reg.obs_tz.version : '';
+  const raw = readFileSync('src/assets/obs/tz-country.json');
+  let haveV = ''; try { haveV = String(JSON.parse(raw).version || ''); } catch {}
+  const got = 'sha256-' + createHash('sha256').update(raw).digest('base64');
+  if (!/^sha256-[A-Za-z0-9+/]{43}=$/.test(want) || !/^\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(wantV)) { console.error('build: the registry\'s obs_tz cannot be read'); process.exit(1); }
+  if (wantV !== haveV) {
+    // the registry names another version (conductor.b@, 19 Nov 05:10 UTC, from data.b@'s trap): ship with no table, so
+    // obs.js sends no country, deploy the rest, and upgrade at the next wake
+    console.warn(`build: the registry names tz-country ${wantV}, this site has ${haveV || 'none'}: building without the table (no country sent) until it is upgraded`);
+    tzTableWithheld = true;
+  } else if (got !== want) { console.error(`build: src/assets/obs/tz-country.json ${haveV} does not match the registry's obs_tz.integrity for the same version`); process.exit(1); }
 }
 const SB = 'src/assets/sites-bar/1.1.0/';
 // The first 40 hex digits of each file's sha256 (160 bits; the leak scan allows hex up to a git object id's length).
@@ -803,6 +813,7 @@ ${figs.map((f, i) => { const x = 60 + i * (cw + 10); return `<rect x="${x}" y="2
     figures: figs.map(([value, label, source]) => ({ value, label, source })), png: '/preview.png', card: '/preview-card.svg', png_note: 'preview.png is rendered from preview-card.svg by scripts/preview-png.mjs when a browser is available; it may be from an earlier build than the SVG.' }, null, 2) + '\n');
 }
 
+if (tzTableWithheld) rmSync('_site/assets/obs/tz-country.json', { force: true });
 // ---------- stamp the version (from the factory build) ----------
 const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 for (const f of walk('_site')) {
