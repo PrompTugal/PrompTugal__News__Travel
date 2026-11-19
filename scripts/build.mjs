@@ -121,12 +121,12 @@ let tzTableWithheld = false;
   const want = typeof integ === 'string' ? integ : integ && typeof integ === 'object' && Object.prototype.hasOwnProperty.call(integ, 'tz-country.json') && typeof integ['tz-country.json'] === 'string' ? integ['tz-country.json'] : '';
   if (!want) { console.warn(`build: tz-country ${haveV || 'none'} off: the registry names ${REG.obs_tz.version} and no longer lists ${haveV || 'this version'} (no country sent until upgraded)`); tzTableWithheld = true; }
   else if (!SRI.test(want) || sriOf(raw) !== want) { console.error(`build: src/assets/obs/tz-country.json ${haveV} does not match the registry's pin for that version`); process.exit(1); }
-  else if (REG.obs_tz.version !== haveV) console.warn(`build: tz-country ${haveV} on; the registry's newest is ${REG.obs_tz.version}: upgrade at the next wake`);
+  else if (REG.obs_tz.version !== haveV) console.warn(`build: tz-country ${haveV} on; the registry's newest is ${REG.obs_tz.version}: upgrade only after security@'s go`);
 }
-// the shared sites bar (Dinis, 18 Nov 2026, the sites-bar guidance; 1.2.0 from 19 Nov, Dinis's switcher of 03:18 UTC):
+// the shared sites bar (Dinis, 18 Nov 2026, the sites-bar guidance; 1.2.1 from 19 Nov ~08:05 UTC, security@'s go of 07:54):
 // rendered at build from the live registry; if the renderer refuses the registry it returns '' and the pages go out
 // without a bar, never a hand-made one
-const SBV = '1.2.0', SB = `src/assets/sites-bar/${SBV}/`;
+const SBV = '1.2.1', SB = `src/assets/sites-bar/${SBV}/`;
 let sitesBar = '', sitesBarChecked = false;
 {
   const pin = pinFor(REG.bar.versions, SBV);
@@ -140,7 +140,7 @@ let sitesBar = '', sitesBarChecked = false;
       if (!SRI.test(want) || sriOf(readFileSync(SB + f)) !== want) { console.error(`build: ${SB + f} does not match the registry's pin for sites-bar ${SBV}`); process.exit(1); }
     }
     sitesBarChecked = true;
-    if (REG.bar.version !== SBV) console.warn(`build: sites-bar ${SBV} on; the registry's newest is ${REG.bar.version}: upgrade at the next wake`);
+    if (REG.bar.version !== SBV) console.warn(`build: sites-bar ${SBV} on; the registry's newest is ${REG.bar.version}: upgrade only after security@'s go`);
     const { render: renderSitesBar } = await import(new URL('../' + SB + 'sites-bar-render.mjs', import.meta.url));
     sitesBar = renderSitesBar(REG, { here: 'travel.promptugal.news' });
   }

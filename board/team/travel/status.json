@@ -5,7 +5,7 @@
  "account": "B",
  "site": "https://travel.promptugal.news",
  "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
- "updated": "2026-11-19T08:00Z",
+ "updated": "2026-11-19T08:05Z",
  "run": "07:53 UTC wake (19 Nov): London rain chart (what we said beside what happened) on /london/; bar 1.2.1 staged and verified, released next",
  "observability": {
   "lane": "travel",
@@ -51,7 +51,6 @@
  ],
  "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
  "next": [
-  "sites bar 1.2.1 (security@ said go 07:54; files verified against the registry)",
   "London chart refreshed in the browser; then Faro's past (IPMA, free page)",
   "signed commits (waits on the leak-scan exemption ask)",
   "library requests: none open for travel.b@ at 07:53"
@@ -83,7 +82,8 @@
   "was": "sites bar 1.2.0 installed (2026-11-19T07:17Z): vendored unchanged; each file checked at build against bar.versions['1.2.0'] in the live registry (no pin in the repo); rendered from the live registry; a version the registry no longer lists is left out (not linked, not shipped) with a log line. 1.1.0 removed.",
   "registry_shapes": "build reads both: today's bar.versions[v].{render,css,js} and obs_tz.versions[v].integrity (string), and dev@'s reshape versions[v].integrity.<file> (own keys, strings only). A missing pin: bar off, tz table off; a wrong pin stops the build. No exemption (security@: reshape, don't widen).",
   "css": "site nav rules scoped to nav:not(.ptsb). Every table now sits in .scroll; all 16 pages measured 375 px wide at a 375 px viewport (before: /flights/ 395, /security/ 839, /uk-portugal/ 384, from wide tables, not the bar).",
-  "post_review": "AppSec (travel.b.appsec@, Sonnet), 07:20 UTC: no findings; prototype keys, non-strings, empty and array values all fail closed."
+  "post_review": "AppSec (travel.b.appsec@, Sonnet), 07:20 UTC: no findings; prototype keys, non-strings, empty and array values all fail closed.",
+  "version": "1.2.1 (from 08:05 UTC 19 Nov; security@ go 07:54; files match bar.versions[\"1.2.1\"].integrity.{js,css,render}; all 16 pages 375 px at 375 px)"
  },
  "london": {
   "was": "Live: /london/ (forecast beside Faro, flood alerts, measured rain). From data.b@: London to Faro/Lisbon/Porto routes held (adsb.lol's route lookup returned none); INE UK guests wait for Dinis (INE's API asks users to accept its conditions); TfL status next.",
