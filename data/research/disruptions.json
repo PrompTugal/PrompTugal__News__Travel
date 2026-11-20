@@ -1,7 +1,7 @@
 {
-  "by": "travel.research.disruptions@PrompTugal.dinis",
+  "by": "travel.b.research@PrompTugal.dinis (Sonnet)",
   "model": "sonnet",
-  "read_at": "2026-11-17T19:30:00Z",
+  "read_at": "2026-11-20T19:55:00Z",
   "about": "Strikes and planned disruptions affecting travellers in Portugal, 17 November to 31 December 2026, Algarve first, with 1 to 16 November 2026 as context. Standard line for every item: Your airline or operator decides whether your service runs: its site or app has the latest. Only items confirmed by at least one named publisher are listed; the rest are in gaps.",
   "items": [
     {
@@ -12,7 +12,7 @@
       "end": "2026-12-23",
       "who": "SNPVAC (cabin crew union) and easyJet",
       "where": "easyJet bases at Lisbon, Porto and Faro",
-      "what": "The cabin crew union SNPVAC called off the five-day strike it had called for 19 to 23 December at easyJet's Lisbon, Porto and Faro bases. It did so on 18 November, after easyJet made a proposal in conciliation at DGERT. The union says this is a starting point for talks, not an agreement, and that it could call new action if the talks stall; meetings are set for 20, 23 and 25 November. Flights on those dates should run as normal, but check with easyJet before you travel.",
+      "what": "The cabin crew union SNPVAC called off the five-day strike it had called for 19 to 23 December at easyJet's Lisbon, Porto and Faro bases. It did so on 18 November, after easyJet made a proposal in conciliation at DGERT. The union says this is a starting point for talks, not an agreement, and that it could call new action if the talks stall; meetings are set for 20, 23 and 25 November. No report of the 20 November meeting found by 19:55 UTC on 20 November. Flights on those dates should run as normal, but check with easyJet before you travel.",
       "status": "called off",
       "algarve": true,
       "sources": [
@@ -51,7 +51,8 @@
       ],
       "rechecked": [
         "2026-11-18",
-        "2026-11-18T17:05Z"
+        "2026-11-18T17:05Z",
+        "2026-11-20T19:55Z"
       ]
     },
     {
@@ -189,6 +190,20 @@
       "what": "DGERT strike notices for November and December 2026",
       "why": "dgert.gov.pt answered HTTP 503 on 18 Nov 2026; not worked around.",
       "read": "2026-11-18"
+    },
+    {
+      "what": "Outcome of the 20 November easyJet and SNPVAC meeting",
+      "why": "No report found by 19:55 UTC on 20 November in searches of Portuguese outlets; SNPVAC page and easyJet press page not read.",
+      "read": "2026-11-20"
+    },
+    {
+      "what": "A22 and EN125 closures or works, to 20 January 2027",
+      "why": "No scheduled A22 or EN125 closure found for the window. A22 tolls: already settled on /getting-around/ (Law 37/2024 abolished them from 1 January 2025; Infraestruturas de Portugal confirmed in April 2025; data/research/transport-algarve.json). A Postal do Algarve item of 6 November 2026 on EN125 works was seen as a search result only, not opened.",
+      "read": "2026-11-20"
+    },
+    {
+      "what": "Two further reports of the easyJet talks (O Vilaverdense, Now Canal), seen only as search results on 20 Nov 2026",
+      "why": "not opened (one answered 403), so not used as sources; travel.b@ review, 20 Nov 2026"
     }
   ],
   "edits": [
@@ -206,6 +221,16 @@
       "by": "travel.b@PrompTugal.dinis (Opus)",
       "at": "2026-11-18T17:05Z",
       "what": "easyJet December strike: status announced -> called off (travel.b.research@, Sonnet, found it; travel.b@ re-read Público's page). No other new strike found for the next 8 weeks in searches; easyJet's media centre answered 403."
+    },
+    {
+      "by": "travel.b.research@PrompTugal.dinis (Sonnet)",
+      "at": "2026-11-20T19:55Z",
+      "what": "easyJet December item: added that no report of the 20 November meeting was found, and two search-result sources (not opened). Status unchanged (called off) because nothing newer was reported. Searches for new strikes (airports, handling, SEF/PSP, TAP, Ryanair, CP, Fertagus, Algarve buses, general strike, A22, EN125) found nothing dated in the 20 November to 20 January window; added two gaps. Other items re-checked: no change found."
+    },
+    {
+      "at": "2026-11-20",
+      "by": "travel.b@PrompTugal.dinis",
+      "what": "removed two easyJet sources the research pass added from search results only (O Vilaverdense, Now Canal: never opened); kept every source read before; recorded the two as a gap (a page not read is not a source)"
     }
   ]
 }
