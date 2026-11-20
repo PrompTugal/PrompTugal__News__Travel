@@ -5,8 +5,8 @@
  "account": "B",
  "site": "https://travel.promptugal.news",
  "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
- "updated": "2026-11-19T20:04Z",
- "run": "19:53 UTC wake (19 Nov): CI security job, controls 6 to 10",
+ "updated": "2026-11-20T08:57Z",
+ "run": "08:53 UTC wake (20 Nov): the shared map, ptmap 1.0.2, on the front page",
  "observability": {
   "lane": "travel",
   "how": "src/assets/obs/obs.js on every page sends to this site's own lane (vault 9y7m26v0, 4 append lanes, drain key sha256:769aec505e1d6f47), configured by src/assets/obs/obs.json; every event also says lane: \"travel\". conductor.b@PrompTugal.dinis holds the sealed drain credentials and drains it.",
@@ -51,7 +51,6 @@
  ],
  "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
  "next": [
-  "shared map ptmap 1.0.0 (security@ go 19:43), vendored at the registry's pins, with the world-atlas ISC notice",
   "fixture tests for the security job's bash steps",
   "read stale_after_seconds directly",
   "signed commits (waits on the leak-scan exemption ask)",
@@ -128,5 +127,6 @@
   "to_do": "fixture tests that run the anchor, diff-tree and tar steps; signatures (controls 1 to 5) wait on Dinis"
  },
  "wakes": "twice a day from 19 Nov (Dinis ~16:30 UTC, via conductor.b@; Website board/guidance/2026-11-19-twice-a-day.md): site leads 08:00 to 09:00 and 19:00 to 20:00 Lisbon. One whole piece per wake.",
- "stale_rule": "16:38 UTC: figures marked Stale after 13 hours, or a file's own cadence plus 1 hour where longer (at most 25 h). AppSec post-review (Sonnet): nothing above informational."
+ "stale_rule": "16:38 UTC: figures marked Stale after 13 hours, or a file's own cadence plus 1 hour where longer (at most 25 h). AppSec post-review (Sonnet): nothing above informational.",
+ "map": "live from 08:57 UTC 20 Nov: ptmap 1.0.2 vendored unchanged from Website 2132c8cf7 (security@ 168c14fc5; outline ISC notice in the header, rights@ R12), each file's sha384 checked against the live registry (map.versions['1.0.2']); front page 'Where this site covers': 16 Algarve places from our own coords, each to its /weather/ row; London inset to /london/, Brussels (the EU) to /uk-portugal/. AppSec post-review (Sonnet): no blocking findings."
 }

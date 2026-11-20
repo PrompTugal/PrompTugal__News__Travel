@@ -146,3 +146,6 @@ figure.chart figcaption { font-size: .85rem; color: var(--muted); }
 /* the London rain chart keeps 560 px so its 11-unit labels stay at 9.6 px or more on a phone (designer@'s floor 9.5 px); it scrolls in its own box */
 .chart-wide { overflow-x: auto; max-width: 100%; }
 .chart-wide svg { min-width: 560px; }
+/* keep the map a card, not a page: about 330 px wide, so it is about 470 px tall on a desktop (travel.b@ review) */
+.map-sec .map-host { max-width: 330px; margin: 0 auto; }
+.map-sec .map-list { columns: 2; padding-left: 1.2rem; }

@@ -145,9 +145,30 @@ let sitesBar = '', sitesBarChecked = false;
     sitesBar = renderSitesBar(REG, { here: 'travel.promptugal.news' });
   }
 }
+// the shared map, ptmap (Dinis, 19 Nov 2026 ~17:40 UTC: Portugal big, London and the EU small; board/spec-the-shared-map.md in
+// PrompTugal__News__Website; 1.0.2, security@'s review passed 168c14fc5). Vendored, pinned by the registry's sha384 SRI at every
+// build (REG.map.versions["1.0.2"].integrity.<file>, or the flat form). No pin: the map is off, not linked, and its files are
+// removed from _site. A wrong pin stops the build. The script runs from this host under script-src 'self'.
+const PMV = '1.0.2', PM = `src/assets/ptmap/${PMV}/`;
+const sri384 = buf => 'sha384-' + createHash('sha384').update(buf).digest('base64');
+const SRI384 = /^sha384-[A-Za-z0-9+/]{64}$/;
+let mapChecked = false;
+{
+  const pin = REG.map ? pinFor(REG.map.versions, PMV) : null;
+  if (!pin) console.warn(`build: map ${PMV} off: the registry ${REG.map ? `names ${REG.map.version} and no longer lists ${PMV}` : 'does not list a map'}`);
+  else {
+    const own = (o, k) => o && typeof o === 'object' && Object.prototype.hasOwnProperty.call(o, k) && typeof o[k] === 'string' ? o[k] : '';
+    for (const f of ['ptmap.js', 'ptmap.css']) {
+      const want = own(pin.integrity, f) || own(pin, f);
+      if (!SRI384.test(want) || sri384(readFileSync(PM + f)) !== want) { console.error(`build: ${PM + f} does not match the registry's pin for map ${PMV}`); process.exit(1); }
+    }
+    mapChecked = true;
+    if (REG.map.version !== PMV) console.warn(`build: map ${PMV} on; the registry's newest is ${REG.map.version}: upgrade only after security@'s go`);
+  }
+}
 // type and ipma: kept from the reading meter, which this site no longer has (Dinis, 18 Nov 2026 ~23:45 UTC: only
 // promptugal.news bills). Every page is free; the page's type is still written in its meta for other tools.
-function page({ path, title, description, body, md, provenance, variant = '', script = '', noindex = false, type = 'data', ipma = false, extraModule = '' }) {
+function page({ path, title, description, body, md, provenance, variant = '', script = '', noindex = false, type = 'data', ipma = false, extraModule = '', map = false }) {
   const pageType = ipma ? 'free' : type;
   const isHome = path === '/';
   const fullTitle = isHome ? 'PrompTugal.news Travel' : `${title} · PrompTugal.news Travel`;
@@ -176,7 +197,7 @@ function page({ path, title, description, body, md, provenance, variant = '', sc
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
-${sitesBar ? `<link rel="stylesheet" href="/assets/sites-bar/${SBV}/sites-bar.css">\n` : ''}<meta name="page-type" content="${pageType}">
+${map && mapChecked ? `<link rel="stylesheet" href="/assets/ptmap/${PMV}/ptmap.css">\n` : ''}${sitesBar ? `<link rel="stylesheet" href="/assets/sites-bar/${SBV}/sites-bar.css">\n` : ''}<meta name="page-type" content="${pageType}">
 <meta name="page-date" content="${today}">
 ${noindex ? '<meta name="robots" content="noindex">\n' : ''}</head>
 <body class="${esc(variant)}">
@@ -198,7 +219,7 @@ ${provHtml}
 <footer class="foot"><p>${a('https://promptugal.news/', 'PrompTugal.news')}: Portugal, town by town. Raw data from ${a('https://data.promptugal.news/', 'data.promptugal.news')} and from ${a('https://github.com/PrompTugal/PrompTugal__News__Website/tree/dev/data/by-place', 'PrompTugal.news place data')}. Not a warning service: follow ${a('https://www.ipma.pt/', 'IPMA')} and ${a('https://prociv.gov.pt/', 'ANEPC')}.</p>
 <p class="takedown">Is something here yours, and do you think we should not show it? ${a('https://github.com/PrompTugal/PrompTugal__News__Travel/issues/new', 'Open an issue')} and we take it down while we talk. Text and data we make: CC BY 4.0; what we show from others stays under its source\'s licence or terms, linked beside it.</p>
 <p class="obs-row">Version ${esc(version)} · ${a('https://github.com/PrompTugal/PrompTugal__News__Travel', 'Source')} · Code Apache-2.0, text CC BY 4.0 · ${a('/llms.txt', 'llms.txt')} · ${a('/version.json', 'version.json')} · ${a('/security/', 'Security')} · ${a('https://promptugal.news/principles/', 'Principles')} · ${a('https://promptugal.news/report/', 'Report a problem')}</p></footer>
-${script ? `<script src="${script}" defer></script>\n` : ''}${extraModule ? `<script type="module" src="${extraModule}"></script>\n` : ''}
+${script ? `<script src="${script}" defer></script>\n` : ''}${extraModule ? `<script type="module" src="${extraModule}"></script>\n` : ''}${map && mapChecked ? `<script src="/assets/ptmap/${PMV}/ptmap.js" defer></script>\n<script src="/assets/map-init.js" defer></script>\n` : ''}
 <script src="/assets/obs/obs.js" defer></script>${sitesBar ? `\n<script src="/assets/sites-bar/${SBV}/sites-bar.js" defer></script>` : ''}
 </body>
 </html>
@@ -314,10 +335,14 @@ function front(variant, path, label) {
     b: `<h1>${next ? esc(next.title) : 'Travel in the Algarve, now'}</h1><p class="dek">${next ? esc(`${dateRange(next)}. ${next.where}. ${next.status}.`) : ''} The rest of today's travel picture for the Algarve follows: warnings, Faro airport, the weather and the sea.</p>`,
     c: `<h1>The Algarve board: what is flying near Faro now</h1><p class="dek">A board for the Algarve: aircraft near Faro, strikes ahead, warnings and the weather. Data pulled ${esc(lisbon(manifest.read_at))}.</p>`,
   }[variant];
-  const body = `${label ? `<p class="variant-label">${esc(label)}</p>` : ''}<div class="intro">${intro}</div><div class="grid g-${variant}">${order.map(k => blocks[k]).join('\n')}</div>`;
+  const hasLondon = existsSync('data/inputs/beyond/now/london.json'), hasEu = existsSync('data/inputs/beyond/eurostat-tourism.json');
+  const mapPlaces = municipalities.map(id => { const c = (now[id] || {}).coords || {}; return Number.isFinite(c.lon) && Number.isFinite(c.lat) ? { id, name: placeName(id), at: [c.lon, c.lat], href: `${SITE}/weather/#p-${id}` } : null; }).filter(Boolean);
+  const mapLinks = [...mapPlaces.map(p => [p.name, p.href]), ...(hasLondon ? [['London', `${SITE}/london/`]] : []), ...(hasEu ? [['The EU (Brussels)', `${SITE}/uk-portugal/`]] : [])];
+  const mapSec = mapChecked && mapPlaces.length ? `<section class="card map-sec" aria-labelledby="h-map"><h2 id="h-map">Where this site covers</h2><p class="meta">Algarve places with weather and sea figures, each linked to its row; London and the EU (Brussels) are small insets, not geography.</p><div id="ptmap" class="map-host"><ul class="map-list">${mapLinks.map(([n, h]) => `<li>${a(h, n)}</li>`).join('')}</ul></div><script type="application/json" id="ptmap-data">${JSON.stringify({ places: mapPlaces, london: hasLondon ? { href: `${SITE}/london/` } : null, eu: hasEu ? { href: `${SITE}/uk-portugal/` } : null, label: 'Places this site covers: the Algarve, with London and Brussels as insets' }).replace(/</g, '\\u003c')}</script></section>` : '';
+  const body = `${label ? `<p class="variant-label">${esc(label)}</p>` : ''}<div class="intro">${intro}</div>${mapSec}<div class="grid g-${variant}">${order.map(k => blocks[k]).join('\n')}</div>`;
   const md = `${{ a: 'What a visitor needs to know today about travel in the Algarve.', b: next ? `${next.title}: ${dateRange(next)}, ${next.where} (${next.status}).` : '', c: 'A board for the Algarve.' }[variant]} Data read ${lisbon(manifest.read_at)}.
 
-## Warnings in force
+${mapSec ? `## Where this site covers\n\n${mapLinks.map(([n, h]) => `- ${ml(h, n)}`).join('\n')}\n\n` : ''}## Warnings in force
 
 ${w.md}
 
@@ -350,7 +375,7 @@ ${modes.length ? modes.map(m => `- **${m.title}**: ${m.summary}`).join('\n') : '
   page({
     path, title: label ? `Front page, ${label}` : 'Travel in the Algarve, now',
     description: 'Travel and tourism in Portugal, the Algarve first: weather and sea for visitors, flights at Faro, strikes and disruptions, getting around, events and tourism statistics, each value sourced.',
-    body, md, variant: `front v-${variant}`, script: '/assets/now.js', noindex: !!label, ipma: true,
+    body, md, variant: `front v-${variant}`, script: '/assets/now.js', map: true, noindex: !!label, ipma: true,
     provenance: prov({ agents: ['travel.research.disruptions@, travel.research@ and travel.data@ (Sonnet sub-agents) researched the strikes, transport and tourism sections'] }),
   });
 }
@@ -501,7 +526,7 @@ const faroTemp = (() => {
     body: `<h1>Weather and sea for visitors</h1><p class="dek">Each Algarve municipality: the latest station reading, today and tomorrow, the sea on its coast, UV and fire risk. From IPMA's open data, via the PrompTugal.news place data, read ${esc(lisbon(faro.read_at))}. For storms and warnings, ${a('https://weather.promptugal.news/', 'PrompTugal.news Weather')} goes deeper.</p>
 <section aria-labelledby="h-w"><h2 id="h-w">Warnings in force</h2>${w.html}</section>
 <section aria-labelledby="h-coast"><h2 id="h-coast">The sea, coast by coast</h2><ul class="coasts">${Object.values(coasts).map(s => `<li><strong>${esc(s.coast)}</strong>: waves up to ${esc(cell(s.waves_max_m))} m, swell up to ${esc(cell(s.sea_max_m))} m, sea temperature up to ${esc(cell(s.sea_temp_max_c))}°C (${esc(s.date)}). ${a(s.page, 'IPMA')}</li>`).join('')}</ul><p class="meta">The Faro coast faces south (Olhão to Vila Real de Santo António, Albufeira, Quarteira); the Sagres coast covers the west and the Barlavento (Lagos, Portimão, Aljezur, Vila do Bispo), as IPMA groups them.</p></section>
-<section aria-labelledby="h-places"><h2 id="h-places">Place by place</h2><div class="scroll"><table class="places"><thead><tr><th scope="col">Place</th><th scope="col" class="num">Now (°C)</th><th scope="col">Today</th><th scope="col">Tomorrow</th><th scope="col" class="num">UV</th><th scope="col">Fire risk</th></tr></thead><tbody>${rows.map(r => `<tr><th scope="row">${esc(r.name)}<span class="meta"> ${esc(r.station || '')}</span></th><td class="num">${esc(cell(r.temp))}</td><td>${esc(r.today.t_max_c != null ? `${Math.round(r.today.t_max_c)}° / ${Math.round(r.today.t_min_c)}°, ${WT[r.today.weather_type] || ''}, rain ${r.today.rain_prob_pct}%` : 'n/a')}</td><td>${esc(r.tomorrow.t_max_c != null ? `${Math.round(r.tomorrow.t_max_c)}° / ${Math.round(r.tomorrow.t_min_c)}°, ${WT[r.tomorrow.weather_type] || ''}, rain ${r.tomorrow.rain_prob_pct}%` : 'n/a')}</td><td class="num">${esc(r.uv ? r.uv.index : 'n/a')}</td><td>${esc(r.fire ? r.fire.level : 'n/a')}</td></tr>`).join('')}</tbody></table></div>
+<section aria-labelledby="h-places"><h2 id="h-places">Place by place</h2><div class="scroll"><table class="places"><thead><tr><th scope="col">Place</th><th scope="col" class="num">Now (°C)</th><th scope="col">Today</th><th scope="col">Tomorrow</th><th scope="col" class="num">UV</th><th scope="col">Fire risk</th></tr></thead><tbody>${rows.map(r => `<tr id="p-${esc(r.id)}"><th scope="row">${esc(r.name)}<span class="meta"> ${esc(r.station || '')}</span></th><td class="num">${esc(cell(r.temp))}</td><td>${esc(r.today.t_max_c != null ? `${Math.round(r.today.t_max_c)}° / ${Math.round(r.today.t_min_c)}°, ${WT[r.today.weather_type] || ''}, rain ${r.today.rain_prob_pct}%` : 'n/a')}</td><td>${esc(r.tomorrow.t_max_c != null ? `${Math.round(r.tomorrow.t_max_c)}° / ${Math.round(r.tomorrow.t_min_c)}°, ${WT[r.tomorrow.weather_type] || ''}, rain ${r.tomorrow.rain_prob_pct}%` : 'n/a')}</td><td class="num">${esc(r.uv ? r.uv.index : 'n/a')}</td><td>${esc(r.fire ? r.fire.level : 'n/a')}</td></tr>`).join('')}</tbody></table></div>
 <p class="meta">"Now" is the nearest IPMA station with a reading; n/a means that station sent none in the hour read. Forecasts: IPMA's daily forecast for the nearest town. ${a('https://www.ipma.pt/en/otempo/prev.localidade.hora/', 'IPMA forecasts')} · ${a('https://www.ipma.pt/en/riscoincendio/rcm.pt/', 'IPMA fire risk')} · ${a('https://www.ipma.pt/en/otempo/prev.uv/', 'IPMA UV')}</p></section>
 ${faroTemp.html}`,
     md: `Each Algarve municipality, from IPMA's open data via the PrompTugal.news place data, read ${lisbon(faro.read_at)}.\n\n## Warnings in force\n\n${w.md}\n\n## The sea\n\n${Object.values(coasts).map(s => `- **${s.coast}**: waves up to ${cell(s.waves_max_m)} m, sea temperature up to ${cell(s.sea_temp_max_c)}°C (${s.date}).`).join('\n')}\n\n## Place by place\n\n| Place | Now (°C) | Today | Tomorrow | UV | Fire risk |\n|---|---|---|---|---|---|\n${rows.map(r => `| ${r.name} | ${cell(r.temp)} | ${r.today.t_max_c != null ? `${r.today.t_max_c}/${r.today.t_min_c}, ${WT[r.today.weather_type] || ''}, rain ${r.today.rain_prob_pct}%` : 'n/a'} | ${r.tomorrow.t_max_c != null ? `${r.tomorrow.t_max_c}/${r.tomorrow.t_min_c}, ${WT[r.tomorrow.weather_type] || ''}, rain ${r.tomorrow.rain_prob_pct}%` : 'n/a'} | ${r.uv ? r.uv.index : 'n/a'} | ${r.fire ? r.fire.level : 'n/a'} |`).join('\n')}\n\nSource: IPMA open data (api.ipma.pt).${faroTemp.md}`,
@@ -894,6 +919,7 @@ ${figs.map((f, i) => { const x = 60 + i * (cw + 10); return `<rect x="${x}" y="2
 
 if (tzTableWithheld) rmSync('_site/assets/obs/tz-country.json', { force: true });
 // a bar the registry no longer lists is not shipped at all, not only not linked (security post-review)
+if (!mapChecked) rmSync(`_site/assets/ptmap/${PMV}`, { recursive: true, force: true });
 if (!sitesBarChecked) rmSync(`_site/assets/sites-bar/${SBV}`, { recursive: true, force: true });
 // ---------- stamp the version (from the factory build) ----------
 const walk = d => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
