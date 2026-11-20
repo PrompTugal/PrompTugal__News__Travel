@@ -5,7 +5,7 @@
  "account": "B",
  "site": "https://travel.promptugal.news",
  "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
- "updated": "2026-11-20T08:57Z",
+ "updated": "2026-11-20T08:58Z",
  "run": "08:53 UTC wake (20 Nov): the shared map, ptmap 1.0.2, on the front page",
  "observability": {
   "lane": "travel",
@@ -124,7 +124,8 @@
   "limit": "the workflow YAML still comes from the pushed tree; only Dinis's branch protection with a required check closes that",
   "state": "built 20:04 UTC 19 Nov: a security job after build and before deploy, running no pushed code; A = head_sha of the newest successful push run on dev whose job 'security' passed (every page of runs; bootstrap base 75dc63d only when none exists; API error or page cap fails); A ancestor of AFTER; orphans refused; symlinks and gitlinks refused (diff-tree -r -m -z per commit, AFTER's tree, disk without pruning, artifact); checkers and config from A's tree; artifact tar vetted then leak-scanned with A's checker (scanned bytes = deployed bytes); GIT_ATTR_SOURCE empty tree (git >= 2.42), GIT_NO_REPLACE_OBJECTS=1, NODE_OPTIONS cleared, absolute node path; security, deploy and tag only on refs/heads/dev; check-commits skips by ancestry of a pinned base only; leak scan reads binary files and refuses symlinks; tag shape checked. Tests: scripts/test-ci-checks.mjs (62), test-leak-scan.mjs, in release.sh and CI. .gitattributes removed (it pointed at a .sg_vault that does not exist).",
   "limit_plainly": "until branch protection, the security job guards against mistakes, not against someone with push access (a pushed workflow can keep a job named security that does nothing). The first push runs the base's older checkers.",
-  "to_do": "fixture tests that run the anchor, diff-tree and tar steps; signatures (controls 1 to 5) wait on Dinis"
+  "to_do": "fixture tests that run the anchor, diff-tree and tar steps; signatures (controls 1 to 5) wait on Dinis",
+  "first_anchored_run": "c28436b's run (20 Nov ~08:57 UTC): A = 1d330f5, new checkers, all 201 files scanned (no binary skipped); all four jobs passed"
  },
  "wakes": "twice a day from 19 Nov (Dinis ~16:30 UTC, via conductor.b@; Website board/guidance/2026-11-19-twice-a-day.md): site leads 08:00 to 09:00 and 19:00 to 20:00 Lisbon. One whole piece per wake.",
  "stale_rule": "16:38 UTC: figures marked Stale after 13 hours, or a file's own cadence plus 1 hour where longer (at most 25 h). AppSec post-review (Sonnet): nothing above informational.",
