@@ -3,7 +3,7 @@
 // Node 18+, no dependencies. Throwaway git repositories are made in os.tmpdir() and removed at the end.
 // Every key-shaped string is built from parts at run time, so this file does not match the leak scan's patterns.
 import { execFileSync, spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync, copyFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync, copyFileSync, existsSync, linkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -258,6 +258,262 @@ const runLeak = (repo) => {
     const text = b.text.replace(/\$\{\{[^}]*\}\}/g, 'X');
     const r = spawnSync('bash', ['-n'], { input: text, encoding: 'utf8' });
     check(`bash -n on the run block at line ${b.line}`, r.status === 0, r.stderr);
+  }
+}
+
+// ---- the security job's run blocks, executed ----
+// The real `run:` blocks of the `security` job are cut out of pages.yml at test time (no YAML library) and run under
+// bash against throwaway repositories and fake inputs. Each case asserts the exit code and a substring of the message.
+{
+  const wf = readFileSync(join(repoRoot, '.github/workflows/pages.yml'), 'utf8').split('\n');
+  const s0 = wf.findIndex((l) => /^  security:\s*$/.test(l));
+  let s1 = wf.findIndex((l, i) => i > s0 && /^  [A-Za-z_-]+:\s*$/.test(l));
+  if (s1 < 0) s1 = wf.length;
+  const job = wf.slice(s0, s1);
+  const stepRun = (prefix) => {
+    const i = job.findIndex((l) => /^ {6}- name:/.test(l) && l.replace(/^ {6}- name:\s*/, '').replace(/^"|"$/g, '').startsWith(prefix));
+    if (i < 0) throw new Error(`no security step named ${prefix}`);
+    const r = job.findIndex((l, k) => k > i && /^ {8}run: \|\s*$/.test(l));
+    const nextStep = job.findIndex((l, k) => k > i && /^ {6}- /.test(l));
+    if (r < 0 || (nextStep >= 0 && nextStep < r)) throw new Error(`step ${prefix} has no run block`);
+    const body = [];
+    for (let k = r + 1; k < job.length; k++) {
+      if (job[k].trim() === '') { body.push(''); continue; }
+      if (!job[k].startsWith('          ')) break;
+      body.push(job[k].slice(10));
+    }
+    return body.join('\n') + '\n';
+  };
+  const blk = {
+    c12: stepRun('Checks 1 and 2'), c3: stepRun('Check 3'), c46: stepRun('Checks 4 to 6'),
+    c7: stepRun('Check 7'), c8pre: stepRun('Check 8, before'), c8: stepRun('Check 8: vet'),
+  };
+  check('security blocks extracted', Object.values(blk).every((t) => t.length > 100 || t === blk.c8pre));
+
+  const SHA40 = (c) => c.repeat(40);
+  const BASE40 = SHA40('b');
+  // A workspace repository plus a separate RUNNER_TEMP; returns the environment the blocks expect.
+  const mkEnv = (repo, extra = {}) => {
+    const rt = join(scratch, `rt${++n}`);
+    mkdirSync(rt);
+    return {
+      ...gitEnv(), GITHUB_WORKSPACE: repo, RUNNER_TEMP: rt, GITHUB_RUN_ID: '100', GITHUB_REPOSITORY: 'o/r',
+      GITHUB_API_URL: 'https://api.invalid', GH_TOKEN: 'not-a-token', NODE_BIN: process.execPath, TRUSTED_BASE: BASE40,
+      GIT_ATTR_SOURCE: '4b825dc642cb6eb9a060e54bf8d69288fbee4904', GIT_NO_REPLACE_OBJECTS: '1', NODE_OPTIONS: '', ...extra,
+    };
+  };
+  const runBlock = (text, env, cwd) => {
+    const f = join(scratch, `block-${++n}.sh`);
+    writeFileSync(f, text);
+    const r = spawnSync('bash', ['--noprofile', '--norc', '-e', '-o', 'pipefail', f], { cwd: cwd || env.GITHUB_WORKSPACE, env, encoding: 'utf8', timeout: 60000 });
+    return { code: r.status, out: (r.stdout || '') + (r.stderr || '') };
+  };
+  const expectFail = (name, r, msg) => check(name, r.code !== 0 && r.out.includes(msg), `code ${r.code}, wanted "${msg}", got: ${r.out.slice(0, 300)}`);
+  const expectPass = (name, r, msg) => check(name, r.code === 0 && r.out.includes(msg), `code ${r.code}, wanted "${msg}", got: ${r.out.slice(0, 300)}`);
+  const head = (repo) => git(repo, ['rev-parse', 'HEAD']);
+  const setAnchor = (env, a) => writeFileSync(join(env.RUNNER_TEMP, 'anchor.sha'), a + '\n');
+
+  // ---- checks 1 and 2 ----
+  {
+    const r = newRepo(); commit(r, 'one', { files: { 'a.txt': '1' } });
+    let env = mkEnv(r, { GITHUB_SHA: head(r) });
+    expectPass('c12: a clean full clone passes', runBlock(blk.c12, env), 'checks 1 and 2 passed');
+    env = mkEnv(r, { GITHUB_SHA: SHA40('1') });
+    expectFail('c12: HEAD not the pushed commit fails', runBlock(blk.c12, env), 'HEAD is not the pushed commit');
+
+    const src = newRepo(); commit(src, 'one', { files: { 'a.txt': '1' } }); commit(src, 'two', { files: { 'a.txt': '2' } });
+    const sh = join(scratch, `shallow${++n}`);
+    git(scratch, ['clone', '-q', '--depth', '1', `file://${src}`, sh]);
+    env = mkEnv(sh, { GITHUB_SHA: head(sh) });
+    expectFail('c12: a shallow clone fails', runBlock(blk.c12, env), 'the clone is shallow');
+
+    for (const [label, file, msg] of [
+      ['a pushed _site/x', '_site/x', 'under _site'],
+      ['a pushed .gitattributes', '.gitattributes', 'a .gitattributes is pushed'],
+      ['a pushed a/.gitattributes', 'a/.gitattributes', 'a .gitattributes is pushed'],
+    ]) {
+      const q = newRepo(); commit(q, 'one', { files: { 'a.txt': '1', [file]: 'x' } });
+      expectFail(`c12: ${label} fails`, runBlock(blk.c12, mkEnv(q, { GITHUB_SHA: head(q) })), msg);
+    }
+  }
+
+  // ---- check 3, with a fake curl ----
+  {
+    const bin = join(scratch, `fakebin${++n}`); mkdirSync(bin);
+    writeFileSync(join(bin, 'curl'), `#!/bin/bash
+# Fake curl: writes the fixture for the URL into the -o file and prints the -w code.
+out=""; url=""
+while [ $# -gt 0 ]; do
+  case "$1" in -o) out=$2; shift 2 ;; -w|-H|--max-time) shift 2 ;; -*) shift ;; *) url=$1; shift ;; esac
+done
+if [[ "$url" =~ /workflows/pages.yml/runs.*page=([0-9]+) ]]; then key="page\${BASH_REMATCH[1]}"
+elif [[ "$url" =~ /actions/runs/([0-9]+)/jobs ]]; then key="jobs-\${BASH_REMATCH[1]}"
+else key="unknown"; fi
+echo "$url" >> "$FIX/urls.log"
+if [ -e "$FIX/code-$key" ]; then echo '{}' > "$out"; cat "$FIX/code-$key"; exit 0; fi
+if [ -e "$FIX/$key.json" ]; then cp "$FIX/$key.json" "$out"; printf 200; else echo '{}' > "$out"; printf 404; fi
+`, { mode: 0o755 });
+    const A1 = SHA40('a'), A2 = SHA40('c'), A3 = SHA40('d');
+    const mk = (fix) => {
+      const d = join(scratch, `fix${++n}`); mkdirSync(d);
+      for (const [k, v] of Object.entries(fix)) writeFileSync(join(d, k), typeof v === 'string' ? v : JSON.stringify(v));
+      return d;
+    };
+    const run = (id, sha, t) => ({ id, head_sha: sha, created_at: t });
+    const jobs = (ok) => ({ jobs: [{ name: 'build', conclusion: 'success' }, { name: 'security', conclusion: ok ? 'success' : 'failure' }] });
+    const go = (fix) => {
+      const r = newRepo(); commit(r, 'x');
+      const env = mkEnv(r, { GITHUB_SHA: head(r), FIX: mk(fix), PATH: `${bin}:${process.env.PATH}` });
+      const res = runBlock(blk.c3, env);
+      let a = ''; try { a = readFileSync(join(env.RUNNER_TEMP, 'anchor.sha'), 'utf8').trim(); } catch { /* none */ }
+      return { ...res, a };
+    };
+    let r = go({ 'page1.json': { workflow_runs: [run(11, A1, '2026-01-01T00:00:00Z')] }, 'jobs-11.json': jobs(false),
+      'page2.json': { workflow_runs: [run(12, A2, '2025-12-01T00:00:00Z')] }, 'jobs-12.json': jobs(true) });
+    check('c3: a qualifying run on page 2 gives A', r.code === 0 && r.a === A2 && r.out.includes(`A is ${A2}`), `${r.code} ${r.a} ${r.out}`);
+    r = go({ 'page1.json': { workflow_runs: [] } });
+    check('c3: an empty page takes the bootstrap', r.code === 0 && r.a === BASE40 && r.out.includes('bootstrap: A is the pinned trusted base'), `${r.code} ${r.a} ${r.out}`);
+    r = go({ 'page1.json': { workflow_runs: [run(11, A1, '2026-01-01T00:00:00Z')] }, 'jobs-11.json': jobs(false), 'page2.json': { workflow_runs: [] } });
+    check('c3: runs without a passing security job take the bootstrap', r.code === 0 && r.a === BASE40, `${r.code} ${r.a} ${r.out}`);
+    r = go({ 'code-page1': '500' });
+    check('c3: a 500 fails with no bootstrap', r.code !== 0 && r.out.includes('answered 500') && r.a === '' && !r.out.includes('bootstrap: A is'), `${r.code} ${r.a} ${r.out}`);
+    r = go({ 'page1.json': { workflow_runs: [run(11, 'xyz', '2026-01-01T00:00:00Z')] }, 'jobs-11.json': jobs(true) });
+    check('c3: a head_sha that is not 40 hex digits fails', r.code !== 0 && r.out.includes('head_sha is not 40 hex digits') && r.a === '', `${r.code} ${r.a} ${r.out}`);
+    r = go({ 'page1.json': { workflow_runs: [run(100, A1, '2026-03-01T00:00:00Z'), run(11, A3, '2026-01-01T00:00:00Z')] },
+      'jobs-100.json': jobs(true), 'jobs-11.json': jobs(true) });
+    check('c3: the current run id is excluded', r.code === 0 && r.a === A3, `${r.code} ${r.a} ${r.out}`);
+    r = go({ 'page1.json': { workflow_runs: [run(13, A1, '2026-02-01T00:00:00Z'), run(11, A3, '2026-01-01T00:00:00Z')] },
+      'jobs-13.json': jobs(false), 'jobs-11.json': jobs(true) });
+    check('c3: a run whose security job failed is skipped', r.code === 0 && r.a === A3, `${r.code} ${r.a} ${r.out}`);
+    r = go({ 'page1.json': { workflow_runs: [run('x1', A1, '2026-02-01T00:00:00Z')] } });
+    check('c3: a run id that is not a number fails', r.code !== 0 && r.out.includes('a run id is not a number'), `${r.code} ${r.out}`);
+    r = go({ 'page1.json': { nope: 1 } });
+    check('c3: a reply with no workflow_runs array fails', r.code !== 0 && r.out.includes('no workflow_runs array'), `${r.code} ${r.out}`);
+  }
+
+  // ---- checks 4 to 6 ----
+  {
+    // A repository with a base commit; returns the base sha. The block is run with A as given.
+    const base = (files = { 'a.txt': '1' }) => { const r = newRepo(); const a = commit(r, 'base', { files }); return { r, a }; };
+    const go46 = (r, a) => { const env = mkEnv(r, { GITHUB_SHA: head(r) }); setAnchor(env, a); return runBlock(blk.c46, env); };
+    const sym = (r, name, target = 'a.txt') => symlinkSync(target, join(r, name));
+    let t = base(); commit(t.r, 'two', { files: { 'b.txt': '2' } });
+    expectPass('c46: a clean range passes', go46(t.r, t.a), 'checks 4 to 6 passed');
+
+    t = base(); const main = git(t.r, ['rev-parse', '--abbrev-ref', 'HEAD']);
+    git(t.r, ['checkout', '-q', '-b', 'side']); const side = commit(t.r, 'side', { files: { 's.txt': '1' } });
+    git(t.r, ['checkout', '-q', main]); commit(t.r, 'main two', { files: { 'm.txt': '1' } });
+    expectFail('c46: A not an ancestor fails', go46(t.r, side), 'A is not an ancestor');
+    expectFail('c46: A not in the clone fails', go46(t.r, SHA40('e')), 'A is not in this clone');
+    expectFail('c46: A not 40 hex digits fails', go46(t.r, 'abc'), 'A is not 40 hex digits');
+
+    t = base(); const m2 = git(t.r, ['rev-parse', '--abbrev-ref', 'HEAD']);
+    git(t.r, ['checkout', '-q', '--orphan', 'orph']); git(t.r, ['rm', '-rf', '-q', '.']);
+    commit(t.r, 'orphan', { files: { 'o.txt': '1' } });
+    git(t.r, ['checkout', '-q', m2]); git(t.r, ['merge', '-q', '--allow-unrelated-histories', '--no-ff', '-m', 'merge orphan\n\n' + GOOD, 'orph']);
+    expectFail('c46: an orphan merge in A..AFTER fails', go46(t.r, t.a), 'has no parent');
+
+    t = base(); sym(t.r, 'ln'); commit(t.r, 'add symlink');
+    git(t.r, ['rm', '-q', 'ln']); commit(t.r, 'remove symlink');
+    expectFail('c46: a symlink added then removed later fails', go46(t.r, t.a), 'adds a symlink');
+
+    t = base(); const m3 = git(t.r, ['rev-parse', '--abbrev-ref', 'HEAD']);
+    git(t.r, ['checkout', '-q', '-b', 'x']); commit(t.r, 'x side', { files: { 'x.txt': '1' } });
+    git(t.r, ['checkout', '-q', m3]); commit(t.r, 'main side', { files: { 'y.txt': '1' } });
+    git(t.r, ['merge', '-q', '--no-ff', '--no-commit', 'x']); sym(t.r, 'mergelink'); git(t.r, ['add', 'mergelink']);
+    git(t.r, ['commit', '-q', '-m', 'merge with a link\n\n' + GOOD]);
+    git(t.r, ['rm', '-q', 'mergelink']); commit(t.r, 'remove the link');
+    expectFail('c46: a symlink added in a merge only fails (needs -m)', go46(t.r, t.a), 'adds a symlink');
+
+    t = base(); git(t.r, ['update-index', '--add', '--cacheinfo', `160000,${SHA40('9')},sub`]);
+    git(t.r, ['commit', '-q', '-m', 'gitlink\n\n' + GOOD]);
+    expectFail('c46: a gitlink fails', go46(t.r, t.a), 'adds a gitlink');
+
+    t = base(); commit(t.r, 'two'); sym(t.r, 'untracked');
+    expectFail('c46: an untracked symlink on disk fails', go46(t.r, t.a), 'the workspace holds a symlink');
+    t = base(); commit(t.r, 'two'); symlinkSync('/nonexistent', join(t.r, '.git', 'planted'));
+    expectFail('c46: a symlink under .git fails', go46(t.r, t.a), 'the workspace holds a symlink');
+
+    t = base();
+    commit(t.r, 'odd names', { files: { 'new\nline.txt': '1', 'sp ace\ttab.txt': '2', "q'uote\"d.txt": '3', 'café.txt': '4', 'old.txt': 'renamed content that is long enough to match' } });
+    git(t.r, ['mv', 'old.txt', 'moved\nname.txt']); commit(t.r, 'rename');
+    expectPass('c46: odd and newline file names do not cause a false failure', go46(t.r, t.a), 'checks 4 to 6 passed');
+  }
+
+  // ---- check 7 ----
+  {
+    const mkA = (withChecker) => {
+      const r = newRepo();
+      const files = { 'scripts/leak-scan.mjs': "console.log('A-LEAK-SCAN');\n", 'scripts/README': 'x' };
+      if (withChecker) files['scripts/check-commits.mjs'] = "console.log('A-CHECKER-MARKER', process.argv.slice(2).join(' '));\n";
+      const a = commit(r, 'base', { files });
+      return { r, a };
+    };
+    let t = mkA(true);
+    commit(t.r, 'pushed', { files: {
+      'scripts/check-commits.mjs': "console.log('PUSHED-CHECKER'); process.exit(1);\n",
+      'scripts/commit-exemptions.json': '{"exempt":["all"]}', 'scripts/test-leak-scan.mjs': "console.log('PUSHED-TEST'); process.exit(1);\n" } });
+    let env = mkEnv(t.r, { GITHUB_SHA: head(t.r) }); setAnchor(env, t.a);
+    const res = runBlock(blk.c7, env);
+    check('c7: the checker from A runs, with its marker, and the pushed exemptions are gone',
+      res.code === 0 && res.out.includes(`A-CHECKER-MARKER ${t.a} ${head(t.r)}`) && !res.out.includes('PUSHED') &&
+      !existsSync(join(t.r, 'scripts/commit-exemptions.json')) && !existsSync(join(t.r, 'scripts/test-leak-scan.mjs')) &&
+      readFileSync(join(t.r, 'scripts/check-commits.mjs'), 'utf8').includes('A-CHECKER-MARKER'), `${res.code} ${res.out}`);
+    t = mkA(false); commit(t.r, 'pushed', { files: { 'scripts/check-commits.mjs': "console.log('PUSHED-CHECKER');\n" } });
+    env = mkEnv(t.r, { GITHUB_SHA: head(t.r) }); setAnchor(env, t.a);
+    expectFail('c7: A without scripts/check-commits.mjs fails', runBlock(blk.c7, env), 'A has no scripts/check-commits.mjs');
+  }
+
+  // ---- check 8 ----
+  {
+    const ws = () => { const r = newRepo(); commit(r, 'x'); return r; };
+    let r = ws(); let env = mkEnv(r);
+    expectPass('c8pre: nothing in the way passes', runBlock(blk.c8pre, env), '');
+    mkdirSync(join(env.RUNNER_TEMP, 'pages'));
+    expectFail('c8pre: an existing pages directory fails', runBlock(blk.c8pre, env), 'exists before the download');
+    env = mkEnv(r); symlinkSync('/nonexistent', join(env.RUNNER_TEMP, 'site'));
+    expectFail('c8pre: a dangling site symlink fails', runBlock(blk.c8pre, env), 'exists before the download');
+
+    // Artifact fixtures built with tar from a staging directory.
+    const stage = () => { const d = join(scratch, `stage${++n}`); mkdirSync(d); writeFileSync(join(d, 'index.html'), '<p>hi</p>'); mkdirSync(join(d, 'sub')); writeFileSync(join(d, 'sub', 'p.html'), 'p'); return d; };
+    const tarUp = (d, out, extra = [], members = ['.']) => {
+      const x = spawnSync('tar', ['-cf', out, ...extra, ...(members.length ? ['-C', d, ...members] : [])], { encoding: 'utf8' });
+      if (x.status !== 0) throw new Error('tar failed: ' + x.stderr);
+    };
+    const stubDir = join(scratch, `stub${++n}`); mkdirSync(stubDir);
+    const stub = join(stubDir, 'node-stub');
+    writeFileSync(stub, '#!/bin/sh\necho "stub-ran $*" > "$RUNNER_TEMP/stub.log"\n', { mode: 0o755 });
+    const go8 = (build, { site = false } = {}) => {
+      const repo = ws(); const e = mkEnv(repo, { NODE_BIN: stub });
+      mkdirSync(join(e.RUNNER_TEMP, 'pages'));
+      if (build) build(join(e.RUNNER_TEMP, 'pages', 'artifact.tar'), e);
+      if (site) mkdirSync(join(repo, '_site'));
+      const res = runBlock(blk.c8, e);
+      return { ...res, repo, e };
+    };
+    let g = go8((f) => tarUp(stage(), f));
+    check('c8: a good artifact passes and the leak scan is called', g.code === 0 && existsSync(join(g.repo, '_site/index.html')) &&
+      readFileSync(join(g.e.RUNNER_TEMP, 'stub.log'), 'utf8').includes('stub-ran scripts/leak-scan.mjs'), `${g.code} ${g.out}`);
+    g = go8((f) => { const d = stage(); writeFileSync(join(d, 'new\nline.html'), 'n'); tarUp(d, f); });
+    check('c8: a member name with a newline is one entry and passes', g.code === 0 && existsSync(join(g.repo, '_site/index.html')), `${g.code} ${g.out}`);
+    g = go8((f) => { const d = stage(); symlinkSync('/etc/passwd', join(d, 'sym\nlink')); tarUp(d, f); });
+    expectFail('c8: a symlink member with a newline in its name fails', g, 'not a regular file or a directory');
+    g = go8((f) => { const d = stage(); symlinkSync('index.html', join(d, 'sym')); tarUp(d, f); });
+    expectFail('c8: a symlink member fails', g, 'not a regular file or a directory');
+    g = go8((f) => { const d = stage(); linkSync(join(d, 'index.html'), join(d, 'hard')); tarUp(d, f); });
+    expectFail('c8: a hard link member fails', g, 'not a regular file or a directory');
+    g = go8((f) => { const d = stage(); tarUp(d, f, ['-P'], [join(d, 'index.html')]); });
+    expectFail('c8: an absolute member name fails', g, 'an absolute path');
+    g = go8((f) => { const d = stage(); tarUp(d, f, ['-P', '--transform=s,^,../,'], ['index.html']); });
+    expectFail('c8: a .. member name fails', g, 'a .. component');
+    g = go8((f) => tarUp(stage(), f), { site: true });
+    expectFail('c8: an existing workspace _site fails', g, 'the workspace already has _site');
+    g = go8((f) => tarUp(stage(), f, ['-T', '/dev/null'], []));
+    expectFail('c8: an empty tar fails', g, 'the artifact is empty');
+    g = go8(null);
+    expectFail('c8: a missing artifact fails', g, 'missing or not a regular file');
+    g = go8((f) => { const d = stage(); rmSync(join(d, 'index.html')); tarUp(d, f); });
+    expectFail('c8: an artifact with no index.html fails', g, 'no index.html');
   }
 }
 

@@ -5,8 +5,8 @@
  "account": "B",
  "site": "https://travel.promptugal.news",
  "repo": "https://github.com/PrompTugal/PrompTugal__News__Travel (dev)",
- "updated": "2026-11-20T19:56Z",
- "run": "19:53 UTC wake (20 Nov): disruptions re-read to 20 Nov",
+ "updated": "2026-11-21T08:57Z",
+ "run": "08:53 UTC wake (21 Nov): fixture tests that run the security job's bash steps",
  "observability": {
   "lane": "travel",
   "how": "src/assets/obs/obs.js on every page sends to this site's own lane (vault 9y7m26v0, 4 append lanes, drain key sha256:769aec505e1d6f47), configured by src/assets/obs/obs.json; every event also says lane: \"travel\". conductor.b@PrompTugal.dinis holds the sealed drain credentials and drains it.",
@@ -51,7 +51,6 @@
  ],
  "live": "v0.1.5 at the start of this run; this run's push makes the next version (CI numbers it).",
  "next": [
-  "fixture tests for the security job's bash steps",
   "read stale_after_seconds directly",
   "signed commits (waits on the leak-scan exemption ask)",
   "licence of each loaded file next to the live figures",
@@ -124,12 +123,13 @@
   "limit": "the workflow YAML still comes from the pushed tree; only Dinis's branch protection with a required check closes that",
   "state": "built 20:04 UTC 19 Nov: a security job after build and before deploy, running no pushed code; A = head_sha of the newest successful push run on dev whose job 'security' passed (every page of runs; bootstrap base 75dc63d only when none exists; API error or page cap fails); A ancestor of AFTER; orphans refused; symlinks and gitlinks refused (diff-tree -r -m -z per commit, AFTER's tree, disk without pruning, artifact); checkers and config from A's tree; artifact tar vetted then leak-scanned with A's checker (scanned bytes = deployed bytes); GIT_ATTR_SOURCE empty tree (git >= 2.42), GIT_NO_REPLACE_OBJECTS=1, NODE_OPTIONS cleared, absolute node path; security, deploy and tag only on refs/heads/dev; check-commits skips by ancestry of a pinned base only; leak scan reads binary files and refuses symlinks; tag shape checked. Tests: scripts/test-ci-checks.mjs (62), test-leak-scan.mjs, in release.sh and CI. .gitattributes removed (it pointed at a .sg_vault that does not exist).",
   "limit_plainly": "until branch protection, the security job guards against mistakes, not against someone with push access (a pushed workflow can keep a job named security that does nothing). The first push runs the base's older checkers.",
-  "to_do": "fixture tests that run the anchor, diff-tree and tar steps; signatures (controls 1 to 5) wait on Dinis",
-  "first_anchored_run": "c28436b's run (20 Nov ~08:57 UTC): A = 1d330f5, new checkers, all 201 files scanned (no binary skipped); all four jobs passed"
+  "to_do": "signatures (controls 1 to 5) wait on Dinis",
+  "first_anchored_run": "c28436b's run (20 Nov ~08:57 UTC): A = 1d330f5, new checkers, all 201 files scanned (no binary skipped); all four jobs passed",
+  "fixture_tests": "08:57 UTC 21 Nov: scripts/test-ci-checks.mjs runs the security job's real run: blocks (extracted from pages.yml by step name) against throwaway repos and a fake curl, 105 checks; a deliberate break of the orphan check and of the tar listing check made the tests fail (mutation check by travel.b@). AppSec post-review (Sonnet): no blocking; three lows accepted (temp dir left on a crash; fake-curl URLs not asserted; one pass case checks the exit code only)."
  },
  "wakes": "twice a day from 19 Nov (Dinis ~16:30 UTC, via conductor.b@; Website board/guidance/2026-11-19-twice-a-day.md): site leads 08:00 to 09:00 and 19:00 to 20:00 Lisbon. One whole piece per wake.",
  "stale_rule": "16:38 UTC: figures marked Stale after 13 hours, or a file's own cadence plus 1 hour where longer (at most 25 h). AppSec post-review (Sonnet): nothing above informational.",
  "map": "live from 08:57 UTC 20 Nov: ptmap 1.0.2 vendored unchanged from Website 2132c8cf7 (security@ 168c14fc5; outline ISC notice in the header, rights@ R12), each file's sha384 checked against the live registry (map.versions['1.0.2']); front page 'Where this site covers': 16 Algarve places from our own coords, each to its /weather/ row; London inset to /london/, Brussels (the EU) to /uk-portugal/. AppSec post-review (Sonnet): no blocking findings.",
  "disruptions": "re-read 19:56 UTC 20 Nov (travel.b.research@, Sonnet; travel.b@ review): no report of the 20 Nov easyJet and SNPVAC meeting yet (strike of 19 to 23 Dec stays called off; talks also 23 and 25 Nov); no new strike or closure found to 20 Jan 2027 (airports, handling, border, TAP, Ryanair, CP, Fertagus, Algarve buses, general strike, A22, EN125; ferries not searched). Two search-only sources removed (not read); A22 tolls already settled on /getting-around/.",
- "track_records": "20 Nov: Faro and London have their first kept d1 forecasts, on days not yet complete; the first track-record point appears once such a day completes (21 Nov)."
+ "track_records": "21 Nov 08:58 UTC, live: London's first point, '0 of 1 past complete days within 1 mm of what we said the day before' (20 Nov: a miss, shown as plainly). Faro's 20 Nov is not yet complete in data.b@'s file."
 }
